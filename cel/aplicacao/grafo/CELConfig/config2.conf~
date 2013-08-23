@@ -1,0 +1,68 @@
+;***************************************************************
+;* Módulo de Configuração do CEL e seus Plugins.               *
+;* Arquivos: CELConfig.inc , config2.conf                      *
+;* Autor:    Alex Marques Campos                               *
+;* Data:     setembro de 2003                                  *
+;* Versão:   0.1                                               *
+;***************************************************************/
+
+; Este é o arquivo de configuração do CEL
+; Todos os comentarios comecam com ";"
+
+; As configurações têm a forma:
+; [Nome da Sessao]
+; variavel      = valor
+; outravariavel = seuvalor
+
+; Observe a ausência do ponto-e-virgula final.
+
+
+;---------------------------------------------------------------
+; Inicio das configurações
+;---------------------------------------------------------------
+
+; Configurações Relativas ao Banco de Dados
+[BD]
+BD_ip       = 139.82.24.189
+BD_host     = ""
+BD_porta    = ""
+BD_database = "CELCarol"
+BD_user     = "root"
+BD_password = ""
+
+
+
+; Configurações relativas ao servidor de WEB (HTTPD)
+[HTTPD]
+HTTPD_ip    = 139.82.24.189
+
+
+
+; Configurações relativas ao CEL
+[CEL]
+;
+;  *   "CEL_dir_relativo" é a variável que expressa o diretório do CEL relativo
+;    ao HTDOCS (diretório raiz de documentos do HTTPD).
+;
+;    Na referencia relativa, não incluir a barra inicial (se incluir, ele se torna absoluto. :) )
+;    Sempre incluir a barra final:
+;    "cel_vf/aplicacao"  => ERRADO!!
+;    "cel_vf/aplicacao/" => CERTO
+;
+CEL_dir_relativo = "cel_vf/aplicacao/"
+CEL_dir_absoluto = "C:/Apache/Apache2/htdocs/cel_vf/aplicacao/"
+
+
+
+; Configurações relativas ao plugin de DAML
+[DAML]
+; Diretorio onde serão salvos os arquivos de DAML
+; Este diretório não é criado automaticamente. É necessária a criação prévia manualmente.
+DAML_dir_relativo_ao_CEL = "arquivos_DAML/"
+
+
+
+;---------------------------------------------------------------
+; Fim das configurações
+;---------------------------------------------------------------
+

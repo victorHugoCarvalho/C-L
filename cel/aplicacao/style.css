@@ -1,0 +1,51 @@
+BODY
+		{
+			MARGIN: 10px 0px;
+			COLOR: black;
+			FONT-FAMILY: Verdana;
+			BACKGROUND-COLOR: white
+		}
+a
+	    {
+	        font-weight: bolder;
+	        color: blue;
+	        font-family: Verdana, Arial;
+	        text-decoration: none
+	    }
+a:hover
+	    {
+	        font-weight: bolder;
+	        color: Tomato;
+	        font-family: Verdana, Arial;
+	        text-decoration: none
+    	}
+H3
+		{
+			BORDER-TOP: #00359f 1px solid;
+			PADDING-LEFT: 4px;
+			MARGIN-BOTTOM: 0.5em;
+			MARGIN-LEFT: 1em;
+			BORDER-LEFT: #00359f 8px solid
+		}
+TH
+		{
+			font-weight: bolder;
+			font-size: 10pt;
+			color: white;
+			background-color: #3366ff;
+		}
+TD.Estilo
+		{
+			font-size: 10pt;
+			color: black;
+			background-color: #E0FFFF;
+		}
+TABLE
+		{
+		MARGIN-LEFT: 1.2em;
+		MARGIN-RIGHT: 1.2em;
+		}
+P
+		{
+			MARGIN-BOTTOM: 0.5em;
+		}

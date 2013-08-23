@@ -1,0 +1,1097 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<projeto>
+<nome>Espaço de nomes do C&amp;L</nome>
+<lexico>
+<nome_simbolo id="alt_cenario.php"><texto>Alt_cenario.php</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Este script faz um pedido de alteração de um cenário do projeto. O usuário recebe um form com o cenário corrente (ou seja com seus campos preenchidos) e poderá fazer alterações em todos os campos menos no título. Ao final a tela principal retorna para a tela de início e a árvore é fechada. O form de alteração também é fechado. 
+Número de linhas de código: 147</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É utilizado pelos arquivos:
+- main.php</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="alt_conceito.php"><texto>Alt_conceito.php</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Este script faz um pedido de alteração de um conceito do projeto. O usuário recebe um form com o conceito corrente (ou seja com seus campos preenchidos) e poderá fazer alterações em todos os campos menos no nome. Ao final a tela principal retorna para a tela de início e a árvore é fechada.O form de alteração também é fechado.
+Número de linhas de código: 113</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamado pelos arquivos:
+- main.php</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$r"><texto>$r</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo: </texto><texto referencia_lexico="alt_cenario.php">alt_cenario.php</texto><texto>
+Tipo: Inteiro.
+Escopo: Global.
+Utilidade: 
+- Verifica a conexão com o SGDB</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Recebe o retorno da função bd_connect().</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="arv_interface.php"><texto>Arv_interface.php</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Número de linhas de código: 133</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Funções definidas no arquivo:
+- </texto><texto referencia_lexico="mtmenu">mtmenu</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="mtmenu"><texto>Mtmenu</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="arv_interface.php">arv_interface.php</texto><texto>
+Número de Linhas de Código: 5
+Utilidade:
+- </texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função 
+- É chamada no corpo do arquivo</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="class.phpmailer.php"><texto>Class.phpmailer.php</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Classe para mandar email usando tanto sendmail, PHP mail() ou SMTP. Métodos são baseados nas classes do AspEmail(tm) padrão.
+Número de linhas de código: 1499</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Funções definidas pelos arquivos:
+- </texto><texto referencia_lexico="ishtml">ishtml</texto><texto>
+- </texto><texto referencia_lexico="issmtp">issmtp</texto><texto>
+- </texto><texto referencia_lexico="ismail">ismail</texto><texto>
+- </texto><texto referencia_lexico="issendmail">issendmail</texto><texto>
+- </texto><texto referencia_lexico="isqmail">isqmail</texto><texto>
+- </texto><texto referencia_lexico="addaddress">addaddress</texto><texto>
+- </texto><texto referencia_lexico="addcc">addcc</texto><texto>
+- </texto><texto referencia_lexico="addbcc">addbcc</texto><texto>
+- </texto><texto referencia_lexico="addreplyto">addreplyto</texto><texto>
+- </texto><texto referencia_lexico="send">send</texto><texto>
+- </texto><texto referencia_lexico="sendmailsend">sendmailsend</texto><texto>
+- </texto><texto referencia_lexico="mailsend">mailsend</texto><texto>
+- </texto><texto referencia_lexico="smtpsend">smtpsend</texto><texto>
+- </texto><texto referencia_lexico="smtpconnect">smtpconnect</texto><texto>
+- </texto><texto referencia_lexico="smtpclose">smtpclose</texto><texto>
+- </texto><texto referencia_lexico="setlanguage">setlanguage</texto><texto>
+- </texto><texto referencia_lexico="addrappend">addrappend</texto><texto>
+- </texto><texto referencia_lexico="addrformat">addrformat</texto><texto>
+- </texto><texto referencia_lexico="wraptext">wraptext</texto><texto>
+- </texto><texto referencia_lexico="setwordwrap">setwordwrap</texto><texto>
+- </texto><texto referencia_lexico="createheader">createheader</texto><texto>
+- </texto><texto referencia_lexico="createbody">createbody</texto><texto>
+- </texto><texto referencia_lexico="getboundary">getboundary</texto><texto>
+- </texto><texto referencia_lexico="endboundary">endboundary</texto><texto>
+- </texto><texto referencia_lexico="setmessagetype">setmessagetype</texto><texto>
+- </texto><texto referencia_lexico="headerline">headerline</texto><texto>
+- </texto><texto referencia_lexico="textline">textline</texto><texto>
+- </texto><texto referencia_lexico="addattachment">addattachment</texto><texto>
+- attachall
+- encodefile
+- encodestring
+- encodeheader
+- encodeqp
+- encodeq
+- addstringattachment
+- addembeddedimage
+- inlineimageexists
+- clearaddresses
+- clearccs
+- clearbccs
+- clearreplytos
+- clearallrecipients
+- clearattachments
+- clearcustomhearders
+- seterror
+- rfcdate
+- servervar
+- serverhostname
+- lang
+- iserror
+- fixeol
+- addcustomreader
+É utilizado pelos arquivos:
+-</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="httprequest.inc"><texto>Httprequest.inc</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Número de linhas de código: 14</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É utilizado pelos arquivos:</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="projeto.xsl"><texto>Projeto.xsl</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Número de linhas de código: 225</texto><PT/></sentenca></nocao>
+<impacto><sentenca><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="ishtml"><texto>Ishtml</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $bool - Boolean
+Números de linha de código: 5
+Utilidade:
+- Define o tipo da menssagem para HTML se o parâmetro for verdadeiro.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função
+- É chamada no corpo do arquivo</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="issmtp"><texto>Issmtp</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- nenhum
+Números de linha de código: 2
+Utilidade:
+- Definir o "Mailer" para enviar mensagem via SMTP</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função
+- É chamada no corpo do arquivo </texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="ismail"><texto>Ismail</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Números de linha de código: 2
+Utilidade:
+- Definir o "Mailer" para enviar mensagem usando a função PHP mail(). </texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função
+- É chamada no corpo do arquivo </texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="issendmail"><texto>Issendmail</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Números de linha de código: 2
+Utilidade:
+- Definir o "Mailer" para enviar mensagem usando  o programa $Sendmail.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função
+- É chamada no corpo do arquivo </texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="isqmail"><texto>Isqmail</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Números de linha de código: 3
+Utilidade:
+- Definir o "Mailer" para enviar mensagem usando o qmail MTA.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- É chamada pela função
+- É chamada no corpo do arquivo </texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addaddress"><texto>Addaddress</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Pârametros:
+- $address - String
+- $name - String
+Número de linhas de código: 4
+Utilidade:
+- Adicionar um endereço "To".</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada na função
+É chamada no corpo do arquivo
+Chama a função 
+- count
+- trim
+Dentro da função são criadas as variáveis:
+- $cur</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addcc"><texto>Addcc</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $address - String
+- $name - String
+Número de linhas de código: 4
+Utilidade:
+- Adicionar um endereço "Cc".</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função
+É chamada no corpo do arquivo
+Chama a função 
+- count
+- trim
+Dentro da função são criadas as variáveis:
+- $cur</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="auxiliar_bd.php"><texto>Auxiliar_bd.php</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Número de Linhas de Código: 538</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Funções definidas no arquivo:
+-    </texto><texto referencia_lexico="get_lista_de_sujeito">get_lista_de_sujeito</texto><texto>
+-    </texto><texto referencia_lexico="get_lista_de_objeto">get_lista_de_objeto</texto><texto>
+-    </texto><texto referencia_lexico="get_lista_de_verbo">get_lista_de_verbo</texto><texto>
+-    </texto><texto referencia_lexico="get_lista_de_estado">get_lista_de_estado</texto><texto>
+-	</texto><texto referencia_lexico="verifica_tipo">verifica_tipo</texto><texto>
+-	</texto><texto referencia_lexico="atualiza_tipo">atualiza_tipo</texto><texto>
+-	obter_léxico
+-	obter_termo_do_léxico
+-	</texto><texto referencia_lexico="cadastra_impacto">cadastra_impacto</texto><texto>
+-	</texto><texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto><texto>
+-	</texto><texto referencia_lexico="get_lista_de_relacoes">get_lista_de_relacoes</texto><texto>
+-	</texto><texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto><texto>
+-	get_função
+-	</texto><texto referencia_lexico="get_indices">get_indices</texto><texto>
+-	</texto><texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Utiliza os arquivos:
+
+-	estruturas.php
+-	auxiliar_algoritmo.php
+-	bd.inc</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_sujeito"><texto>Get_lista_de_sujeito</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 18
+Utilidade: obtém a lista do banco de dados que tem o tipo = sujeito e que seja do mesmo id_projeto
+</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- Chama a função sort, mysql_query.
+- Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_objeto"><texto>Get_lista_de_objeto</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 17
+Utilidade: obtem a lista do banco de dados que tem o tipo = objeto e que seja do mesmo id_projeto</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>- Chama a função sort, mysql_query.
+- Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_verbo"><texto>Get_lista_de_verbo</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 17
+Utilidade: obtem a lista do banco de dados que tem o tipo = verbo e que seja do mesmo id_projeto</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função sort, mysql_query.
+- Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_estado"><texto>Get_lista_de_estado</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 17
+Utilidade: obtem a lista do banco de dados que tem o tipo = estado e que seja do mesmo id_projeto.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função sort, mysql_query.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto>
+<PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="verifica_tipo"><texto>Verifica_tipo</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 28
+Utilidade: verifica se todos os membros da tabela de léxicos têm um tipo definido, haja registros na tabela sem tipo defino, a função retorna estes registros, caso contrário retorna true.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_free_result, mysql_query.
+
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$col_value">$col_value</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><texto>
+- $result2</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="atualiza_tipo"><texto>Atualiza_tipo</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Parâmetro:
+- $id_léxico – inteiro
+- $tipo - string
+Número de Linhas de Código: 22
+Utilidade esta função atualiza o tipo do lexico $id_lexico (inteiro) para $tipo (string), esta função só aceita os tipos: sujeito, objeto, verbo, estado e NULL.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- $tipo
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto>
+<PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="obter_lexico"><texto>Obter_lexico</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Parâmetro:
+- $id_léxico – inteiro
+Número de Linhas de Código: 10
+Utilidade: retorna todos os campos do lexico; cada campo é uma posição do array que pode ser indexada pelo nome do campo, ou por um índice inteiro.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><texto>
+- </texto><texto referencia_lexico="$line">$line</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="obter_termo_do_lexico"><texto>Obter_termo_do_lexico</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Parâmetro:
+- $lexico – string
+Número de Linhas de Código: 12
+Utilidade: retorna o termo do léxico.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- $id_lexico
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><texto>
+- $termo_do_lexico</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="cadastra_impacto"><texto>Cadastra_impacto</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Parâmetro:
+- $id_lexico – inteiro
+- $impacto - string
+Número de Linhas de Código: 13
+Utilidade: cadastra impacto no banco de dados e retorna o seu id.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- $id_impacto
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_conceitos"><texto>Get_lista_de_conceitos</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 66
+Utilidade: cadastra impacto no banco de dados e retorna o seu id.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array, existe_relacao, conceito, sort.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- $result1
+- $result2
+- $result3
+- $idrel
+- $rel
+- $pred
+- $índice
+- </texto><texto referencia_lexico="$line">$line</texto><texto>
+- $line2
+- </texto><texto referencia_lexico="$id_conceito">$id_conceito</texto><texto>
+- $id_subconceito
+- $key</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_relacoes"><texto>Get_lista_de_relacoes</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 14
+Utilidade: cria tabela de relações.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array, sort.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_lista_de_axiomas"><texto>Get_lista_de_axiomas</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 12
+Utilidade: cria tabela para axiomas.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array, sort.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$aux">$aux</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_funcao"><texto>Get_funcao</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 12
+Utilidade: cria uma variável função.
+</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$line">$line</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="get_indices"><texto>Get_indices</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 13
+Utilidade: cria uma variável de índices.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array.
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- $indice
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="salvar_algoritmo"><texto>Salvar_algoritmo</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+Número de Linhas de Código: 13
+Utilidade: cria uma variável de índices.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Chama a função mysql_query, mysql_fetch_array, mysql_close, array_key_exists, salvar_algoritmo.
+-Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$id_projeto">$id_projeto</texto><texto>
+- </texto><texto referencia_lexico="$link">$link</texto><texto>
+- </texto><texto referencia_lexico="$query">$query</texto><texto>
+- </texto><texto referencia_lexico="$result">$result</texto><texto>
+- </texto><texto referencia_lexico="$id_conceito">$id_conceito</texto><texto>
+- </texto><texto referencia_lexico="$line">$line</texto><texto>
+- $verbo
+- </texto><texto referencia_lexico="$predicados">$predicados</texto><texto>
+- $list
+- </texto><texto referencia_lexico="$aux">$aux</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addbcc"><texto>Addbcc</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $address - String
+- $name - String
+Número de linhas de código: 4
+Utilidade: 
+- Adicionar um endereço "Bcc"</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função
+É chamada no corpo do arquivo
+São criadas as variáveis 
+- $cur</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$id_projeto"><texto>$id_projeto</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+-	Função:
+</texto><texto referencia_lexico="get_lista_de_sujeito">get_lista_de_sujeito</texto>
+<texto referencia_lexico="get_lista_de_objeto">get_lista_de_objeto</texto>
+<texto referencia_lexico="get_lista_de_verbo">get_lista_de_verbo</texto>
+<texto referencia_lexico="get_lista_de_estado">get_lista_de_estado</texto>
+<texto referencia_lexico="verifica_tipo">verifica_tipo</texto>
+<texto referencia_lexico="atualiza_tipo">atualiza_tipo</texto>
+<texto referencia_lexico="obter_lexico">obter_lexico</texto>
+<texto referencia_lexico="obter_termo_do_lexico">obter_termo_do_lexico</texto>
+<texto referencia_lexico="cadastra_impacto">cadastra_impacto</texto>
+<texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto>
+<texto referencia_lexico="get_lista_de_relacoes">get_lista_de_relacoes</texto>
+<texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto>
+<texto referencia_lexico="get_funcao">get_funcao</texto>
+<texto referencia_lexico="get_indices">get_indices</texto>
+<texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Tipo: Inteiro
+Escopo: Local
+Utilidade: armazena a identificação do projeto</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe o valor da variável $_SESSION['id_projeto']</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$aux"><texto>$aux</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+-	Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+-	Função:
+</texto><texto referencia_lexico="get_lista_de_sujeito">get_lista_de_sujeito</texto>
+<texto referencia_lexico="get_lista_de_objeto">get_lista_de_objeto</texto>
+<texto referencia_lexico="get_lista_de_verbo">get_lista_de_verbo</texto>
+<texto referencia_lexico="get_lista_de_estado">get_lista_de_estado</texto>
+<texto referencia_lexico="verifica_tipo">verifica_tipo</texto>
+<texto referencia_lexico="atualiza_tipo">atualiza_tipo</texto>
+<texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto>
+<texto referencia_lexico="get_lista_de_relacoes">get_lista_de_relacoes</texto>
+<texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto>
+<texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Tipo: Inteiro
+Escopo: Local
+Utilidade: armazena variáveis para manipulação dentro das funções.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe o valor de diversas variáveis.</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$query"><texto>$query</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+-	Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+-	Função:
+</texto><texto referencia_lexico="get_lista_de_sujeito">get_lista_de_sujeito</texto>
+<texto referencia_lexico="get_lista_de_objeto">get_lista_de_objeto</texto>
+<texto referencia_lexico="get_lista_de_verbo">get_lista_de_verbo</texto>
+<texto referencia_lexico="get_lista_de_estado">get_lista_de_estado</texto>
+<texto referencia_lexico="verifica_tipo">verifica_tipo</texto>
+<texto referencia_lexico="atualiza_tipo">atualiza_tipo</texto>
+<texto referencia_lexico="obter_lexico">obter_lexico</texto>
+<texto referencia_lexico="obter_termo_do_lexico">obter_termo_do_lexico</texto>
+<texto referencia_lexico="cadastra_impacto">cadastra_impacto</texto>
+<texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto>
+<texto referencia_lexico="get_lista_de_relacoes">get_lista_de_relacoes</texto>
+<texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto>
+<texto referencia_lexico="get_funcao">get_funcao</texto>
+<texto referencia_lexico="get_indices">get_indices</texto>
+<texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Tipo: String
+Escopo: Local
+Utilidade: armazena a pesquisa que será feita no banco de dados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe as instruções da pesquisa do banco de dados</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$result"><texto>$result</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+-	Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+-	Função:
+</texto><texto referencia_lexico="get_lista_de_sujeito">get_lista_de_sujeito</texto>
+<texto referencia_lexico="get_lista_de_objeto">get_lista_de_objeto</texto>
+<texto referencia_lexico="get_lista_de_verbo">get_lista_de_verbo</texto>
+<texto referencia_lexico="get_lista_de_estado">get_lista_de_estado</texto>
+<texto referencia_lexico="verifica_tipo">verifica_tipo</texto>
+<texto referencia_lexico="atualiza_tipo">atualiza_tipo</texto>
+<texto referencia_lexico="obter_lexico">obter_lexico</texto>
+<texto referencia_lexico="obter_termo_do_lexico">obter_termo_do_lexico</texto>
+<texto referencia_lexico="cadastra_impacto">cadastra_impacto</texto>
+<texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto>
+<texto referencia_lexico="get_lista_de_relacoes">get_lista_de_relacoes</texto>
+<texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto>
+<texto referencia_lexico="get_funcao">get_funcao</texto>
+<texto referencia_lexico="get_indices">get_indices</texto>
+<texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Tipo: String
+Escopo: Local
+Utilidade: armazena o resultado da pesquisa do banco de dados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>Recebe o resultado da pesquisa do banco de dados.</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$col_value"><texto>$col_value</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+- Função:
+</texto><texto referencia_lexico="verifica_tipo">verifica_tipo</texto><texto>
+
+Tipo: String
+Escopo: Local
+Utilidade: armazena o resultado da pesquisa do banco de dados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$line"><texto>$line</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+- Função:
+obter_léxico
+</texto><texto referencia_lexico="cadastra_impacto">cadastra_impacto</texto>
+<texto referencia_lexico="get_lista_de_conceitos">get_lista_de_conceitos</texto><texto>
+get_lista_de_relações
+</texto><texto referencia_lexico="get_lista_de_axiomas">get_lista_de_axiomas</texto><texto>
+get_função
+</texto><texto referencia_lexico="get_indices">get_indices</texto>
+<texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+
+Tipo: String
+Escopo: Local
+Utilidade: armazena o resultado da pesquisa do banco de dados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe o resultado da função mysql_fetch_array($result, MYSQL_BOTH)</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$id_conceito"><texto>$id_conceito</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+- Função:
+</texto><texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+
+Tipo: Inteiro
+Escopo: Local
+Utilidade: armazena em qual linha estão o id_conceito.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe o resultado da variável </texto><texto referencia_lexico="$line">$line</texto><texto>['id_conceito']</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$predicados"><texto>$predicados</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+- Função:
+</texto><texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+
+Tipo: Sring
+Escopo: Local
+Utilidade: armazena os predicados de uma relação.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>recebe o resultado da variável $relacao->predicados</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="$link"><texto>$link</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização:
+- Arquivo:
+</texto><texto referencia_lexico="auxiliar_bd.php">auxiliar_bd.php</texto><texto>
+
+- Função:
+</texto><texto referencia_lexico="salvar_algoritmo">salvar_algoritmo</texto><texto>
+
+Tipo: Sring
+Escopo: Local
+Utilidade: armazena link para conexão com o bando de dados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addreplyto"><texto>Addreplyto</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $address - String
+- $name - String
+Número de linhas de código: 4
+Utilidade:
+- Adicionar um endereço "Reply-to"</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função
+É chamada no corpo do arquivo 
+Chama a função
+- count
+- trim
+Dentro da função são criadas as variáveis:
+- $cur</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="send"><texto>Send</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Retorno da função: 
+- boolean
+Número de linhas de código: 40
+Utilidade:
+- Cria mensagem e atribui o Mailer. Se a mensagem não é enviada com sucesso então é retornado falso</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função
+É chamada no corpo do arquivo 
+Chama a função:
+- count
+- seterror
+- </texto><texto referencia_lexico="setmessagetype">setmessagetype</texto><texto>
+- </texto><texto referencia_lexico="createheader">createheader</texto><texto>
+- </texto><texto referencia_lexico="createbody">createbody</texto><texto>
+- </texto><texto referencia_lexico="sendmailsend">sendmailsend</texto><texto>
+- </texto><texto referencia_lexico="mailsend">mailsend</texto><texto>
+- </texto><texto referencia_lexico="smtpsend">smtpsend</texto><texto>
+Dentro da função são criadas as variáveis:
+- $header
+- $body
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="sendmailsend"><texto>Sendmailsend</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $header - String
+- $body - String
+Retorno da função: boolean
+Número de linhas de código: 22
+Utilidade:
+- Enviar email utilizando o programa Sendmail</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função
+É chamada no corpo do arquivo 
+Chama a função
+- sprintf
+- popen
+- seterror
+- fputs
+- pclose
+Dentro da função são criadas as variáveis:
+- $sendmail
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="mailsend"><texto>Mailsend</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $header - String
+- $body - String
+Retorno da função: boolean
+Número de linhas de código: 28
+Utilidade:
+- Enviar e-mail usando a função PHP mail()</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo: 
+Chama a função:
+- count
+- strlen
+- ini_get
+- ini_set
+- sprintf
+- @mail
+- encodeheader
+- seterror
+Dentro da função são criadas as variáveis:
+- $to
+- $i
+- $old_from
+- $params
+- $rt</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="smtpsend"><texto>Smtpsend</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $header - String
+- $body - String
+Retorno da função: boolean
+Número de linhas de código: 58
+Utilidade:
+- Enviar email via SMTP usando PhpSMTP.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo: 
+Chama a função: 
+- include_once
+- array
+- </texto><texto referencia_lexico="smtpconnect">smtpconnect</texto><texto>
+- mail
+- lang
+- seterror
+- reset
+- count
+- recipient
+- data
+- </texto><texto referencia_lexico="smtpclose">smtpclose</texto><texto>
+Dentro da função são criadas as variáveis:
+- $error
+- $bad_rcpt
+- $smtp_from
+- $i</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="smtpconnect"><texto>Smtpconnect</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Retorno da função: boolean
+Número de linhas de código: 43
+Utilidade:
+- Iniciar uma conexão com um servidor SMTP.
+- Retornar falso se a operação falhar.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo: 
+Chama a função:
+- SMTP
+- explode
+- connected
+- count
+- strstr
+- connect
+- hello
+- serverhostname
+- authenticate
+- seterror
+- lang
+- reset
+Dentro da função são criadas as variáveis:
+- $hosts
+- $index
+- $connection
+- $port</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="smtpclose"><texto>Smtpclose</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Número de linhas de código: 9
+Utilidade:
+- Fecha uma sessão SMTP se exitir uma.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo: 
+Chama a função: 
+- connected
+- quit
+- close</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="setlanguage"><texto>Setlanguage</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $lang_type - String
+- $lang_path - String
+Retorno da função: boolean
+Número de linhas de código: 13
+Utilidade:
+- Configurar a linguagem de todas as mensagens de classes de erro.
+- Retorna falso se não conseguir carregar o arquivo de linguagem.
+- A linguagem padrão é Inglês.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo: 
+Chama a função:
+- file_exists
+- seterror</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addrappend"><texto>Addrappend</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $type - String
+- $addr - String
+Retorno da função: String
+Número de linhas de código: 11
+Utilidade:
+- Criar cabeçalhos de recipiente.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- </texto><texto referencia_lexico="addrformat">addrformat</texto><texto>
+- count
+Dentro da função são criadas as variáveis:
+- $addr_str</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addrformat"><texto>Addrformat</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $addr - String
+Retorno da função: String
+Número de linhas de código: 10
+Utilidade:
+- Formatar um endereço corretamente.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- encodeheader
+Dentro da função são criadas as variáveis:
+- $formatted</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="wraptext"><texto>Wraptext</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $message - String
+- $length - Integer
+- $qp_mode - Bool
+Retorno da função: String
+Número de linhas de código: 70
+Utilidade:
+- Juntar mensagen para o uso de mailers que não fazem a junção automática e para imprimíveis citados.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- sprintf
+- fixeol
+- substr
+- explode
+- count
+- strlen
+Dentro da função são criadas as variáveis:
+- $soft_break
+- </texto><texto referencia_lexico="$line">$line</texto><texto>
+- $line_part
+- $buf
+- $word
+- $space_left
+- $len
+- $part
+- $buf_o</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="setwordwrap"><texto>Setwordwrap</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Número de linhas de código: 15
+Utilidade:
+- Configurar o embrulho do corpo.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- </texto><texto referencia_lexico="wraptext">wraptext</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="createheader"><texto>Createheader</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Retorno da função: String
+Número de linhas de código: 90
+Utilidade:
+- Montar o cabeçalho da mensagem.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- md5
+- </texto><texto referencia_lexico="headerline">headerline</texto><texto>
+- rfcdate
+- trim
+- count
+- </texto><texto referencia_lexico="addrappend">addrappend</texto><texto>
+- array
+- encodeheader
+- sprintf
+- serverhostname
+- inlineimageexists
+- </texto><texto referencia_lexico="textline">textline</texto><texto>
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$result">$result</texto><texto>
+- $uniq_id
+- $from</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="createbody"><texto>Createbody</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Retorno da função: String
+Número de linhas de código: 59
+Utilidade:
+- Montar o corpo da mensagem.
+- Retorna uma string vazia em caso de erro.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- </texto><texto referencia_lexico="setwordwrap">setwordwrap</texto><texto>
+- </texto><texto referencia_lexico="getboundary">getboundary</texto><texto>
+- encodestring
+- </texto><texto referencia_lexico="endboundary">endboundary</texto><texto>
+- attachall
+- iserror
+- sprintf
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="getboundary"><texto>Getboundary</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros: 
+- $boundary - String
+- $charset - String
+- $contenttype - String
+- $encoding - String
+Retorno da função: String
+Número de linhas de código: 14
+Utilidade:
+- Retorna o começo da fronteira de uma mensagem.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- </texto><texto referencia_lexico="textline">textline</texto><texto>
+- sprintf
+- </texto><texto referencia_lexico="headerline">headerline</texto><texto>
+Dentro da função são criadas as variáveis:
+- </texto><texto referencia_lexico="$result">$result</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="endboundary"><texto>Endboundary</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $boundary - String
+Número de linhas de código: 2
+Utilidade:
+- Retorna o fim da fronteira da mensagem.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="setmessagetype"><texto>Setmessagetype</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Número de linhas de código: 12
+Utilidade:
+- Configura o tipo da mensagem.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- count
+- strlen</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="headerline"><texto>Headerline</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $name - String
+- $value - Integer
+Retorno da função: String
+Número de linhas de código: 2
+Utilidade:
+- Retorna uma linha de cabeçalho formatada.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="textline"><texto>Textline</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $value - Interger
+Retorno da função: String
+Número de linhas de código: 2
+Utilidade:
+- Retorna uma linha de email formatada.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>É chamada pela função:
+É chamada no corpo do arquivo:</texto><PT/></sentenca></impacto>
+</lexico>
+<lexico>
+<nome_simbolo id="addattachment"><texto>Addattachment</texto></nome_simbolo>
+<sinonimos></sinonimos>
+<nocao><sentenca><texto>Localização: </texto><texto referencia_lexico="class.phpmailer.php">class.phpmailer.php</texto><texto>
+Parâmetros:
+- $path - String
+- $name - String
+- $encoding - String
+- $type - String
+Retorno da função: Boolean
+Número de linhas de código: 22
+Utilidade:
+- Adiciona um anexo de um caminho no sistema de arquivos.
+- Retorna falso se não encontrar o arquivo.</texto><PT/></sentenca></nocao>
+<impacto><sentenca><texto>
+É chamada pela função:
+É chamada no corpo do arquivo:
+Chama a função:
+- @is_file
+- seterror
+- basename
+- count
+- lang
+Dentro da função são criadas as variáveis:
+- $filename
+- $cur</texto><PT/></sentenca></impacto>
+</lexico>
+</projeto>

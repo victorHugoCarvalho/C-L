@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?><PROJETO>
+<NOME>Tipagem do grafo</NOME>
+<CENARIO>
+<TITULO ID="visualizar grafo do projeto.">Visualizar Grafo Do Projeto.</TITULO>
+<OBJETIVO><SENTENCA><TEXTO>Permitir que o usuário visualize o grafo de um projeto.</TEXTO></SENTENCA></OBJETIVO>
+<CONTEXTO><SENTENCA><TEXTO>Clica em gerar grafo, dentro do menu info, e seleciona um XML.
+Pré-condição: Login, projeto cadastrado,  gerar relatórios xml.</TEXTO><REFERENCIA TO="gerar relatorios xml">gerar relatórios xml</REFERENCIA></SENTENCA></CONTEXTO>
+<ATORES><SENTENCA><TEXTO>Usuário</TEXTO></SENTENCA></ATORES>
+<RECURSOS><SENTENCA></SENTENCA></RECURSOS>
+<EPISODIOS><SENTENCA><TEXTO>1. Usuário acessa o menu info no menu superior.
+2. Sistema exibe uma tela com os XML disponíveis para geração do grafo.
+3. Usuário seleciona o XML desejado.
+4. Sistema exibe grafo do projeto para o usuário.
+5.  gerar relatórios xml</TEXTO><REFERENCIA TO="gerar relatorios xml">gerar relatórios xml</REFERENCIA></SENTENCA></EPISODIOS>
+<EXCECAO><SENTENCA></SENTENCA></EXCECAO>
+</CENARIO>
+<CENARIO>
+<TITULO ID="gerar relatorios xml">Gerar Relatórios Xml</TITULO>
+<OBJETIVO><SENTENCA><TEXTO>Permitir ao administrador gerar relatórios em formato XML de um projeto, identificados por data e versão.</TEXTO></SENTENCA></OBJETIVO>
+<CONTEXTO><SENTENCA><TEXTO>Gerente deseja gerar um relatório para um dos projetos da qual é administrador.
+Pré-Condição: Login, projeto cadastrado.</TEXTO></SENTENCA></CONTEXTO>
+<ATORES><SENTENCA><TEXTO>Administrador</TEXTO></SENTENCA></ATORES>
+<RECURSOS><SENTENCA><TEXTO>Sistema, dados do relatório, dados cadastrados do projeto, banco de dados.</TEXTO></SENTENCA></RECURSOS>
+<EPISODIOS><SENTENCA><TEXTO>O sistema fornece para o administrador uma tela onde deverá fornecer os dados do relatório para sua posterior identificação, como data e versão.Para efetivar a geração do relatório, basta clicar em Gerar.
+Restrição: O sistema executará duas validações: 
+ - Se a data é válida.
+ - Se existem cenários e léxicos em datas iguais ou anteriores. Gerando com sucesso o relatório a partir dos dados cadastrados do projeto, o sistema fornece ao administrador a tela de visualização do relatório XML criado.
+Restrição: Recuperar os dados em XML do Banco de dados e os transformar por uma XSL para a exibição.</TEXTO></SENTENCA></EPISODIOS>
+<EXCECAO><SENTENCA></SENTENCA></EXCECAO>
+</CENARIO>
+<CENARIO>
+<TITULO ID="gerar links nos relatorios xml criados">Gerar Links Nos Relatórios Xml Criados</TITULO>
+<OBJETIVO><SENTENCA><TEXTO>Permitir que os relatórios gerados em formato XML possuam termos com links para os seus respectivos léxicos</TEXTO></SENTENCA></OBJETIVO>
+<CONTEXTO><SENTENCA><TEXTO>Gerente deseja gerar um relatório em XML para um dos projetos da qual é administrador.
+Pré-Condição: Login, projeto cadastrado, acesso ao banco de dados,  gerar relatórios xml.</TEXTO><REFERENCIA TO="gerar relatorios xml">gerar relatórios xml</REFERENCIA></SENTENCA></CONTEXTO>
+<ATORES><SENTENCA><TEXTO>Sistema</TEXTO></SENTENCA></ATORES>
+<RECURSOS><SENTENCA><TEXTO>Sistema, sentenças a serem linkadas, dados cadastrados do projeto, banco de dados.</TEXTO></SENTENCA></RECURSOS>
+<EPISODIOS><SENTENCA><TEXTO>O sistema recebe a sentença com os tags próprios do C&L e retorna o código do link HTML equivalente para os léxicos cadatrados no sistema.</TEXTO></SENTENCA></EPISODIOS>
+<EXCECAO><SENTENCA></SENTENCA></EXCECAO>
+</CENARIO>
+</PROJETO>

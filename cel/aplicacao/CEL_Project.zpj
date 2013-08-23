@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<project>
+	<project_entity ID="debugger">
+		<connectionInfo use_defaults="true" tempFilesLocation="C:\Documents and Settings\Administrator.ER" debug_mode="local" serverHost="http://localhost/" port="10000"/>
+		<breakpoints/>
+		<watches/>
+	</project_entity>
+	<project_entity ID="project_roots">
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\_main.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\add_cenario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\add_lexico.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\add_projeto.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\add_usuario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\ajuda.htm"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\algoritmo.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\algoritmo_inicio.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\alt_cenario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\alt_conceito.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\alt_lexico.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\arv_frameset.htm"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\arv_interface.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\auxiliar_algoritmo.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\auxiliar_bd.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\auxiliar_interface.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\bd.inc"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\bd_class.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\Call_UpdUser.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\code.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\create.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\daml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\enviar_senha.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\esqueciSenha.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\estado_bd.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\estruturas.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\form_daml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\form_xml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\frame_inferior.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\funcoes_genericas.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\gerador_daml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\gerador_xml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\heading.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\httprequest.inc"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\index.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\index2.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\inicio.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\login.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\logout.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\main.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\menu_empty.htm"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\mostrarProjeto.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\mostraXML.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\projetos.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\recuperaDAML.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\recuperarXML.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\RegrasLAL.html"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\rel_usuario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\remove_projeto.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\remove_projeto_base.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\rmv_cenario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\rmv_conceito.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\rmv_lexico.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\rmv_relacao.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\scrip_bd2.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\script_bd.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\script_bd2.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\showSource.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\teste_daml.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\updUser.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\ver_pedido_cenario.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\ver_pedido_conceito.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\ver_pedido_lexico.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\ver_pedido_relacao.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\VertBar.htm"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\zera_tipos.php"/>
+		<vfile name="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\CELConfig\CELConfig.inc"/>
+	</project_entity>
+	<project_entity ID="bookmarks"/>
+	<project_entity ID="editor_component" selectedEditor="0">
+		<openEditors>
+			<editor fileName="F:\Apache\Apache2\htdocs\cel_vf\aplicacao\add_cenario.php" caretPosition="574" clone="false" encoding="default"/>
+		</openEditors>
+	</project_entity>
+	<project_entity ID="CVS">
+		<lastArguments>
+			<CVSCommand commandType="update"/>
+			<CVSCommand commandType="commit"/>
+			<CVSCommand commandType="add"/>
+			<CVSCommand commandType="status"/>
+			<CVSCommand commandType="diff"/>
+		</lastArguments>
+	</project_entity>
+</project>
