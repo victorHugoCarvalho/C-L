@@ -5,31 +5,31 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// Cenï¿½rio controle de acesso
+// Cenário controle de acesso
 chkUser("index.php");        
 
 // Este script eh chamado quando ocorre uma solicitacao de inclusao
 // de novo projeto, ou quando um novo usuario se cadastra no sistema
 
 
-//Cenï¿½rio  -  Cadastrar Novo Projeto 
-//Objetivo:	   Permitir ao usuï¿½rio cadastrar um novo projeto
-//Contexto:	   Usuï¿½rio deseja incluir um novo projeto na base de dados
-//              Prï¿½-Condiï¿½ï¿½o: Login  
-//Atores:	   Usuï¿½rio
+//Cenário  -  Cadastrar Novo Projeto 
+//Objetivo:	   Permitir ao usuário cadastrar um novo projeto
+//Contexto:	   Usuário deseja incluir um novo projeto na base de dados
+//              Pré-Condição: Login  
+//Atores:	   Usuário
 //Recursos:	   Sistema, dados do projeto, base de dados
-//Episï¿½dios:   O Usuï¿½rio clica na opï¿½ï¿½o ï¿½adicionar projetoï¿½ encontrada no menu superior.
-//             O sistema disponibiliza uma tela para o usuï¿½rio especificar os dados do novo projeto,
-//              como o nome do projeto e sua descriï¿½ï¿½o.
-//             O usuï¿½rio clica no botï¿½o inserir.
-//             O sistema grava o novo projeto na base de dados e automaticamente constrï¿½i a Navegaï¿½ï¿½o
+//Episódios:   O Usuário clica na opção “adicionar projeto” encontrada no menu superior.
+//             O sistema disponibiliza uma tela para o usuário especificar os dados do novo projeto,
+//              como o nome do projeto e sua descrição.
+//             O usuário clica no botão inserir.
+//             O sistema grava o novo projeto na base de dados e automaticamente constrói a Navegação
 //              para este novo projeto.
-//Exceï¿½ï¿½o:	   Se for especificado um nome de projeto jï¿½ existente e que pertenï¿½a ou tenha a participaï¿½ï¿½o
-//                 deste usuï¿½rio, o sistema exibe uma mensagem de erro.
+//Exceção:	   Se for especificado um nome de projeto já existente e que pertença ou tenha a participação
+//                 deste usuário, o sistema exibe uma mensagem de erro.
 
 // Chamado atraves do botao de submit
-if (isset($submit)) {    
-
+if (isset($submit))
+{    
 	$id_projeto_incluido = inclui_projeto($nome, $descricao);
     
 	// Inserir na tabela participa
@@ -44,75 +44,82 @@ if (isset($submit)) {
     }
     else
     {
- ?>
- 		<html>
- 			<title>Erro</title>
- 			<body>
-    			<p style="color: red; font-weight: bold; text-align: center">Nome de projeto jï¿½ existente!</p>
-    			<center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
- 			</body>
-	 	</html>   
- <?php  	
-    	return;
+		?>
+		<html>
+		<title>Erro</title>
+		<body>
+			<p style="color: red; font-weight: bold; text-align: center">Nome de projeto já existente!</p>
+		    <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
+		</body>
+		</html>   
+		<?php  	
+		return;
     }	    
-?>
+	?>
 
-<script language="javascript1.3">
+	<script language="javascript1.3">
 
-self.close();
+	self.close();
 
-</script>
+	</script>
 
-<?php
-// Chamado normalmente
-} else {        
-?>
+	<?php
+	// Chamado normalmente
+}
+else
+{
+	?>
 
-	<html>
-    	<head>
-        	<title>Adicionar Projeto</title>
-        	<script language="javascript1.3">
+<html>
+    <head>
+        <title>Adicionar Projeto</title>
+        <script language="javascript1.3">
 
-        	function chkFrmVals() {
-            	if (document.forms[0].nome.value == "") {
-                	alert('Preencha o campo "Nome"');
-					document.forms[0].nome.focus();
-                	return false;
-            	}else{
-					padrao = /[\\\/\?"<>:|]/;
-					nOK = padrao.exec(document.forms[0].nome.value);
-					if (nOK)
-					{
-						window.alert ("O nome do projeto nï¿½o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
-						document.forms[0].nome.focus();
-						return false;
-					}	 
-				}
-            	return true;
-        	}
+	function chkFrmVals()
+	{
+		if (document.forms[0].nome.value == "")
+		{
+			alert('Preencha o campo "Nome"');
+			document.forms[0].nome.focus();
+			return false;
+		}
+		else
+		{
+			padrao = /[\\\/\?"<>:|]/;
+			nOK = padrao.exec(document.forms[0].nome.value);
+			if (nOK)
+			{
+				window.alert ("O nome do projeto não pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+				document.forms[0].nome.focus();
+				return false;
+			}	 
+		}
 
-        	</script>
-    	</head>
-    	<body>
-        	<h4>Adicionar Projeto:</h4>
-        	<br>
+    return true;
+	}
+
+        </script>
+    </head>
+    <body>
+        <h4>Adicionar Projeto:</h4>
+        <br>
         	<form action="" method="post" onSubmit="return chkFrmVals();">
-        		<table>
-            		<tr>
-                		<td>Nome:</td>
-                		<td><input maxlength="128" name="nome" size="48" type="text"></td>
-            		</tr>
-            		<tr>
-                		<td>Descriï¿½ï¿½o:</td>
-                		<td><textarea cols="48" name="descricao" rows="4"></textarea></td>
-            		<tr>
-                		<td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
-            		</tr>
-        		</table>
-        	</form>
-        	<br><i><a href="showSource.php?file=add_projeto.php">Veja o cï¿½digo fonte!</a></i>
-    	</body>
-	</html>
+        <table>
+            <tr>
+                <td>Nome:</td>
+                <td><input maxlength="128" name="nome" size="48" type="text"></td>
+            </tr>
+            <tr>
+                <td>Descrição:</td>
+                <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
+            <tr>
+                <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
+            </tr>
+        </table>
+        </form>
+        <br><i><a href="showSource.php?file=add_projeto.php">Veja o código fonte!</a></i>
+    </body>
+</html>
 
 <?php
 }

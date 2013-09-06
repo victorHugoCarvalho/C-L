@@ -8,13 +8,13 @@
 	include_once "script_bd2.php" ;
 
 	//mysql_close($link);
-        $link = bd_connect();
+    $link = bd_connect();
 
 	$list = verifica_tipo();
 
-	if( is_array($list) )
+	if(is_array($list))
 	{
-		foreach( $list as $id )
+		foreach($list as $id)
 		{
 			$lex = obter_lexico($id);
 			$aux[] = $lex["nome"];
@@ -44,7 +44,6 @@
 
 	$_SESSION["salvar"] = "FALSE";
 
-
 	if( $_POST["load"] == "FALSE" )
 	{
 		converte_impactos();
@@ -68,12 +67,10 @@
 		$_SESSION["lista_de_relacoes"]  = get_lista_de_relacoes();
 		$_SESSION["lista_de_conceitos"] = get_lista_de_conceitos();
 		$_SESSION["lista_de_axiomas"]   = get_lista_de_axiomas();
-
 		$_SESSION["funcao"] = get_funcao();
 
-
-
 		$indices = get_indices();
+		
 		if(count($indices) == 5)
 		{
 			$_SESSION["index1"] = $indices['index1']; //Sujeito
@@ -91,7 +88,6 @@
 		$_SESSION["index2"] = 0;
 		$_SESSION["index6"] = 0;
 		$_SESSION["index7"] = 0;
-
 	}
 
 	mysql_close($link);

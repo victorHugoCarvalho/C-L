@@ -13,24 +13,29 @@ $primeira_vez = "true";
 
 include("httprequest.inc");
 
-if (isset($submit)) {   // Se chamado pelo botao de submit
-
-     $primeira_vez = "false";
+if (isset($submit)) // Se chamado pelo botao de submit
+{
+    $primeira_vez = "false";
     // ** Cenario "Inclusao de Usuario Independente" **
     // O sistema checa se todos os campos estao preenchidos. Se algum nao estiver, o
     // sistema avisa pro usuario que todos os campos devem ser preenchidos.
-    if ($nome == "" || $email == "" || $login == "" || $senha == "" || $senha_conf == "") {
+    if ($nome == "" || $email == "" || $login == "" || $senha == "" || $senha_conf == "")
+	{
         $p_style = "color: red; font-weight: bold";
         $p_text = "Por favor, preencha todos os campos.";
         recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&senha=$senha&senha_conf=$senha_conf&novo=$novo");
-    } else {
-
+    }
+    else
+    {
         // Testa se as senhas fornecidas pelo usuario sao iguais.
-        if ($senha != $senha_conf) {
+        if ($senha != $senha_conf)
+        {
             $p_style = "color: red; font-weight: bold";
             $p_text = "Senhas diferentes. Favor preencher novamente as senhas.";
             recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&novo=$novo");
-        } else {
+        }
+        else
+        {
 
             // ** Cenario "Inclusao de Usuario Independente" **
             // Todos os campos estao preenchidos. O sistema deve agora verificar
@@ -59,7 +64,8 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
             $r = bd_connect() or die("Erro ao conectar ao SGBD");
             $q = "SELECT id_usuario FROM usuario WHERE login = '$login'";
             $qrr = mysql_query($q) or die("Erro ao enviar a query");
-            if (mysql_num_rows($qrr)) {        // Se ja existe algum usuario com este login
+            if (mysql_num_rows($qrr)) // Se ja existe algum usuario com este login
+            {        
 				// $p_style = "color: red; font-weight: bold";
 				// $p_text = "Login j� existente no sistema. Favor escolher outro login.";
 				// recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
@@ -85,7 +91,9 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 
                 <?php
                 recarrega("?novo=$novo");
-            } else {    // Cadastro passou por todos os testes -- ja pode ser incluido na BD
+            }
+            else // Cadastro passou por todos os testes -- ja pode ser incluido na BD
+			{
 				/* Substitui todas as ocorrencias de ">" e "<" por " " */
 				$nome  = str_replace( ">" , " " , str_replace ( "<" , " " , $nome  ) ) ;
 				$login = str_replace( ">" , " " , str_replace ( "<" , " " , $login ) ) ;
@@ -99,12 +107,13 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
             }
         }   // else
     }   // else
-} elseif (isset($cadastrado)) {
-
+} else if (isset($cadastrado))
+{
     // Cadastro concluido. Dependendo de onde o usuario veio,
     // devemos manda-lo para um lugar diferente.
 
-    if ($novo == "true") {      // Veio da tela inicial de login
+    if ($novo == "true") // Veio da tela inicial de login
+    {
 
         // ** Cenario "Inclusao de Usuario Independente" **
         // O usuario acabou de cadastrar-se no sistema, devemos
@@ -136,12 +145,12 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 			open('add_projeto.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
 			self.close();
 
-
 		</script>
 
 <?php
-    } else {
-
+    }
+    else
+	{
 	    // ** Cenario "Edicao de Usuario" **
 	    // O administrador do projeto acabou de incluir o usuario.
 	    // Devemos agora adicionar o usuario incluido no projeto
@@ -168,8 +177,11 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 
 <?php
     }
-} else {    // Script chamado normalmente
-    if (empty($p_style)) {
+}
+else // Script chamado normalmente
+{    
+    if (empty($p_style))
+	{
         $p_style = "color: green; font-weight: bold";
         $p_text = "Favor preencher os dados abaixo:";
     }
@@ -205,23 +217,23 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
 	        	}
 	        }
 			
-			function checkEmail(email) {
-			  if(email.value.length > 0)
-			  {
-			     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
-			     {
-			        return (true)
-			     }
-			   alert("Aten��o: o E-mail digitado n�o � v�lido.")
-			   email.focus();
-			   email.select();
-			   return (false)
-			  }
+			function checkEmail(email)
+			{
+				if(email.value.length > 0)
+				{
+					if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+				    {
+						return (true)
+				    }
+				    
+				alert("Aten��o: o E-mail digitado n�o � v�lido.")
+				email.focus();
+				email.select();
+				return (false)
+				}
 			}
 	
 	    	//-->
-
-
 
     	</SCRIPT>
 
