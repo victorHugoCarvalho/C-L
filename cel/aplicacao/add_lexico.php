@@ -10,7 +10,7 @@ include_once("bd.inc") ;
 
 session_start();
 
-if ( !isset( $sucesso ) )
+if (!isset($sucesso))
 {
     $sucesso = 'n' ;
 }
@@ -22,21 +22,23 @@ chkUser("index.php");
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 //Script chamado através do submit do formulário
-if (isset($submit)) {        
-
-   $ret = checarLexicoExistente($_SESSION['id_projeto_corrente'],$nome);
-   if( !isset($listSinonimo))
-           $listSinonimo = array();
+if (isset($submit))
+{
+	$ret = checarLexicoExistente($_SESSION['id_projeto_corrente'],$nome);
+	if( !isset($listSinonimo))
+	{
+		$listSinonimo = array();
+	}
    
-   $retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $listSinonimo);
+	$retSin = checarSinonimo($_SESSION['id_projeto_corrente'], $listSinonimo);
 
-   if ( ($ret == true) AND ($retSin == true ) )
-   {
-      $id_usuario_corrente = $_SESSION['id_usuario_corrente'];        
-      inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario_corrente, $listSinonimo, $classificacao) ;
-   }
-   else
-   {
+	if ( ($ret == true) AND ($retSin == true ) )
+	{
+		$id_usuario_corrente = $_SESSION['id_usuario_corrente'];        
+		inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario_corrente, $listSinonimo, $classificacao) ;
+	}
+	else
+	{
 ?>
 	<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
     <p style="color: red; font-weight: bold; text-align: center">Este símbolo ou sinônimo já existe!</p>
@@ -45,28 +47,30 @@ if (isset($submit)) {
         <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
 	</body></html>
 <?php
-        return;
-       
-   }
-   $ipValor = CELConfig_ReadVar("HTTPD_ip") ;
+		return;
+	}
+	
+	$ipValor = CELConfig_ReadVar("HTTPD_ip") ;
 ?>
 
 <script language="javascript1.2">
 
-opener.parent.frames['code'].location.reload();
-opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
-location.href = "add_lexico.php?id_projeto=<?=$id_projeto?>&sucesso=s"; 
+	opener.parent.frames['code'].location.reload();
+	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
+	location.href = "add_lexico.php?id_projeto=<?=$id_projeto?>&sucesso=s"; 
 
 </script>   
 <?php
 
 // Script chamado através do menu superior
 
-} else {        
-    $q = "SELECT nome FROM projeto WHERE id_projeto = $id_projeto";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
-    $nome_projeto = $result['nome'];
+}
+else
+{        
+	$q = "SELECT nome FROM projeto WHERE id_projeto = $id_projeto";
+	$qrr = mysql_query($q) or die("Erro ao executar a query");
+	$result = mysql_fetch_array($qrr);
+	$nome_projeto = $result['nome'];
 ?>
 
 <html>
@@ -76,17 +80,20 @@ location.href = "add_lexico.php?id_projeto=<?=$id_projeto?>&sucesso=s";
     <body>
 <script language="JavaScript">
 <!--
+
 function TestarBranco(form)
 {
-nome  = form.nome.value;
-nocao = form.nocao.value;
+	nome  = form.nome.value;
+	nocao = form.nocao.value;
 
-  if( nome == "" )
-    { 
-	  alert (" Por favor, forneça o NOME do léxico.\n O campo NOME é de preenchimento obrigatório.");
-      form.nome.focus();
-      return false;
-    }else{
+	if (nome == "" )
+	{ 
+		alert (" Por favor, forneça o NOME do léxico.\n O campo NOME é de preenchimento obrigatório.");
+      	form.nome.focus();
+      	return false;
+    }
+    else
+    {
 		padrao = /[\\\/\?"<>:|]/;
 		nOK = padrao.exec(nome);
 		if (nOK)
@@ -97,58 +104,66 @@ nocao = form.nocao.value;
 		} 
 	}
     
-   if( nocao == "" )
-    { alert (" Por favor, forneça a NOÇÃO do léxico.\n O campo NOÇÃO é de preenchimento obrigatório.");
-      form.nocao.focus();
-      return false;
+   	if( nocao == "" )
+    {
+		alert (" Por favor, forneça a NOÇÃO do léxico.\n O campo NOÇÃO é de preenchimento obrigatório.");
+		form.nocao.focus();
+		return false;
     }
 
 }
+
 function addSinonimo()
 {
-listSinonimo = document.forms[0].elements['listSinonimo[]']; 
+	listSinonimo = document.forms[0].elements['listSinonimo[]']; 
 
-if(document.forms[0].sinonimo.value == "")
-	return;
-
-sinonimo = document.forms[0].sinonimo.value;
-padrao = /[\\\/\?"<>:|]/;
-nOK = padrao.exec(sinonimo);
-if (nOK)
-{
-	window.alert ("O sinônimo do léxico não pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
-	document.forms[0].sinonimo.focus();
-	return;
-} 
+	if(document.forms[0].sinonimo.value == "")
+	{
+		return;
+	}
 	
-listSinonimo.options[listSinonimo.length] = new Option(document.forms[0].sinonimo.value, document.forms[0].sinonimo.value);
-
-document.forms[0].sinonimo.value = "";
-
-document.forms[0].sinonimo.focus();
-
+	sinonimo = document.forms[0].sinonimo.value;
+	padrao = /[\\\/\?"<>:|]/;
+	nOK = padrao.exec(sinonimo);
+	
+	if (nOK)
+	{
+		window.alert ("O sinônimo do léxico não pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+		document.forms[0].sinonimo.focus();
+		return;
+	} 
+		
+	listSinonimo.options[listSinonimo.length] = new Option(document.forms[0].sinonimo.value, document.forms[0].sinonimo.value);
+	document.forms[0].sinonimo.value = "";
+	document.forms[0].sinonimo.focus();
 }
 
 function delSinonimo()
 {
-listSinonimo = document.forms[0].elements['listSinonimo[]']; 
-
-if(listSinonimo.selectedIndex == -1)
-return;
-else
-listSinonimo.options[listSinonimo.selectedIndex] = null;
-
-delSinonimo();
+	listSinonimo = document.forms[0].elements['listSinonimo[]']; 
+	
+	if (listSinonimo.selectedIndex == -1)
+	{
+		return;
+	}
+	else
+	{
+		listSinonimo.options[listSinonimo.selectedIndex] = null;
+	}
+	
+	delSinonimo();
 }
 
 function doSubmit()
 {
-listSinonimo = document.forms[0].elements['listSinonimo[]']; 
-
-for(var i = 0; i < listSinonimo.length; i++) 
-listSinonimo.options[i].selected = true;
-
-return true;
+	listSinonimo = document.forms[0].elements['listSinonimo[]']; 
+	
+	for(var i = 0; i < listSinonimo.length; i++)
+	{ 
+		listSinonimo.options[i].selected = true;
+	}
+	
+	return true;
 }
 
 //-->
@@ -176,15 +191,15 @@ return true;
 
 </SCRIPT>
     
-        <h4>Adicionar Símbolo</h4>
-        <br>
+	<h4>Adicionar Símbolo</h4>
+	<br>
 <?php
-           if ( $sucesso == "s" )
-           {
+	if ( $sucesso == "s" )
+	{
 ?>
-              <p style="color: blue; font-weight: bold; text-align: center">Símbolo inserido com sucesso!</p>
+		<p style="color: blue; font-weight: bold; text-align: center">Símbolo inserido com sucesso!</p>
 <?php    
-           }
+	}
 ?>       
         <form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
         <table>
