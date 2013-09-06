@@ -36,55 +36,55 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
             // Todos os campos estao preenchidos. O sistema deve agora verificar
             // se ja nao existe alguem cadastrado com o mesmo login informado pelo usuario.
 
-// Cenário - Incluir usuário independente 
-
-// Objetivo:  Permitir um usuário, que não esteja cadastrado como administrador, se cadastrar 
-//            com o perfil de administrador	
-// Contexto:  Sistema aberto Usuário deseja cadastrar-se ao sistema como administrador. 
-//            Usuário na tela de cadastro de usuário 
-//            Pré-Condição: Usuário ter acessado ao sistema	
-// Atores:    Usuário, Sistema	
-// Recursos:  Interface, Banco de Dados	
-// Episódios: O sistema retorna para o usuário uma interface com campos para entrada de
-//            um Nome, email, login, uma senha e a confirmação da senha.
-//            O usuário preenche os campos e clica em cadastrar 
-//            O sistema então checa para ver se todos os campos estão preenchidos.
-//              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
-//               os campos devem ser preenchidos.
-//              Caso todos os campos estiverem preenchidos, o sistema checa no banco
-//               de dados para ver se esse login já existe..
-//              Caso aquele login digitado já exista, o sistema retorna a mesma página
-//               para o usuário avisando que o usuário deve escolher outro login,.
+			// Cenï¿½rio - Incluir usuï¿½rio independente 
+			
+			// Objetivo:  Permitir um usuï¿½rio, que nï¿½o esteja cadastrado como administrador, se cadastrar 
+			//            com o perfil de administrador	
+			// Contexto:  Sistema aberto Usuï¿½rio deseja cadastrar-se ao sistema como administrador. 
+			//            Usuï¿½rio na tela de cadastro de usuï¿½rio 
+			//            Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+			// Atores:    Usuï¿½rio, Sistema	
+			// Recursos:  Interface, Banco de Dados	
+			// Episï¿½dios: O sistema retorna para o usuï¿½rio uma interface com campos para entrada de
+			//            um Nome, email, login, uma senha e a confirmaï¿½ï¿½o da senha.
+			//            O usuï¿½rio preenche os campos e clica em cadastrar 
+			//            O sistema entï¿½o checa para ver se todos os campos estï¿½o preenchidos.
+			//              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
+			//               os campos devem ser preenchidos.
+			//              Caso todos os campos estiverem preenchidos, o sistema checa no banco
+			//               de dados para ver se esse login jï¿½ existe..
+			//              Caso aquele login digitado jï¿½ exista, o sistema retorna a mesma pï¿½gina
+			//               para o usuï¿½rio avisando que o usuï¿½rio deve escolher outro login,.
 
             $r = bd_connect() or die("Erro ao conectar ao SGBD");
             $q = "SELECT id_usuario FROM usuario WHERE login = '$login'";
             $qrr = mysql_query($q) or die("Erro ao enviar a query");
             if (mysql_num_rows($qrr)) {        // Se ja existe algum usuario com este login
-//                $p_style = "color: red; font-weight: bold";
-//                $p_text = "Login já existente no sistema. Favor escolher outro login.";
-//                recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
-
-
-// Cenário - Adicionar Usuário
-
-// Objetivo:  Permitir ao Administrador criar novos usuários.
-// Contexto:  O Administrador deseja adicionar novos usuários (não cadastrados)
-//            criando novos  usuários ao projeto selecionado.
-//            Pré-Condições: Login
-// Atores:    Administrador
-// Recursos:  Dados do usuário
-// Episódios: O Administrador clica no link “Adicionar usuário (não existente) neste projeto”,
-//            entrando com as informações do novo usuário: nome, email, login e senha.
-//            Caso o login já exista, aparecerá uma mensagem de erro na tela informando que
-//            este login já existe.
+				// $p_style = "color: red; font-weight: bold";
+				// $p_text = "Login jï¿½ existente no sistema. Favor escolher outro login.";
+				// recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
+	
+	
+				// Cenï¿½rio - Adicionar Usuï¿½rio
+				
+				// Objetivo:  Permitir ao Administrador criar novos usuï¿½rios.
+				// Contexto:  O Administrador deseja adicionar novos usuï¿½rios (nï¿½o cadastrados)
+				//            criando novos  usuï¿½rios ao projeto selecionado.
+				//            Prï¿½-Condiï¿½ï¿½es: Login
+				// Atores:    Administrador
+				// Recursos:  Dados do usuï¿½rio
+				// Episï¿½dios: O Administrador clica no link ï¿½Adicionar usuï¿½rio (nï¿½o existente) neste projetoï¿½,
+				//            entrando com as informaï¿½ï¿½es do novo usuï¿½rio: nome, email, login e senha.
+				//            Caso o login jï¿½ exista, aparecerï¿½ uma mensagem de erro na tela informando que
+				//            este login jï¿½ existe.
 
                 ?>
                 <script language="JavaScript">
-                    alert ("Login já existente no sistema. Favor escolher outro login.")
+                    alert ("Login jï¿½ existente no sistema. Favor escolher outro login.")
                 </script>
 
                 <?php
-                  recarrega("?novo=$novo");
+                recarrega("?novo=$novo");
             } else {    // Cadastro passou por todos os testes -- ja pode ser incluido na BD
 				/* Substitui todas as ocorrencias de ">" e "<" por " " */
 				$nome  = str_replace( ">" , " " , str_replace ( "<" , " " , $nome  ) ) ;
@@ -111,60 +111,60 @@ if (isset($submit)) {   // Se chamado pelo botao de submit
         // redireciona-lo para a parte de inclusao de projetos
 
         // Registra que o usuario esta logado com o login recem-cadastrado
-
-// Cenário - Incluir usuário independente 
-
-// Objetivo:  Permitir um usuário, que não esteja cadastrado como administrador, se cadastrar 
-//            com o perfil de administrador	
-// Contexto:  Sistema aberto Usuário deseja cadastrar-se ao sistema como administrador. 
-//            Usuário na tela de cadastro de usuário 
-//            Pré-Condição: Usuário ter acessado ao sistema	
-// Atores:    Usuário, Sistema	
-// Recursos:  Interface, Banco de Dados	
-// Episódios:  Caso aquele login digitado não exista, o sistema cadastra esse usuário 
-//               como administrador no banco de dados,  possibilitando:
-//              - Redirecioná-lo  para a interface de CADASTRAR NOVO PROJETO; 
+		
+		// Cenï¿½rio - Incluir usuï¿½rio independente 
+		
+		// Objetivo:  Permitir um usuï¿½rio, que nï¿½o esteja cadastrado como administrador, se cadastrar 
+		//            com o perfil de administrador	
+		// Contexto:  Sistema aberto Usuï¿½rio deseja cadastrar-se ao sistema como administrador. 
+		//            Usuï¿½rio na tela de cadastro de usuï¿½rio 
+		//            Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+		// Atores:    Usuï¿½rio, Sistema	
+		// Recursos:  Interface, Banco de Dados	
+		// Episï¿½dios:  Caso aquele login digitado nï¿½o exista, o sistema cadastra esse usuï¿½rio 
+		//               como administrador no banco de dados,  possibilitando:
+		//              - Redirecionï¿½-lo  para a interface de CADASTRAR NOVO PROJETO; 
 
         $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$login'");
         session_register("id_usuario_corrente");
 ?>
 
-<script language="javascript1.3">
+		<script language="javascript1.3">
 
-// Redireciona o usuario para a parte de inclusao de projetos
-opener.location.replace('index.php');
-open('add_projeto.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
-self.close();
+			// Redireciona o usuario para a parte de inclusao de projetos
+			opener.location.replace('index.php');
+			open('add_projeto.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
+			self.close();
 
 
-</script>
+		</script>
 
 <?php
     } else {
 
-    // ** Cenario "Edicao de Usuario" **
-    // O administrador do projeto acabou de incluir o usuario.
-    // Devemos agora adicionar o usuario incluido no projeto
-    // do administrador.
-
-    // Conexao com a base de dados
-    $r = bd_connect() or die("Erro ao conectar ao SGBD");
-    // $login eh o login do usuario incluido, passado na URL
-    $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$login'");
-    $q = "INSERT INTO participa (id_usuario, id_projeto)
-          VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
-    mysql_query($q) or die("Erro ao inserir na tabela participa");
-
-    $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
-    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+	    // ** Cenario "Edicao de Usuario" **
+	    // O administrador do projeto acabou de incluir o usuario.
+	    // Devemos agora adicionar o usuario incluido no projeto
+	    // do administrador.
+	
+	    // Conexao com a base de dados
+	    $r = bd_connect() or die("Erro ao conectar ao SGBD");
+	    // $login eh o login do usuario incluido, passado na URL
+	    $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$login'");
+	    $q = "INSERT INTO participa (id_usuario, id_projeto)
+	          VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
+	    mysql_query($q) or die("Erro ao inserir na tabela participa");
+	
+	    $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
+	    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 ?>
 
-<script language="javascript1.3">
-
-document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usuário <b><?=$nome_usuario?></b> cadastrado e incluído no projeto <b><?=$nome_projeto?></b></p>');
-document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
-
-</script>
+		<script language="javascript1.3">
+		
+			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usuï¿½rio <b><?=$nome_usuario?></b> cadastrado e incluï¿½do no projeto <b><?=$nome_projeto?></b></p>');
+			document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
+		
+		</script>
 
 <?php
     }
@@ -187,83 +187,83 @@ document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a
 
 <html>
     <head>
-        <title>Cadastro de Usuário</title>
+        <title>Cadastro de Usuï¿½rio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     </head>
     <body>
-    <script language="JavaScript">
-    <!--
-        function verifyEmail(form)
-        {
-            email = form.email.value;
-            //verifica se o email contem um @
-            i = email.indexOf("@");
-            if (i == -1)
-        	{
-        	    alert('Atenção: o E-mail digitado não é válido.');
-        	    return false;
-        	}
-        }
+	    <script language="JavaScript">
+	    	<!--
+	        function verifyEmail(form)
+	        {
+	            email = form.email.value;
+	            //verifica se o email contem um @
+	            i = email.indexOf("@");
+	            if (i == -1)
+	        	{
+	        	    alert('Atenï¿½ï¿½o: o E-mail digitado nï¿½o ï¿½ vï¿½lido.');
+	        	    return false;
+	        	}
+	        }
+			
+			function checkEmail(email) {
+			  if(email.value.length > 0)
+			  {
+			     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+			     {
+			        return (true)
+			     }
+			   alert("Atenï¿½ï¿½o: o E-mail digitado nï¿½o ï¿½ vï¿½lido.")
+			   email.focus();
+			   email.select();
+			   return (false)
+			  }
+			}
+	
+	    	//-->
 
-function checkEmail(email) {
-  if(email.value.length > 0)
-  {
-     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
-     {
-        return (true)
-     }
-   alert("Atenção: o E-mail digitado não é válido.")
-   email.focus();
-   email.select();
-   return (false)
-  }
-}
-
-    //-->
 
 
-
-    </SCRIPT>
+    	</SCRIPT>
 
         <p style="<?=$p_style?>"><?=$p_text?></p>
         <form action="?novo=<?=$novo?>" method="post">
-        <table>
-            <tr>
-                <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$nome?>"></td>
-            </tr>
-            <tr>
-                <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?=$email?>" OnBlur="checkEmail(this)"></td>
-            </tr>
-            <tr>
-                <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?=$login?>"></td>
-            </tr>
-            <tr>
-                <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
-                <td>Senha (confirmação):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
-            </tr>
-            <tr>
+	        <table>
+	            <tr>
+	                <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$nome?>"></td>
+	            </tr>
+	            <tr>
+	                <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?=$email?>" OnBlur="checkEmail(this)"></td>
+	            </tr>
+	            <tr>
+	                <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?=$login?>"></td>
+	            </tr>
+	            <tr>
+	                <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
+	                <td>Senha (confirmaï¿½ï¿½o):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
+	            </tr>
+	            <tr>
 
 <?php
 
-// Cenário - Adicionar Usuário
+// Cenï¿½rio - Adicionar Usuï¿½rio
 
-// Objetivo:  Permitir ao Administrador criar novos usuários.
-// Contexto:  O Administrador deseja adicionar novos usuários (não cadastrados) criando novos
-//              usuários ao projeto selecionado.
-//            Pré-Condições: Login
+// Objetivo:  Permitir ao Administrador criar novos usuï¿½rios.
+// Contexto:  O Administrador deseja adicionar novos usuï¿½rios (nï¿½o cadastrados) criando novos
+//              usuï¿½rios ao projeto selecionado.
+//            Prï¿½-Condiï¿½ï¿½es: Login
 // Atores:    Administrador
-// Recursos:  Dados do usuário
-// Episódios: Clicando no botão Cadastrar para confirmar a adição do novo
-//             usuário ao projeto selecionado.
-//            O novo usuário criado receberá uma mensagem via email com seu login e senha.
+// Recursos:  Dados do usuï¿½rio
+// Episï¿½dios: Clicando no botï¿½o Cadastrar para confirmar a adiï¿½ï¿½o do novo
+//             usuï¿½rio ao projeto selecionado.
+//            O novo usuï¿½rio criado receberï¿½ uma mensagem via email com seu login e senha.
 
 ?>
 
-                <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
-            </tr>
-        </table>
+	                <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
+	            </tr>
+	        </table>
         </form>
-        <br><i><a href="showSource.php?file=add_usuario.php">Veja o código fonte!</a></i>
+        <br><i><a href="showSource.php?file=add_usuario.php">Veja o cï¿½digo fonte!</a></i>
     </body>
 </html>
 

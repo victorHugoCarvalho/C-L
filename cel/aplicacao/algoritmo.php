@@ -5,14 +5,14 @@ session_start();
 ?>
 
 <html>
-  <head>
-    <title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
-    <style>
+	<head>
+    	<title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
+    	<style>
 
-    </style>
-  </head>
-  <body>
-		<?php
+    	</style>
+	</head>
+	<body>
+<?php
 
 
 function verifica_consistencia()
@@ -63,7 +63,7 @@ function montar_hierarquia($conc, $nova_lista, $list)
 /*
 Cenario:	Traduzir os termos do lexico classificados como sujeito e objeto.
 Objetivo:	Traduzir os termos do lexico classificados como sujeito e objeto.
-Contexto:	Algoritmo de tradução iniciado.
+Contexto:	Algoritmo de traduï¿½ï¿½o iniciado.
 Atores:		Usuario.
 Recursos:	Sistema, lista de sujeito e objetos, lista de conceitos, lista de relacoes.
 Episodios:
@@ -71,7 +71,7 @@ Episodios:
 * Criar novo conceito com o mesmo nome e a descricao igual a nocao do elemento.
 * Para cada impacto do elemento
 . Verificar com o usuario a existencia do impacto na lista de relacoes.
-. Caso não exista, incluir este impacto na lista de relacoes.
+. Caso nï¿½o exista, incluir este impacto na lista de relacoes.
 . Incluir esta relacao na lista de relacoes do conceito.
 . Descobrir
 * Incluir o conceito na lista de conceitos.
@@ -353,13 +353,13 @@ function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes
 /*
 Cenario:	Traduzir os termos do lexico classificados como verbo.
 Objetivo:	Traduzir os termos do lexico classificados como verbo.
-Contexto:	Algoritmo de tradução iniciado.
+Contexto:	Algoritmo de traduï¿½ï¿½o iniciado.
 Atores:		Usuario.
 Recursos:	Sistema, lista de verbo, lista de relacoes.
 Episodios:
 - Para cada elemento da lista de verbo
 * Verificar com o usuario a existencia do verbo na lista de relacoes.
-* Caso não exista, incluir este verbo na lista de relacoes.
+* Caso nï¿½o exista, incluir este verbo na lista de relacoes.
 * Verificar consistencia.
 */
 function traduz_verbos($verbos, $relacoes)
@@ -619,14 +619,14 @@ function organizar_ontologia($conceitos, $relacoes, $axiomas)
 
 
 /*
-Cenario:  	Traduzir Léxico para Ontologia.
-Objetivo: 	Traduzir Léxico para Ontologia.
-Contexto: 	Existem listas de elementos do léxico organizadas por tipo, e estes elementos
-são consistentes.
-Atores:   	Usuário.
-Recursos: 	Sistema, listas de elementos do léxico organizadas por tipo, listas de elementos
+Cenario:  	Traduzir Lï¿½xico para Ontologia.
+Objetivo: 	Traduzir Lï¿½xico para Ontologia.
+Contexto: 	Existem listas de elementos do lï¿½xico organizadas por tipo, e estes elementos
+sï¿½o consistentes.
+Atores:   	Usuï¿½rio.
+Recursos: 	Sistema, listas de elementos do lï¿½xico organizadas por tipo, listas de elementos
 da ontologia.
-Episódios:
+Episï¿½dios:
 - Criar lista de conceitos vazia.
 - Criar lista de relacoes vazia.
 - Criar lista de axiomas vazia.
@@ -706,8 +706,8 @@ function traduz()
 	print_r($_SESSION["lista_de_axiomas"]);
 	echo "<br>";
 	*/
-	echo 'O processo de geração de Ontologias foi concluído com sucesso!<br>
-	Não esqueça de clicar em Salvar.';
+	echo 'O processo de geraï¿½ï¿½o de Ontologias foi concluï¿½do com sucesso!<br>
+	Nï¿½o esqueï¿½a de clicar em Salvar.';
 	?>
             <p>
             <form method="POST" action="auxiliar_bd.php">

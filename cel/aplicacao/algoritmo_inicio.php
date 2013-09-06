@@ -76,10 +76,10 @@
 		$indices = get_indices();
 		if(count($indices) == 5)
 		{
-		$_SESSION["index1"] = $indices['index1']; //Sujeito
-		$_SESSION["index3"] = $indices['index3']; //Verbo
-		$_SESSION["index4"] = $indices['index4']; //Estado
-		$_SESSION["index5"] = $indices['index5']; //Organizacao
+			$_SESSION["index1"] = $indices['index1']; //Sujeito
+			$_SESSION["index3"] = $indices['index3']; //Verbo
+			$_SESSION["index4"] = $indices['index4']; //Estado
+			$_SESSION["index5"] = $indices['index5']; //Organizacao
 		}
 		else
 		{

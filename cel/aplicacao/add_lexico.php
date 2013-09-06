@@ -5,7 +5,7 @@ include("httprequest.inc");
 include_once("bd.inc") ;
 
 // add_lexico.php: Este script cadastra um novo termo no lexico do projeto. 
-//                 É passada, atraves da URL, uma variavel $id_projeto, que
+//                 ï¿½ passada, atraves da URL, uma variavel $id_projeto, que
 //                 indica em que projeto deve ser inserido o novo termo.
 
 session_start();
@@ -15,13 +15,13 @@ if (!isset($sucesso))
     $sucesso = 'n' ;
 }
 
-// Checa se o usuário foi autenticado
+// Checa se o usuï¿½rio foi autenticado
 chkUser("index.php");   
 
 // Conecta ao SGBD
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
-//Script chamado através do submit do formulário
+//Script chamado atravï¿½s do submit do formulï¿½rio
 if (isset($submit))
 {
 	$ret = checarLexicoExistente($_SESSION['id_projeto_corrente'],$nome);
@@ -40,12 +40,12 @@ if (isset($submit))
 	else
 	{
 ?>
-	<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
-    <p style="color: red; font-weight: bold; text-align: center">Este símbolo ou sinônimo já existe!</p>
-    <br>
-    <br>
-        <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-	</body></html>
+		<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
+    		<p style="color: red; font-weight: bold; text-align: center">Este sï¿½mbolo ou sinï¿½nimo jï¿½ existe!</p>
+    		<br>
+    		<br>
+        	<center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
+		</body></html>
 <?php
 		return;
 	}
@@ -62,7 +62,7 @@ if (isset($submit))
 </script>   
 <?php
 
-// Script chamado através do menu superior
+// Script chamado atravï¿½s do menu superior
 
 }
 else
@@ -75,7 +75,7 @@ else
 
 <html>
     <head>
-        <title>Adicionar Léxico</title>
+        <title>Adicionar Lï¿½xico</title>
     </head>
     <body>
 <script language="JavaScript">
@@ -88,7 +88,7 @@ function TestarBranco(form)
 
 	if (nome == "" )
 	{ 
-		alert (" Por favor, forneça o NOME do léxico.\n O campo NOME é de preenchimento obrigatório.");
+		alert (" Por favor, forneï¿½a o NOME do lï¿½xico.\n O campo NOME ï¿½ de preenchimento obrigatï¿½rio.");
       	form.nome.focus();
       	return false;
     }
@@ -98,7 +98,7 @@ function TestarBranco(form)
 		nOK = padrao.exec(nome);
 		if (nOK)
 		{
-			window.alert ("O nome do léxico não pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+			window.alert ("O nome do lï¿½xico nï¿½o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
 			form.nome.focus();
 			return false;
 		} 
@@ -106,7 +106,7 @@ function TestarBranco(form)
     
    	if( nocao == "" )
     {
-		alert (" Por favor, forneça a NOÇÃO do léxico.\n O campo NOÇÃO é de preenchimento obrigatório.");
+		alert (" Por favor, forneï¿½a a NOï¿½ï¿½O do lï¿½xico.\n O campo NOï¿½ï¿½O ï¿½ de preenchimento obrigatï¿½rio.");
 		form.nocao.focus();
 		return false;
     }
@@ -128,7 +128,7 @@ function addSinonimo()
 	
 	if (nOK)
 	{
-		window.alert ("O sinônimo do léxico não pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+		window.alert ("O sinï¿½nimo do lï¿½xico nï¿½o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
 		document.forms[0].sinonimo.focus();
 		return;
 	} 
@@ -170,34 +170,34 @@ function doSubmit()
 
 <?php
 
-//Cenários -  Incluir Léxico 
+//Cenï¿½rios -  Incluir Lï¿½xico 
 
-//Objetivo:    Permitir ao usuário a inclusão de uma nova palavra do léxico
-//Contexto:    Usuário deseja incluir uma nova palavra no léxico.
-//                     Pré-Condição: Login, palavra do léxico ainda não cadastrada
-//Atores:         Usuário, Sistema
+//Objetivo:    Permitir ao usuï¿½rio a inclusï¿½o de uma nova palavra do lï¿½xico
+//Contexto:    Usuï¿½rio deseja incluir uma nova palavra no lï¿½xico.
+//                     Prï¿½-Condiï¿½ï¿½o: Login, palavra do lï¿½xico ainda nï¿½o cadastrada
+//Atores:         Usuï¿½rio, Sistema
 //Recursos:    Dados a serem cadastrados
-//Episódios:    O sistema fornecerá para o usuário uma tela com os seguintes campos de texto:
-//               - Entrada Léxico.
-//               - Noção.   Restrição: Caixa de texto com pelo menos 5 linhas de escrita visíveis
-//               - Impacto. Restrição: Caixa de texto com pelo menos 5 linhas de escrita visíveis
-//              Botão para confirmar a inclusão da nova entrada do léxico
-//              Restrições: Depois de clicar no botão de confirmação, o sistema verifica se todos
+//Episï¿½dios:    O sistema fornecerï¿½ para o usuï¿½rio uma tela com os seguintes campos de texto:
+//               - Entrada Lï¿½xico.
+//               - Noï¿½ï¿½o.   Restriï¿½ï¿½o: Caixa de texto com pelo menos 5 linhas de escrita visï¿½veis
+//               - Impacto. Restriï¿½ï¿½o: Caixa de texto com pelo menos 5 linhas de escrita visï¿½veis
+//              Botï¿½o para confirmar a inclusï¿½o da nova entrada do lï¿½xico
+//              Restriï¿½ï¿½es: Depois de clicar no botï¿½o de confirmaï¿½ï¿½o, o sistema verifica se todos
 //              os campos foram preenchidos. 
-//Exceção:    Se todos os campos não foram preenchidos, retorna para o usuário uma mensagem
-//              avisando que todos os campos devem ser preenchidos e um botão de voltar para a pagina anterior.
+//Exceï¿½ï¿½o:    Se todos os campos nï¿½o foram preenchidos, retorna para o usuï¿½rio uma mensagem
+//              avisando que todos os campos devem ser preenchidos e um botï¿½o de voltar para a pagina anterior.
 
 ?>
 
 </SCRIPT>
     
-	<h4>Adicionar Símbolo</h4>
-	<br>
+<h4>Adicionar Sï¿½mbolo</h4>
+<br>
 <?php
 	if ( $sucesso == "s" )
 	{
 ?>
-		<p style="color: blue; font-weight: bold; text-align: center">Símbolo inserido com sucesso!</p>
+		<p style="color: blue; font-weight: bold; text-align: center">Sï¿½mbolo inserido com sucesso!</p>
 <?php    
 	}
 ?>       
@@ -212,7 +212,7 @@ function doSubmit()
                 <td><input size="48" name="nome" type="text" value=""></td>
             </tr>    
             <tr valign="top">
-                <td>Sinônimos:</td>
+                <td>Sinï¿½nimos:</td>
                  <td width="0%">
                       <input name="sinonimo" size="15" type="text" maxlength="50">             
                          &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addSinonimo()">
@@ -229,7 +229,7 @@ function doSubmit()
            </tr>
           </tr>
           <tr>
-                <td>Noção:</td>
+                <td>Noï¿½ï¿½o:</td>
                 <td><textarea cols="51" name="nocao" rows="3" WRAP="SOFT"></textarea></td>
             </tr>
             <tr>
@@ -237,7 +237,7 @@ function doSubmit()
                 <td><textarea  cols="51" name="impacto" rows="3" WRAP="SOFT"></textarea></td>
             </tr>
             <tr>
-                <td>Classificaçao:</td>
+                <td>Classificaï¿½ao:</td>
                 <td>
                     <SELECT id='classificacao' name='classificacao' size=1 width="300">
                      <OPTION value='sujeito' selected>Sujeito</OPTION>
@@ -249,7 +249,7 @@ function doSubmit()
             </tr>
             <tr>
                 <td align="center" colspan="2" height="60">
-                <input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar Símbolo"><BR><BR>
+                <input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar Sï¿½mbolo"><BR><BR>
                </script>
 <!--            <A HREF="RegrasLAL.html" TARGET="new">Ver Regras do LAL</A><BR>   -->
                 <A HREF="#" OnClick="javascript:open( 'RegrasLAL.html' , '_blank' , 'dependent,height=380,width=520,titlebar' );"> Veja as regras do <i>LAL</i></A>
@@ -258,7 +258,7 @@ function doSubmit()
         </table>
         </form>
             <center><a href="javascript:self.close();">Fechar</a></center>            
-        <br><i><a href="showSource.php?file=add_lexico.php">Veja o código fonte!</a></i>
+        <br><i><a href="showSource.php?file=add_lexico.php">Veja o cï¿½digo fonte!</a></i>
     </body>
 
 </html>

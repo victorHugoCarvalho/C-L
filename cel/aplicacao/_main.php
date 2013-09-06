@@ -99,19 +99,19 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     if ($t == "c") {
 ?>
 
-        <h3>Informações sobre o cenário</h3>
+        <h3>Informaï¿½ï¿½es sobre o cenï¿½rio</h3>
 
 <?php
     } else {
 ?>
 
-        <h3>Informações sobre o léxico</h3>
+        <h3>Informaï¿½ï¿½es sobre o lï¿½xico</h3>
 
 <?php
     }
 ?>
 
-        <table>
+    <table>
 
 <?php
     $c = bd_connect() or die("Erro ao conectar ao SGBD");
@@ -140,14 +140,14 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <td>Recursos:</td><td><?=$result['recursos']?></td>
             </tr>
             <tr>
-                <td>Episódios:</td><td><?=$result['episodios']?></td>
+                <td>Episï¿½dios:</td><td><?=$result['episodios']?></td>
             </tr>
             <tr>
                 <td height="40" valign="bottom">
-                    <a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenário</a>
+                    <a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenï¿½rio</a>
                 </td>
                 <td valign="bottom">
-                    <a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenário</a>
+                    <a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenï¿½rio</a>
                 </td>
             </tr>
 
@@ -164,17 +164,17 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <td>Nome:</td><td><?=$result['nome']?></td>
             </tr>
             <tr>
-                <td>Noção:</td><td><?=$result['nocao']?></td>
+                <td>Noï¿½ï¿½o:</td><td><?=$result['nocao']?></td>
             </tr>
             <tr>
                 <td>Impacto:</td><td><?=$result['impacto']?></td>
             </tr>
             <tr>
                 <td height="40" valign="bottom">
-                    <a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Léxico</a>
+                    <a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Lï¿½xico</a>
                 </td>
                 <td valign="bottom">
-                    <a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Léxico</a>
+                    <a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Lï¿½xico</a>
                 </td>
             </tr>
 
@@ -182,22 +182,22 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     }
 ?>
 
-        </table>
-        <br>
-        <br>
-        <br>
+    </table>
+    <br>
+    <br>
+    <br>
 
 <?php
     if ($t == "c") {
 ?>
 
-        <h3>Cenários que referenciam este cenário</h3>
+        <h3>Cenï¿½rios que referenciam este cenï¿½rio</h3>
 
 <?php
     } else {
 ?>
 
-        <h3>Cenários e termos do léxico que referenciam este termo</h3>
+        <h3>Cenï¿½rios e termos do lï¿½xico que referenciam este termo</h3>
 
 <?php
     }
@@ -222,11 +222,11 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                 <td><?=simple_query("nome", "projeto", "id_projeto = $id_projeto")?></td>
             </tr>
             <tr>
-                <td>Data de criação:</td>
+                <td>Data de criaï¿½ï¿½o:</td>
                 <td><?=simple_query("TO_CHAR(data_criacao, 'DD/MM/YY')", "projeto", "id_projeto = $id_projeto")?></td>
             </tr>
             <tr>
-                <td>Descrição:</td>
+                <td>Descriï¿½ï¿½o:</td>
                 <td><?=simple_query("descricao", "projeto", "id_projeto = $id_projeto")?></td>
             </tr>
         </table>
@@ -238,11 +238,11 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 ?>
 
         <br>
-        <p><b>Você é um administrador deste projeto</b></p>
-        <p><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteração de Cenários</a></p>
-        <p><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteração de termos do Léxico</a></p>
-        <p><a href="#" onClick="addUsuario();">Adicionar usuário (não existente) neste projeto</a></p>
-        <p><a href="#" onClick="relUsuario();">Relacionar usuários já existentes com este projeto</a></p>
+        <p><b>Vocï¿½ ï¿½ um administrador deste projeto</b></p>
+        <p><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteraï¿½ï¿½o de Cenï¿½rios</a></p>
+        <p><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteraï¿½ï¿½o de termos do Lï¿½xico</a></p>
+        <p><a href="#" onClick="addUsuario();">Adicionar usuï¿½rio (nï¿½o existente) neste projeto</a></p>
+        <p><a href="#" onClick="relUsuario();">Relacionar usuï¿½rios jï¿½ existentes com este projeto</a></p>
         <p><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></p>
 
 <?php
