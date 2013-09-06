@@ -8,6 +8,8 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 
 ?>
 
+// COMMIT TESTE!!
+
 <html>
     <head>
         <script language="javascript1.3">
