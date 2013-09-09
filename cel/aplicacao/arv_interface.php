@@ -41,7 +41,8 @@ MTMenuText = "Ontologia";
 /****************************************************************************** 
 * Functions                                                                      * 
 ******************************************************************************/ 
-function MTMenu() { 
+function MTMenu()
+{ 
     this.items      = new Array(); 
     this.MTMAddItem = MTMAddItem; 
     this.addItem    = MTMAddItem; 
@@ -66,28 +67,18 @@ menu = new MTMenu();
 <?php   
 //Arvore de Conceitos 
 
-if( isset($_SESSION['lista_de_conceitos']))
+if (isset($_SESSION['lista_de_conceitos']))
+{
 	$arv = $_SESSION['lista_de_conceitos'];
-else 
+}
+else
+{ 
 	$arv = array();
-//$arv = get_lista_de_conceitos();   
-
-
-/*    Níveis da arvore 
-        conceito 
-                Verbo 
-                    Predicado 
-*/   
-
-/* 
-    echo "menu.addItem(\"Teste\");\n"; 
-    echo "menu.addItem(\"Teste2\");\n"; 
-
-*/  
+}
 
 
 // Conceitos 
-foreach($arv as $conc)   
+foreach ($arv as $conc)   
 {   
     echo "\nmenu.addItem(\"$conc->nome\");\n";   
     echo " var mC = null;\n";   
@@ -96,7 +87,7 @@ foreach($arv as $conc)
 
     //Relações 
     //Verbos 
-    foreach($conc->relacoes as $relacao)   
+    foreach ($conc->relacoes as $relacao)   
     {   
         echo " mC.addItem(\"$relacao->verbo\",\"\");\n";   
         echo " var mV = new MTMenu();\n"; 
@@ -108,9 +99,7 @@ foreach($arv as $conc)
         } 
   
         echo " mC.makeLastSubmenu(mV);\n";    
-    }   
-
-
+    }
 }  
 
 

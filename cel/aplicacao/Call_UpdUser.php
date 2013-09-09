@@ -43,55 +43,59 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 <!--
 function TestarBranco(form)
 {
-login      = form.login.value;
-senha      = form.senha.value;
-senha_conf = form.senha_conf.value;
-nome       = form.nome.value;
-email      = form.email.value;
+	login      = form.login.value;
+	senha      = form.senha.value;
+	senha_conf = form.senha_conf.value;
+	nome       = form.nome.value;
+	email      = form.email.value;
 
-  if (login == "")
-    { alert ("Por favor, digite o seu Login.")
-      form.login.focus()
-      return false;
+	if (login == "")
+	{ 
+		alert ("Por favor, digite o seu Login.")
+		form.login.focus()
+      	return false;
     }
-   if ( email == "")
-   {
-      alert ( "Por favor, digite o seu e-mail.")
-      form.email.focus();
-      return false;
-   }
-  if (senha == "")
-    { alert ("Por favor, digite a sua senha.")
-      form.senha.focus()
-      return false;
+	if (email == "")
+	{
+		alert ( "Por favor, digite o seu e-mail.")
+      	form.email.focus();
+      	return false;
+   	}
+  	if (senha == "")
+    { 
+  	    alert ("Por favor, digite a sua senha.")
+      	form.senha.focus()
+      	return false;
     }
     if (nome == "")
-    { alert ("Por favor, digite o seu nome.")
-      form.nome.focus()
-      return false;
+    { 
+        alert ("Por favor, digite o seu nome.")
+      	form.nome.focus()
+      	return false;
     }
-   if ( senha != senha_conf )
-   {
-      alert ( "A senha e a confirmacao nao sao as mesmas!")
-      form.senha.focus();
-      return false;
-   }
-
+   	if (senha != senha_conf)
+   	{
+      	alert ( "A senha e a confirmacao nao sao as mesmas!")
+      	form.senha.focus();
+      	return false;
+   	}
 }
 
 
-function checkEmail(email) {
-  if(email.value.length > 0)
-  {
-     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
-     {
-        return (true)
-     }
-   alert("Atenção: o E-mail digitado não é válido.")
-   email.focus();
-   email.select();
-   return (false)
-  }
+function checkEmail(email)
+{
+  	if(email.value.length > 0)
+  	{
+     	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+     	{
+        	return (true)
+     	}
+     	
+		alert("Atenção: o E-mail digitado não é válido.")
+		email.focus();
+		email.select();
+		return (false)
+  	}
 }
 
 

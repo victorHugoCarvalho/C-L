@@ -57,170 +57,181 @@ class Abstract_DB
 
 ##PRIVATE##
 
-        var $db_linkid = 0;
+	var $db_linkid = 0;
 
 ##PUBLIC##
 
-        function open($dbname, $user, $pass, $host, $port)
-        {
-        }
+    function open($dbname, $user, $pass, $host, $port)
+    {
+    }
 
-        function close()
-        {
-        }
+    function close()
+    {
+    }
 }
 
 class PGDB extends Abstract_DB
 {
+ 	function PGDB()
+    {
+    	global $DBNAME;
+        global $DBUSER;
+        global $DBPASSWD;
+        global $DBHOST;
+        global $DBPORT;
+		global $DBDATABASE;
 
-        function PGDB()
+        $this->open($DBNAME, $DBUSER, $DBPASSWD, $DBHOST, $DBPORT);
+	}
+
+    function _PGDB()
+	{
+    	$this->close();
+	}
+
+    function open($dbname, $user, $passwd, $host, $port)
+	{
+    	$this->db_linkid = bd_connect() or die("Erro na conexão à BD : " . mysql_error()) ;
+
+		if ($this->db_linkid)
+		{
+        	return $this->db_linkid;
+		}
+        else
         {
-                global $DBNAME;
-                global $DBUSER;
-                global $DBPASSWD;
-                global $DBHOST;
-                global $DBPORT;
-                global $DBDATABASE;
+        	return(FALSE);
+		}
+	}
 
-                $this->open($DBNAME, $DBUSER, $DBPASSWD, $DBHOST, $DBPORT);
-
-        }
-
-        function _PGDB()
-        {
-                $this->close();
-        }
-
-        function open($dbname, $user, $passwd, $host, $port)
-        {
-                $this->db_linkid = bd_connect() or die("Erro na conexão à BD : " . mysql_error()) ;
-
-//              if( $this->db_linkid && mysql_select_db(CELConfig_ReadVar("BD_database") . "" ) )
-                if( $this->db_linkid )
-                {
-                   return $this->db_linkid;
-                }
-                else
-                {
-                   return(FALSE);
-                }
-        }
-
-        function close()
-        {
-                return mysql_close($this->db_linkid);
-        }
-
-
+	function close()
+    {
+    	return mysql_close($this->db_linkid);
+	}
 }
 
 class QUERY
 {
 
 ##PRIVATE##
-        var $dbobject;
-        var $ntuples;
-        var $operationresult;
-        var $resultset;
-        var $currentrow = 0;
+	var $dbobject;
+    var $ntuples;
+    var $operationresult;
+    var $resultset;
+    var $currentrow = 0;
 
 ##PUBLIC##
 
-        function QUERY($pdbobject)
+    function QUERY($pdbobject)
+    {
+    	if ($pdbobject)
+    	{
+         	$this->associate($pdbobject);
+    	}
+	}
+
+    function associate($pdbobject)
+    {
+    	$this->dbobject = $pdbobject;
+	}
+
+    function execute($querystring)
+    {
+		$this->operationresult = mysql_query($querystring) or die(mysql_error() . "<br>" . $querystring);
+        return $this->operationresult;
+	}
+
+	function getntuples()
+    {
+    	$this->ntuples = mysql_numrows($this->operationresult);
+        return $this->ntuples;
+	}
+
+    function getfieldname($fieldnumber)
+    {
+    	return mysql_fieldname($this->operationresult, $fieldnumber);
+	}
+
+	function readrow()
+    {
+    	$this->resultset = mysql_fetch_array($this->operationresult);
+        return ($this->currentresultset = $this->resultset);
+	}
+
+    function gofirst()
+    {
+    	$this->currentrow = 0;
+        return $this->readrow();
+	}
+
+    function golast()
+    {
+    	$this->currentrow = ($this->getntuples()) - 1;
+        return $this->readrow();
+	}
+
+   	function getLastId()
+    {
+    	return mysql_insert_id($this->dbobject->db_linkid);
+    }
+
+
+	function gonext()
+    {
+    	$this->currentrow++;
+    	
+        if ($this->currentrow < $this->getntuples())
         {
-                if ($pdbobject)
-                        $this->associate($pdbobject);
-        }
-
-         function associate($pdbobject)
+        	$this->resultset = $this->readrow();
+			return $this->resultset;
+		}
+        else
         {
-                $this->dbobject = $pdbobject;
+        	return "LAST_RECORD_REACHED";
         }
+	}
 
-        function execute($querystring)
+    function goprevious()
+    {
+    	$this->currentrow--;
+        if ($this->currentrow >= 0) 
         {
-        //echo( $querystring);
-                $this->operationresult = mysql_query($querystring) or die(mysql_error() . "<br>" . $querystring);
-                return $this->operationresult;
-        }
-
-        function getntuples()
+        	$this->resultset = $this->readrow();
+            return $this->resultset;
+		}
+        else
         {
-                $this->ntuples = mysql_numrows($this->operationresult);
-                return $this->ntuples;
+        	return "FIRST_RECORD_REACHED";
         }
+	}
+        
 
-        function getfieldname($fieldnumber)
-        {
-                return mysql_fieldname($this->operationresult, $fieldnumber);
-        }
+    function beginTransaction()
+    {
+    	if (!$this->execute("BEGIN"))
+    	{
+    		return false;
+    	}
+    	
+    	return true;
+	}
 
-        function readrow()
-        {
-                $this->resultset = mysql_fetch_array($this->operationresult);
-                return ($this->currentresultset = $this->resultset);
-        }
+	function commitTransaction()
+    {
+    	if (!$this->execute("COMMIT"))
+    	{
+    		return false;
+    	}
+    	
+        return true;
+	}
 
-        function gofirst()
-        {
-                $this->currentrow = 0;
-                return $this->readrow();
-        }
-
-        function golast()
-        {
-                $this->currentrow = ($this->getntuples()) - 1;
-                return $this->readrow();
-        }
-
-        function getLastId()
-        {
-        	return mysql_insert_id($this->dbobject->db_linkid);
-        }
-
-
-        function gonext()
-        {
-                $this->currentrow++;
-                if ($this->currentrow < $this->getntuples()) {
-                        $this->resultset = $this->readrow();
-                        return $this->resultset;
-                }
-                else
-                        return "LAST_RECORD_REACHED";
-        }
-
-        function goprevious()
-        {
-                $this->currentrow--;
-                if ($this->currentrow >= 0) {
-                        $this->resultset = $this->readrow();
-                        return $this->resultset;
-                }
-                else
-                        return "FIRST_RECORD_REACHED";
-        }
-
-        function beginTransaction()
-        {
-                if (!$this->execute("BEGIN"))
-                        return false;
-                return true;
-        }
-
-        function commitTransaction()
-        {
-                if (!$this->execute("COMMIT"))
-                        return false;
-                return true;
-        }
-
-        function rollbackTransaction()
-        {
-                if (!$this->execute("ROLLBACK"))
-                        return false;
-                return true;
-        }
-
+	function rollbackTransaction()
+    {
+    	if (!$this->execute("ROLLBACK"))
+    	{
+    		return false;
+    	}
+    	return true;
+	}
 }
 ?>
