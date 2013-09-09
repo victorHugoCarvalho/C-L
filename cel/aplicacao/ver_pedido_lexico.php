@@ -33,27 +33,25 @@ if (isset($submit)) {
 		$delete->execute("delete from sinonimo where id_pedidolex = $remover[$count]") ;
 	}
 ?>
-
-	<script language="javascript1.2">
+<script language="javascript1.2">
 		opener.parent.frames['code'].location.reload();
 		opener.parent.frames['text'].location.replace("main.php") ;
 	</script>
-	<h4>Operação efetuada com sucesso!</h4>
-	<script language="javascript1.2">
+<h4>Operação efetuada com sucesso!</h4>
+<script language="javascript1.2">
 	self.close();
 	</script>
 <?php
 } else {
 ?>
-	<html>
-	  <head>
-	     <title>Pedido Léxico</title>
-	  </head>
-	<body>
-	<h2>Pedidos de Alteração no Léxico</h2>
-	<form action="?id_projeto=<?=$id_projeto?>" method="post">
-
-<?php
+<html>
+<head>
+<title>Pedido Léxico</title>
+</head>
+<body>
+<h2>Pedidos de Alteração no Léxico</h2>
+<form action="?id_projeto=<?=$id_projeto?>" method="post">
+  <?php
 
 // Cenário - Verificar pedidos de alteração de termos do léxico
 
@@ -94,26 +92,30 @@ if (isset($submit)) {
 						$select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
 						$usuario = $select2->gofirst () ;
 						if(strcasecmp($tipo_pedido,'remover')){?>
-						<h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o léxico <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para léxico abaixo:</h3>" ;}else{echo"</h3>" ;}?>
-				<table>
-                <td><b>Nome:</b></td>
-                <td><?=$record['nome']?></td>
-                
-            <tr>
-     
-                <td><b>Noção:</b></td>
-                <td><?=$record['nocao']?></td>
-            </tr>
-            <tr>
-                <td><b>Impacto:</b></td>
-                <td><?=$record['impacto']?></td>
-            </tr>
-            
-            
-            <tr>
-            <td><b>Sinônimos:</b></td>
-            <td>
-            <?php
+  <h3>
+  O usuário <a  href="mailto:<?=$usuario['email']?>" >
+  <?=$usuario['nome']?>
+  </a> pede para
+  <?=$tipo_pedido?>
+  o léxico <font color="#ff0000">
+  <?=$record['nome']?>
+  </font>
+  <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para léxico abaixo:</h3>" ;}else{echo"</h3>" ;}?>
+  <table>
+    
+      <td><b>Nome:</b></td>
+      <td><?=$record['nome']?></td>
+    <tr>
+      <td><b>Noção:</b></td>
+      <td><?=$record['nocao']?></td>
+    </tr>
+    <tr>
+      <td><b>Impacto:</b></td>
+      <td><?=$record['impacto']?></td>
+    </tr>
+    <tr>
+      <td><b>Sinônimos:</b></td>
+      <td><?php
             $sinonimo = $select3->gofirst();
             $strSinonimos = "";
             while($sinonimo != 'LAST_RECORD_REACHED'){
@@ -123,20 +125,24 @@ if (isset($submit)) {
             }
 
             echo(substr($strSinonimos, 0, strrpos($strSinonimos, ",")));
-            ?>
-            </td>
-            </tr>
-            
-            
-            <tr>
-                <td><b>Justificativa:</b></td>
-                <td><textarea name="justificativa" cols="48" rows="2"><?=$record['justificativa']?></textarea></td>
-            </tr>
-        </table>
-					<?php
+            ?></td>
+    </tr>
+    <tr>
+      <td><b>Justificativa:</b></td>
+      <td><textarea name="justificativa" cols="48" rows="2"><?=$record['justificativa']?>
+</textarea></td>
+    </tr>
+  </table>
+  <?php
 					}else{?>
-							<h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> o léxico <font color="#ff0000"><?=$record['nome']?></font></h3>
-		<?php }
+  <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" >
+    <?=$usuario['nome']?>
+    </a> pede para
+    <?=$tipo_pedido?>
+    o léxico <font color="#ff0000">
+    <?=$record['nome']?>
+    </font></h3>
+  <?php }
 					if ($aprovado == 1)
                     {
 					   echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
@@ -150,14 +156,12 @@ if (isset($submit)) {
 					   $record = $select->gonext () ;
 			}
 		}?>
-			 	 <input name="submit" type="submit" value="Processar">
+  <input name="submit" type="submit" value="Processar">
 </form>
-<br><i><a href="showSource.php?file=ver_pedido_lexico.php">Veja o código fonte!</a></i>
+<br>
+<i><a href="showSource.php?file=ver_pedido_lexico.php">Veja o código fonte!</a></i>
 </body>
 </html>
-
 <?php
 }
 ?>
-
-

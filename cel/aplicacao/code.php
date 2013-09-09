@@ -17,9 +17,9 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 
 //$id_projeto = 2; 
 
-?>  
+?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <?php  
 
@@ -44,22 +44,18 @@ if (isset($id_projeto))
 else
 {  
 
-?>  
-
+?>
 <script language="javascript1.3"> 
 	top.frames['menu'].document.writeln('<font color="red">Nenhum projeto selecionado</font>'); 
-</script> 
-
+</script>
 <?php  
 
     exit();  
 }  
 
-?>  
-
-<html> 
-<head> 
-
+?>
+<html>
+<head>
 <script type="text/javascript"> 
 // Framebuster script to relocate browser when MSIE bookmarks this 
 // page instead of the parent frameset.  Set variable relocateURL to 
@@ -73,11 +69,9 @@ if (parent.frames.length == 0) {
         location = relocateURL; 
     } 
 }*/ 
-</script> 
-
+</script>
 <script type="text/javascript" src="mtmcode.js"> 
-</script> 
-
+</script>
 <script type="text/javascript"> 
 // Morten's JavaScript Tree Menu 
 // version 2.3.2, dated 2002-02-24 
@@ -315,8 +309,8 @@ menu.makeLastSubmenu(mo);
 
 
 
-</script> 
-</head> 
-<body onload="MTMStartMenu(true)" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red"> 
-</body> 
-</html> 
+</script>
+</head>
+<body onload="MTMStartMenu(true)" bgcolor="#000033" text="#ffffcc" link="yellow" vlink="lime" alink="red">
+</body>
+</html>

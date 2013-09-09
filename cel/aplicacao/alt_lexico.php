@@ -45,27 +45,24 @@ if (isset($submit))       // Script chamado atraves do submit do formulario
 
     inserirPedidoAlterarLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $listSinonimo, $classificacao);
 	?>
-	<html>
-	    <head>
-	        <title>Alterar Léxico</title>
-	    </head>
-	    <body>
-	<script language="javascript1.3">
+<html>
+<head>
+<title>Alterar Léxico</title>
+</head>
+<body>
+<script language="javascript1.3">
 	
 	opener.parent.frames['code'].location.reload();
 	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-	
-	<h4>Operação efetuada com sucesso!</h4>
-	
-	<script language="javascript1.3">
+<h4>Operação efetuada com sucesso!</h4>
+<script language="javascript1.3">
 	 
 	self.close();
 	
 	</script>
-	
-	<?php
+<?php
 
 }
 else        // Script chamado atraves do link do lexico corrente
@@ -83,12 +80,12 @@ else        // Script chamado atraves do link do lexico corrente
 	$qrrSin = mysql_query($qSin) or die("Erro ao executar a query");
 	//$resultSin = mysql_fetch_array($qrrSin);
 	?>
-	<html>
-	    <head>
-	        <title>Alterar Léxico</title>
-	    </head>
-	    <body>
-	<script language="JavaScript">
+<html>
+<head>
+<title>Alterar Léxico</title>
+</head>
+<body>
+<script language="JavaScript">
 	<!--
 	
 	function TestarBranco(form)
@@ -165,88 +162,126 @@ else        // Script chamado atraves do link do lexico corrente
 	?>
 	
 	</SCRIPT>
-	
-	        <h4>Alterar Símbolo</h4>
-	        <br>
-	        <form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
-	        <table>
-	                <input type="hidden" name="id_lexico" value="<?=$result['id_lexico']?>">
-	              
-	            <tr>
-	                <td>Projeto:</td>
-	                <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
-	            </tr>
-	            <tr>
-	                <td>Nome:</td>
-	                <td><input disabled maxlength="64" name="nome_visivel" size="48" type="text" value="<?=$result['nome'];?>">
-	                	<input type="hidden"  maxlength="64" name="nome" size="48" type="text" value="<?=$result['nome'];?>">
-	                </td>
-	     		</tr>
-	     		
-	     		<tr valign="top">
-	                <td>Sinônimos:</td>
-	                 <td width="0%">
-	                      <input name="sinonimo" size="15" type="text" maxlength="50">             
-	                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addSinonimo()">
-	                         &nbsp;&nbsp;<input type="button" value="Remover" onclick="delSinonimo()">&nbsp;
-	                 </td>
-	            </tr>
-	            
-	            <tr> 
-	               <td>
-	               </td>   
-	               <td width="100%">
-	                      <left><select multiple name="listSinonimo[]"  style="width: 400px;"  size="5"><?php
+<h4>Alterar Símbolo</h4>
+<br>
+<form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
+  <table>
+    <input type="hidden" name="id_lexico" value="<?=$result['id_lexico']?>">
+    <tr>
+      <td>Projeto:</td>
+      <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
+    </tr>
+    <tr>
+      <td>Nome:</td>
+      <td><input disabled maxlength="64" name="nome_visivel" size="48" type="text" value="<?=$result['nome'];?>">
+        <input type="hidden"  maxlength="64" name="nome" size="48" type="text" value="<?=$result['nome'];?>"></td>
+    </tr>
+    <tr valign="top">
+      <td>Sinônimos:</td>
+      <td width="0%"><input name="sinonimo" size="15" type="text" maxlength="50">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Adicionar" onClick="addSinonimo()">
+        &nbsp;&nbsp;
+        <input type="button" value="Remover" onClick="delSinonimo()">
+        &nbsp; </td>
+    </tr>
+      <tr>
+    
+    <td></td>
+      <td width="100%">
+    
+      <left>
+    <select multiple name="listSinonimo[]"  style="width: 400px;"  size="5">
+      <?php
 						  	while($rowSin = mysql_fetch_array($qrrSin))
 	  						{
 	  							?>
-	  								<option value="<?=$rowSin["nome"]?>"><?=$rowSin["nome"]?></option>
-	 							<?php
+      <option value="<?=$rowSin["nome"]?>">
+      <?=$rowSin["nome"]?>
+      </option>
+      <?php
 	 						}
 						  	?>
-						  <select></left><br> 
-	               </td>
-		        </tr>
-	          
-	            <tr>
-	               <td>Noção:</td>
-	      		   <td>
-	        	      <textarea name="nocao" cols="48" rows="3" ><?=$result['nocao'];?></textarea>
-	      		   </td>
-	            </tr>
-	            <tr>
-	              <td>Impacto:</td>
-			      <td>
-			        <textarea name="impacto" cols="48" rows="3"><?=$result['impacto'];?></textarea>
-			      </td>
-	            </tr>
-	            <tr>
-	                <td>Classificaçao:</td>
-	                <td>
-	                	<SELECT id='classificacao' name='classificacao' size=1 width="300">
-				 		<OPTION value='sujeito' <?php if($result['tipo'] == 'sujeito') echo "selected"?>>Sujeito</OPTION>
-				 		<OPTION value='objeto' <?php if($result['tipo'] == 'objeto') echo "selected"?>>Objeto</OPTION>
-				 		<OPTION value='verbo' <?php if($result['tipo'] == 'verbo') echo "selected"?>>Verbo</OPTION>
-				 		<OPTION value='estado' <?php if($result['tipo'] == 'estado') echo "selected"?>>Estado</OPTION>
-						</SELECT>
-	                </td>
-	            </tr>
-	            <tr>
-	                <td>Justificativa para a altera&ccedil;&atilde;o:</td>
-	                <td><textarea name="justificativa" cols="48" rows="6"></textarea></td>
-	            </tr>
-	            <tr>
-	                <td align="center" colspan="2" height="60">
-	                	<input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Alterar Símbolo">
-	                </td>
-	            </tr>
-	        </table>
-	        </form>
-	        <center><a href="javascript:self.close();">Fechar</a></center>
-	        <br><i><a href="showSource.php?file=alt_lexico.php">Veja o código fonte!</a></i>
-	    </body>
-	</html>
-	
-	<?php
+        <select>
+        </left>
+        <br>
+      
+        </td>
+      
+        </tr>
+      
+        <tr>
+      
+        <td>
+        No
+        ç
+        ã
+        o:
+        </td>
+      
+        <td>
+      
+        <textarea name="nocao" cols="48" rows="3" >
+      <?=$result['nocao'];?>
+        </textarea>
+      
+        </td>
+      
+        </tr>
+      
+        <tr>
+      
+        <td>
+        Impacto:
+        </td>
+      
+        <td>
+      
+        <textarea name="impacto" cols="48" rows="3">
+      <?=$result['impacto'];?>
+        </textarea>
+      
+        </td>
+      
+        </tr>
+      
+        <tr>
+      
+        <td>
+        Classifica
+        ç
+        ao:
+        </td>
+      
+        <td>
+      
+        <SELECT id='classificacao' name='classificacao' size=1 width="300">
+      
+      <OPTION value='sujeito' <?php if($result['tipo'] == 'sujeito') echo "selected"?>>Sujeito</OPTION>
+      <OPTION value='objeto' <?php if($result['tipo'] == 'objeto') echo "selected"?>>Objeto</OPTION>
+      <OPTION value='verbo' <?php if($result['tipo'] == 'verbo') echo "selected"?>>Verbo</OPTION>
+      <OPTION value='estado' <?php if($result['tipo'] == 'estado') echo "selected"?>>Estado</OPTION>
+    </SELECT>
+      </td>
+    
+      </tr>
+    
+    <tr>
+      <td>Justificativa para a altera&ccedil;&atilde;o:</td>
+      <td><textarea name="justificativa" cols="48" rows="6"></textarea></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Alterar Símbolo"></td>
+    </tr>
+  </table>
+</form>
+<center>
+  <a href="javascript:self.close();">Fechar</a>
+</center>
+<br>
+<i><a href="showSource.php?file=alt_lexico.php">Veja o código fonte!</a></i>
+</body>
+</html>
+<?php
 }
 	?>

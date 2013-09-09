@@ -1,11 +1,11 @@
-<HTML> 
-<HEAD> 
-<LINK rel="stylesheet" type="text/css" href="style.css"> 
-<TITLE>Recuperação de Arquivos DAML</TITLE> 
-</HEAD> 
+<HTML>
+<HEAD>
+<LINK rel="stylesheet" type="text/css" href="style.css">
+<TITLE>Recuperação de Arquivos DAML</TITLE>
+</HEAD>
 
-<BODY> 
-<H2>Histórico de Arquivos DAML</H2> 
+<BODY>
+<H2>Histórico de Arquivos DAML</H2>
 <?PHP 
 
     include_once( "CELConfig/CELConfig.inc" ) ;
@@ -87,6 +87,6 @@
         closedir( $dir_handle ); 
     } 
     print("</TABLE></CENTER>\n") ; 
-?> 
-</BODY> 
-</HTML> 
+?>
+</BODY>
+</HTML>

@@ -1,11 +1,9 @@
 <html>
-
 <head>
-  <title></title>
+<title></title>
 </head>
 
 <body>
-
 <?php
 
 include_once("bd.inc") ;
@@ -88,7 +86,5 @@ $result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error()
 mysql_close($link);
 
 ?>
-
 </body>
-
 </html>

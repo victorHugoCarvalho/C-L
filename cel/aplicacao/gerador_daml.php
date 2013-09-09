@@ -48,12 +48,12 @@ $daml = salva_daml( $site, $dir, $arquivo, $i, $lista_conceitos , $lista_relacoe
 
 mysql_close($link);  
 
-?>   
-
-<html> 
-<head><title>Gerar DAML</title></head> 
-<body bgcolor="#FFFFFF"> 
-
+?>
+<html>
+<head>
+<title>Gerar DAML</title>
+</head>
+<body bgcolor="#FFFFFF">
 <?php  
 if ( !$daml )  
 {  
@@ -67,7 +67,6 @@ if ( !$daml )
 
 
 }  
-?>  
-
-</body> 
-</html> 
+?>
+</body>
+</html>

@@ -1,11 +1,9 @@
 <html>
-
 <head>
-  <title></title>
+<title></title>
 </head>
 
 <body>
-
 <?php
 
 include_once( "bd.inc" );
@@ -143,7 +141,5 @@ echo "<br>FIM !!!";
 mysql_close($link);
 
 ?>
-
 </body>
-
 </html>

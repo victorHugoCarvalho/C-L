@@ -286,4 +286,3 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 } 
 
 ?>
-

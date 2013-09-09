@@ -168,4 +168,4 @@ function faz_links_XML($texto, $vetor_lex, $vetor_cen)
    return $str; 
 } 
 
-?> 
+?>

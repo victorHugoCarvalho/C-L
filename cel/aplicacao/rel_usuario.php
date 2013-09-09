@@ -29,19 +29,16 @@ if (isset($submit)) {   // Script chamado pelo submit
         mysql_query($q) or die("Erro ao cadastrar usuario");
     }
 ?>
-
 <script language="javascript1.3">
 
 self.close();
 
 </script>
-
 <?php
 } else {
 ?>
-
 <html>
-    <head>
+        <head>
         <title>Selecione os usuários</title>
         <script language="javascript1.3" src="MSelect.js"></script>
         <script language="javascript1.3">
@@ -62,29 +59,29 @@ self.close();
 
         </script>
         <style>
-        <!--
-        select {
-            width: 200;
-            background-color: #CCFFFF
-        }
-        -->
-        </style>
-    </head>
-    <body onLoad="createMSelect();">
-        <h4>Selecione os usuários para participar do projeto "<span style="color: orange"><?=simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente'])?></span>":</h4>
-        <p style="color: red">Mantenha <strong>CTRL</strong> pressionado para selecionar múltiplas opções</p>
-        <form action="" method="post" onSubmit="selAll();">
-        <table cellspacing="8" width="100%">
-            <tr>
-                <td align="center" style="color: green">Participantes:</td>
-                <td></td>
-                <td></td>
+<!--
+select {
+	width: 200;
+	background-color: #CCFFFF
+}
+-->
+</style>
+        </head>
+        <body onLoad="createMSelect();">
+<h4>Selecione os usuários para participar do projeto "<span style="color: orange">
+  <?=simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente'])?>
+  </span>":</h4>
+<p style="color: red">Mantenha <strong>CTRL</strong> pressionado para selecionar múltiplas opções</p>
+<form action="" method="post" onSubmit="selAll();">
+          <table cellspacing="8" width="100%">
+    <tr>
+              <td align="center" style="color: green">Participantes:</td>
+              <td></td>
+              <td></td>
             </tr>
-            <tr align="center">
-                <td rowspan="2">
-                    <select name="usuarios[]" multiple size="6">
-
-<?php
+    <tr align="center">
+              <td rowspan="2"><select name="usuarios[]" multiple size="6">
+                  <?php
 
 // Cenário - Relacionar usuários ao projeto
 
@@ -106,10 +103,10 @@ self.close();
     $qrr = mysql_query($q) or die("Erro ao enviar a query");
     while ($result = mysql_fetch_array($qrr)) {
 ?>
-
-                        <option value="<?=$result['id_usuario']?>"><?=$result['login']?></option>
-
-<?php
+                  <option value="<?=$result['id_usuario']?>">
+                <?=$result['login']?>
+                </option>
+                  <?php
 
 // Cenário - Relacionar usuários ao projeto
 
@@ -123,20 +120,13 @@ self.close();
 //            e clica no botão -> . 
 
 ?>
-
-<?php
+                  <?php
     }
 ?>
-
-                    </select>
-                </td>
-                <td>
-                    <input name="usr_l2r" type="button" value="->">
-                </td>
-                <td rowspan="2">
-                    <select  multiple name="usuarios_r" size="6">
-
-<?php
+                </select></td>
+              <td><input name="usr_l2r" type="button" value="->"></td>
+              <td rowspan="2"><select  multiple name="usuarios_r" size="6">
+                  <?php
     // Selecionar todos os usuarios que nao participam deste projeto
     $subq = "SELECT id_usuario FROM participa where participa.id_projeto =".$_SESSION['id_projeto_corrente'];
     $subqrr = mysql_query($subq) or die("Erro ao enviar a subquery");
@@ -156,10 +146,10 @@ self.close();
     $qrr = mysql_query($q) or die("Erro ao enviar a query");
     while ($result = mysql_fetch_array($qrr)) {
 ?>
-
-                        <option value="<?=$result['id_usuario']?>"><?=$result['login']?></option>
-
-<?php
+                  <option value="<?=$result['id_usuario']?>">
+                <?=$result['login']?>
+                </option>
+                  <?php
 
 // Cenário - Relacionar usuários ao projeto
 
@@ -173,21 +163,15 @@ self.close();
 //           clica no botão <- . 
 
 ?>
-
-<?php
+                  <?php
     }
 ?>
-
-                    </select>
-                </td>
+                </select></td>
             </tr>
-            <tr align="center">
-                <td>
-                    <input name="usr_r2l" type="button" value="<-">
-                </td>
+    <tr align="center">
+              <td><input name="usr_r2l" type="button" value="<-"></td>
             </tr>
-
-<?php
+    <?php
 
 // Cenário - Relacionar usuários ao projeto
 
@@ -199,16 +183,15 @@ self.close();
 // Episódios: Para atualizar os relacionamentos realizados, o administrador clica no botão Atualizar.
 
 ?>
-
-            <tr>
-                <td align="center" colspan="3" height="50" valign="bottom"><input name="submit" type="submit" value="Atualizar"></td>
+    <tr>
+              <td align="center" colspan="3" height="50" valign="bottom"><input name="submit" type="submit" value="Atualizar"></td>
             </tr>
-        </table>
+  </table>
         </form>
-        <br><i><a href="showSource.php?file=rel_usuario.php">Veja o código fonte!</a></i>
-    </body>
+<br>
+<i><a href="showSource.php?file=rel_usuario.php">Veja o código fonte!</a></i>
+</body>
 </html>
-
 <?php
 }
 ?>

@@ -1,11 +1,9 @@
 <html>
-
 <head>
-  <title></title>
+<title></title>
 </head>
 
 <body>
-
 <?php
 
 
@@ -89,7 +87,5 @@ function converte_impactos()
 	mysql_close($link);
 }
 ?>
-
 </body>
-
 </html>

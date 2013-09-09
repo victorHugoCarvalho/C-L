@@ -28,13 +28,12 @@
 
             $tb_cenario = mysql_query( $qry_cenario ) or 
                           die( "Erro ao enviar a query de selecao." ) ; 
-?> 
+?>
 
-            <table> 
-            <tr> 
-              <th>Cenários</th> 
-            </tr> 
-
+<table>
+<tr>
+  <th>Cenários</th>
+</tr>
 <?php 
             while ( $row = mysql_fetch_row( $tb_cenario ) ) 
             { 
@@ -42,11 +41,10 @@
                 $row[1] = preg_replace($search, $replace, $row[1]); 
                 $link = "<a href=javascript:reCarrega" . 
                         "('main.php?id=$row[0]&t=c');><span style=\"font-variant: small-caps\">$row[1]</span></a>" ; 
-?> 
+?>
 
-                <td><?=$link?></td> 
-
-<?php 
+  <td><?=$link?></td>
+  <?php 
             } // while 
         } // if 
 
@@ -71,22 +69,18 @@
 
             $tb_lexico = mysql_query( $qry_lexico ) or 
                          die( "Erro ao enviar a query de selecao." ) ; 
-?> 
-
-            <table> 
-            <tr> 
-                <th>Cenários</th> 
-                <th>Léxicos</th> 
-            </tr> 
-
-<?php 
+?>
+  <table>
+    <tr>
+      <th>Cenários</th>
+      <th>Léxicos</th>
+    </tr>
+    <?php 
             while ( 1 ) 
             { 
-?> 
-
-                <tr> 
-
-<?php 
+?>
+    <tr>
+      <?php 
                 if ( $rowc = mysql_fetch_row( $tb_cenario ) ) 
                 { 
                     $rowc[1] = preg_replace($search, $replace, $rowc[1]); 
@@ -97,11 +91,9 @@
                 { 
                     $link = "" ; 
                 } // else 
-?> 
-
-                <td><?=$link?></td> 
-
-<?php 
+?>
+      <td><?=$link?></td>
+      <?php 
                 if ( $rowl = mysql_fetch_row( $tb_lexico ) ) 
                 { 
                     $link = "<a href=javascript:reCarrega" . 
@@ -111,12 +103,11 @@
                 { 
                     $link = "" ; 
                 } // else 
-?> 
-
-                <td><?=$link?></td> 
-</td>                </tr> 
-
-<?php 
+?>
+      <td><?=$link?></td>
+        </td>
+    </tr>
+    <?php 
                 if ( !( $rowc ) && !( $rowl ) ) 
                 { 
                     break ; 
@@ -197,10 +188,8 @@
 
         } //elseif 
         
-?> 
-
-</table> 
-
-<?php 
+?>
+  </table>
+  <?php 
     } // procura_ref 
 ?>

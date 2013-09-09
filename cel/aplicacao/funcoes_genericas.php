@@ -20,14 +20,12 @@ if (!(function_exists("chkUser")))
         if (!(session_is_registered("id_usuario_corrente"))) 
         {
 			?>
-			
-			<script language="javascript1.3">
+<script language="javascript1.3">
 			
 				open('login.php?url=<?=$url?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
 			
 			</script>
-			
-			<?php
+<?php
 			exit();
         }
     }
@@ -173,14 +171,12 @@ if (!(function_exists("recarrega")))
     function recarrega($url) 
     {
 		?>
-		
-		<script language="javascript1.3">
+<script language="javascript1.3">
 		
 		location.replace('<?=$url?>');
 		
 		</script>
-		
-		<?php
+<?php
     }
 }
 
@@ -189,14 +185,12 @@ if (!(function_exists("breakpoint")))
     function breakpoint($num) 
     {
 		?>
-		
-		<script language="javascript1.3">
+<script language="javascript1.3">
 		
 		alert('<?=$num?>');
 		
 		</script>
-		
-		<?php
+<?php
     }
 }
 

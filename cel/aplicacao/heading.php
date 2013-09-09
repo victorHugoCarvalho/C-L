@@ -26,7 +26,6 @@ if( isset( $_GET['id_projeto']))
 }
 
 ?>
-
 <script language="javascript1.3">
 
 function getIDPrj() {
@@ -149,34 +148,30 @@ function prjInfo(idprojeto) {
 }
 
 </script>
-
 <html>
-    <style>
-    a
-    {
-        font-weight: bolder;
-        color: Blue;
-        font-family: Verdana, Arial;
-        text-decoration: none
-    }
-    a:hover
-    {
-        font-weight: bolder;
-        color: Tomato;
-        font-family: Verdana, Arial;
-        text-decoration: none
-    }
-    </style>
-    <body bgcolor="#ffffff" text="#000000" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" <?=(isset($id_projeto)) ? "onLoad=\"setPrjSelected();\"" : ""?>>
-        <form onSubmit="return atualizaMenu();">
-            <table width="100%" cellspacing="0" cellpadding="0">
-                <tr bgcolor="#E0FFFF">
-                   <td width="294" height="79" > <!--<img src="Images/Logo.jpg"></td>-->
-<img src="Images/Logo_C.jpg" width="190" height="100"></td>
-                    <td align="right" valign="top">
-                        <table>
-                            <tr>
-                                <td align="right" valign="top"> <?php 
+<style>
+a {
+	font-weight: bolder;
+	color: Blue;
+	font-family: Verdana, Arial;
+	text-decoration: none
+}
+a:hover {
+	font-weight: bolder;
+	color: Tomato;
+	font-family: Verdana, Arial;
+	text-decoration: none
+}
+</style>
+<body bgcolor="#ffffff" text="#000000" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" <?=(isset($id_projeto)) ? "onLoad=\"setPrjSelected();\"" : ""?>>
+<form onSubmit="return atualizaMenu();">
+  <table width="100%" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#E0FFFF">
+      <td width="294" height="79" ><!--<img src="Images/Logo.jpg"></td>--> 
+        <img src="Images/Logo_C.jpg" width="190" height="100"></td>
+      <td align="right" valign="top"><table>
+          <tr>
+            <td align="right" valign="top"><?php 
 
    if (isset($id_projeto)){
    	
@@ -189,31 +184,25 @@ function prjInfo(idprojeto) {
 	
                                         
 ?>
-                                <font color="#FF0033">Administrador</font>
-                            
-                            
-<?php
+              <font color="#FF0033">Administrador</font>
+              <?php
         }
         else{  
        
-?>                               <font color="#FF0033">Usuário normal</font>
-                                    
-
-<?php
+?>
+              <font color="#FF0033">Usuário normal</font>
+              <?php
         }
      }   
      else{         
-?>        
-                                
-<?php
+?>
+              <?php
     }     
-?>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto:&nbsp;&nbsp;
-                                
-                                    <select name="id_projeto" size="1" onChange="atualizaMenu();">
-                                        <option>-- Selecione um Projeto --</option>
-                                                                                
-
-<?php
+?>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto:&nbsp;&nbsp;
+              <select name="id_projeto" size="1" onChange="atualizaMenu();">
+                <option>-- Selecione um Projeto --</option>
+                <?php
 
 // ** Cenario "Login" **
 // O sistema dá ao usuário a opção de cadastrar um novo projeto
@@ -235,21 +224,20 @@ $qrr = mysql_query($q) or die("Erro ao executar query");
 
 while ($result = mysql_fetch_array($qrr)) {    // enquanto houver projetos
 ?>
-<option value="<?=$result['id_projeto']?>"><?=($result['gerente'] == 1) ? "*" : ""?>  <?=$result['nome']?></option>
-
-<?php
+                <option value="<?=$result['id_projeto']?>">
+                <?=($result['gerente'] == 1) ? "*" : ""?>
+                <?=$result['nome']?>
+                </option>
+                <?php
 }
-?>          
-
-                                    </select>&nbsp;&nbsp;
-                                    <input type="submit" value="Atualizar">
-                                </td>
-                            </tr>
-                             <tr bgcolor="#E0FFFF" height="15">
-                            
-                            <tr bgcolor="#E0FFFF" height="30">
-                                
-            <td align="right" valign=MIDDLE> <?php
+?>
+              </select>
+              &nbsp;&nbsp;
+              <input type="submit" value="Atualizar"></td>
+          </tr>
+          <tr bgcolor="#E0FFFF" height="15">
+          <tr bgcolor="#E0FFFF" height="30">
+            <td align="right" valign=MIDDLE><?php
 if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
                              // entao podemos mostrar os links de adicionar cen/lex
                              // e de informacoes (pagina principal) do projeto
@@ -270,12 +258,12 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
 //            -Alterar Cadastro.
 
 
-?> <a href="#" onClick="novoCenario();">Adicionar Cenário</a>&nbsp;&nbsp;&nbsp; 
-              <a href="#" onClick="novoLexico();">Adicionar Símbolo</a>&nbsp;&nbsp;&nbsp; 
-              <a href="#" title="Informações sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp; 
+?>
+              <a href="#" onClick="novoCenario();">Adicionar Cenário</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar Símbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informações sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
               <?php
 }
-?> <?php
+?>
+              <?php
 
 //Cenário  -  Cadastrar Novo Projeto 
 
@@ -286,8 +274,10 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
 //Recursos:    Sistema, dados do projeto, base de dados
 //Episódios:   O Usuário clica na opção “adicionar projeto” encontrada no menu superior.
 
-?> <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
-              Projeto</a>&nbsp;&nbsp;&nbsp; <?php
+?>
+              <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+              Projeto</a>&nbsp;&nbsp;&nbsp;
+              <?php
 
 
 //Cenário  -   Remover Novo Projeto 
@@ -307,8 +297,10 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
    	$ret = verificaGerente($id_usuario, $id_projeto);
    	  
         if ( $ret != 0 ){
-?> <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
-              Projeto</a>&nbsp;&nbsp;&nbsp; <?php
+?>
+              <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
+              Projeto</a>&nbsp;&nbsp;&nbsp;
+              <?php
         }
  }       
 
@@ -336,14 +328,9 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
 //Recursos:  Interface	
 //Episódios: O usuário clica na opção de alterar cadastro da interface
 
-?> <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
-              Cadastro</a>&nbsp;&nbsp;&nbsp; 
-              
-              
-              
-<a href="mailto:per@les.inf.puc-rio.br">Fale Conosco&nbsp;&nbsp;&nbsp;</a>
-
-
+?>
+              <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
+              Cadastro</a>&nbsp;&nbsp;&nbsp; <a href="mailto:per@les.inf.puc-rio.br">Fale Conosco&nbsp;&nbsp;&nbsp;</a>
               <?php
 
 
@@ -373,17 +360,16 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
 // Recursos:  Interface	
 // Episódios: O usuário clica na opção de logout
 
-?> <a href="logout.php" target="_parent");">Sair</a>&nbsp;&nbsp;&nbsp; <a href="ajuda.htm" target="_blank"> 
-              Ajuda</a></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr height="33" bgcolor="#00359F" background="Images/FrameTop.gif">
-                    <td background="Images/TopLeft.gif" width="294" valign="baseline"></td>
-                    <td background="Images/FrameTop.gif" valign="baseline"></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+?>
+              <a href="logout.php" target="_parent");">Sair</a>&nbsp;&nbsp;&nbsp; <a href="ajuda.htm" target="_blank"> Ajuda</a></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr height="33" bgcolor="#00359F" background="Images/FrameTop.gif">
+      <td background="Images/TopLeft.gif" width="294" valign="baseline"></td>
+      <td background="Images/FrameTop.gif" valign="baseline"></td>
+    </tr>
+  </table>
+</form>
+</body>
 </html>

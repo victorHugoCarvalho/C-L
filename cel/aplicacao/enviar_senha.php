@@ -22,7 +22,6 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 
 
 ?>
-
 <html>
 <head>
 <title>Enviar senha</title>
@@ -36,7 +35,9 @@ if ( !mysql_num_rows($qrr) )
 
 ?>
 <p style="color: red; font-weight: bold; text-align: center">Login inexistente!</p>
-<center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
+<center>
+  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+</center>
 <?php
 }
 else
@@ -96,20 +97,22 @@ else
    if(mail("$mail", "Nova senha do C&L" , "$corpo_email" , $headers))
    { 	
    ?>
-		<p style="color: red; font-weight: bold; text-align: center">Uma nova senha foi criada e enviada para seu e-mail cadastrado.</p>
-	    <center><a href="JavaScript:window.history.go(-2)">Voltar</a></center>
-   <?php
+<p style="color: red; font-weight: bold; text-align: center">Uma nova senha foi criada e enviada para seu e-mail cadastrado.</p>
+<center>
+  <a href="JavaScript:window.history.go(-2)">Voltar</a>
+</center>
+<?php
    }else{
 	?>
-		<p style="color: red; font-weight: bold; text-align: center">Ocorreu um erro durante o envio do e-mail!</p>
-		<center><a href="JavaScript:window.history.go(-2)">Voltar</a></center>
-	<?php
+<p style="color: red; font-weight: bold; text-align: center">Ocorreu um erro durante o envio do e-mail!</p>
+<center>
+  <a href="JavaScript:window.history.go(-2)">Voltar</a>
+</center>
+<?php
    
    }
 
 }
 ?>
-
-
 </body>
 </html>

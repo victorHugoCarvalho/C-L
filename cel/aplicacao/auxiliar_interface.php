@@ -6,25 +6,16 @@ session_start();
 
 ?>
 <html>
-  <head>
-     <title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
-    <style>
+    <head>
+    <title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
+    <style></style>
+    </head>
 
-    </style>
-  </head>
-
-
-<body>
-<table height=100% width=100% border=0>
-<tr>
-
-<td width='200'>
-<iframe src='arv_frameset.htm' height="100%" width='200'>
-</iframe>
-</td>
-
-<td align='left' valign='top'>
-<?php
+    <body>
+    <table height=100% width=100% border=0>
+      <tr>
+        <td width='200'><iframe src='arv_frameset.htm' height="100%" width='200'> </iframe></td>
+        <td align='left' valign='top'><?php
 
 /*
 Cenario:     Verificar com o usuario a existencia de um nome numa lista.
@@ -49,8 +40,8 @@ function exist($name, $list)
 		}
 	}
 	?>
-	<form method="POST" action="algoritmo.php" id="exist_form">
-	<?php
+          <form method="POST" action="algoritmo.php" id="exist_form">
+            <?php
 	
 	if (count($_SESSION["verbos_selecionados"])!=0)
 	{
@@ -61,26 +52,32 @@ function exist($name, $list)
 		}
 	}
 	?>
-	<b>Impacto:</b> <code>"<?=$name?>"</code><br><br>
-	<b>A propriedade já está cadastrada na lista abaixo?</b><br>
-	<SELECT id='indice' name='indice' size=10 width="300">
-	<?php
+            <b>Impacto:</b> <code>"
+            <?=$name?>
+            "</code><br>
+            <br>
+            <b>A propriedade já está cadastrada na lista abaixo?</b><br>
+            <SELECT id='indice' name='indice' size=10 width="300">
+              <?php
 	foreach ($list as $key=>$termo)
 	{
 		?>
-		<OPTION value='<?=$key ?>' <?php if($indice==$key) echo "selected" ?> > <?php echo $termo ?></OPTION>
-		<?php
+              <OPTION value='<?=$key ?>' <?php if($indice==$key) echo "selected" ?> > <?php echo $termo ?></OPTION>
+              <?php
 	 }
 	 ?>
-	 
-	<OPTION value="-1"></OPTION>
-	</SELECT><br>
-	<input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice != -1) echo"checked" ?>> sim
-	<input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice == -1) echo"checked" ?> > não <BR>
-	<input type="text" value="<?php print strip_tags($name) ?>" id="nome" name="nome" size="20">
-	<input type="submit" value="Inserir Propriedade" id="B1" name="B1" disabled><BR>
-	<INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
-			</p>
+              <OPTION value="-1"></OPTION>
+            </SELECT>
+            <br>
+            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice != -1) echo"checked" ?>>
+            sim
+            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice == -1) echo"checked" ?> >
+            não <BR>
+            <input type="text" value="<?php print strip_tags($name) ?>" id="nome" name="nome" size="20">
+            <input type="submit" value="Inserir Propriedade" id="B1" name="B1" disabled>
+            <BR>
+            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            </p>
             <script language="JavaScript">
             
 	function seExiste(valor)
@@ -127,13 +124,13 @@ function exist($name, $list)
 	}
 
 
-	</script>
-	<SCRIPT language="JavaScript">
+	</script> 
+            <SCRIPT language="JavaScript">
 		var form = document.getElementById("exist_form");
 		form.B1.disabled = false;
 	</SCRIPT>
-	</form>
-	<?php
+          </form>
+          <?php
 	//Registra a variavel de controle.
 	$_SESSION["exist"] = 1;
 }
@@ -150,8 +147,11 @@ Episodios:
 function importancia_central($termo, $impactos)
 {
 	?>
-	<h3>Termo: <?=$termo?></h3><br>
-	<?php
+          <h3>Termo:
+            <?=$termo?>
+          </h3>
+          <br>
+          <?php
 	
 	print("Impactos:<br>");
 
@@ -167,13 +167,15 @@ function importancia_central($termo, $impactos)
 	
 	print("O termo $termo vai transformar-se em:<br>");
         ?>
-            <form method="POST" action="algoritmo.php">
-              <input type="radio" value="TRUE" name="main_subject" size="20" checked> Conceito
-              <input type="radio" value="FALSE" name="main_subject" size="20"> Propriedade
-              <input type="submit" value="OK" name="B1" size="20">
-              </p>
-            </form>
-         <?php
+          <form method="POST" action="algoritmo.php">
+            <input type="radio" value="TRUE" name="main_subject" size="20" checked>
+            Conceito
+            <input type="radio" value="FALSE" name="main_subject" size="20">
+            Propriedade
+            <input type="submit" value="OK" name="B1" size="20">
+            </p>
+          </form>
+          <?php
          $_SESSION["main_subject"] = 1;
 }
 
@@ -191,17 +193,13 @@ Episodios:
 function faz_referencia($conceitos, $subconceitos)
 {
 	?>
-
-
-
-        <form method="POST" action="algoritmo.php" id="reference_form" name="reference_form">
-        <table border="1" cellspacing="1" width="100%" id="AutoNumber1">
-  		<tr>
-    	<td width="100%" colspan="2"><?php print("Organizar Hierarquia <br>") ?></td>
-  		</tr>
-  		<tr>
-    	<td width="50%">
-    		<?php
+          <form method="POST" action="algoritmo.php" id="reference_form" name="reference_form">
+            <table border="1" cellspacing="1" width="100%" id="AutoNumber1">
+              <tr>
+                <td width="100%" colspan="2"><?php print("Organizar Hierarquia <br>") ?></td>
+              </tr>
+              <tr>
+                <td width="50%"><?php
 
     			foreach ($conceitos as $conc)
     			{
@@ -212,10 +210,8 @@ function faz_referencia($conceitos, $subconceitos)
 						print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$subc<br>");
 					}
     			}
-    		?>
-    	</td>
-    	<td width="50%" align="left" valign="top">
-    		<?php
+    		?></td>
+                <td width="50%" align="left" valign="top"><?php
 
     			foreach ($conceitos as $key=>$conc)
     			{
@@ -226,15 +222,13 @@ function faz_referencia($conceitos, $subconceitos)
 
     				print("<INPUT type='checkbox' id='$key' name='$key' value='$conc->nome' if($sel)checked> <b> $conc->nome </b> <br>\n");
     			}
-    		?>
-    	</td>
-  		</tr>
-		</table>
-		<input type="submit" value="Incluir Relacao" name="B1" size="20">
-		<input type="button" value="Finalizar Algoritmo" name="B2" onClick='Sair()'>
-		</FORM>
-
-		<script>
+    		?></td>
+              </tr>
+            </table>
+            <input type="submit" value="Incluir Relacao" name="B1" size="20">
+            <input type="button" value="Finalizar Algoritmo" name="B2" onClick='Sair()'>
+          </FORM>
+          <script>
 		document.reference_form.pai[0].checked = true;
 		function Sair()
 		{
@@ -291,8 +285,7 @@ function faz_referencia($conceitos, $subconceitos)
 			*/
 		}
 		</script>
-
-        <?php
+          <?php
         $_SESSION["reference"] = 1;
 }
 
@@ -310,26 +303,28 @@ function insere_tipo ($list)
 {
 		$_SESSION["tipos"] = 2;
         ?>
-        <form method="POST" action="auxiliar_bd.php">
+          <form method="POST" action="auxiliar_bd.php">
             <p>
-        <?php
+              <?php
         foreach( $list as $key=>$termo )
         {
         	echo ("<br> $termo <br>");
             ?>
-
-            Sujeito <input type="radio" value="sujeito" name="type<?php echo $key ?>" size="20" checked>
-            Objeto <input type="radio" value="objeto" name="type<?php echo $key ?>" size="20">
-            Verbo <input type="radio" value="verbo" name="type<?php echo $key ?>" size="20">
-            Estado <input type="radio" value="estado" name="type<?php echo $key ?>" size="20">
-
-            <?php
+              Sujeito
+              <input type="radio" value="sujeito" name="type<?php echo $key ?>" size="20" checked>
+              Objeto
+              <input type="radio" value="objeto" name="type<?php echo $key ?>" size="20">
+              Verbo
+              <input type="radio" value="verbo" name="type<?php echo $key ?>" size="20">
+              Estado
+              <input type="radio" value="estado" name="type<?php echo $key ?>" size="20">
+              <?php
         }
         ?>
-            <input type="submit" value="Enviar" name="B1" size="20">
+              <input type="submit" value="Enviar" name="B1" size="20">
             </p>
-        </form>
-        <?php
+          </form>
+          <?php
         $_SESSION["tipos"] = 1;
 }
 
@@ -380,8 +375,8 @@ function insere_relacao ($rel, $conc, $imp, $list)
 	}
 
     ?>
- 	<form method="POST" nome="rel_form" id="rel_form" action="algoritmo.php">
-	<?php
+          <form method="POST" nome="rel_form" id="rel_form" action="algoritmo.php">
+            <?php
 			print "<H3>Conceito: $conc</H3>";
 			print "<H4>Propriedade:	 $rel </H4><BR>";
 			if (count($_SESSION["predicados_selecionados"])!=0)
@@ -393,55 +388,55 @@ function insere_relacao ($rel, $conc, $imp, $list)
 				}
 			}
 	?>
-
-			<B>Impacto:</B><CODE> <?=$imp?></CODE><br>
-
-<BR>
-			<b>O predicado da relação já está cadastrado na lista abaixo?</b><br>
-
-			<SELECT id='indice' name='indice' size=10 width="300">
-			 <?php
+            <B>Impacto:</B><CODE>
+            <?=$imp?>
+            </CODE><br>
+            <BR>
+            <b>O predicado da relação já está cadastrado na lista abaixo?</b><br>
+            <SELECT id='indice' name='indice' size=10 width="300">
+              <?php
 			 foreach ($list as $key=>$termo)
 			 {
 				?>
-				<OPTION value='<?=$key ?>' <?php if($indice2===$key) echo "selected" ?> > <?php echo $termo->nome ?></OPTION>
-				<?php
+              <OPTION value='<?=$key ?>' <?php if($indice2===$key) echo "selected" ?> > <?php echo $termo->nome ?></OPTION>
+              <?php
 			 }
 			 ?>
-			<OPTION value="-1"></OPTION>
-			</SELECT><br>
-
-			<input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice2!==-1) echo"checked" ?>> sim
-			<input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice2===-1) echo"checked" ?> > não <BR>
-
-			<DIV id=naoExiste>
-<BR>
-			<b>Se não existe, ele pertence à lista de elementos do nosso namespace(abaixo)?</b><br>
-			<SELECT onChange='seleciona(this[this.selectedIndex].text)' size=10 width="300">
-			 <?php
+              <OPTION value="-1"></OPTION>
+            </SELECT>
+            <br>
+            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice2!==-1) echo"checked" ?>>
+            sim
+            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice2===-1) echo"checked" ?> >
+            não <BR>
+            <DIV id=naoExiste> <BR>
+              <b>Se não existe, ele pertence à lista de elementos do nosso namespace(abaixo)?</b><br>
+              <SELECT onChange='seleciona(this[this.selectedIndex].text)' size=10 width="300">
+                <?php
 			 $selected=false;
 			 foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key=>$termo)
 			 {
 				?>
-				<OPTION value='<?=$termo->nome ?>' <?php if($indice3===$key){echo "selected";$selected=$termo->nome;} ?> ><?php echo $termo->nome ?></OPTION>
-				<?php
+                <OPTION value='<?=$termo->nome ?>' <?php if($indice3===$key){echo "selected";$selected=$termo->nome;} ?> ><?php echo $termo->nome ?></OPTION>
+                <?php
 			 }
 			 ?>
-			</SELECT><br>
-
-			<table>
-			<tr>
-			<td>predicado:</td><td><input type="text" value="<?php print strip_tags($pred) ?>" id="nome" name="nome" size="20"></td>
-			</tr>
-			<tr>
-			<td>namespace:</td><td><input type="text" value="proprio" id="namespace" name="namespace" size="20"></td>
-			</tr>
-			</table>
-
-			</div>
-			<input type="submit" value="Inserir Predicado" id="B1" name="B1" size="20">
-			<INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
-			</p>
+              </SELECT>
+              <br>
+              <table>
+                <tr>
+                  <td>predicado:</td>
+                  <td><input type="text" value="<?php print strip_tags($pred) ?>" id="nome" name="nome" size="20"></td>
+                </tr>
+                <tr>
+                  <td>namespace:</td>
+                  <td><input type="text" value="proprio" id="namespace" name="namespace" size="20"></td>
+                </tr>
+              </table>
+            </div>
+            <input type="submit" value="Inserir Predicado" id="B1" name="B1" size="20">
+            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            </p>
             <script language='javascript'>
 				function seleciona(valor)
 				{
@@ -489,8 +484,8 @@ function insere_relacao ($rel, $conc, $imp, $list)
 					print("\n document.all.nome.value = '$selected';");
 				?>
             </script>
-		</form>
-        <?php
+          </form>
+          <?php
         $_SESSION['insert_relation'] = 1;
 }
 
@@ -512,36 +507,40 @@ function disjuncao( $nome, $list )
 	print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabulário mínimo?";
 
         ?>
-		<form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
-		<p>
-		<SELECT onChange='seleciona(this[this.selectedIndex].text)' name="indice" size=10 width="300">
-		<?php
+          <form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
+            <p>
+              <SELECT onChange='seleciona(this[this.selectedIndex].text)' name="indice" size=10 width="300">
+                <?php
 		
 		foreach ($_SESSION["lista_de_sujeito_e_objeto"] as $key=>$termo)
 		{
 			if (strcmp( $termo->nome, $nome ) != 0)
 			{
 				?>
-				<OPTION value='<?=$termo->nome ?>'><?php echo $termo->nome ?></OPTION>
-				<?php
+                <OPTION value='<?=$termo->nome ?>'><?php echo $termo->nome ?></OPTION>
+                <?php
 			}
 		}
 		?>
-		</SELECT><br>
-
-		<table>
-		<tr>
-		<td>conceito:</td><td><input type="text" value="<?php print strip_tags($pred) ?>" id="nome" name="nome" size="20"></td>
-		</tr>
-		<tr>
-		<td>namespace:</td><td><input type="text" value="proprio" id="namespace" name="namespace" size="20"></td>
-		</tr>
-		</table>
-			<input type="radio" onClick="seExiste('TRUE')" value="TRUE" name="existe" size="20"> sim
-			<input type="radio" onClick="seExiste('FALSE')" value="FALSE" name="existe" size="20" checked> não<br>
-			<input type="button" value="Inserir Axioma" id="B1" name="B1" onClick="insere()">
-			<INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
-			</p>
+              </SELECT>
+              <br>
+            <table>
+              <tr>
+                <td>conceito:</td>
+                <td><input type="text" value="<?php print strip_tags($pred) ?>" id="nome" name="nome" size="20"></td>
+              </tr>
+              <tr>
+                <td>namespace:</td>
+                <td><input type="text" value="proprio" id="namespace" name="namespace" size="20"></td>
+              </tr>
+            </table>
+            <input type="radio" onClick="seExiste('TRUE')" value="TRUE" name="existe" size="20">
+            sim
+            <input type="radio" onClick="seExiste('FALSE')" value="FALSE" name="existe" size="20" checked>
+            não<br>
+            <input type="button" value="Inserir Axioma" id="B1" name="B1" onClick="insere()">
+            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            </p>
             <script language='javascript'>
 				function seleciona(valor)
 				{
@@ -592,8 +591,8 @@ function disjuncao( $nome, $list )
 
 				seExiste('FALSE');
             </script>
-            </form>
-         <?php
+          </form>
+          <?php
 }
 
 if (isset($_SESSION["job"]))
@@ -603,28 +602,40 @@ if (isset($_SESSION["job"]))
 		if ($_SESSION['funcao'] == 'sujeito_objeto')
 		{
 			?>
-			<h3>Conceito: <?=$_SESSION["nome2"]->nome?></h3><br>
-			<?php
+          <h3>Conceito:
+            <?=$_SESSION["nome2"]->nome?>
+          </h3>
+          <br>
+          <?php
 		}
 		else if ($_SESSION['funcao'] == 'verbo')
 		{
 			?>
-			<h3>Verbo: <?=$_SESSION["nome2"]->nome?></h3><br>
-			<?php
+          <h3>Verbo:
+            <?=$_SESSION["nome2"]->nome?>
+          </h3>
+          <br>
+          <?php
 		}
 		else if (isset($_SESSION["translate"]))
 		{
 			if ($_SESSION["translate"] == 1)
 			{
 				?>
-                <h3>Conceito: <?=$_SESSION["nome2"]->nome?></h3><br>
-                <?php
+          <h3>Conceito:
+            <?=$_SESSION["nome2"]->nome?>
+          </h3>
+          <br>
+          <?php
 			}
 			else
 			{
 				?>
-            	<h3>Verbo: <?=$_SESSION["nome2"]->nome?></h3><br>
-                <?php
+          <h3>Verbo:
+            <?=$_SESSION["nome2"]->nome?>
+          </h3>
+          <br>
+          <?php
 			}
 		}
 		
@@ -656,35 +667,33 @@ if (isset($_SESSION["job"]))
 	}
 
 	?>
-    <p>
-	    <form method="POST" action="auxiliar_bd.php" id="salvar_form">
-		    <input type="hidden" value="TRUE" name="save" size="20" >
-		    <input type="submit" value="SALVAR" <?php if($_SESSION["salvar"]=="FALSE")echo "disabled" ?> >
-	    </form>
-	</p>
-	<?php
+          <p>
+          
+          <form method="POST" action="auxiliar_bd.php" id="salvar_form">
+            <input type="hidden" value="TRUE" name="save" size="20" >
+            <input type="submit" value="SALVAR" <?php if($_SESSION["salvar"]=="FALSE")echo "disabled" ?> >
+          </form>
+          </p>
+          <?php
 }
 else
 {
 	?>
-	<form method="POST" action="algoritmo_inicio.php">
-	<p>
-    	<font size="4">Carregar Ontologia?</font></p>
-	<p>
-	    <input type="radio" value="TRUE" name="load" size="20"> sim
-	    <input type="radio" value="FALSE" name="load" size="20"> não
-	    <input type="submit" value="Enviar" name="B1" size="20">
-    </p>
-	</form>
-    <?php
+          <form method="POST" action="algoritmo_inicio.php">
+            <p> <font size="4">Carregar Ontologia?</font></p>
+            <p>
+              <input type="radio" value="TRUE" name="load" size="20">
+              sim
+              <input type="radio" value="FALSE" name="load" size="20">
+              não
+              <input type="submit" value="Enviar" name="B1" size="20">
+            </p>
+          </form>
+          <?php
 }
 ?>
-
-<p><a href="inicio.php">Reiniciar Ontologia</a></p>
-</td>
-</tr>
-</table>
+          <p><a href="inicio.php">Reiniciar Ontologia</a></p></td>
+      </tr>
+    </table>
 </body>
 </html>
-
-

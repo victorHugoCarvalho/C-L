@@ -11,8 +11,7 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 
 inserirPedidoRemoverConceito($_SESSION['id_projeto_corrente'], $id_conceito, $_SESSION['id_usuario_corrente']);
 
-?>  
-
+?>
 <script language="javascript1.3">
 
 opener.parent.frames['code'].location.reload();
@@ -39,9 +38,8 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 </script>
 
 <h4>Operação efetuada com sucesso!</h4>
-
 <script language="javascript1.3">
 
 self.close();
 
-</script>
+</script> 

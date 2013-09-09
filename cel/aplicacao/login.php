@@ -42,10 +42,9 @@ if ( $submit == 'Entrar')
 	if ( !mysql_num_rows($qrr) ) {        
 
 ?>
-		<script language="javascript1.3">
+<script language="javascript1.3">
 			document.location.replace('login.php?wrong=true&url=<?=$url?>');
 		</script>
-
 <?php
 
 		$wrong = $_get["wrong"];
@@ -59,11 +58,10 @@ if ( $submit == 'Entrar')
 
         session_register("id_usuario_corrente");
 ?>
-		<script language="javascript1.3">
+<script language="javascript1.3">
 			opener.document.location.replace('<?=$url?>');
 			self.close();
 		</script>
-
 <?php
     }
 } 
@@ -71,60 +69,58 @@ if ( $submit == 'Entrar')
 /** @Episodio 3: Mostrar o formulário de login para usuário. **/
 else {    
 ?>
-
 <html>
-    <head>
-        <title>Entre com seu Login e Senha</title>
-    </head>
-    <body>
-
+<head>
+<title>Entre com seu Login e Senha</title>
+</head>
+<body>
 <?php
 
 	/** @Episodio 4: Se wrong = true então mostrar a mensagem Login ou Senha incorreto . **/
 	if ($wrong=="true") {
 		?>
-
-		<p style="color: red; font-weight: bold; text-align: center">
-		<img src="Images/Logo_CEL.jpg" width="180" height="180"><br/><br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
-
-		<?php
+<p style="color: red; font-weight: bold; text-align: center"> <img src="Images/Logo_CEL.jpg" width="180" height="180"><br/>
+  <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;Login ou Senha Incorreto</p>
+<?php
 	} 
 	/** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. **/
 	else {
 		?>
-
-		<p style="color: green; font-weight: bold; text-align: center">
-		<img src="Images/Logo_CEL.jpg" width="100" height="100"><br/><br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
-
-		<?php
+<p style="color: green; font-weight: bold; text-align: center"> <img src="Images/Logo_CEL.jpg" width="100" height="100"><br/>
+  <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;Entre com seu Login e Senha:</p>
+<?php
 	}
 ?>
-
-	<form action="?url=<?=$url?>" method="post">
-    <div align="center">
+<form action="?url=<?=$url?>" method="post">
+  <div align="center">
     <table cellpadding="5">
-      <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
-      <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
-      <tr><td height="10"></td></tr>
-      <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
+      <tr>
+        <td>Login:</td>
+        <td><input maxlength="32" name="login" size="24" type="text"></td>
+      </tr>
+      <tr>
+        <td>Senha:</td>
+        <td><input maxlength="32" name="senha" size="24" type="password"></td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td>
+      </tr>
     </table>
-
-<?php 		/** @Episodio 6: [CADASTRAR NOVO USUÁRIO] **/ ?>
-            <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
-
-<?php 	    /** @Episodio 7: [LEMBRAR SENHA] **/ ?>
-            <a href="esqueciSenha.php">Esqueci senha</a></p>
-        </div>
-        </form>
-    </body>
-
+    <?php 		/** @Episodio 6: [CADASTRAR NOVO USUÁRIO] **/ ?>
+    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
+      <?php 	    /** @Episodio 7: [LEMBRAR SENHA] **/ ?>
+      <a href="esqueciSenha.php">Esqueci senha</a></p>
+  </div>
+</form>
+</body>
 <?php		/** @Episodio 8: [MOSTRAR O CÓDIGO FONTE] **/ ?>
-
-	<i><a href="showSource.php?file=login.php">Veja o código fonte!</a></i>    
+<i><a href="showSource.php?file=login.php">Veja o código fonte!</a></i>
 </html>
-
 <?php
 }
 ?>

@@ -16,13 +16,11 @@ if (!(function_exists("chkUser"))) {
 	{
 		if (!(session_is_registered("id_usuario_corrente"))) {
 ?>
-
 <script language="javascript1.3">
 
 open('login.php?url=<?=$url?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
 
 </script>
-
 <?php
 exit();
 		}
@@ -163,7 +161,7 @@ if (!(function_exists("replace_skip_tags"))) {
 		$subject_tmp3 = preg_replace("/>(.*)(" . $search . ")abcdef(.*)</Ui", ">$1$2$3<", $subject_tmp2);
 		
 		?>
-				<?php
+<?php
 			        /*
 				$arquivo = fopen("teste_BUG_expressao_regular.txt","a") ;
 				
@@ -190,8 +188,7 @@ if (!(function_exists("replace_skip_tags"))) {
 				fclose($arquivo) ;
 				*/
 				?>
-			
-		<?
+<?
 		
 		return $subject_tmp3;
 	}
@@ -200,13 +197,11 @@ if (!(function_exists("replace_skip_tags"))) {
 if (!(function_exists("recarrega"))) {
 	function recarrega($url) {
 ?>
-
 <script language="javascript1.3">
 
 location.replace('<?=$url?>');
 
 </script>
-
 <?php
 	}
 }
@@ -214,13 +209,11 @@ location.replace('<?=$url?>');
 if (!(function_exists("breakpoint"))) {
 	function breakpoint($num) {
 ?>
-
 <script language="javascript1.3">
 
 alert('<?=$num?>');
 
 </script>
-
 <?php
 	}
 }
@@ -2064,4 +2057,3 @@ function removeProjeto($id_projeto)
 	
 }
 ?>
-

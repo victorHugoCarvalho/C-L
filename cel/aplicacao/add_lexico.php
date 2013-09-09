@@ -40,26 +40,32 @@ if (isset($submit))
 	else
 	{
 ?>
-		<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
-    		<p style="color: red; font-weight: bold; text-align: center">Este s�mbolo ou sin�nimo j� existe!</p>
-    		<br>
-    		<br>
-        	<center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-		</body></html>
+<html>
+<head>
+<title>Projeto</title>
+</head>
+<body bgcolor="#FFFFFF">
+<p style="color: red; font-weight: bold; text-align: center">Este s�mbolo ou sin�nimo j� existe!</p>
+<br>
+<br>
+<center>
+  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+</center>
+</body>
+</html>
 <?php
 		return;
 	}
 	
 	$ipValor = CELConfig_ReadVar("HTTPD_ip") ;
 ?>
-
 <script language="javascript1.2">
 
 	opener.parent.frames['code'].location.reload();
 	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	location.href = "add_lexico.php?id_projeto=<?=$id_projeto?>&sucesso=s"; 
 
-</script>   
+</script>
 <?php
 
 // Script chamado atrav�s do menu superior
@@ -72,12 +78,11 @@ else
 	$result = mysql_fetch_array($qrr);
 	$nome_projeto = $result['nome'];
 ?>
-
 <html>
-    <head>
-        <title>Adicionar L�xico</title>
-    </head>
-    <body>
+<head>
+<title>Adicionar L�xico</title>
+</head>
+<body>
 <script language="JavaScript">
 <!--
 
@@ -190,79 +195,79 @@ function doSubmit()
 ?>
 
 </SCRIPT>
-    
 <h4>Adicionar S�mbolo</h4>
 <br>
 <?php
 	if ( $sucesso == "s" )
 	{
 ?>
-		<p style="color: blue; font-weight: bold; text-align: center">S�mbolo inserido com sucesso!</p>
+<p style="color: blue; font-weight: bold; text-align: center">S�mbolo inserido com sucesso!</p>
 <?php    
 	}
-?>       
-        <form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
-        <table>
-            <tr>
-                <td>Projeto:</td>
-                <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
-            </tr>
-            <tr>
-                <td>Nome:</td>
-                <td><input size="48" name="nome" type="text" value=""></td>
-            </tr>    
-            <tr valign="top">
-                <td>Sin�nimos:</td>
-                 <td width="0%">
-                      <input name="sinonimo" size="15" type="text" maxlength="50">             
-                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Adicionar" onclick="addSinonimo()">
-                         &nbsp;&nbsp;<input type="button" value="Remover" onclick="delSinonimo()">&nbsp;
-                </td>
-            </tr>
-            <tr> 
-               <td>
-               </td>   
-               <td width="100%">
-                      <left><select multiple name="listSinonimo[]"  style="width: 400px;"  size="5"></select></left>                      <br> 
-               </td>
-           <tr>
-           </tr>
-          </tr>
-          <tr>
-                <td>No��o:</td>
-                <td><textarea cols="51" name="nocao" rows="3" WRAP="SOFT"></textarea></td>
-            </tr>
-            <tr>
-                <td>Impacto:</td>
-                <td><textarea  cols="51" name="impacto" rows="3" WRAP="SOFT"></textarea></td>
-            </tr>
-            <tr>
-                <td>Classifica�ao:</td>
-                <td>
-                    <SELECT id='classificacao' name='classificacao' size=1 width="300">
-                     <OPTION value='sujeito' selected>Sujeito</OPTION>
-                     <OPTION value='objeto'>Objeto</OPTION>
-                     <OPTION value='verbo'>Verbo</OPTION>
-                     <OPTION value='estado'>Estado</OPTION>
-                    </SELECT>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2" height="60">
-                <input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar S�mbolo"><BR><BR>
-               </script>
-<!--            <A HREF="RegrasLAL.html" TARGET="new">Ver Regras do LAL</A><BR>   -->
-                <A HREF="#" OnClick="javascript:open( 'RegrasLAL.html' , '_blank' , 'dependent,height=380,width=520,titlebar' );"> Veja as regras do <i>LAL</i></A>
-                </td>
-            </tr>
-        </table>
-        </form>
-            <center><a href="javascript:self.close();">Fechar</a></center>            
-        <br><i><a href="showSource.php?file=add_lexico.php">Veja o c�digo fonte!</a></i>
-    </body>
-
+?>
+<form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
+  <table>
+    <tr>
+      <td>Projeto:</td>
+      <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
+    </tr>
+    <tr>
+      <td>Nome:</td>
+      <td><input size="48" name="nome" type="text" value=""></td>
+    </tr>
+    <tr valign="top">
+      <td>Sin�nimos:</td>
+      <td width="0%"><input name="sinonimo" size="15" type="text" maxlength="50">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Adicionar" onClick="addSinonimo()">
+        &nbsp;&nbsp;
+        <input type="button" value="Remover" onClick="delSinonimo()">
+        &nbsp; </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td width="100%"><left>
+          <select multiple name="listSinonimo[]"  style="width: 400px;"  size="5">
+          </select>
+        </left>
+        <br></td>
+    <tr> </tr>
+      </tr>
+    
+    <tr>
+      <td>No��o:</td>
+      <td><textarea cols="51" name="nocao" rows="3" WRAP="SOFT"></textarea></td>
+    </tr>
+    <tr>
+      <td>Impacto:</td>
+      <td><textarea  cols="51" name="impacto" rows="3" WRAP="SOFT"></textarea></td>
+    </tr>
+    <tr>
+      <td>Classifica�ao:</td>
+      <td><SELECT id='classificacao' name='classificacao' size=1 width="300">
+          <OPTION value='sujeito' selected>Sujeito</OPTION>
+          <OPTION value='objeto'>Objeto</OPTION>
+          <OPTION value='verbo'>Verbo</OPTION>
+          <OPTION value='estado'>Estado</OPTION>
+        </SELECT></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar S�mbolo">
+        <BR>
+        <BR>
+        </script> 
+        <!--            <A HREF="RegrasLAL.html" TARGET="new">Ver Regras do LAL</A><BR>   --> 
+        <A HREF="#" OnClick="javascript:open( 'RegrasLAL.html' , '_blank' , 'dependent,height=380,width=520,titlebar' );"> Veja as regras do <i>LAL</i></A></td>
+    </tr>
+  </table>
+</form>
+<center>
+  <a href="javascript:self.close();">Fechar</a>
+</center>
+<br>
+<i><a href="showSource.php?file=add_lexico.php">Veja o c�digo fonte!</a></i>
+</body>
 </html>
-
 <?php
 }
 ?>

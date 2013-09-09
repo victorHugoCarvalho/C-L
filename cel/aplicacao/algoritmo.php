@@ -3,15 +3,12 @@ include 'estruturas.php';
 include_once 'auxiliar_algoritmo.php';
 session_start();
 ?>
-
 <html>
-	<head>
-    	<title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
-    	<style>
-
-    	</style>
-	</head>
-	<body>
+<head>
+<title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
+<style></style>
+</head>
+<body>
 <?php
 
 
@@ -127,11 +124,10 @@ function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes
 					$_SESSION["job"] = "exist";
 
 					?>
-					<SCRIPT language='javascript'>
+<SCRIPT language='javascript'>
 						document.location = "auxiliar_interface.php";
 					</SCRIPT>
-					
-					<?php
+<?php
 
 					exit();
 				}
@@ -207,10 +203,10 @@ function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes
 						$_SESSION["job"] = "insert_relation";
 						
 						?>
-						<SCRIPT language='javascript'>
+<SCRIPT language='javascript'>
 							document.location = "auxiliar_interface.php";
 						</SCRIPT>
-						<?php
+<?php
 
 						exit();
 					}
@@ -312,10 +308,10 @@ function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes
 				$_SESSION["job"] = "disjoint";
 				
 				?>
-				<SCRIPT language='javascript'>
+<SCRIPT language='javascript'>
 					document.location = "auxiliar_interface.php";
 				</SCRIPT>
-				<?php
+<?php
 	
 				exit();
 			}
@@ -388,10 +384,10 @@ function traduz_verbos($verbos, $relacoes)
 			$_SESSION["job"] = "exist";
 			
 			?>
-			<SCRIPT language='javascript'>
+<SCRIPT language='javascript'>
 			document.location = "auxiliar_interface.php";
 			</SCRIPT>
-			<?php
+<?php
 
 			exit();
 		}
@@ -449,11 +445,11 @@ function traduz_estados($estados, $conceitos, $relacoes, $axiomas)
 			$_SESSION["nome2"] = $estado;
 			$_SESSION["job"] = "main_subject";
 			?>
-			<p>
-				<SCRIPT language='javascript'>
+<p> 
+  <SCRIPT language='javascript'>
 					document.location = "auxiliar_interface.php";
 				</SCRIPT>
-			<?php
+  <?php
 
 			exit();
 
@@ -537,11 +533,11 @@ function organizar_ontologia($conceitos, $relacoes, $axiomas)
 			$_SESSION["job"] = "reference";
 			
 			?>
-			<a href="auxiliar_interface.php">auxiliar_interface</a>
-			<SCRIPT language='javascript'>
+  <a href="auxiliar_interface.php">auxiliar_interface</a> 
+  <SCRIPT language='javascript'>
 				document.location = "auxiliar_interface.php";
 			</SCRIPT>
-			<?php
+  <?php
 
 			exit();
 		}
@@ -679,19 +675,17 @@ function traduz()
 	echo 'O processo de gera��o de Ontologias foi conclu�do com sucesso!<br>
 	N�o esque�a de clicar em Salvar.';
 	?>
-            <p>
-            <form method="POST" action="auxiliar_bd.php">
-                <input type="hidden" value="TRUE" name="save" size="20" >
-                <input type="submit" value="SALVAR">
-                  </form>
-            </p>
-     <?php
+<p>
+<form method="POST" action="auxiliar_bd.php">
+  <input type="hidden" value="TRUE" name="save" size="20" >
+  <input type="submit" value="SALVAR">
+</form>
+</p>
+<?php
 }
 
 traduz();
 
    ?>
-
-
- </body>
+</body>
 </html>

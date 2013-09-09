@@ -11,16 +11,13 @@ $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 
 ?>
-
 <html>
-    <head>
-        <title>Alterar dados de Usuário</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    </head>
+<head>
+<title>Alterar dados de Usuário</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
 
-
-   <body>
-
+<body>
 <?php
 
 // Cenário - Alterar cadastro
@@ -40,10 +37,11 @@ $q = "UPDATE usuario SET  nome ='$nome' , login = '$login' , email = '$email' , 
 mysql_query($q) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
 
 ?>
-
-<center><b>Cadastro atualizado com sucesso!</b></center>
-<center><button onClick="javascript:window.close();">Fechar</button></center>
-
-         
-  </body>
+<center>
+  <b>Cadastro atualizado com sucesso!</b>
+</center>
+<center>
+  <button onClick="javascript:window.close();">Fechar</button>
+</center>
+</body>
 </html>

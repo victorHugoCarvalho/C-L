@@ -28,32 +28,28 @@ if (isset($submit)) {
                   $delete->execute("delete from pedidorel where id_pedido = $remover[$count]") ;
          }
 ?>
-
 <script language="javascript1.3">
 
 opener.parent.frames['code'].location.reload();
 opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>');
 
 </script>
-
 <h4>Operação efetuada com sucesso!</h4>
 <script language="javascript1.3">
 
 self.close();
 
 </script>
-
 <?php
 } else {?>
 <html>
-  <head>
-     <title>Pedidos de alteração das Relaçoes</title>
-  </head>
+<head>
+<title>Pedidos de alteração das Relaçoes</title>
+</head>
 <body>
 <h2>Pedidos de Alteração no Conjunto de Relações</h2>
 <form action="?id_projeto=<?=$id_projeto?>" method="post">
-
-<?php
+  <?php
 
 // Cenário - Verificar pedidos de alteração de conceitos
 
@@ -90,20 +86,35 @@ self.close();
                             $select2->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
                             $usuario = $select2->gofirst () ;
                             if(strcasecmp($tipo_pedido,'remover')){?>
-        
-        <br>
-                <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relação <font color="#ff0000"><?=$record['nome']?></font> <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para conceito abaixo:</h3>" ;}else{echo"</h3>" ;}?>
-                    <table>
-                <td><b>Nome:</b></td>
-                <td><?=$record['nome']?></td>
-            <tr>
-                <td><b>Justificativa:</b></td>
-                <td><textarea name="justificativa" cols="48" rows="2"><?=$record['justificativa']?></textarea></td>
-            </tr>
-        </table>
-<?php    }else{?>
-            <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" ><?=$usuario['nome']?></a> pede para <?=$tipo_pedido?> a relação <font color="#ff0000"><?=$record['nome']?></font></h3>
-<?php }
+  <br>
+  <h3>
+  O usuário <a  href="mailto:<?=$usuario['email']?>" >
+  <?=$usuario['nome']?>
+  </a> pede para
+  <?=$tipo_pedido?>
+  a relação <font color="#ff0000">
+  <?=$record['nome']?>
+  </font>
+  <?  if(!strcasecmp($tipo_pedido,'alterar')){echo"para conceito abaixo:</h3>" ;}else{echo"</h3>" ;}?>
+  <table>
+    
+      <td><b>Nome:</b></td>
+      <td><?=$record['nome']?></td>
+    <tr>
+      <td><b>Justificativa:</b></td>
+      <td><textarea name="justificativa" cols="48" rows="2"><?=$record['justificativa']?>
+</textarea></td>
+    </tr>
+  </table>
+  <?php    }else{?>
+  <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" >
+    <?=$usuario['nome']?>
+    </a> pede para
+    <?=$tipo_pedido?>
+    a relação <font color="#ff0000">
+    <?=$record['nome']?>
+    </font></h3>
+  <?php }
 				if ($aprovado == 1)
                 {
     			   echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
@@ -118,12 +129,12 @@ self.close();
 			}
     }
 ?>
-<input name="submit" type="submit" value="Processar">
+  <input name="submit" type="submit" value="Processar">
 </form>
-<br><i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o código fonte!</a></i>
+<br>
+<i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o código fonte!</a></i>
 </body>
 </html>
 <?php
 }
 ?>
-

@@ -85,11 +85,10 @@ if (isset($submit)) // Se chamado pelo botao de submit
 				//            este login j� existe.
 
                 ?>
-                <script language="JavaScript">
+<script language="JavaScript">
                     alert ("Login j� existente no sistema. Favor escolher outro login.")
                 </script>
-
-                <?php
+<?php
                 recarrega("?novo=$novo");
             }
             else // Cadastro passou por todos os testes -- ja pode ser incluido na BD
@@ -137,8 +136,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
         $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$login'");
         session_register("id_usuario_corrente");
 ?>
-
-		<script language="javascript1.3">
+<script language="javascript1.3">
 
 			// Redireciona o usuario para a parte de inclusao de projetos
 			opener.location.replace('index.php');
@@ -146,7 +144,6 @@ if (isset($submit)) // Se chamado pelo botao de submit
 			self.close();
 
 		</script>
-
 <?php
     }
     else
@@ -167,14 +164,12 @@ if (isset($submit)) // Se chamado pelo botao de submit
 	    $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
 	    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 ?>
-
-		<script language="javascript1.3">
+<script language="javascript1.3">
 		
 			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu�rio <b><?=$nome_usuario?></b> cadastrado e inclu�do no projeto <b><?=$nome_projeto?></b></p>');
 			document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 		
 		</script>
-
 <?php
     }
 }
@@ -196,14 +191,13 @@ else // Script chamado normalmente
 
     }
 ?>
-
 <html>
-    <head>
-        <title>Cadastro de Usu�rio</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    </head>
-    <body>
-	    <script language="JavaScript">
+<head>
+<title>Cadastro de Usu�rio</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body>
+<script language="JavaScript">
 	    	<!--
 	        function verifyEmail(form)
 	        {
@@ -236,26 +230,31 @@ else // Script chamado normalmente
 	    	//-->
 
     	</SCRIPT>
-
-        <p style="<?=$p_style?>"><?=$p_text?></p>
-        <form action="?novo=<?=$novo?>" method="post">
-	        <table>
-	            <tr>
-	                <td>Nome:</td><td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$nome?>"></td>
-	            </tr>
-	            <tr>
-	                <td>E-mail:</td><td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?=$email?>" OnBlur="checkEmail(this)"></td>
-	            </tr>
-	            <tr>
-	                <td>Login:</td><td><input name="login" maxlength="32" size="24" type="text" value="<?=$login?>"></td>
-	            </tr>
-	            <tr>
-	                <td>Senha:</td><td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
-	                <td>Senha (confirma��o):</td><td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
-	            </tr>
-	            <tr>
-
-<?php
+<p style="<?=$p_style?>">
+  <?=$p_text?>
+</p>
+<form action="?novo=<?=$novo?>" method="post">
+  <table>
+    <tr>
+      <td>Nome:</td>
+      <td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$nome?>"></td>
+    </tr>
+    <tr>
+      <td>E-mail:</td>
+      <td colspan="3"><input name="email" maxlength="64" size="48" type="text" value="<?=$email?>" OnBlur="checkEmail(this)"></td>
+    </tr>
+    <tr>
+      <td>Login:</td>
+      <td><input name="login" maxlength="32" size="24" type="text" value="<?=$login?>"></td>
+    </tr>
+    <tr>
+      <td>Senha:</td>
+      <td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
+      <td>Senha (confirma��o):</td>
+      <td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
+    </tr>
+    <tr>
+      <?php
 
 // Cen�rio - Adicionar Usu�rio
 
@@ -270,15 +269,14 @@ else // Script chamado normalmente
 //            O novo usu�rio criado receber� uma mensagem via email com seu login e senha.
 
 ?>
-
-	                <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
-	            </tr>
-	        </table>
-        </form>
-        <br><i><a href="showSource.php?file=add_usuario.php">Veja o c�digo fonte!</a></i>
-    </body>
+      <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
+    </tr>
+  </table>
+</form>
+<br>
+<i><a href="showSource.php?file=add_usuario.php">Veja o c�digo fonte!</a></i>
+</body>
 </html>
-
 <?php
 }
 ?>

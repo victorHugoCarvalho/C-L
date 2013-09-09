@@ -24,10 +24,10 @@
 		$_SESSION["job"] = "type";
 		$_SESSION["nome1"] = 1;
 		?>
-		<script language="javascript">
+<script language="javascript">
 			window.location = "auxiliar_interface.php";
 		</script>
-		<?php
+<?php
 
 		exit();
 	}
@@ -94,19 +94,14 @@
 
 
 ?>
-
 <html>
-  <head>
-    <title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
-    <style>
-
-    </style>
-  </head>
+<head>
+<title>Algoritmo de Gera&ccedil;&atilde;o de Ontologias</title>
+<style></style>
+</head>
 <body>
-
-	<script language="javascript">
+<script language="javascript">
 			window.location = "algoritmo.php";
 	</script>
-
 </body>
 </html>

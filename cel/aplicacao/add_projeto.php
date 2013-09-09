@@ -45,33 +45,32 @@ if (isset($submit))
     else
     {
 		?>
-		<html>
-		<title>Erro</title>
-		<body>
-			<p style="color: red; font-weight: bold; text-align: center">Nome de projeto já existente!</p>
-		    <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-		</body>
-		</html>   
-		<?php  	
+<html>
+<title>Erro</title>
+<body>
+<p style="color: red; font-weight: bold; text-align: center">Nome de projeto já existente!</p>
+<center>
+  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+</center>
+</body>
+</html>
+<?php  	
 		return;
     }	    
 	?>
-
-	<script language="javascript1.3">
+<script language="javascript1.3">
 
 	self.close();
 
 	</script>
-
-	<?php
+<?php
 	// Chamado normalmente
 }
 else
 {
 	?>
-
 <html>
-    <head>
+        <head>
         <title>Adicionar Projeto</title>
         <script language="javascript1.3">
 
@@ -99,28 +98,28 @@ else
 	}
 
         </script>
-    </head>
-    <body>
-        <h4>Adicionar Projeto:</h4>
-        <br>
-        	<form action="" method="post" onSubmit="return chkFrmVals();">
-        <table>
-            <tr>
-                <td>Nome:</td>
-                <td><input maxlength="128" name="nome" size="48" type="text"></td>
+        </head>
+        <body>
+<h4>Adicionar Projeto:</h4>
+<br>
+<form action="" method="post" onSubmit="return chkFrmVals();">
+          <table>
+    <tr>
+              <td>Nome:</td>
+              <td><input maxlength="128" name="nome" size="48" type="text"></td>
             </tr>
+    <tr>
+              <td>Descrição:</td>
+              <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
             <tr>
-                <td>Descrição:</td>
-                <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
-            <tr>
-                <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
+              <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
             </tr>
-        </table>
+  </table>
         </form>
-        <br><i><a href="showSource.php?file=add_projeto.php">Veja o código fonte!</a></i>
-    </body>
+<br>
+<i><a href="showSource.php?file=add_projeto.php">Veja o código fonte!</a></i>
+</body>
 </html>
-
 <?php
 }
 ?>

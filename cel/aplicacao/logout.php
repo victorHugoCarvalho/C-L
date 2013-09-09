@@ -23,7 +23,6 @@ session_start();
 	session_unset();
 	$ipValor = CELConfig_ReadVar("HTTPD_ip") ;
 ?>
-
 <html>
 <script language="javascript1.3">
 
@@ -43,4 +42,3 @@ function logoff()
 //location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") ); ?>index.php";
 </script>
 </html>
-

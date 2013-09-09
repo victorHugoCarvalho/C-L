@@ -38,14 +38,10 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 }    
 
 
-?>    
-
-<html> 
-
-
-
-    <head> 
-        <LINK rel="stylesheet" type="text/css" href="style.css"> 
+?>
+<html>
+        <head>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
         <script language="javascript1.3"> 
 
         // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 
@@ -564,13 +560,13 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         } 
 
 
-        </script> 
+        </script>
         <script type="text/javascript" src="mtmtrack.js"> 
-        </script> 
-    </head> 
-    <body> 
+        </script>
+        </head>
+        <body>
 
-<!--                     PRIMEIRA PARTE                                     --> 
+<!--                     PRIMEIRA PARTE                                     -->
 
 <?php    
 
@@ -591,24 +587,18 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     }    
 
-?>    
-        <table> 
-
-
-
-
-<!--                     SEGUNDA PARTE                                     --> 
-
-
-<?php    
+?>
+<table>
+          
+          <!--                     SEGUNDA PARTE                                     -->
+          
+          <?php    
     $c = bd_connect() or die("Erro ao conectar ao SGBD");    
-?>   
-
-
-
-<!-- CENÁRIO --> 
-
-<?php   
+?>
+          
+          <!-- CENÁRIO -->
+          
+          <?php   
     
 	if ($t == "c") {        // se for cenario 
         
@@ -627,63 +617,50 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 	    $vetorDeLexicos = carrega_vetor_lexicos( $c_id_projeto, 0, false ); // carrega vetor de léxicos 
         quicksort( $vetorDeLexicos, 0, count($vetorDeLexicos)-1,'lexico' );
     		
-?>    
-
-            <tr> 
-                <th>Titulo:</th><td CLASS="Estilo">
-        <?php echo nl2br(monta_links( $result['titulo'], $vetorDeLexicos, $vetorVazio)) ;?>
-                </td> 
-
-            </tr> 
-            <tr> 
-                <th>Objetivo:</th><td CLASS="Estilo">
-		<?php echo nl2br(monta_links( $result['objetivo'], $vetorDeLexicos, $vetorVazio )) ; ?>
-				</td> 
-            </tr> 
-            <tr> 
-                <th>Contexto:</th><td CLASS="Estilo">
-		<?php
-    	    echo nl2br(monta_links( $result['contexto'], $vetorDeLexicos, $vetorDeCenarios ) ); ?>		 
-				</td> 
-            </tr> 
-            <tr> 
-                <th>Atores:</th><td CLASS="Estilo">
-		<?php echo nl2br(monta_links( $result['atores'], $vetorDeLexicos, $vetorVazio) ) ; ?>
-                </td>  
-            </tr> 
-            <tr> 
-                <th>Recursos:</th><td CLASS="Estilo">
-		<?php echo nl2br(monta_links( $result['recursos'], $vetorDeLexicos, $vetorVazio ) ) ; ?>
-                </td> 
-            </tr> 
-            <tr> 
-                <th>Exceção:</th><td CLASS="Estilo">
-		<?php echo nl2br(monta_links( $result['excecao'], $vetorDeLexicos, $vetorVazio) ) ; ?>
-                </td> 
-            </tr> 
-            <tr> 
-                <th>Episódios:</th><td CLASS="Estilo">
-		<?php 
-	  		echo nl2br(monta_links( $result['episodios'], $vetorDeLexicos, $vetorDeCenarios ) ); ?>
-	  	
-                </td> 
-            </tr> 
-        </TABLE> 
-        <BR> 
-        <TABLE> 
-            <tr> 
-                 <td CLASS="Estilo" height="40" valign=MIDDLE> 
-                    <a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenário</a> 
-                </th> 
-                <td CLASS="Estilo"  valign=MIDDLE> 
-                    <a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenário</a> 
-                </th> 
-            </tr> 
-
-
-<!-- LÉXICO --> 
-
-<?php    
+?>
+          <tr>
+    <th>Titulo:</th>
+    <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['titulo'], $vetorDeLexicos, $vetorVazio)) ;?></td>
+  </tr>
+          <tr>
+    <th>Objetivo:</th>
+    <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['objetivo'], $vetorDeLexicos, $vetorVazio )) ; ?></td>
+  </tr>
+          <tr>
+    <th>Contexto:</th>
+    <td CLASS="Estilo"><?php
+    	    echo nl2br(monta_links( $result['contexto'], $vetorDeLexicos, $vetorDeCenarios ) ); ?></td>
+  </tr>
+          <tr>
+    <th>Atores:</th>
+    <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['atores'], $vetorDeLexicos, $vetorVazio) ) ; ?></td>
+  </tr>
+          <tr>
+    <th>Recursos:</th>
+    <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['recursos'], $vetorDeLexicos, $vetorVazio ) ) ; ?></td>
+  </tr>
+          <tr>
+    <th>Exceção:</th>
+    <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['excecao'], $vetorDeLexicos, $vetorVazio) ) ; ?></td>
+  </tr>
+          <tr>
+    <th>Episódios:</th>
+    <td CLASS="Estilo"><?php 
+	  		echo nl2br(monta_links( $result['episodios'], $vetorDeLexicos, $vetorDeCenarios ) ); ?></td>
+  </tr>
+        </TABLE>
+<BR>
+<TABLE>
+          <tr>
+    <td CLASS="Estilo" height="40" valign=MIDDLE><a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenário</a>
+              </th>
+            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenário</a>
+              </th>
+          </tr>
+          
+          <!-- LÉXICO -->
+          
+          <?php    
     } elseif ($t == "l") {
               
         $q = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
@@ -699,27 +676,26 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 		
         quicksort( $vetorDeLexicos, 0, count( $vetorDeLexicos )-1,'lexico' );
  
-?>    
-            <tr> 
-                <th>Nome:</th><td CLASS="Estilo"><?php echo $result['nome']; ?>
-				</td> 
-            </tr> 
-            <tr> 
-                <th>Noção:</th><td CLASS="Estilo"><?php echo nl2br( monta_links( $result['nocao'], $vetorDeLexicos, $vetorVazio ) ); ?>
-				</td> 
-            </tr> 
-            <tr> 
-                <th>Classificação:</th><td CLASS="Estilo"><?=nl2br( $result['tipo'] ) ?>
-				</td> 
-            </tr> 
-            <tr> 
-                <th>Impacto(s):</th><td CLASS="Estilo"><?php echo nl2br( monta_links( $result['impacto'], $vetorDeLexicos, $vetorVazio ) ); ?> 
-				</td>
-            </tr> 
-            <tr> 
-            <th>Sinônimo(s):</th> 
-
-			<?php //sinonimos 
+?>
+          <tr>
+    <th>Nome:</th>
+    <td CLASS="Estilo"><?php echo $result['nome']; ?></td>
+  </tr>
+          <tr>
+    <th>Noção:</th>
+    <td CLASS="Estilo"><?php echo nl2br( monta_links( $result['nocao'], $vetorDeLexicos, $vetorVazio ) ); ?></td>
+  </tr>
+          <tr>
+    <th>Classificação:</th>
+    <td CLASS="Estilo"><?=nl2br( $result['tipo'] ) ?></td>
+  </tr>
+          <tr>
+    <th>Impacto(s):</th>
+    <td CLASS="Estilo"><?php echo nl2br( monta_links( $result['impacto'], $vetorDeLexicos, $vetorVazio ) ); ?></td>
+  </tr>
+          <tr>
+    <th>Sinônimo(s):</th>
+    <?php //sinonimos 
                  $id_projeto = $_SESSION['id_projeto_corrente'];    
                  $qSinonimo = "SELECT * FROM sinonimo WHERE id_lexico = $id";    
                  $qrr = mysql_query($qSinonimo) or die("Erro ao enviar a query de Sinonimos". mysql_error());    
@@ -731,11 +707,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                       $tempS[] = $resultSinonimo['nome'];    
                  }    
 
-			?>    
-               
-			   <td CLASS="Estilo">
-			
-			<?php                    
+			?>
+    <td CLASS="Estilo"><?php                    
                 $count = count($tempS);
                 
                  for ($i = 0; $i < $count; $i++)    
@@ -750,27 +723,21 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
                       }
                  }    
 
-			 ?>    
-
-            </td> 
-
-            </tr> 
-        </TABLE> 
-        <BR> 
-        <TABLE> 
-            <tr> 
-                <td CLASS="Estilo" height="40" valign="middle"> 
-                    <a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Símbolo</a> 
-                </th> 
-                <td CLASS="Estilo" valign="middle"> 
-                    <a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Símbolo</a> 
-                </th> 
-            </tr> 
-
-
-<!-- ONTOLOGIA - CONCEITO --> 
-
-<?php    
+			 ?></td>
+  </tr>
+        </TABLE>
+<BR>
+<TABLE>
+          <tr>
+    <td CLASS="Estilo" height="40" valign="middle"><a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Símbolo</a>
+              </th>
+            <td CLASS="Estilo" valign="middle"><a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Símbolo</a>
+              </th>
+          </tr>
+          
+          <!-- ONTOLOGIA - CONCEITO -->
+          
+          <?php    
     } elseif ($t == "oc") {        // se for cenario 
         
 		$q = "SELECT id_conceito, nome, descricao   
@@ -779,67 +746,53 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
         
 		$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
         $result = mysql_fetch_array($qrr);    
-?>    
-
-            <tr> 
-                <th>Nome:</th><td CLASS="Estilo"><?=$result['nome']?></td> 
-            </tr> 
-            <tr> 
-                <th>Descrição:</th><td CLASS="Estilo"><?=nl2br($result['descricao'])?></td> 
-            </tr> 
-        </TABLE> 
-        <BR> 
-        <TABLE> 
-            <tr> 
-                <td CLASS="Estilo" height="40" valign=MIDDLE>                     
-                </th> 
-                <td CLASS="Estilo"  valign=MIDDLE> 
-                    <a href="#" onClick="rmvConceito(<?=$result['id_conceito']?>);">Remover Conceito</a> 
-                </th> 
-            </tr> 
-
-
-
-
-<!-- ONTOLOGIA - RELAÇÕES --> 
-
-<?php    
+?>
+          <tr>
+    <th>Nome:</th>
+    <td CLASS="Estilo"><?=$result['nome']?></td>
+  </tr>
+          <tr>
+    <th>Descrição:</th>
+    <td CLASS="Estilo"><?=nl2br($result['descricao'])?></td>
+  </tr>
+        </TABLE>
+<BR>
+<TABLE>
+          <tr>
+    <td CLASS="Estilo" height="40" valign=MIDDLE></th>
+            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvConceito(<?=$result['id_conceito']?>);">Remover Conceito</a>
+              </th>
+          </tr>
+          
+          <!-- ONTOLOGIA - RELAÇÕES -->
+          
+          <?php    
     } elseif ($t == "or") {        // se for cenario 
         $q = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";    
         $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
         $result = mysql_fetch_array($qrr);    
-?>    
-
-            <tr> 
-                <th>Nome:</th><td CLASS="Estilo"><?=$result['nome']?></td> 
-            </tr> 
-
-        </TABLE> 
-        <BR> 
-        <TABLE> 
-            <tr> 
-                 <td CLASS="Estilo" height="40" valign=MIDDLE>                   
-                </th>
-                <td CLASS="Estilo"  valign=MIDDLE> 
-                    <a href="#" onClick="rmvRelacao(<?=$result['id_relacao']?>);">Remover Relação</a> 
-                </th> 
-            </tr> 
-
-
-
-
-<?php    
+?>
+          <tr>
+    <th>Nome:</th>
+    <td CLASS="Estilo"><?=$result['nome']?></td>
+  </tr>
+        </TABLE>
+<BR>
+<TABLE>
+          <tr>
+    <td CLASS="Estilo" height="40" valign=MIDDLE></th>
+            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvRelacao(<?=$result['id_relacao']?>);">Remover Relação</a>
+              </th>
+          </tr>
+          <?php    
     }    
-?>   
+?>
+        </table>
+<br>
 
-        </table> 
-        <br> 
-
-
-<!--                     TERCEIRA PARTE                                     --> 
-
+<!--                     TERCEIRA PARTE                                     -->
 
 <?php    
     if ($t == "c")       { print "<h3>Cenários que referenciam este cenário</h3>";   
@@ -853,14 +806,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     } elseif ($t == "oa") { print "<h3>Axioma</h3>";   
 
     }    
-?>   
+?>
 
-
-
-
-
-<!--                     QUARTA PARTE                                     --> 
-
+<!--                     QUARTA PARTE                                     -->
 
 <?php   
 
@@ -876,28 +824,24 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     // Seta uma variavel de sessao correspondente ao projeto atual 
     $_SESSION['id_projeto_corrente'] = $id_projeto;    
-?>    
-
-        <table ALIGN=CENTER> 
-            <tr> 
-                <th>Projeto:</th> 
-                <td CLASS="Estilo"><?=simple_query("nome", "projeto", "id_projeto = $id_projeto")?></td> 
-            </tr> 
-            <tr> 
-                <th>Data de criação:</th> 
-                <?php    
+?>
+<table ALIGN=CENTER>
+          <tr>
+    <th>Projeto:</th>
+    <td CLASS="Estilo"><?=simple_query("nome", "projeto", "id_projeto = $id_projeto")?></td>
+  </tr>
+          <tr>
+    <th>Data de criação:</th>
+    <?php    
                     $data = simple_query("data_criacao", "projeto", "id_projeto = $id_projeto");    
-                ?>    
-
-        <td CLASS="Estilo"><?=formataData($data)?></td> 
-
-            </tr> 
-            <tr> 
-                <th>Descrição:</th> 
-                <td CLASS="Estilo"><?=nl2br(simple_query("descricao", "projeto", "id_projeto = $id_projeto"))?></td> 
-            </tr> 
-        </table> 
-
+                ?>
+    <td CLASS="Estilo"><?=formataData($data)?></td>
+  </tr>
+          <tr>
+    <th>Descrição:</th>
+    <td CLASS="Estilo"><?=nl2br(simple_query("descricao", "projeto", "id_projeto = $id_projeto"))?></td>
+  </tr>
+        </table>
 <?php    
 
 // Cenário - Escolher Projeto 
@@ -913,14 +857,12 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     // Verifica se o usuario eh administrador deste projeto 
     if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto)) {    
-?>    
-
-        <br> 
-        <table ALIGN=CENTER> 
-            <tr> 
-                <th>Você é um administrador deste projeto:</th> 
-
-<?php    
+?>
+<br>
+<table ALIGN=CENTER>
+          <tr>
+    <th>Você é um administrador deste projeto:</th>
+    <?php    
 
 // Cenário - Administrador escolhe Projeto 
 
@@ -941,104 +883,90 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 //            (ver Relacionar usuários com projetos); 
 //            -Gerar xml deste projeto (ver Gerar relatórios XML); 
 
-?>    
-            </TR>
-            
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="addUsuario();">Adicionar usuário (não cadastrado) neste projeto</a></td> 
-            </TR> 
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="relUsuario();">Adicionar usuários já existentes neste projeto</a></td> 
-            </TR>   
-            
-            <TR> 
-                <td CLASS="Estilo">&nbsp;</td> 
-            </TR> 
-            
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteração de Cenários</a></td> 
-            </TR> 
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteração de termos do Léxico</a></td> 
-            </TR>
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="pedidoConceito();">Verificar pedidos de alteração de Conceitos</a></td> 
-            </TR> 
-            
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="pedidoRelacao();">Verificar pedidos de alteração de Relações</a></td> 
-            </TR>
-   
-       
-            <TR> 
-                <td CLASS="Estilo">&nbsp;</td> 
-            </TR> 
-			<TR> 
-                <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
-		    </TR>       
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></td> 
-            </TR> 
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="recuperaXML();">Recuperar XML deste projeto</a></td> 
-            </TR> 
-            
-            <TR> 
-                <td CLASS="Estilo">&nbsp;</td> 
-            </TR> 
-            
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="geraOntologia();">Gerar ontologia deste projeto</a></td> 
-            </TR>            
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="geraDAML();">Gerar DAML da ontologia do projeto</a></td> 
-            </TR> 
-            <TR> 
-                <td CLASS="Estilo"><a href="#" onClick="recuperaDAML();">Histórico em DAML da ontologia do projeto</a></td> 
-            </TR>           
-            <TR> 
-                <td CLASS="Estilo"><a href="http://www.daml.org/validator/" target="new">*Validador de Ontologias na Web</a></td> 
-            </TR>
-            <TR> 
-                <td CLASS="Estilo"><a href="http://www.daml.org/2001/03/dumpont/" target="new">*Visualizador de Ontologias na Web</a></td> 
-            </TR>
-             <TR> 
-                <td CLASS="Estilo">&nbsp;</td> 
-            </TR>
-            <TR> 
-                <td CLASS="Estilo"><font size="1">*Para usar Ontologias Geradas pelo C&L: </font></td>               
-            </TR>
-            <TR> 
-                <td CLASS="Estilo">   <font size="1">Histórico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>             
-            </TR>
-		</table>
-
-
+?>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="addUsuario();">Adicionar usuário (não cadastrado) neste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="relUsuario();">Adicionar usuários já existentes neste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo">&nbsp;</td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteração de Cenários</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteração de termos do Léxico</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoConceito();">Verificar pedidos de alteração de Conceitos</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoRelacao();">Verificar pedidos de alteração de Relações</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo">&nbsp;</td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="recuperaXML();">Recuperar XML deste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo">&nbsp;</td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="geraOntologia();">Gerar ontologia deste projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="geraDAML();">Gerar DAML da ontologia do projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="#" onClick="recuperaDAML();">Histórico em DAML da ontologia do projeto</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="http://www.daml.org/validator/" target="new">*Validador de Ontologias na Web</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><a href="http://www.daml.org/2001/03/dumpont/" target="new">*Visualizador de Ontologias na Web</a></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo">&nbsp;</td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><font size="1">*Para usar Ontologias Geradas pelo C&L: </font></td>
+  </TR>
+          <TR>
+    <td CLASS="Estilo"><font size="1">Histórico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>
+  </TR>
+        </table>
 <?php    
     }   else
 	{
-?>	
-	<br>
-	<table ALIGN=CENTER> 
-            <tr> 
-                <th>Você não é um administrador deste projeto:</th> 	
-			</tr>	
-			<tr> 
-                <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
-		    </tr>  
-	</table>			
+?>
+<br>
+<table ALIGN=CENTER>
+          <tr>
+    <th>Você não é um administrador deste projeto:</th>
+  </tr>
+          <tr>
+    <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
+  </tr>
+        </table>
 <?php
 	}
 } else {        // SCRIPT CHAMADO PELO INDEX.PHP 
-?>    
-
-        <p>Selecione um projeto acima, ou crie um novo projeto.</p> 
-
+?>
+<p>Selecione um projeto acima, ou crie um novo projeto.</p>
 <?php    
 }    
-?>    
-<i><a href="showSource.php?file=main.php">Veja o código fonte!</a></i> 
-    </body> 
-
-</html> 
-
+?>
+<i><a href="showSource.php?file=main.php">Veja o código fonte!</a></i>
+</body>
+</html>

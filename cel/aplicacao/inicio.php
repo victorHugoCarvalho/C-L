@@ -91,10 +91,10 @@
 	session_unregister( "predicados_selecionados" );
 	session_unregister( "lista_de_sujeito_e_objeto" );
 	
-	?> 
-	<SCRIPT language='javascript'>
+	?>
+<SCRIPT language='javascript'>
 		document.location = "auxiliar_interface.php";
 	</SCRIPT>
-	<?php
+<?php
 	
 ?>

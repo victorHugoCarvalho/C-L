@@ -7,18 +7,16 @@ include("funcoes_genericas.php");
 chkUser("index.php");        // Checa se o usuario foi autenticado
 
 ?>
-
 <html>
 
 <body>
-
-    <head>
-        <title>Gerar XML</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    </head><form action="gerador_xml.php" method="post">
-
-    <h2>Propriedades do Relatório a ser Gerado:</h2>
-<?php
+<head>
+<title>Gerar XML</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<form action="gerador_xml.php" method="post">
+  <h2>Propriedades do Relatório a ser Gerado:</h2>
+  <?php
 
 //Cenário - Gerar Relatórios XML 
 
@@ -35,23 +33,29 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 
    $today = getdate(); 
 ?>
-
-    &nbsp;Data da Versão:
-    <?= $today['mday'];?>/<?= $today['mon'];?>/<?= $today['year'];?>
-    <p>&nbsp;<input type="hidden" name="data_dia" size="3" value="<?= $today['mday'];?>">
+  &nbsp;Data da Versão:
+  <?= $today['mday'];?>
+  /
+  <?= $today['mon'];?>
+  /
+  <?= $today['year'];?>
+  <p>&nbsp;
+    <input type="hidden" name="data_dia" size="3" value="<?= $today['mday'];?>">
     <input  type="hidden" name="data_mes" size="3" value="<?= $today['mon'];?>">
     <input type="hidden" name="data_ano" size="6" value="<?= $today['year'];?>">
-
     &nbsp;</p>
-    Versão do XML: &nbsp;<input type="text" name="versao" size="15">
-    <p>Exibir
-
-    Formatado: <input type="checkbox" name="flag" value="ON"><br><br>
-
-    <input type="submit" value="Gerar"> </p>
-
+  Versão do XML: &nbsp;
+  <input type="text" name="versao" size="15">
+  <p>Exibir
+    
+    Formatado:
+    <input type="checkbox" name="flag" value="ON">
+    <br>
+    <br>
+    <input type="submit" value="Gerar">
+  </p>
 </form>
-    <br><i><a href="showSource.php?file=form_xml.php">Veja o código fonte!</a></i>
+<br>
+<i><a href="showSource.php?file=form_xml.php">Veja o código fonte!</a></i>
 </body>
-
 </html>

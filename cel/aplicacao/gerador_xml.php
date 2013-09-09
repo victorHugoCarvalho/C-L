@@ -22,7 +22,6 @@ else
 
 
 ?>
-
 <?php
 
 // gerador_xml.php
@@ -402,7 +401,6 @@ if (!(function_exists("gera_xml_links"))) {
     }
 }
 ?>
-
 <?php
 
     $id_projeto = $_SESSION['id_projeto_corrente'];
@@ -432,13 +430,19 @@ if (!(function_exists("gera_xml_links"))) {
     else
     {
     ?>
-    <html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
-    <p style="color: red; font-weight: bold; text-align: center">Essa versão já existe!</p>
-    <br>
-    <br>
-        <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-    </body></html>
-    
-    <?php
+<html>
+<head>
+<title>Projeto</title>
+</head>
+<body bgcolor="#FFFFFF">
+<p style="color: red; font-weight: bold; text-align: center">Essa versão já existe!</p>
+<br>
+<br>
+<center>
+  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+</center>
+</body>
+</html>
+<?php
     }   
-?> 
+?>

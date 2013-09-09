@@ -474,18 +474,18 @@ function salvar_algoritmo()
 	if ($_SESSION["funcao"] != 'fim' )
 	{
 		?>
-		<script>
+<script>
 			document.location = "auxiliar_interface.php";
 		</script>
-		<?php
+<?php
 	}
 	else
 	{
 		?>
-		<script>
+<script>
 			document.location = "algoritmo.php";
 		</script>
-		<?php
+<?php
 		}
 }
 
@@ -512,10 +512,10 @@ if (isset($_SESSION["tipos"]))
 	
 	mysql_close($link);
 	?>
-	<script>
+<script>
 		document.location = "algoritmo_inicio.php";
 	</script>
-	<?php
+<?php
 }
 
 if (array_key_exists("save", $_POST ))
@@ -525,14 +525,11 @@ if (array_key_exists("save", $_POST ))
 
 
 ?>
-
 <html>
-  <head>
+    <head>
     <title>Auxiliar BD</title>
-    <style>
-
-    </style>
-  </head>
-<body>
+    <style></style>
+    </head>
+    <body>
 </body>
 </html>

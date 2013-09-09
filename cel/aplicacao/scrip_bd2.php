@@ -1,11 +1,9 @@
-<html> 
+<html>
+<head>
+<title></title>
+</head>
 
-<head> 
-  <title></title> 
-</head> 
-
-<body> 
-
+<body>
 <?php 
 
 include 'auxiliar_bd.php';
@@ -137,9 +135,6 @@ echo "<br>FIM !!!";
 
 mysql_close($link); 
 
-?> 
-
-</body> 
-
-</html> 
- 
+?>
+</body>
+</html>

@@ -8,16 +8,11 @@ session_start();
 
 $link = bd_connect();   
 
-?>    
-
-<html> 
-<head> 
-
-
+?>
+<html>
+<head>
 <script language="javascript" src="mtmcode.js"> 
-</script> 
-
-
+</script>
 <script language="javascript"> 
 // Morten's JavaScript Tree Menu 
 // version 2.3.2, dated 2002-02-24 
@@ -108,11 +103,8 @@ mysql_close($link);
 ?>
 
 </script>
-
-
 </head>
-<body onload="MTMStartMenu(true);" bgcolor="#FFFFFF" text="#ffffcc" link="yellow" vlink="lime" alink="red">
-
+<body onLoad="MTMStartMenu(true);" bgcolor="#FFFFFF" text="#ffffcc" link="yellow" vlink="lime" alink="red">
 <?php
 print "<font color=black>";
 print_r ($arv);

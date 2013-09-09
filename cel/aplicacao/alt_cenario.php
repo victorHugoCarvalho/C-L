@@ -30,23 +30,19 @@ if (isset($submit)) // Script chamado atraves do submit do formulario
                                 $justificativa,
                                 $_SESSION['id_usuario_corrente']);
 	?>
-	
-	<script language="javascript1.3">
+<script language="javascript1.3">
 	
 		opener.parent.frames['code'].location.reload();
 		opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-	
-	<h4>Operação efetuada com sucesso!</h4>
-	
-	<script language="javascript1.3">
+<h4>Operação efetuada com sucesso!</h4>
+<script language="javascript1.3">
 	
 		self.close();
 	
 	</script>
-	
-	<?php
+<?php
 }
 else  // Script chamado atraves do link no cenario corrente
 {
@@ -73,78 +69,80 @@ else  // Script chamado atraves do link no cenario corrente
 	//              justificativa para a alteração feita.
 	
 	?>
-	
-	<html>
-	    <head>
-	        <title>Alterar Cenário</title>
-	    </head>
-	    <body>
-	        <h4>Alterar Cenário</h4>
-	        <br>
-	        <form action="?id_projeto=<?=$id_projeto?>" method="post">
-	        <table>
-					<tr>
-	                <td>Projeto:</td>
-	                <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
-	            </tr>
-									 <input type="hidden" name="id_cenario" value="<?=$result['id_cenario']?>">
-	                <td>Título:</td>
-									<? $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']); ?>
-	                <input type="hidden" name="titulo" value="<?=$result['titulo']?>">
-									<td><input disabled maxlength="128" name="titulo2" size="48" type="text" value="<?=$result['titulo']?>"></td>
-	            <tr>
-	                <td>Objetivo:</td>
-									<? $result['objetivo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['objetivo']); ?>
-	  
-	                <td><textarea name="objetivo" cols="48" rows="3"><?=$result['objetivo']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Contexto:</td>
-									<? $result['contexto'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['contexto']); ?>
-	                <td><textarea name="contexto" cols="48" rows="3"><?=$result['contexto']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Atores:</td>
-									<? $result['atores'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['atores']); ?>
-	  
-	                <td><textarea name="atores" cols="48" rows="3"><?=$result['atores']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Recursos:</td>
-									<? $result['recursos'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['recursos']); ?>
-	  
-	                <td><textarea name="recursos" cols="48" rows="3"><?=$result['recursos']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Exceção:</td>
-									<? $result['excecao'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['excecao']); ?>
-	  
-	                <td><textarea name="excecao" cols="48" rows="3"><?=$result['excecao']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Episódios:</td>
-									<? $result['episodios'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['episodios']); ?>
-	                <td><textarea  cols="48" name="episodios" rows="5"><?=$result['episodios']?></textarea></td>
-	            </tr>
-	            <tr>
-	                <td>Justificativa para a altera&ccedil;&atilde;o:</td>
-	                <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
-	            </tr>
-	
-	            <tr>
-	                <td colspan="2"><b><small>Essa justificativa é necessária apenas para aqueles usuários que não são administradores.</small></b></td>
-	            </tr>
-	            
-	            <tr>
-	                <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cenário" onClick="updateOpener()"></td>
-	            </tr>
-	        </table>
-	        </form>
-	        <center><a href="javascript:self.close();">Fechar</a></center>
-	        <br><i><a href="showSource.php?file=alt_cenario.php">Veja o código fonte!</a></i>
-	    </body>
-	</html>
-	
-	<?php
+<html>
+<head>
+<title>Alterar Cenário</title>
+</head>
+<body>
+<h4>Alterar Cenário</h4>
+<br>
+<form action="?id_projeto=<?=$id_projeto?>" method="post">
+  <table>
+    <tr>
+      <td>Projeto:</td>
+      <td><input disabled size="48" type="text" value="<?=$nome_projeto?>"></td>
+    </tr>
+    <input type="hidden" name="id_cenario" value="<?=$result['id_cenario']?>">
+    
+      <td>Título:</td>
+      <? $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']); ?>
+      <input type="hidden" name="titulo" value="<?=$result['titulo']?>">
+      <td><input disabled maxlength="128" name="titulo2" size="48" type="text" value="<?=$result['titulo']?>"></td>
+    <tr>
+      <td>Objetivo:</td>
+      <? $result['objetivo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['objetivo']); ?>
+      <td><textarea name="objetivo" cols="48" rows="3"><?=$result['objetivo']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Contexto:</td>
+      <? $result['contexto'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['contexto']); ?>
+      <td><textarea name="contexto" cols="48" rows="3"><?=$result['contexto']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Atores:</td>
+      <? $result['atores'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['atores']); ?>
+      <td><textarea name="atores" cols="48" rows="3"><?=$result['atores']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Recursos:</td>
+      <? $result['recursos'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['recursos']); ?>
+      <td><textarea name="recursos" cols="48" rows="3"><?=$result['recursos']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Exceção:</td>
+      <? $result['excecao'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['excecao']); ?>
+      <td><textarea name="excecao" cols="48" rows="3"><?=$result['excecao']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Episódios:</td>
+      <? $result['episodios'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['episodios']); ?>
+      <td><textarea  cols="48" name="episodios" rows="5"><?=$result['episodios']?>
+</textarea></td>
+    </tr>
+    <tr>
+      <td>Justificativa para a altera&ccedil;&atilde;o:</td>
+      <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2"><b><small>Essa justificativa é necessária apenas para aqueles usuários que não são administradores.</small></b></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cenário" onClick="updateOpener()"></td>
+    </tr>
+  </table>
+</form>
+<center>
+  <a href="javascript:self.close();">Fechar</a>
+</center>
+<br>
+<i><a href="showSource.php?file=alt_cenario.php">Veja o código fonte!</a></i>
+</body>
+</html>
+<?php
 }
 	?>

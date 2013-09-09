@@ -5,15 +5,12 @@ include("funcoes_genericas.php");
 
 ?>
 <html>
-
-     <head>
-        <p style="color: red; font-weight: bold; text-align: center">
-	<img src="Images/Logo_CEL.jpg" width="180" height="100"><br/><br/>
-	Projetos Publicados</p>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    </head>
-<body>
-
+<head>
+<p style="color: red; font-weight: bold; text-align: center"><img src="Images/Logo_CEL.jpg" width="180" height="100"><br/>
+  <br/>
+  Projetos Publicados</p>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head><body>
 <?php
 
 $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
@@ -33,7 +30,6 @@ $q = "SELECT * FROM publicacao";
 $qrr = mysql_query($q) or die("Erro ao enviar a query de busca");
 
 ?>
-
 <?php
 while ( $result = mysql_fetch_row($qrr) )
 {
@@ -50,24 +46,19 @@ while ( $result = mysql_fetch_row($qrr) )
 
 ?>
 <table border='0'>
-
-   <tr>
-
-    <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>"><?=$nome_projeto?></a></th>
-    <th height="29" width="140">Data: <?=$data?></th>
-    <th height="29" width="100">Versão: <?=$versao?></th>
-
-   </tr>
-
-
+  <tr>
+    <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>">
+      <?=$nome_projeto?>
+      </a></th>
+    <th height="29" width="140">Data:
+      <?=$data?></th>
+    <th height="29" width="100">Versão:
+      <?=$versao?></th>
+  </tr>
 </table>
-
 <?php
 }
 
 ?>
-
-
-    </body>
-
+</body>
 </html>

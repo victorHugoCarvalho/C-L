@@ -22,7 +22,6 @@ else
 
 
 ?>
-
 <?php
 
 // gerador_xml.php
@@ -182,7 +181,6 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 } // gerar_xml
 
 ?>
-
 <?php
 
     $id_projeto = $_SESSION['id_projeto_corrente'];
@@ -247,23 +245,29 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 
        		//<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
        ?>
-       <?
+<?
              echo $xml_banco;
        		//</body></html>
        ?>
-       <?php
+<?php
        	}
     }
     else
     {
     ?>
-    	<html><head><title>Projeto</title></head><body bgcolor="#FFFFFF">
-    	<p style="color: red; font-weight: bold; text-align: center">Essa versão já existe!</p>
-    	<br>
-    	<br>
-        <center><a href="JavaScript:window.history.go(-1)">Voltar</a></center>
-    	</body></html>
-    
-    <?php
+<html>
+<head>
+<title>Projeto</title>
+</head>
+<body bgcolor="#FFFFFF">
+<p style="color: red; font-weight: bold; text-align: center">Essa versão já existe!</p>
+<br>
+<br>
+<center>
+  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+</center>
+</body>
+</html>
+<?php
     }   
 ?>
