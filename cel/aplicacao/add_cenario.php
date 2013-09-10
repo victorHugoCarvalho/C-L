@@ -4,7 +4,7 @@ session_start();
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-// add_cenario.php: Este script cadastra um novo cenario do projeto. Eh
+// class add_cenario.php: Este script cadastra um novo cenario do projeto. Eh
 // passada, atraves da URL, uma variavel $id_projeto, que
 // indica em que projeto deve ser inserido o novo cenario.
 
@@ -12,28 +12,29 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+// checks whether the user has been authenticated
+chkUser("index.php");        
 
 if (!isset($sucesso))
 {
     $sucesso = "n" ;
 }
 
-// Conecta ao SGBD
+// Connect to the SGBD
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) 
 {
-    $ret = checarCenarioExistente($_SESSION['id_projeto_corrente'],$titulo);
+    $existenceScenario = checarCenarioExistente($_SESSION['id_projeto_corrente'],$titulo);
     ?>
-<!-- ADICIONEI ISTO PARA TESTES -->
+<!-- TESTS -->
 <!--
-           RET = <?=$ret?> => RET = <?PHP $ret? print("TRUE") : print("FALSE") ; ?><BR>
+           RET = <?=$existenceScenario?> => RET = <?PHP $existenceScenario? print("TRUE") : print("FALSE") ; ?><BR>
        $sucesso        = <?=$sucesso?><BR>
        _GET["sucesso"] = <?=$_GET["sucesso"]?><BR>   
         -->
 <?PHP
-    if ($ret == true)
+    if ($existenceScenario == true)
     {    
         print("<!-- Tentando Inserir Cenario --><BR>");
 
