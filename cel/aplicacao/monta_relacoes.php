@@ -266,7 +266,7 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
 				       	//mysql_query($q) or die("Erro ao enviar a query de INSERT na centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
                  	 }
                  }
-                 $i+1;
+                 $i++;
             }
         }elseif( $texto[$i] == "}" )
         {

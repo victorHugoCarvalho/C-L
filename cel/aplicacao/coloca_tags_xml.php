@@ -47,15 +47,15 @@ function troca_chaves_xml( $str )
     $fim;
     $x=0;
     $y=0;
-    $vet_id;
+    $vetor_id;
     $link_original;
     $link_novo;
     $buffer3 = '';
     $buffer = 0;
     $i = 0;
-    $tam_str = strlen($str);
+    $tamanho_str = strlen($str);
 
-    while($i <= $tam_str)
+    while($i <= $tamanho_str)
     {
         if($str[$i] == '}') 
         {
@@ -64,7 +64,7 @@ function troca_chaves_xml( $str )
         $i++;
     } // FIM WHILE 1
     $i=0;
-    while($i <= $tam_str)
+    while($i <= $tamanho_str)
     {
         if($str[$i] == '}') 
         {
@@ -78,7 +78,7 @@ function troca_chaves_xml( $str )
         return $str;
     }    
     $i=0;
-    while($i <= $tam_str) 
+    while($i <= $tamanho_str) 
     {
         if($str[$i] == '{') 
         {
@@ -112,7 +112,7 @@ function troca_chaves_xml( $str )
         $conta =0;
         $n = 0;
         //echo('aki - >'."$link".'<br>');
-        $vet_id[$i] = pega_id_xml($link);
+        $vetor_id[$i] = pega_id_xml($link);
         $link = '**'.$link;
         $marcador =0;
         
@@ -143,7 +143,7 @@ function troca_chaves_xml( $str )
         $n++;
         }
         $link = str_replace('{','',$link);
-        $link = poe_tag_xml($link,$vet_id[$i]);
+        $link = poe_tag_xml($link,$vetor_id[$i]);
         $link_novo[$i] = $link;
         $i++;
     }

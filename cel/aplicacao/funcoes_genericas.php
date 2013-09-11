@@ -20,12 +20,10 @@ if (!(function_exists("chkUser")))
         if (!(session_is_registered("id_usuario_corrente"))) 
         {
 			?>
-<script language="javascript1.3">
-			
+			<script language="javascript1.3">
 				open('login.php?url=<?=$url?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
-			
 			</script>
-<?php
+			<?php
 			exit();
         }
     }
@@ -471,7 +469,8 @@ if (!(function_exists("adicionar_lexico")))
                AND id_lexico != $id_incluido";
                      
         //pega todos os outros lexicos
-        $qrr = mysql_query($qlo) or die("Erro ao enviar a query de SELECT no LEXICO<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $qrr = mysql_query($qlo) or die("Erro ao enviar a query de SELECT no LEXICO<br>" . mysql_error() .
+        								"<br>" . __FILE__ . __LINE__);
         
         while ($result = mysql_fetch_array($qrr)) 
         {    // (3)
@@ -479,8 +478,7 @@ if (!(function_exists("adicionar_lexico")))
             $nomeEscapado = escapa_metacaracteres( $nome );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
             
-            if ( (preg_match($regex, $result['nocao']) != 0 ) ||
-                 (preg_match($regex, $result['impacto'])!= 0) )
+            if ( (preg_match($regex, $result['nocao']) != 0 ) || (preg_match($regex, $result['impacto'])!= 0) )
             {
                 
                 $qLex = "SELECT * FROM lextolex WHERE id_lexico_from = " . $result['id_lexico'] . " AND id_lexico_to = $id_incluido";
@@ -499,8 +497,7 @@ if (!(function_exists("adicionar_lexico")))
 			$nomeEscapado = escapa_metacaracteres( $result['nome'] );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-            if((preg_match($regex, $nocao) != 0) ||
-               (preg_match($regex, $impacto) != 0) )
+            if((preg_match($regex, $nocao) != 0) || (preg_match($regex, $impacto) != 0) )
             {   // (3.3)        
         
                 $q = "INSERT INTO lextolex (id_lexico_from, id_lexico_to) VALUES ($id_incluido, " . $result['id_lexico'] . ")"; 
@@ -530,8 +527,7 @@ if (!(function_exists("adicionar_lexico")))
 				$nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );
 			   $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
                 
-                if ( (preg_match($regex, $resultl['nocao']) != 0)  ||
-                     (preg_match($regex, $resultl['impacto']) != 0))
+                if ((preg_match($regex, $resultl['nocao']) != 0)  || (preg_match($regex, $resultl['impacto']) != 0))
                 {
                                     
                     $qLex = "SELECT * FROM lextolex WHERE id_lexico_from = " . $resultl['id_lexico'] . " AND id_lexico_to = $id_incluido";
@@ -539,11 +535,9 @@ if (!(function_exists("adicionar_lexico")))
                     $resultArraylex = mysql_fetch_array($qrLex);
                     
                     if ( $resultArraylex == false )
-                    {
-                        
+                    {                        
                         $q = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
-                         VALUES (" . $resultl['id_lexico'] . ", $id_incluido)";            
-                        
+                        VALUES (" . $resultl['id_lexico'] . ", $id_incluido)";            
                         mysql_query($q) or die("Erro ao enviar a query de insert no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
                     }//if
                 }    //if
@@ -562,7 +556,6 @@ if (!(function_exists("adicionar_lexico")))
         
         while($rowSinonimo = mysql_fetch_array($qrrSinonimos))
         {
-            
             $nomesSinonimos[]     = $rowSinonimo["nome"];
             $id_lexicoSinonimo[]  = $rowSinonimo["id_lexico"];
             
@@ -576,8 +569,10 @@ if (!(function_exists("adicionar_lexico")))
 # Essa funcao recebe um id de cenario e remove todos os seus
 # links e relacionamentos existentes.
 ###################################################################
-if (!(function_exists("removeCenario"))) {
-    function removeCenario($id_projeto,$id_cenario){
+if (!(function_exists("removeCenario")))
+{
+    function removeCenario($id_projeto,$id_cenario)
+    {
         $DB = new PGDB () ;
         $sql1 = new QUERY ($DB) ;
         $sql2 = new QUERY ($DB) ;
@@ -595,7 +590,6 @@ if (!(function_exists("removeCenario"))) {
         $sql4->execute ("DELETE FROM cenario WHERE id_cenario = $id_cenario") ;
         
     }
-    
 }
 
 
@@ -646,12 +640,10 @@ if (!(function_exists("alteraCenario")))
         
         while ($result = mysql_fetch_array($qrr)) 
         {    // Para todos os cenarios
-        	
 			$tituloEscapado = escapa_metacaracteres( $titulo );
 	       	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 	                
-	       	if((preg_match($regex, $result['contexto']) != 0) ||
-	           (preg_match($regex, $result['episodios']) != 0) ) 
+	       	if((preg_match($regex, $result['contexto']) != 0) || (preg_match($regex, $result['episodios']) != 0) ) 
            	{   // (2.2)
 	         
 	        	$q = "INSERT INTO centocen (id_cenario_from, id_cenario_to)
@@ -661,12 +653,9 @@ if (!(function_exists("alteraCenario")))
 			$tituloEscapado = escapa_metacaracteres( $result['titulo'] );
         	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";        
       
-	        if((preg_match($regex, $contexto) != 0) ||
-	        	(preg_match($regex, $episodios) != 0) ) 
+	        if((preg_match($regex, $contexto) != 0) || (preg_match($regex, $episodios) != 0)) 
          	{   // (2.3)        
-        
         		$q = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_cenario, " . $result['id_cenario'] . ")"; //(2.4.1)
-        
         		mysql_query($q) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
         	}   // if
       
@@ -727,6 +716,7 @@ if (!(function_exists("alteraCenario")))
               WHERE id_projeto = $id_projeto
               AND id_cenario = $id_cenario";
         $count = count($nomesSinonimos);
+        
         for ($i = 0; $i < $count; $i++)
         {
             
@@ -734,9 +724,9 @@ if (!(function_exists("alteraCenario")))
             while ($result = mysql_fetch_array($qrr)) 
             {    // verifica sinonimos dos lexicos no cenario incluído
             
-			$nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
-            $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
-            
+				$nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
+	            $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
+	            
 		        if ((preg_match($regex, $objetivo) != 0) ||
 		             (preg_match($regex, $contexto) != 0) ||
 		             (preg_match($regex, $atores) != 0) ||
@@ -757,7 +747,6 @@ if (!(function_exists("alteraCenario")))
 		            
 		        }   // if
     		}   // while
-            
         } //for
     }    
 }
@@ -767,10 +756,12 @@ if (!(function_exists("alteraCenario")))
 # Essa funcao recebe um id de lexico e remove todos os seus
 # links e relacionamentos existentes em todas as tabelas do banco.
 ###################################################################
-if (!(function_exists("removeLexico"))) {
-    function removeLexico($id_projeto,$id_lexico){
-        $DB = new PGDB () ;
-        $delete = new QUERY ($DB) ;        
+if (!(function_exists("removeLexico")))
+{
+    function removeLexico($id_projeto,$id_lexico)
+    {
+        $DB = new PGDB();
+        $delete = new QUERY($DB);        
         
         # Remove o relacionamento entre o lexico a ser removido
         # e outros lexicos que o referenciam
@@ -795,8 +786,8 @@ if (!(function_exists("alteraLexico")))
 {
     function alteraLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao)
     {
-        $DB = new PGDB () ;
-        $delete = new QUERY ($DB) ;        
+        $DB = new PGDB();
+        $delete = new QUERY($DB);        
         
         # Remove os relacionamento existentes anteriormente
         
@@ -834,7 +825,6 @@ if (!(function_exists("alteraLexico")))
         
         while ($result = mysql_fetch_array($qrr)) 
         {    // 2  - Para todos os cenarios
-        
             $nomeEscapado = escapa_metacaracteres( $nome );
 			$regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
@@ -908,7 +898,6 @@ if (!(function_exists("alteraLexico")))
         
         while ($result = mysql_fetch_array($qrr)) // para cada lexico exceto o que esta sendo alterado
         {    // (3)
-        
         	# Verifica a ocorrencia do titulo do lexico alterado no texto dos outros lexicos
         	        
             $nomeEscapado = escapa_metacaracteres( $nome );
@@ -993,18 +982,19 @@ if (!(function_exists("alteraLexico")))
         $nomesSinonimos = array();
         $id_lexicoSinonimo = array();
         
-        while($rowSinonimo = mysql_fetch_array($qrrSinonimos))
+        while ($rowSinonimo = mysql_fetch_array($qrrSinonimos))
         {
         	$nomeSinonimoEscapado = escapa_metacaracteres( $rowSinonimo["nome"] );
 			$regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
         
-        	if((preg_match($regex, $nocao) != 0) ||
-               (preg_match($regex, $impacto) != 0)){
+        	if ((preg_match($regex, $nocao) != 0) ||
+               (preg_match($regex, $impacto) != 0))
+        	{
                
                // Verifica  se a relacao encontrada ja se encontra no banco de dados. Se tiver nao faz nada, senao cadastra uma nopva relacao
 			   $qv = "SELECT * FROM lextolex where id_lexico_from=$id_lexico and id_lexico_to=".$rowSinonimo['id_lexico'];
 			   $resultado = mysql_query($qv) or die("Erro ao enviar query de select no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);	
-			   if(!resultado)
+			   if (!resultado)
 			   {		
 				   $q = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
 	                     VALUES ($id_lexico, " . $rowSinonimo['id_lexico'] . ")";            
@@ -1016,13 +1006,13 @@ if (!(function_exists("alteraLexico")))
     
         # Cadastra os sinonimos novamente
         
-        if(!is_array($sinonimos) )
+        if (!is_array($sinonimos) )
         	$sinonimos = array();
         
-        foreach($sinonimos as $novoSin)
+        foreach ($sinonimos as $novoSin)
         {
          	$q = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
-                VALUES ($id_lexico, '" . prepara_dado(strtolower($novoSin)) . "', $id_projeto)";
+                 VALUES ($id_lexico, '" . prepara_dado(strtolower($novoSin)) . "', $id_projeto)";
             
             mysql_query($q, $r) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         }
@@ -1039,8 +1029,10 @@ if (!(function_exists("alteraLexico")))
 # Essa funcao recebe um id de conceito e remove todos os seus
 # links e relacionamentos existentes.
 ###################################################################
-if (!(function_exists("removeConceito"))) {
-    function removeConceito($id_projeto, $id_conceito){
+if (!(function_exists("removeConceito"))) 
+{
+    function removeConceito($id_projeto, $id_conceito)
+    {
         $DB = new PGDB () ;
         $sql = new QUERY ($DB) ;
         $sql2 = new QUERY ($DB) ;
@@ -1053,13 +1045,17 @@ if (!(function_exists("removeConceito"))) {
         # dentro do projeto
         
         $sql2->execute ("SELECT * FROM conceito WHERE id_projeto = $id_projeto and id_conceito = $id_conceito") ;
-        if ($sql2->getntuples() == 0){
+        if ($sql2->getntuples() == 0)
+        {
             //echo "<BR> Cenario nao existe para esse projeto." ;
-        }else{
+        }
+        else
+        {
             $record = $sql2->gofirst ();
             $nomeConceito = $record['nome'] ;
             # tituloCenario = Nome do cenario com id = $id_cenario
         }
+        
         # [ATENCAO] Essa query pode ser melhorada com um join
         //print("<br>SELECT * FROM cenario WHERE id_projeto = $id_projeto");
         /*  $sql->execute ("SELECT * FROM cenario WHERE id_projeto = $id_projeto AND id_cenario != $tituloCenario");
@@ -1069,6 +1065,7 @@ if (!(function_exists("removeConceito"))) {
         $qr = "SELECT * FROM conceito WHERE id_projeto = $id_projeto AND id_conceito != $id_conceito";
         //echo($qr)."          ";
         $qrr = mysql_query($qr) or die("Erro ao enviar a query de SELECT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        
         while ($result = mysql_fetch_array($qrr))
         {
             # Percorre todos os cenarios tirando as tag do conceito
@@ -1105,28 +1102,25 @@ if (!(function_exists("removeConceito"))) {
         }
         
         # Remove o conceito escolhido
-        $sql6->execute ("DELETE FROM conceito WHERE id_conceito = $id_conceito") ;
-        $sql6->execute ("DELETE FROM relacao_conceito WHERE id_conceito = $id_conceito") ;
-        
+        $sql6->execute ("DELETE FROM conceito WHERE id_conceito = $id_conceito");
+        $sql6->execute ("DELETE FROM relacao_conceito WHERE id_conceito = $id_conceito");
     }
-    
 }
 ###################################################################
 # Essa funcao recebe um id de relacao e remove todos os seus
 # links e relacionamentos existentes.
 ###################################################################
-if (!(function_exists("removeRelacao"))) {
-    function removeRelacao($id_projeto, $id_relacao){
-        $DB = new PGDB () ;
-
-        $sql6 = new QUERY ($DB) ;
+if (!(function_exists("removeRelacao"))) 
+{
+    function removeRelacao($id_projeto, $id_relacao)
+    {
+        $DB = new PGDB();
+        $sql6 = new QUERY($DB);
         
         # Remove o conceito escolhido
-        $sql6->execute ("DELETE FROM relacao WHERE id_relacao = $id_relacao") ;
-        $sql6->execute ("DELETE FROM relacao_conceito WHERE id_relacao = $id_relacao") ;
-        
+        $sql6->execute ("DELETE FROM relacao WHERE id_relacao = $id_relacao");
+        $sql6->execute ("DELETE FROM relacao_conceito WHERE id_relacao = $id_relacao");
     }
-    
 }
 
 ###################################################################
@@ -1148,23 +1142,21 @@ function checarLexicoExistente($projeto, $nome)
     $q = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$nome' ";
     $qr = mysql_query($q) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($qr);
-    if ( $resultArray == false )
-    {
-        $naoexiste = true;
-    }
     
     $q = "SELECT * FROM sinonimo WHERE id_projeto = $projeto AND nome = '$nome' ";
     $qr = mysql_query($q) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($qr);
     
-    if ( $resultArray != false )
+    if ($resultArray == false)
+    {
+        $naoexiste = true;
+    }
+    else
     {
         $naoexiste = false;
     }
     
     return $naoexiste;
-    
-    
 }
 
 
@@ -1182,7 +1174,7 @@ function checarSinonimo($projeto, $listSinonimo)
     
     $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     
-    foreach($listSinonimo as $sinonimo){
+    foreach ($listSinonimo as $sinonimo){
         
         $q = "SELECT * FROM sinonimo WHERE id_projeto = $projeto AND nome = '$sinonimo' ";
         $qr = mysql_query($q) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1190,16 +1182,14 @@ function checarSinonimo($projeto, $listSinonimo)
         if ( $resultArray != false )
         {
             $naoexiste = false;
-            return $naoexiste;
         }
         
         $q = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$sinonimo' ";
         $qr = mysql_query($q) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($qr);
-        if ( $resultArray != false )
+        if ( $resultArray == true )
         {
             $naoexiste = false;
-            return $naoexiste;
         }
     }
     
@@ -1232,8 +1222,6 @@ function checarCenarioExistente($projeto, $titulo)
     }
     
     return $naoexiste;
-    
-    
 }
 
 ###################################################################
@@ -1267,7 +1255,8 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
             $nome = $record['nome'];
             $email = $record['email'];
             $record2 = $select2->gofirst();
-            while($record2 != 'LAST_RECORD_REACHED') {
+            while($record2 != 'LAST_RECORD_REACHED')
+            {
                 $id = $record2['id_usuario'];
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
@@ -1276,8 +1265,9 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
                 $record2 = $select2->gonext();
             }
         }
-        else{ //Eh gerente
-        adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) ;
+        else //Eh gerente
+        { 
+        	adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) ;
         }
     }
 }
@@ -1292,7 +1282,8 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
 # alt_cenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoAlterarCenario"))) {
-    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos,$excecao, $episodios, $justificativa, $id_usuario) {
+    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos,$excecao, $episodios, $justificativa, $id_usuario)
+    {
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -1305,7 +1296,6 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
         
         if ( $resultArray == false ) //nao e gerente
         {
-            
             $insere->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_cenario, '$titulo', '$objetivo', '$contexto', '$atores', '$recursos', '$excecao', '$episodios', $id_usuario, 'alterar', 0, '$justificativa')");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
@@ -1313,7 +1303,8 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
             $nome = $record['nome'];
             $email = $record['email'];
             $record2 = $select2->gofirst();
-            while($record2 != 'LAST_RECORD_REACHED') {
+            while($record2 != 'LAST_RECORD_REACHED')
+            {
                 $id = $record2['id_usuario'];
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
@@ -1322,10 +1313,9 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
                 $record2 = $select2->gonext();
             }
         }
-        else{ //Eh gerente
-        
-        alteraCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) ;
-        
+        else //Eh gerente
+        { 
+        	alteraCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios);
         }
     }
 }
@@ -1339,8 +1329,10 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 # Arquivos que utilizam essa funcao:
 # rmv_cenario.php
 ###################################################################
-if (!(function_exists("inserirPedidoRemoverCenario"))) {
-    function inserirPedidoRemoverCenario($id_projeto, $id_cenario, $id_usuario) {
+if (!(function_exists("inserirPedidoRemoverCenario")))
+{
+    function inserirPedidoRemoverCenario($id_projeto, $id_cenario, $id_usuario)
+    {
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -1350,7 +1342,7 @@ if (!(function_exists("inserirPedidoRemoverCenario"))) {
 		$qr = mysql_query($q) or die ("Erro ao enviar a query de select no participa<br>".mysql_error()."<br>".__FILE__.__LINE__);
 		$resultArray = mysql_fetch_array($qr);
 		
-		if( $resultArray == false ) //Nao e gerente
+		if ($resultArray == false) //Nao e gerente
 		{
 			$select->execute("SELECT * FROM cenario WHERE id_cenario = $id_cenario");
 	        $cenario = $select->gofirst();
@@ -1371,7 +1363,9 @@ if (!(function_exists("inserirPedidoRemoverCenario"))) {
 	            mail("$mailGerente", "Pedido de Remover Cenário", "O usuario do sistema $nome\nPede para remover o cenario $id_cenario \nObrigado!", "From: $nome\r\n" . "Reply-To: $email\r\n");
 	            $record2 = $select2->gonext();
 	        }
-		}else{
+		}
+		else
+		{
 			removeCenario($id_projeto,$id_cenario);
 		}
     }
@@ -1386,9 +1380,10 @@ if (!(function_exists("inserirPedidoRemoverCenario"))) {
 # Arquivos que utilizam essa funcao:
 # add_lexico.php
 ###################################################################
-if (!(function_exists("inserirPedidoAdicionarLexico"))) {
-    function inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario,$sinonimos, $classificacao){
-        
+if (!(function_exists("inserirPedidoAdicionarLexico"))) 
+{
+    function inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario,$sinonimos, $classificacao)
+    {
         $DB = new PGDB() ;
         $insere = new QUERY($DB) ;
         $select = new QUERY($DB) ;
@@ -1401,15 +1396,10 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
         
         if ( $resultArray == false ) //nao e gerente
         {
-            
-            $insere->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_projeto,'$nome','$nocao','$impacto','$classificacao',$id_usuario,'inserir',0)") ;
-            
+            $insere->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_projeto,'$nome','$nocao','$impacto','$classificacao',$id_usuario,'inserir',0)");
             $newId = $insere->getLastId();
-            
-            $select->execute("SELECT * FROM usuario WHERE id_usuario = '$id_usuario'") ;
-            
-            $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
-            
+            $select->execute("SELECT * FROM usuario WHERE id_usuario = '$id_usuario'");
+            $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto");
             
             //insere sinonimos
             
@@ -1420,15 +1410,18 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
             }
             //fim da insercao dos sinonimos
             
-            if ($select->getntuples() == 0 &&$select2->getntuples() == 0){
+            if ($select->getntuples() == 0 &&$select2->getntuples() == 0)
+            {
                 echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
-            }else{
-                
+            }
+            else
+            {
                 $record = $select->gofirst ();
                 $nome2 = $record['nome'] ;
                 $email = $record['email'] ;
                 $record2 = $select2->gofirst ();
-                while($record2 != 'LAST_RECORD_REACHED'){
+                while($record2 != 'LAST_RECORD_REACHED')
+                {
                     $id = $record2['id_usuario'] ;
                     $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
                     $record = $select->gofirst ();
@@ -1440,9 +1433,10 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
                 }
             }
             
-        }else{ //Eh gerente
-        	adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao) ;
-        
+        }
+        else //Eh gerente
+        { 
+        	adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao);
         }
     }
 }
@@ -1456,24 +1450,22 @@ if (!(function_exists("inserirPedidoAdicionarLexico"))) {
 # Arquivos que utilizam essa funcao:
 # alt_lexico.php
 ###################################################################
-if (!(function_exists("inserirPedidoAlterarLexico"))) {
-    function inserirPedidoAlterarLexico($id_projeto,$id_lexico,$nome,$nocao,$impacto,$justificativa,$id_usuario, $sinonimos, $classificacao){
-                                       
-        $DB = new PGDB () ;
-        $insere = new QUERY ($DB) ;
-        $select = new QUERY ($DB) ;
-        $select2 = new QUERY ($DB) ;
+if (!(function_exists("inserirPedidoAlterarLexico"))) 
+{
+    function inserirPedidoAlterarLexico($id_projeto,$id_lexico,$nome,$nocao,$impacto,$justificativa,$id_usuario, $sinonimos, $classificacao)
+    {                                    
+        $DB = new PGDB();
+        $insere = new QUERY($DB);
+        $select = new QUERY($DB);
+        $select2 = new QUERY($DB);
         
         $q = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario AND id_projeto = $id_projeto";
         $qr = mysql_query($q) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($qr);
-        
-        
-        if ( $resultArray == false ) //nao e gerente
+                
+        if ( $resultArray == false) //nao e gerente
         {
-            
-            $insere->execute("INSERT INTO pedidolex (id_projeto,id_lexico,nome,nocao,impacto,id_usuario,tipo_pedido,aprovado,justificativa, tipo) VALUES ($id_projeto,$id_lexico,'$nome','$nocao','$impacto',$id_usuario,'alterar',0,'$justificativa', '$classificacao')") ;
-            
+            $insere->execute("INSERT INTO pedidolex (id_projeto,id_lexico,nome,nocao,impacto,id_usuario,tipo_pedido,aprovado,justificativa, tipo) VALUES ($id_projeto,$id_lexico,'$nome','$nocao','$impacto',$id_usuario,'alterar',0,'$justificativa', '$classificacao')");
             $newPedidoId = $insere->getLastId();
             
             //sinonimos
@@ -1487,16 +1479,20 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
             $select->execute("SELECT * FROM usuario WHERE id_usuario = '$id_usuario'") ;
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
             
-            if ($select->getntuples() == 0 && $select2->getntuples() == 0){
+            if ($select->getntuples() == 0 && $select2->getntuples() == 0)
+            {
                 echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
-            }else{
+            }
+            else
+            {
                 $record = $select->gofirst ();
                 $nome2 = $record['nome'] ;
                 $email = $record['email'] ;
                 $record2 = $select2->gofirst ();
-                while($record2 != 'LAST_RECORD_REACHED'){
+                while($record2 != 'LAST_RECORD_REACHED')
+                {
                     $id = $record2['id_usuario'] ;
-                    $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
+                    $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                     $record = $select->gofirst ();
                     $mailGerente = $record['email'] ;
                     mail("$mailGerente", "Pedido de Alterar Léxico", "O usuario do sistema $nome2\nPede para alterar o lexico $nome \nObrigado!","From: $nome2\r\n"."Reply-To: $email\r\n");
@@ -1504,7 +1500,8 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
                 }
             }
         }
-        else{ //Eh gerente
+        else //Eh gerente
+        {
         	alteraLexico($id_projeto,$id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao) ;
 	    }
         
@@ -1519,8 +1516,10 @@ if (!(function_exists("inserirPedidoAlterarLexico"))) {
 # Arquivos que utilizam essa funcao:
 # rmv_lexico.php
 ###################################################################
-if (!(function_exists("inserirPedidoRemoverLexico"))) {
-    function inserirPedidoRemoverLexico($id_projeto,$id_lexico,$id_usuario){
+if (!(function_exists("inserirPedidoRemoverLexico"))) 
+{
+    function inserirPedidoRemoverLexico($id_projeto,$id_lexico,$id_usuario)
+    {
         $DB = new PGDB () ;
         $insere = new QUERY ($DB) ;
         $select = new QUERY ($DB) ;
@@ -1532,7 +1531,6 @@ if (!(function_exists("inserirPedidoRemoverLexico"))) {
         
         if ( $resultArray == false ) //nao e gerente
         {
-        
 	        $select->execute("SELECT * FROM lexico WHERE id_lexico = $id_lexico") ;
 	        $lexico = $select->gofirst ();
 	        $nome = $lexico['nome'] ;
@@ -1543,21 +1541,26 @@ if (!(function_exists("inserirPedidoRemoverLexico"))) {
 	        
 	        if ($select->getntuples() == 0&&$select2->getntuples() == 0){
 	            echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
-	        }else{
+	        }
+	        else
+	        {
 	            $record = $select->gofirst ();
 	            $nome = $record['nome'] ;
 	            $email = $record['email'] ;
 	            $record2 = $select2->gofirst ();
-	            while($record2 != 'LAST_RECORD_REACHED'){
+	            while($record2 != 'LAST_RECORD_REACHED')
+	            {
 	                $id = $record2['id_usuario'] ;
-	                $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
+	                $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
 	                $record = $select->gofirst ();
 	                $mailGerente = $record['email'] ;
 	                mail("$mailGerente", "Pedido de Remover Léxico", "O usuario do sistema $nome2\nPede para remover o lexico $id_lexico \nObrigado!","From: $nome\r\n"."Reply-To: $email\r\n");
 	                $record2 = $select2->gonext();
 	            }
 	        }
-        }else{ // e gerente
+        }
+        else // e gerente
+        {
         	removeLexico($id_projeto,$id_lexico);
         }
     }
@@ -1572,8 +1575,10 @@ if (!(function_exists("inserirPedidoRemoverLexico"))) {
 # Arquivos que utilizam essa funcao:
 # alt_cenario.php
 ###################################################################
-if (!(function_exists("inserirPedidoAlterarCenario"))) {
-    function inserirPedidoAlterarConceito($id_projeto, $id_conceito, $nome, $descricao, $namespace, $justificativa, $id_usuario) {
+if (!(function_exists("inserirPedidoAlterarCenario"))) 
+{
+    function inserirPedidoAlterarConceito($id_projeto, $id_conceito, $nome, $descricao, $namespace, $justificativa, $id_usuario)
+    {
         $DB = new PGDB();
         $insere = new QUERY($DB);
         $select = new QUERY($DB);
@@ -1583,10 +1588,8 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
         $qr = mysql_query($q) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($qr);
         
-        
-        if ( $resultArray == false ) //nao e gerente
+        if ($resultArray == false) //nao e gerente
         {
-            
             $insere->execute("INSERT INTO pedidocon (id_projeto, id_conceito, nome, descricao, namespace, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_conceito, '$nome', '$descricao', '$namespace', $id_usuario, 'alterar', 0, '$justificativa')");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
@@ -1594,7 +1597,8 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
             $nomeUsuario = $record['nome'];
             $email = $record['email'];
             $record2 = $select2->gofirst();
-            while($record2 != 'LAST_RECORD_REACHED') {
+            while($record2 != 'LAST_RECORD_REACHED')
+            {
                 $id = $record2['id_usuario'];
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
@@ -1603,11 +1607,10 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
                 $record2 = $select2->gonext();
             }
         }
-        else{ //Eh gerente
-        
-        removeConceito($id_projeto,$id_conceito) ;
-        adicionar_conceito($id_projeto, $nome, $descricao, $namespace) ;
-        
+        else //Eh gerente
+        {
+	        removeConceito($id_projeto,$id_conceito) ;
+	        adicionar_conceito($id_projeto, $nome, $descricao, $namespace);
         }
     }
 }
@@ -1621,12 +1624,14 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
 # Arquivos que utilizam essa funcao:
 # rmv_conceito.php
 ###################################################################
-if (!(function_exists("inserirPedidoRemoverConceito"))) {
-    function inserirPedidoRemoverConceito($id_projeto,$id_conceito,$id_usuario){
-        $DB = new PGDB () ;
-        $insere = new QUERY ($DB) ;
-        $select = new QUERY ($DB) ;
-        $select2 = new QUERY ($DB) ;
+if (!(function_exists("inserirPedidoRemoverConceito")))
+{
+    function inserirPedidoRemoverConceito($id_projeto,$id_conceito,$id_usuario)
+    {
+        $DB = new PGDB();
+        $insere = new QUERY($DB);
+        $select = new QUERY($DB);
+        $select2 = new QUERY($DB);
         $select->execute("SELECT * FROM conceito WHERE id_conceito = $id_conceito") ;
         $conceito = $select->gofirst ();
         $nome = $conceito['nome'] ;
@@ -1635,14 +1640,18 @@ if (!(function_exists("inserirPedidoRemoverConceito"))) {
         $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
         $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
         
-        if ($select->getntuples() == 0&&$select2->getntuples() == 0){
+        if ($select->getntuples() == 0&&$select2->getntuples() == 0)
+        {
             echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
-        }else{
+        }
+        else
+        {
             $record = $select->gofirst ();
             $nome = $record['nome'] ;
             $email = $record['email'] ;
             $record2 = $select2->gofirst ();
-            while($record2 != 'LAST_RECORD_REACHED'){
+            while($record2 != 'LAST_RECORD_REACHED')
+            {
                 $id = $record2['id_usuario'] ;
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
                 $record = $select->gofirst ();
@@ -1663,8 +1672,10 @@ if (!(function_exists("inserirPedidoRemoverConceito"))) {
 # Arquivos que utilizam essa funcao:
 # rmv_relacao.php
 ###################################################################
-if (!(function_exists("inserirPedidoRemoverRelacao"))) {
-    function inserirPedidoRemoverRelacao($id_projeto,$id_relacao,$id_usuario){
+if (!(function_exists("inserirPedidoRemoverRelacao")))
+{
+    function inserirPedidoRemoverRelacao($id_projeto,$id_relacao,$id_usuario)
+    {
         $DB = new PGDB () ;
         $insere = new QUERY ($DB) ;
         $select = new QUERY ($DB) ;
@@ -1677,14 +1688,18 @@ if (!(function_exists("inserirPedidoRemoverRelacao"))) {
         $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
         $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
         
-        if ($select->getntuples() == 0&&$select2->getntuples() == 0){
+        if ($select->getntuples() == 0&&$select2->getntuples() == 0)
+        {
             echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
-        }else{
+        }
+        else
+        {
             $record = $select->gofirst ();
             $nome = $record['nome'] ;
             $email = $record['email'] ;
             $record2 = $select2->gofirst ();
-            while($record2 != 'LAST_RECORD_REACHED'){
+            while($record2 != 'LAST_RECORD_REACHED')
+            {
                 $id = $record2['id_usuario'] ;
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
                 $record = $select->gofirst ();
@@ -1705,24 +1720,32 @@ if (!(function_exists("inserirPedidoRemoverRelacao"))) {
 # Se for para alterar: Devemos (re)mover o cenario e inserir o novo.
 # Se for para inserir: chamamos a funcao insert();
 ###################################################################
-if (!(function_exists("tratarPedidoCenario"))) {
-    function tratarPedidoCenario($id_pedido){
+if (!(function_exists("tratarPedidoCenario"))) 
+{
+    function tratarPedidoCenario($id_pedido)
+    {
         $DB = new PGDB () ;
         $select = new QUERY ($DB) ;
         $delete = new QUERY ($DB) ;
         //print("<BR>SELECT * FROM pedidocen WHERE id_pedido = $id_pedido");
         $select->execute("SELECT * FROM pedidocen WHERE id_pedido = $id_pedido") ;
-        if ($select->getntuples() == 0){
+        if ($select->getntuples() == 0)
+        {
             echo "<BR> [ERRO]Pedido invalido." ;
-        }else{
+        }
+        else
+        {
             $record = $select->gofirst () ;
             $tipoPedido = $record['tipo_pedido'] ;
-            if(!strcasecmp($tipoPedido,'remover')){
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
                 $id_cenario = $record['id_cenario'] ;
                 $id_projeto = $record['id_projeto'] ;
                 removeCenario($id_projeto,$id_cenario) ;
                 //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
-            }else{
+            }
+            else
+            {
                 
                 $id_projeto = $record['id_projeto'] ;
                 $titulo     = $record['titulo'] ;
@@ -1732,7 +1755,8 @@ if (!(function_exists("tratarPedidoCenario"))) {
                 $recursos   = $record['recursos'] ;
                 $excecao    = $record['excecao'] ;
                 $episodios  = $record['episodios'] ;
-                if(!strcasecmp($tipoPedido,'alterar')){
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
                     $id_cenario = $record['id_cenario'] ;
                     removeCenario($id_projeto,$id_cenario) ;
                     //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
@@ -1752,23 +1776,31 @@ if (!(function_exists("tratarPedidoCenario"))) {
 # Se for para alterar: Devemos (re)mover o lexico e inserir o novo.
 # Se for para inserir: chamamos a funcao insert();
 ###################################################################
-if (!(function_exists("tratarPedidoLexico"))) {
-    function tratarPedidoLexico($id_pedido){
+if (!(function_exists("tratarPedidoLexico")))
+{
+    function tratarPedidoLexico($id_pedido)
+    {
         $DB = new PGDB () ;
         $select = new QUERY ($DB) ;
         $delete = new QUERY ($DB);
         $selectSin = new QUERY ($DB);
         $select->execute("SELECT * FROM pedidolex WHERE id_pedido = $id_pedido") ;
-        if ($select->getntuples() == 0){
+        if ($select->getntuples() == 0)
+        {
             echo "<BR> [ERRO]Pedido invalido." ;
-        }else{
+        }
+        else
+        {
             $record = $select->gofirst () ;
             $tipoPedido = $record['tipo_pedido'] ;
-            if(!strcasecmp($tipoPedido,'remover')){
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
                 $id_lexico = $record['id_lexico'] ;
                 $id_projeto = $record['id_projeto'] ;
                 removeLexico($id_projeto,$id_lexico) ;
-            }else{
+            }
+            else
+            {
                 $id_projeto = $record['id_projeto'] ;
                 $nome = $record['nome'] ;
                 $nocao = $record['nocao'] ;
@@ -1781,7 +1813,7 @@ if (!(function_exists("tratarPedidoLexico"))) {
                 $selectSin->execute("SELECT nome FROM sinonimo WHERE id_pedidolex = $id_pedido");
                 $sinonimo = $selectSin->gofirst();
                 if ($selectSin->getntuples() != 0)
-		{
+                {
                	    while($sinonimo != 'LAST_RECORD_REACHED')
                	    {
                         $sinonimos[] = $sinonimo["nome"];
@@ -1789,22 +1821,22 @@ if (!(function_exists("tratarPedidoLexico"))) {
                     }
                 }
                 
-                if(!strcasecmp($tipoPedido,'alterar')){
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
                     $id_lexico = $record['id_lexico'] ;
                     alteraLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao);
-                }else if(($idLexicoConflitante = adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)) <= 0)
+                }
+                else if(($idLexicoConflitante = adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)) <= 0)
                 {
                     $idLexicoConflitante = -1 * $idLexicoConflitante;
-                    
                     $selectLexConflitante->execute("SELECT nome FROM lexico WHERE id_lexico = " . $idLexicoConflitante);
-                    
                     $row = $selectLexConflitante->gofirst();
                     
                     return $row["nome"];
                 }
             }
-            return null;
             
+            return null;
         }
     }
 }
@@ -1817,29 +1849,37 @@ if (!(function_exists("tratarPedidoLexico"))) {
 # Se for para alterar: Devemos (re)mover o cenario e inserir o novo.
 # Se for para inserir: chamamos a funcao insert();
 ###################################################################
-if (!(function_exists("tratarPedidoConceito"))) {
-    function tratarPedidoConceito($id_pedido){
-        $DB = new PGDB () ;
-        $select = new QUERY ($DB) ;
-        $delete = new QUERY ($DB) ;
-        $select->execute("SELECT * FROM pedidocon WHERE id_pedido = $id_pedido") ;
-        if ($select->getntuples() == 0){
-            echo "<BR> [ERRO]Pedido invalido." ;
-        }else{
-            $record = $select->gofirst () ;
-            $tipoPedido = $record['tipo_pedido'] ;
-            if(!strcasecmp($tipoPedido,'remover')){
-                $id_conceito = $record['id_conceito'] ;
-                $id_projeto = $record['id_projeto'] ;
-                removeConceito($id_projeto,$id_conceito) ;
-            }else{
-                
+if (!(function_exists("tratarPedidoConceito")))
+{
+    function tratarPedidoConceito($id_pedido)
+    {
+        $DB = new PGDB();
+        $select = new QUERY($DB);
+        $delete = new QUERY($DB);
+        $select->execute("SELECT * FROM pedidocon WHERE id_pedido = $id_pedido");
+        if ($select->getntuples() == 0)
+        {
+            echo "<BR> [ERRO]Pedido invalido.";
+        }
+        else
+        {
+            $record = $select->gofirst ();
+            $tipoPedido = $record['tipo_pedido'];
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
+                $id_conceito = $record['id_conceito'];
+                $id_projeto = $record['id_projeto'];
+                removeConceito($id_projeto,$id_conceito);
+            }
+            else
+            {
                 $id_projeto = $record['id_projeto'] ;
                 $nome         = $record['nome'] ;
                 $descricao  = $record['descricao'] ;
                 $namespace   = $record['namespace'] ;
                 
-                if(!strcasecmp($tipoPedido,'alterar')){
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
                     $id_cenario = $record['id_conceito'] ;
                     removeConceito($id_projeto,$id_conceito) ;
                 }
@@ -1858,27 +1898,36 @@ if (!(function_exists("tratarPedidoConceito"))) {
 # Se for para alterar: Devemos (re)mover o cenario e inserir o novo.
 # Se for para inserir: chamamos a funcao insert();
 ###################################################################
-if (!(function_exists("tratarPedidoRelacao"))) {
-    function tratarPedidoRelacao($id_pedido){
-        $DB = new PGDB () ;
-        $select = new QUERY ($DB) ;
-        $delete = new QUERY ($DB) ;
-        $select->execute("SELECT * FROM pedidorel WHERE id_pedido = $id_pedido") ;
-        if ($select->getntuples() == 0){
+if (!(function_exists("tratarPedidoRelacao")))
+{
+    function tratarPedidoRelacao($id_pedido)
+    {
+        $DB = new PGDB();
+        $select = new QUERY($DB);
+        $delete = new QUERY($DB);
+        $select->execute("SELECT * FROM pedidorel WHERE id_pedido = $id_pedido");
+        
+        if ($select->getntuples() == 0)
+        {
             echo "<BR> [ERRO]Pedido invalido." ;
-        }else{
+        }
+        else
+        {
             $record = $select->gofirst () ;
             $tipoPedido = $record['tipo_pedido'] ;
-            if(!strcasecmp($tipoPedido,'remover')){
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
                 $id_relacao = $record['id_relacao'] ;
                 $id_projeto = $record['id_projeto'] ;
                 removeRelacao($id_projeto,$id_relacao) ;
-            }else{
-                
+            }
+            else
+            {
                 $id_projeto = $record['id_projeto'] ;
                 $nome         = $record['nome'] ;
                                 
-                if(!strcasecmp($tipoPedido,'alterar')){
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
                     $id_relacao = $record['id_relacao'] ;
                     removeRelacao($id_projeto,$id_relacao) ;
                 }
@@ -1894,14 +1943,20 @@ if (!(function_exists("tratarPedidoRelacao"))) {
 #a esse projeto.Ela so verifica atualmente
 #se a pessoa e um gerente.
 #############################################
-if (!(function_exists("verificaGerente"))) {
-    function verificaGerente($id_usuario){
+if (!(function_exists("verificaGerente")))
+{
+    function verificaGerente($id_usuario)
+    {
         $DB = new PGDB () ;
         $select = new QUERY ($DB) ;
-        $select->execute("SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario") ;
-        if ($select->getntuples() == 0){
+        $select->execute("SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario");
+        
+        if ($select->getntuples() == 0)
+        {
             return 0 ;
-        }else{
+        }
+        else
+        {
             return 1 ;
         }
     }
@@ -1912,9 +1967,10 @@ if (!(function_exists("verificaGerente"))) {
 # Recebe YYY-DD-MM
 # Retorna DD-MM-YYYY
 #############################################
-if (!(function_exists("formataData"))) {
-    function formataData($data){
-        
+if (!(function_exists("formataData"))) 
+{
+    function formataData($data)
+    {
         $novaData = substr( $data, 8, 9 ) .
         substr( $data, 4, 4 ) .
         substr( $data, 0, 4 );
@@ -1922,12 +1978,9 @@ if (!(function_exists("formataData"))) {
     }
 }
 
-
-
-
-
 // Retorna TRUE ssse $id_usuario eh admin de $id_projeto
-if (!(function_exists("is_admin"))) {
+if (!(function_exists("is_admin")))
+{
     function is_admin($id_usuario, $id_projeto)
     {
         $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1942,7 +1995,8 @@ if (!(function_exists("is_admin"))) {
 }
 
 // Retorna TRUE ssse $id_usuario tem permissao sobre $id_projeto
-if (!(function_exists("check_proj_perm"))) {
+if (!(function_exists("check_proj_perm")))
+{
     function check_proj_perm($id_usuario, $id_projeto)
     {
         $r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1969,12 +2023,13 @@ function verificaGerente($id_usuario, $id_projeto)
     $qr = mysql_query($q) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($qr);
     
-    if ( $resultArray != false ){
+    if ( $resultArray != false )
+	{
         
         $ret = 1;
     }
-    return $ret;
     
+    return $ret;
 }
 
 ###################################################################

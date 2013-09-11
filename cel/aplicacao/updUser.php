@@ -1,4 +1,4 @@
-<?php
+	<?php
 session_start();
 
 include("funcoes_genericas.php");

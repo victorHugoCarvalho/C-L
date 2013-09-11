@@ -88,22 +88,19 @@ function novoCenario() {
 //Episódios:	O usuário clica no menu superior na opção:
 //                Se usuário clica em Incluir então INCLUIR CENÁRIO
 
-				             if (isset($id_projeto))
-				             {
-				             ?>
-				               var url = 'add_cenario.php?id_projeto=' + '<?=$id_projeto?>';
-				             <?php
-				             }
-				             else
-				             {
-				             ?>
-				              var url = 'add_cenario.php?'
-				             <?php
-				             }
-
-            ?>
-
-
+	if (isset($id_projeto))
+    {
+    	?>
+        var url = 'add_cenario.php?id_projeto=' + '<?=$id_projeto?>';
+        <?php
+	}
+    else
+    {
+    	?>
+        var url = 'add_cenario.php?'
+        <?php
+	}
+	?>
     var where = '_blank';
     var window_spec = 'dependent,height=600,width=550,resizable,scrollbars,titlebar';
     open(url, where, window_spec);
@@ -123,20 +120,19 @@ function novoLexico() {
 //Episódios:	O usuário clica no menu superior na opção:
 //                Se usuário clica em Incluir então INCLUIR LÉXICO
 
-				             if (isset($id_projeto))
-				             {
-				             ?>
-				                var url = 'add_lexico.php?id_projeto=' + '<?=$id_projeto?>';
-				             <?php
-				             }
-				             else
-				             {
-				             ?>
-				               var url = 'add_lexico.php';
-				             <?php
-				             }
-
-            ?>
+	if (isset($id_projeto))
+	{
+		?>
+		var url = 'add_lexico.php?id_projeto=' + '<?=$id_projeto?>';
+		<?php
+	}
+	else
+	{
+		?>
+		var url = 'add_lexico.php';
+		<?php
+	}
+    ?>
 
     var where = '_blank';
     var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
@@ -173,36 +169,36 @@ a:hover {
           <tr>
             <td align="right" valign="top"><?php 
 
-   if (isset($id_projeto)){
-   	
-   	$id_usuario = $_SESSION['id_usuario_corrente'];
-   	
-   	$ret = verificaGerente($id_usuario, $id_projeto);
-   	  
-        if ( $ret != 0 ){
+if (isset($id_projeto))
+{
+	$id_usuario = $_SESSION['id_usuario_corrente'];
 	
-	
-                                        
+	$ret = verificaGerente($id_usuario, $id_projeto);
+   	
+    if ( $ret != 0 )
+	{                                    
+		?>
+        <font color="#FF0033">Administrador</font>
+        <?php
+	}
+    else
+	{
+		?>
+    	<font color="#FF0033">Usuário normal</font>
+        <?php
+	}
+}   
+else
+{       
+	?>
+    <?php
+}     
 ?>
-              <font color="#FF0033">Administrador</font>
-              <?php
-        }
-        else{  
-       
-?>
-              <font color="#FF0033">Usuário normal</font>
-              <?php
-        }
-     }   
-     else{         
-?>
-              <?php
-    }     
-?>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto:&nbsp;&nbsp;
-              <select name="id_projeto" size="1" onChange="atualizaMenu();">
-                <option>-- Selecione um Projeto --</option>
-                <?php
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Projeto:&nbsp;&nbsp;
+<select name="id_projeto" size="1" onChange="atualizaMenu();">
+<option>-- Selecione um Projeto --</option>
+<?php
 
 // ** Cenario "Login" **
 // O sistema dá ao usuário a opção de cadastrar um novo projeto
@@ -222,13 +218,14 @@ $q = "SELECT p.id_projeto, p.nome, pa.gerente
 // executa a consulta
 $qrr = mysql_query($q) or die("Erro ao executar query");
 
-while ($result = mysql_fetch_array($qrr)) {    // enquanto houver projetos
+while ($result = mysql_fetch_array($qrr))    // enquanto houver projetos
+{
 ?>
-                <option value="<?=$result['id_projeto']?>">
-                <?=($result['gerente'] == 1) ? "*" : ""?>
-                <?=$result['nome']?>
-                </option>
-                <?php
+	<option value="<?=$result['id_projeto']?>">
+    <?=($result['gerente'] == 1) ? "*" : ""?>
+	<?=$result['nome']?>
+    </option>
+    <?php
 }
 ?>
               </select>
@@ -238,9 +235,9 @@ while ($result = mysql_fetch_array($qrr)) {    // enquanto houver projetos
           <tr bgcolor="#E0FFFF" height="15">
           <tr bgcolor="#E0FFFF" height="30">
             <td align="right" valign=MIDDLE><?php
-if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
-                             // entao podemos mostrar os links de adicionar cen/lex
-                             // e de informacoes (pagina principal) do projeto
+if (isset($id_projeto))   	// Se o usuario ja tiver escolhido um projeto,
+{							// entao podemos mostrar os links de adicionar cen/lex
+                            // e de informacoes (pagina principal) do projeto
 
 
 // Cenário - Administrador escolhe Projeto
@@ -290,19 +287,20 @@ if (isset($id_projeto)) {    // Se o usuario ja tiver escolhido um projeto,
 //Episódios:   O Administrador clica na opção “remover projeto” encontrada no menu superior.
 
 
- if (isset($id_projeto)){
-   	
+if (isset($id_projeto))
+{   	
    	$id_usuario = $_SESSION['id_usuario_corrente'];
    	
    	$ret = verificaGerente($id_usuario, $id_projeto);
    	  
-        if ( $ret != 0 ){
-?>
-              <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
-              Projeto</a>&nbsp;&nbsp;&nbsp;
-              <?php
-        }
- }       
+	if ( $ret != 0 )
+	{
+		?>
+        <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
+        Projeto</a>&nbsp;&nbsp;&nbsp;
+        <?php
+	}
+}       
 
 // Cenário - Logar no sistema
 
