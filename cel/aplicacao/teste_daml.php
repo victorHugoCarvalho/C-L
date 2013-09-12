@@ -6,9 +6,9 @@ include 'auxiliar_bd.php';
 include_once("bd.inc");
 include_once("CELConfig/CELConfig.inc");
 
-$link = bd_connect();
+$connected_SGBD = bd_connect()or die("Erro ao conectar ao SGBD");
 
-$site = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
+$url = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
 $dir =  CELConfig_ReadVar( "DAML_dir_relativo_ao_CEL" ) ;
 $arquivo = nome_arquivo_daml();
 
@@ -23,7 +23,7 @@ $lista_relacoes  = get_lista_de_relacoes();
 $lista_axiomas   = get_lista_de_axiomas();
 
 
-$daml = salva_daml( $site, $dir, $arquivo, $i, $lista_conceitos , $lista_relacoes , $lista_axiomas );    
+$daml = salva_daml( $url, $dir, $arquivo, $i, $lista_conceitos , $lista_relacoes , $lista_axiomas );    
 
 if (!$daml)     
 {     
@@ -33,10 +33,10 @@ else
 {     
     print 'Ontologia exportada para DAML com sucesso! <br>';     
     print 'Arquivo criado: ';     
-    print "<a href=\"$site$daml\">$daml</a>";     
+    print "<a href=\"$url$daml\">$daml</a>";     
 }     
 
 
-mysql_close($link);
+mysql_close($connected_SGBD);
 
 ?>
