@@ -7,13 +7,15 @@ session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-chkUser("index.php");        // Checa se o usuario foi autenticado
+
+// checks whether the user has been authenticated
+chkUser("index.php");        
 
 //Cenários -  Excluir Léxico 
 
 //Objetivo:	Permitir ao Usuário Excluir uma palavra do léxico que esteja ativa
 //Contexto:	Usuário deseja excluir uma palavra do léxico
-//              Pré-Condição: Login, palavra do léxico cadastrada no sistema 
+//Pré-Condição: Login, palavra do léxico cadastrada no sistema 
 //Atores:	Usuário, Sistema
 //Recursos:	Dados informados
 //Episódios:	O sistema fornecerá uma tela para o usuário justificar a necessidade

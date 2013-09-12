@@ -7,7 +7,9 @@ session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-chkUser("index.php");        // Checa se o usuario foi autenticado
+
+// checks whether the user has been authenticated
+chkUser("index.php");        
 
 inserirPedidoRemoverRelacao($_SESSION['id_projeto_corrente'], $id_relacao, $_SESSION['id_usuario_corrente']);
 
@@ -23,7 +25,7 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 
 //Objetivo:	Permitir ao Usuário Excluir um conceito que esteja ativo
 //Contexto:	Usuário deseja excluir um conceito
-//              Pré-Condição: Login, cenário cadastrado no sistema
+//Pré-Condição: Login, cenário cadastrado no sistema
 //Atores:	Usuário, Sistema
 //Recursos:	Dados informados
 //Episódios:	O sistema fornecerá uma tela para o usuário justificar a necessidade daquela
