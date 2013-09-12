@@ -12,7 +12,9 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php"); // Checa se o usuario foi autenticado
+// checks whether the user has been authenticated
+chkUser("index.php"); 
+
 if (isset($submit))
 {
         $DB = new PGDB () ;
@@ -59,7 +61,7 @@ else
 
 //Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de cenários.
 //Contexto:	Gerente deseja visualizar os pedidos de alteração de cenários.
-//              Pré-Condição: Login, projeto cadastrado.
+//Pré-Condição: Login, projeto cadastrado.
 //Atores:	Administrador
 //Recursos:	Sistema, banco de dados.
 //Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
