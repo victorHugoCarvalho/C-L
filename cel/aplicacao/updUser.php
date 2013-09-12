@@ -7,7 +7,7 @@ include_once("bd.inc");
 
 $id_usuario = $_SESSION['id_usuario_corrente'];
 
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 
 ?>
@@ -31,10 +31,10 @@ $r = bd_connect() or die("Erro ao conectar ao SGBD");
 //Episódios: O usuário altera os dados desejados
 // 	     Usuário clica no botão de atualizar
 
-$senha_cript = md5($senha);
-$q = "UPDATE usuario SET  nome ='$nome' , login = '$login' , email = '$email' , senha = '$senha_cript' WHERE  id_usuario='$id_usuario'";
+$senha_script = md5($senha);
+$query = "UPDATE usuario SET  nome ='$nome' , login = '$login' , email = '$email' , senha = '$senha_script' WHERE  id_usuario='$id_usuario'";
 
-mysql_query($q) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
+mysql_query($query) or die("<p style='color: red; font-weight: bold; text-align: center'>Erro!Login ja existente!</p><br><br><center><a href='JavaScript:window.history.go(-1)'>Voltar</a></center>");
 
 ?>
 <center>
