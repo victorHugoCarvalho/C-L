@@ -11,12 +11,14 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");// Checa se o usuario foi autenticado
+// checks whether the user has been authenticated
+chkUser("index.php");
 
-// Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+// Connect to the SGBD
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-if (isset($submit)){       // Script chamado atraves do submit do formulario
+// Script chamado atraves do submit do formulario
+if (isset($submit)){       
 
     inserirPedidoAlterarConceito($_SESSION['id_projeto_corrente'],
                                 $id_conceito,
@@ -45,9 +47,9 @@ else // Script chamado atraves do link no cenario corrente
 
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
-    $q = "SELECT * FROM conceito WHERE id_conceito = $id_conceito";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query = "SELECT * FROM conceito WHERE id_conceito = $id_conceito";
+    $executeQuery = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($executeQuery);
 
 	// Cenário -    Alterar Conceito 
 	

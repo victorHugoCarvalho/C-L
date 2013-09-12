@@ -11,12 +11,14 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");// Checa se o usuario foi autenticado
+// checks whether the user has been authenticated
+chkUser("index.php");
 
-// Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+// Connect to the SGBD
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-if (isset($submit)) // Script chamado atraves do submit do formulario
+// Script chamado atraves do submit do formulario
+if (isset($submit)) 
 {
     inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'],
                                 $id_cenario,
@@ -49,15 +51,15 @@ else  // Script chamado atraves do link no cenario corrente
 
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 
-    $q = "SELECT * FROM cenario WHERE id_cenario = $id_cenario";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query = "SELECT * FROM cenario WHERE id_cenario = $id_cenario";
+    $executeQuery = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($executeQuery);
 
 	// Cenário -    Alterar Cenário 
 	
 	//Objetivo:	    Permitir a alteração de um cenário por um usuário
 	//Contexto:	    Usuário deseja alterar cenário previamente cadastrado
-	//              Pré-Condição: Login, Cenário cadastrado no sistema
+	//Pré-Condição: Login, Cenário cadastrado no sistema
 	//Atores:	    Usuário
 	//Recursos:	    Sistema, dados cadastrados
 	//Excessões:    O nome do cenário sendo alterado é modificado para o nome de um cenário já existente.

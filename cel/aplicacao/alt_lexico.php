@@ -13,12 +13,14 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+// checks whether the user has been authenticated
+chkUser("index.php");        
 
-// Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+// Connect to the SGBD
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-if (isset($submit))       // Script chamado atraves do submit do formulario
+// Script chamado atraves do submit do formulario
+if (isset($submit))       
 {
 	
 	if (!isset($listSinonimo))
@@ -68,16 +70,16 @@ if (isset($submit))       // Script chamado atraves do submit do formulario
 else        // Script chamado atraves do link do lexico corrente
 {
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
-    $q = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
-    $result = mysql_fetch_array($qrr);
+    $query = "SELECT * FROM lexico WHERE id_lexico = $id_lexico";
+    $executeQuery = mysql_query($query) or die("Erro ao executar a query");
+    $result = mysql_fetch_array($executeQuery);
     
 	//sinonimos
 	//$DB = new PGDB () ;
 	//$selectSin = new QUERY ($DB) ;
 	//$selectSin->execute("SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico");
-	$qSin = "SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico";
-	$qrrSin = mysql_query($qSin) or die("Erro ao executar a query");
+	$queySin = "SELECT nome FROM sinonimo WHERE id_lexico = $id_lexico";
+	$$executeQuerySin = mysql_query($queySin) or die("Erro ao executar a query");
 	//$resultSin = mysql_fetch_array($qrrSin);
 	?>
 <html>
@@ -149,7 +151,7 @@ else        // Script chamado atraves do link do lexico corrente
 		
 		//Objetivo:	Permitir a alteração de uma entrada do dicionário léxico por um usuário	
 		//Contexto:	Usuário deseja alterar um léxico previamente cadastrado
-		//              Pré-Condição: Login, léxico cadastrado no sistema
+		//Pré-Condição: Login, léxico cadastrado no sistema
 		//Atores:	Usuário
 		//Recursos:	Sistema, dados cadastrados
 		//Episódios:	O sistema fornecerá para o usuário a mesma tela de INCLUIR LÉXICO,
