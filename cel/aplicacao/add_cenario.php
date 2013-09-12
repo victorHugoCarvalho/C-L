@@ -21,7 +21,7 @@ if (!isset($sucesso))
 }
 
 // Connect to the SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) 
 {

@@ -61,28 +61,28 @@ if (isset($submit)) // Se chamado pelo botao de submit
 			//              Caso aquele login digitado jï¿½ exista, o sistema retorna a mesma pï¿½gina
 			//               para o usuï¿½rio avisando que o usuï¿½rio deve escolher outro login,.
 
-            $r = bd_connect() or die("Erro ao conectar ao SGBD");
-            $q = "SELECT id_usuario FROM usuario WHERE login = '$login'";
-            $qrr = mysql_query($q) or die("Erro ao enviar a query");
-            if (mysql_num_rows($qrr)) // Se ja existe algum usuario com este login
+            $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
+            $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";
+            $SendQuery = mysql_query($q) or die("Erro ao enviar a query");
+            if (mysql_num_rows($SendQuery)) // Se ja existe algum usuario com este login
             {        
 				// $p_style = "color: red; font-weight: bold";
-				// $p_text = "Login jï¿½ existente no sistema. Favor escolher outro login.";
+				// $p_text = "Login ja existente no sistema. Favor escolher outro login.";
 				// recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&senha=$senha&senha_conf=$senha_conf&novo=$novo");
 	
 	
-				// Cenï¿½rio - Adicionar Usuï¿½rio
+				// Cenï¿½rio - Adicionar Usuario
 				
-				// Objetivo:  Permitir ao Administrador criar novos usuï¿½rios.
-				// Contexto:  O Administrador deseja adicionar novos usuï¿½rios (nï¿½o cadastrados)
-				//            criando novos  usuï¿½rios ao projeto selecionado.
-				//            Prï¿½-Condiï¿½ï¿½es: Login
+				// Objetivo:  Permitir ao Administrador criar novos usuarios.
+				// Contexto:  O Administrador deseja adicionar novos usuarios (nao cadastrados)
+				//            criando novos  usuarios ao projeto selecionado.
+				//Pre-Condicoes: Login
 				// Atores:    Administrador
 				// Recursos:  Dados do usuï¿½rio
-				// Episï¿½dios: O Administrador clica no link ï¿½Adicionar usuï¿½rio (nï¿½o existente) neste projetoï¿½,
-				//            entrando com as informaï¿½ï¿½es do novo usuï¿½rio: nome, email, login e senha.
-				//            Caso o login jï¿½ exista, aparecerï¿½ uma mensagem de erro na tela informando que
-				//            este login jï¿½ existe.
+				// Episodios: O Administrador clica no link Adicionar usuario (nao existente) neste projeto,
+				//            entrando com as informaçoes do novo usuario: nome, email, login e senha.
+				//            Caso o login ja exista, aparecer uma mensagem de erro na tela informando que
+				//            este login ja existe.
 
                 ?>
 <script language="JavaScript">
@@ -100,8 +100,8 @@ if (isset($submit)) // Se chamado pelo botao de submit
 				
 				// Criptografando a senha
 				$senha = md5($senha);
-                $q = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
-                mysql_query($q) or die("Erro ao cadastrar o usuario");
+                $quey = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
+                mysql_query($query) or die("Erro ao cadastrar o usuario");
                 recarrega("?cadastrado=&novo=$novo&login=$login");
             }
         }   // else
@@ -154,12 +154,12 @@ if (isset($submit)) // Se chamado pelo botao de submit
 	    // do administrador.
 	
 	    // Conexao com a base de dados
-	    $r = bd_connect() or die("Erro ao conectar ao SGBD");
+	    $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 	    // $login eh o login do usuario incluido, passado na URL
 	    $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$login'");
-	    $q = "INSERT INTO participa (id_usuario, id_projeto)
+	    $query = "INSERT INTO participa (id_usuario, id_projeto)
 	          VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
-	    mysql_query($q) or die("Erro ao inserir na tabela participa");
+	    mysql_query($query) or die("Erro ao inserir na tabela participa");
 	
 	    $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
 	    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
@@ -250,23 +250,23 @@ else // Script chamado normalmente
     <tr>
       <td>Senha:</td>
       <td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
-      <td>Senha (confirmaï¿½ï¿½o):</td>
+      <td>Senha (confirmacao):</td>
       <td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
     </tr>
     <tr>
       <?php
 
-// Cenï¿½rio - Adicionar Usuï¿½rio
+// Cenario - Adicionar Usuario
 
-// Objetivo:  Permitir ao Administrador criar novos usuï¿½rios.
-// Contexto:  O Administrador deseja adicionar novos usuï¿½rios (nï¿½o cadastrados) criando novos
-//              usuï¿½rios ao projeto selecionado.
-//            Prï¿½-Condiï¿½ï¿½es: Login
+// Objetivo:  Permitir ao Administrador criar novos usuarios.
+// Contexto:  O Administrador deseja adicionar novos usuarios (nao cadastrados) criando novos
+//              usuarios ao projeto selecionado.
+// Pre-Condicoes: Login
 // Atores:    Administrador
-// Recursos:  Dados do usuï¿½rio
-// Episï¿½dios: Clicando no botï¿½o Cadastrar para confirmar a adiï¿½ï¿½o do novo
-//             usuï¿½rio ao projeto selecionado.
-//            O novo usuï¿½rio criado receberï¿½ uma mensagem via email com seu login e senha.
+// Recursos:  Dados do usuario
+// Episodios: Clicando no botao Cadastrar para confirmar adicionando novo
+//             usuario ao projeto selecionado.
+//            O novo usuario criado recebera uma mensagem via email com seu login e senha.
 
 ?>
       <td align="center" colspan="4" height="40" valign="bottom"><input name="submit" onClick="return verifyEmail(this.form);" type="submit" value="Cadastrar"></td>
@@ -274,7 +274,7 @@ else // Script chamado normalmente
   </table>
 </form>
 <br>
-<i><a href="showSource.php?file=add_usuario.php">Veja o cï¿½digo fonte!</a></i>
+<i><a href="showSource.php?file=add_usuario.php">Veja o codigo fonte!</a></i>
 </body>
 </html>
 <?php
