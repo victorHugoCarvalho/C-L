@@ -8,7 +8,7 @@ include("httprequest.inc");
 chkUser("index.php");
 
 // Conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 
 if (isset($submit)) {   // Script chamado pelo submit
@@ -16,17 +16,17 @@ if (isset($submit)) {   // Script chamado pelo submit
     // O procedimento sera remover todos que estao no projeto em questao
     // (menos o administrador que esta adicionando/removendo usuarios)
     // e depois acrescentar aqueles que tiverem sido selecionados
-    $q = "DELETE FROM participa
+    $query = "DELETE FROM participa
           WHERE id_usuario != " . $_SESSION['id_usuario_corrente'] . "
           AND id_projeto = " . $_SESSION['id_projeto_corrente'];
-    mysql_query($q) or die("Erro ao executar a query de DELETE");
+    mysql_query($query) or die("Erro ao executar a query de DELETE");
 
     $n_sel = count($usuarios);  // Numero de usuarios selecionados no <select>
     for ($i = 0; $i < $n_sel; $i++) {
     // Para cada usuario selecionado
-        $q = "INSERT INTO participa (id_usuario, id_projeto)
+        $query = "INSERT INTO participa (id_usuario, id_projeto)
               VALUES (" . $usuarios[$i] . ", " . $_SESSION['id_projeto_corrente'] . ")";
-        mysql_query($q) or die("Erro ao cadastrar usuario");
+        mysql_query($query) or die("Erro ao cadastrar usuario");
     }
 ?>
 <script language="javascript1.3">
@@ -94,14 +94,14 @@ select {
 
     // Selecionar todos os usuarios que participam deste projeto,
     // menos o administrador que esta executando este script
-    $q = "SELECT u.id_usuario, login
+    $query = "SELECT u.id_usuario, login
           FROM usuario u, participa p
           WHERE u.id_usuario = p.id_usuario
           AND p.id_projeto = " . $_SESSION['id_projeto_corrente'] . "
           AND u.id_usuario != " . $_SESSION['id_usuario_corrente'];
 
-    $qrr = mysql_query($q) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($qrr)) {
+    $sendQuery = mysql_query($query) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($sendQuery)) {
 ?>
                   <option value="<?=$result['id_usuario']?>">
                 <?=$result['login']?>
@@ -128,23 +128,23 @@ select {
               <td rowspan="2"><select  multiple name="usuarios_r" size="6">
                   <?php
     // Selecionar todos os usuarios que nao participam deste projeto
-    $subq = "SELECT id_usuario FROM participa where participa.id_projeto =".$_SESSION['id_projeto_corrente'];
-    $subqrr = mysql_query($subq) or die("Erro ao enviar a subquery");
-    $resultadosubq = "(0)";
-    if($subqrr != 0)
+    $subQuery = "SELECT id_usuario FROM participa where participa.id_projeto =".$_SESSION['id_projeto_corrente'];
+    $sendSubQuery = mysql_query($subQuery) or die("Erro ao enviar a subquery");
+    $resultadosubquery = "(0)";
+    if($sendSubQuery != 0)
     {
-    	$row = mysql_fetch_row($subqrr);
-    	$resultadosubq = "( $row[0]";	
-    		while($row = mysql_fetch_row($subqrr))
-    			$resultadosubq = "$resultadosubq , $row[0]";
-    	$resultadosubq = "$resultadosubq )";
+    	$row = mysql_fetch_row($sendSubQuery);
+    	$resultadosubquery = "( $row[0]";	
+    		while($row = mysql_fetch_row($sendSubQuery))
+    			$resultadosubquery = "$resultadosubquery , $row[0]";
+    	$resultadosubquery = "$resultadosubquery )";
     }
-    $q = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in ".$resultadosubq;
-    //$q = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
+    $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in ".$resultadosubq;
+    //$query = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;
 
-    echo($q);
-    $qrr = mysql_query($q) or die("Erro ao enviar a query");
-    while ($result = mysql_fetch_array($qrr)) {
+    echo($query);
+    $send_query = mysql_query($query) or die("Erro ao enviar a query");
+    while ($result = mysql_fetch_array($send_query)) {
 ?>
                   <option value="<?=$result['id_usuario']?>">
                 <?=$result['login']?>
