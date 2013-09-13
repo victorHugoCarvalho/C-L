@@ -13,10 +13,10 @@ $dir =  CELConfig_ReadVar( "DAML_dir_relativo_ao_CEL" ) ;
 $arquivo = nome_arquivo_daml();
 
 $i = array ("title" => "Ontologia de teste" ,     
-                 "creator" => "Pedro" ,     
-                 "description" => "teste de tradução de léxico para ontologia" ,     
-                 "subject" => "" ,       
-                 "versionInfo" => "1.1" ) ;     
+            "creator" => "Pedro" ,     
+            "description" => "teste de tradução de léxico para ontologia" ,     
+            "subject" => "" ,       
+            "versionInfo" => "1.1" ) ;     
 
 $lista_conceitos = get_lista_de_conceitos();
 $lista_relacoes  = get_lista_de_relacoes();

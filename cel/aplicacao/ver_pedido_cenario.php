@@ -17,77 +17,80 @@ chkUser("index.php");
 
 if (isset($submit))
 {
-        $DB = new PGDB () ;
-        $select = new QUERY ($DB) ;
-        $update = new QUERY ($DB) ;
-        $delete = new QUERY ($DB) ;
-        for($count = 0; $count < sizeof($pedidos); $count++)
-        {
-                 $update->execute("update pedidocen set aprovado= 1 where id_pedido = $pedidos[$count]") ;
-                 tratarPedidoCenario($pedidos[$count]) ;
-        }
-      	for($count = 0; $count < sizeof($remover); $count++)
-      	{
-                  $delete->execute("delete from pedidocen where id_pedido = $remover[$count]") ;
-      	}
-?>
-<script language="javascript1.3">
+	$DB = new PGDB();
+    $select = new QUERY($DB);
+    $update = new QUERY($DB);
+    $delete = new QUERY($DB);
 
-opener.parent.frames['code'].location.reload();
-opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>');
-
-</script>
-<h4>Operação efetuada com sucesso!</h4>
-<script language="javascript1.3">
-
-self.close();
-
-</script>
-<?php
+	for ($count = 0; $count < sizeof($pedidos); $count++)
+	{
+    	$update->execute("update pedidocen set aprovado= 1 where id_pedido = $pedidos[$count]") ;
+		tratarPedidoCenario($pedidos[$count]) ;
+	}
+	
+    for($count = 0; $count < sizeof($remover); $count++)
+    {
+    	$delete->execute("delete from pedidocen where id_pedido = $remover[$count]") ;
+	}
+	?>
+	<script language="javascript1.3">
+	
+	opener.parent.frames['code'].location.reload();
+	opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>');
+	
+	</script>
+	<h4>Operação efetuada com sucesso!</h4>
+	<script language="javascript1.3">
+	
+	self.close();
+	
+	</script>
+	<?php
 }
 else
 {
-?>
-<html>
-<head>
-<title>Pedidos de alteração dos Cenários</title>
-</head>
-<body>
-<h2>Pedidos de Alteração no Conjunto de Cenários</h2>
-<form action="?id_projeto=<?=$id_projeto?>" method="post">
-  <?php
+	?>
+	<html>
+	<head>
+	<title>Pedidos de alteração dos Cenários</title>
+	</head>
+	<body>
+	<h2>Pedidos de Alteração no Conjunto de Cenários</h2>
+	<form action="?id_projeto=<?=$id_projeto?>" method="post">
+	  <?php
+	
+	// Cenário - Verificar pedidos de alteração de cenários
+	
+	//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de cenários.
+	//Contexto:	Gerente deseja visualizar os pedidos de alteração de cenários.
+	//Pré-Condição: Login, projeto cadastrado.
+	//Atores:	Administrador
+	//Recursos:	Sistema, banco de dados.
+	//Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
+	//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
+	//           O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
+	//           de todas as alterações pendentes ou não para os cenários.
+	//           Para novos pedidos de inclusão ou alteração de cenários,
+	//           o sistema permite que o administrador opte por Aprovar ou Remover.
+	//           Para os pedidos de inclusão ou alteração já aprovados,
+	//           o sistema somente habilita a opção remover para o administrador.
+	//           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
+	
+	$DB = new PGDB();
+	$select = new QUERY($DB);
+	$select2 = new QUERY($DB);
+	$select->execute("SELECT * FROM pedidocen WHERE id_projeto = $id_projeto");
 
-// Cenário - Verificar pedidos de alteração de cenários
-
-//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de cenários.
-//Contexto:	Gerente deseja visualizar os pedidos de alteração de cenários.
-//Pré-Condição: Login, projeto cadastrado.
-//Atores:	Administrador
-//Recursos:	Sistema, banco de dados.
-//Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
-//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
-//           O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
-//           de todas as alterações pendentes ou não para os cenários.
-//           Para novos pedidos de inclusão ou alteração de cenários,
-//           o sistema permite que o administrador opte por Aprovar ou Remover.
-//           Para os pedidos de inclusão ou alteração já aprovados,
-//           o sistema somente habilita a opção remover para o administrador.
-//           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
-
-	$DB = new PGDB () ;
-    $select = new QUERY ($DB) ;
-    $select2 = new QUERY ($DB) ;
-    $select->execute("SELECT * FROM pedidocen WHERE id_projeto = $id_projeto") ;
-    if ($select->getntuples() == 0)
+	if ($select->getntuples() == 0)
 	{
 		echo "<BR>Nenhum pedido.<BR>" ;
 	}
-    else
+	else
 	{
-    	$i = 0 ;
-        $record = $select->gofirst () ;
-        
-        while($record != 'LAST_RECORD_REACHED')
+		$i = 0 ;
+	    $record = $select->gofirst () ;
+	        
+	    while($record != 'LAST_RECORD_REACHED')
 		{
         	$id_usuario = $record['id_usuario'] ;
             $id_pedido = $record['id_pedido'] ;
@@ -117,7 +120,7 @@ else
 				{
 					echo"</h3>" ;
 				}
-					?>
+				?>
 				  <table>
 				    
 				      <td><b>Título:</b></td>
@@ -173,12 +176,13 @@ else
 			} 
 			else
 	        {
-				echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Aprovar</STRONG>]<BR>  " ;
+				echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Aprovar</STRONG>]<BR>  ";
 				echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
 	        }
-	        echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remover da lista</STRONG>]" ;
-	        print( "<br>\n<hr color=\"#000000\"><br>\n") ;
-			$record = $select->gonext () ;
+	        
+	        echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remover da lista</STRONG>]";
+	        print( "<br>\n<hr color=\"#000000\"><br>\n");
+			$record = $select->gonext();
 		}
 	}
 	?>
