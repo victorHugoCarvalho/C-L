@@ -20,10 +20,15 @@
         list($projeto, $resto) = split("__", $nome_arquivo);
         list($dia, $mes, $ano, $hora, $minuto, $segundo, $extensao) = split('[_-.]', $resto); 
          
-        if( !is_numeric($dia) || !is_numeric($mes) || !is_numeric($ano) || !is_numeric($hora) || !is_numeric($minuto) || !is_numeric($segundo) ) 
-            return "-"; 
+        if( !is_numeric($dia) || !is_numeric($mes) ||
+        	!is_numeric($ano) || !is_numeric($hora) ||
+        	!is_numeric($minuto) || !is_numeric($segundo))
+        {
+            return "-";
+        }
          
         $mes_por_extenso = "-"; 
+        
         switch( $mes ) 
         { 
             case 1: $mes_por_extenso = "janeiro"; break; 
@@ -52,28 +57,32 @@
     $diretorio = $_SESSION['diretorio']; 
     $site = $_SESSION['site']; 
      
-    if( $diretorio == "" )
+    if ( $diretorio == "" )
     {
     //    $diretorio = "teste"; 
           $diretorio = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
     }
 
-    if( $site == "" ) 
+    if ( $site == "" ) 
     {
     //    $site = "http://139.82.24.189/cel_vf/aplicacao/teste/";
-          $site = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
+          $site = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . 
+         		   CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
+          
           if ( $site == "http:///" )
           {
-             print( "Atenção: O arquivo de configuração do CELConfig (padrão: config2.conf) precisa ser configurado corratamente.<BR>\n * Não foram preenchidas as variáveis 'HTTPD_ip','CEL_dir_relativo' e 'DAML_dir_relativo_ao_CEL'.<BR>\nPor favor, verifique o arquivo e tente novamente.<BR>\n" ) ;
+             print( "Atenção: O arquivo de configuração do CELConfig (padrão: config2.conf) precisa ser configurado
+             		corretamente.<BR>\n * Não foram preenchidas as variáveis 'HTTPD_ip','CEL_dir_relativo' 
+             		e 'DAML_dir_relativo_ao_CEL'.<BR>\nPor favor, verifique o arquivo e tente novamente.<BR>\n" );
           }
     }
      
     /* Monta a tabela    de arquivos    DAML */ 
     print( "<CENTER><TABLE WIDTH=\"80%\">\n") ; 
     print( "<TR>\n\t<Th><STRONG>Projeto</STRONG></Th>\n\t<Th><STRONG>Gerado em</STRONG></Th>\n</TR>\n" ); 
-    if ( $dir_handle = @opendir( $diretorio )    ) 
+    if ($dir_handle = @opendir( $diretorio )) 
     { 
-        while ( ( $arquivo = readdir($dir_handle) ) !== false ) 
+        while (($arquivo = readdir($dir_handle)))
         { 
             if ( is_file( $diretorio . "/" . $arquivo ) && $arquivo != "." && $arquivo != ".." ) 
             { 

@@ -22,10 +22,7 @@ function monta_relacoes($id_projeto)
 
 	//seleciona todos os cenarios
 	
-	$q = "SELECT *
-	          FROM cenario
-	          WHERE id_projeto = $id_projeto
-	          ORDER BY CHAR_LENGTH(titulo) DESC";
+	$q = "SELECT * FROM cenario WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(titulo) DESC";
 	$qrr = mysql_query($q) or die("Erro ao enviar a query");   
 	
 	while ($result = mysql_fetch_array($qrr)) // Para todos os cenarios 
@@ -93,10 +90,7 @@ function monta_relacoes($id_projeto)
 	
 	// Seleciona todos os léxicos
 	
-	$q = "SELECT *
-	          FROM lexico
-	          WHERE id_projeto = $id_projeto
-	          ORDER BY CHAR_LENGTH(nome) DESC";
+	$q = "SELECT * FROM lexico WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(nome) DESC";
 	$qrr = mysql_query($q) or die("Erro ao enviar a query");   
 	
 	while ($result = mysql_fetch_array($qrr)) // Para todos os lexicos
@@ -204,7 +198,9 @@ function cenario_para_lexico_cenario_para_cenario( $id_cenario,$texto, $vetor_le
         	//		VALUES ($id_cenario, " . $vetor_lexicos[$i]->id_lexico . ")";
         	//mysql_query($q) or die("Erro ao enviar a query de INSERT na centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
         	
-    	}else{
+    	}
+    	else
+    	{
         	$regex = "/(\s|\b)(" . $vetor_cenarios[$j]->titulo . ")(\s|\b)/i";
            	$texto = preg_replace( $regex, "$1{c".$vetor_cenarios[$j]->id_cenario."**$2"."}$3", $texto );
     	    $j++;
@@ -225,35 +221,37 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
     $parser = 0; // verifica quando devem ser adicionadas as tags
     
     $novo_texto = "";
-    while( $i < strlen( &$texto ) )
+    while ( $i < strlen( &$texto ) )
     {    
-        if( $texto[$i] == "{" )
+        if ( $texto[$i] == "{" )
         {
             $parser++;
-            if( $parser == 1 ) //adiciona link ao texto - abrindo
+            if ( $parser == 1 ) //adiciona link ao texto - abrindo
             {
                  $id_to = "";
                  $i++;
                  $tipo= $texto[$i];
                  $i++;
-                 while( $texto[$i] != "*" )
+                 while ( $texto[$i] != "*" )
                  {
                     $id_to .= $texto[$i];
                  	$i++;	
                  }
-                 if($tipo=="l")// Destino é um léxico (id_lexico_to)
+                 if ($tipo=="l")// Destino é um léxico (id_lexico_to)
                  {
-                 	 if(strcasecmp($tipo_from,'lexico') == 0 )// Origem é um léxico (id_lexico_from -> id_lexico_to)
+                 	 if (strcasecmp($tipo_from,'lexico') == 0 )// Origem é um léxico (id_lexico_from -> id_lexico_to)
                  	 {
                  	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'léxico para léxico")</script>';
                  	 	//adiciona relação de lexico para léxico	
-                 	 }else if(strcasecmp($tipo_from,'cenario') == 0)// Origem é um cenário (id_cenario -> id_lexico)
+                 	 }
+                 	 else if (strcasecmp($tipo_from,'cenario') == 0)// Origem é um cenário (id_cenario -> id_lexico)
                  	 {
                  	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cenário para léxico")</script>';
                  	 	//adiciona relação de cenário para léxico
                  	 }
                  }
-                 if($tipo=="c")// Destino é um cenário (id_cenario_to)
+                 
+                 if ($tipo=="c")// Destino é um cenário (id_cenario_to)
                  {
                      if(strcasecmp($tipo_from,'cenario') == 0)// Origem é um cenario (id_cenario_from -> id_cenario_to)
                      {
@@ -268,7 +266,8 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
                  }
                  $i++;
             }
-        }elseif( $texto[$i] == "}" )
+        }
+        elseif( $texto[$i] == "}" )
         {
             $parser--;
          
@@ -276,6 +275,4 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
         $i++;
     }
 }   
- 
-
 ?>
