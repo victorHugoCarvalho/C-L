@@ -63,7 +63,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
 
             $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";
-            $SendQuery = mysql_query($q) or die("Erro ao enviar a query");
+            $SendQuery = mysql_query($query) or die("Erro ao enviar a query");
             if (mysql_num_rows($SendQuery)) // Se ja existe algum usuario com este login
             {        
 				// $p_style = "color: red; font-weight: bold";
@@ -80,7 +80,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
 				// Atores:    Administrador
 				// Recursos:  Dados do usuï¿½rio
 				// Episodios: O Administrador clica no link Adicionar usuario (nao existente) neste projeto,
-				//            entrando com as informaçoes do novo usuario: nome, email, login e senha.
+				//            entrando com as informaï¿½oes do novo usuario: nome, email, login e senha.
 				//            Caso o login ja exista, aparecer uma mensagem de erro na tela informando que
 				//            este login ja existe.
 
@@ -100,7 +100,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
 				
 				// Criptografando a senha
 				$senha = md5($senha);
-                $quey = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
+                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
                 mysql_query($query) or die("Erro ao cadastrar o usuario");
                 recarrega("?cadastrado=&novo=$novo&login=$login");
             }
