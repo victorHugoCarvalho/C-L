@@ -40,12 +40,11 @@ function converte_impactos()
 			exit;
 		}
 		
-		if (!fwrite($handle, "$impacto\r\n"))
+		else if (!fwrite($handle, "$impacto\r\n"))
 		{
 			print "Cannot write to file ($filename)";
 			exit;
 		}
-		
 	}
 	
 	fclose($handle);

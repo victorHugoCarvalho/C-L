@@ -21,9 +21,9 @@ include("httprequest.inc");
 //             O sistema chama a página que removerá o projeto do banco de dados.
 ?>
 <html>
-<head>
-<title>Remover Projeto</title>
-</head>
+	<head>
+		<title>Remover Projeto</title>
+	</head>
 <?php
       
         $id_projeto = $_SESSION['id_projeto_corrente'];
@@ -40,32 +40,32 @@ include("httprequest.inc");
         
         
 ?>
-<body>
-<h4>Remover Projeto:</h4>
-<p><br>
-</p>
-<table width="100%" border="0">
-  <tr>
-    <td width="29%"><b>Nome do Projeto:</b></td>
-    <td width="29%"><b>Data de cria&ccedil;&atilde;o</b></td>
-    <td width="42%"><b>Descri&ccedil;&atilde;o</b></td>
-  </tr>
-  <tr>
-    <td width="29%"><?php echo $nome_Projeto; ?></td>
-    <td width="29%"><?php echo $data_Projeto; ?></td>
-    <td width="42%"><?php echo $descricao_Projeto; ?></td>
-  </tr>
-</table>
-<br>
-<br>
-<center>
-  <b>Cuidado!O projeto será apagado para todos seus usuários!</b>
-</center>
-<p><br>
-  <center>
-    <a href="remove_projeto_base.php">Apagar o projeto</a>
-  </center>
-</p>
-<p> <i><a href="showSource.php?file=remove_projeto.php">Veja o código fonte!</a></i> </p>
-</body>
+	<body>
+		<h4>Remover Projeto:</h4>
+		<p><br>
+		</p>
+		<table width="100%" border="0">
+		  <tr>
+		    <td width="29%"><b>Nome do Projeto:</b></td>
+		    <td width="29%"><b>Data de cria&ccedil;&atilde;o</b></td>
+		    <td width="42%"><b>Descri&ccedil;&atilde;o</b></td>
+		  </tr>
+		  <tr>
+		    <td width="29%"><?php echo $nome_Projeto; ?></td>
+		    <td width="29%"><?php echo $data_Projeto; ?></td>
+		    <td width="42%"><?php echo $descricao_Projeto; ?></td>
+		  </tr>
+		</table>
+		<br>
+		<br>
+		<center>
+		  <b>Cuidado!O projeto será apagado para todos seus usuários!</b>
+		</center>
+		<p><br>
+		  <center>
+		    <a href="remove_projeto_base.php">Apagar o projeto</a>
+		  </center>
+		</p>
+		<p> <i><a href="showSource.php?file=remove_projeto.php">Veja o código fonte!</a></i> </p>
+	</body>
 </html>

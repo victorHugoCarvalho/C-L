@@ -49,18 +49,18 @@ while ( $result = mysql_fetch_row($qrr) )
    $data   = $result[1];
    $versao = $result[2];
    $XML    = $result[3];	
-?>
-<table>
-  <tr>
-    <th>Versão:</th>
-    <td><?=$versao?></td>
-    <th>Data:</th>
-    <td><?=$data?></td>
-    <th><a href="mostraXML.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>">XML</a></th>
-    <th><a href="recuperarXML.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>&apaga=true">Apaga XML</a></th>
-  </tr>
-</table>
-<?php
+	?>
+	<table>
+	  <tr>
+	    <th>Versão:</th>
+	    <td><?=$versao?></td>
+	    <th>Data:</th>
+	    <td><?=$data?></td>
+	    <th><a href="mostraXML.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>">XML</a></th>
+	    <th><a href="recuperarXML.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>&apaga=true">Apaga XML</a></th>
+	  </tr>
+	</table>
+	<?php
 }
 
 ?>

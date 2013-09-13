@@ -44,19 +44,19 @@ while ( $result = mysql_fetch_row($qrr) )
    $nome_projeto = $resultNome[1];
 
 
-?>
-<table border='0'>
-  <tr>
-    <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>">
-      <?=$nome_projeto?>
-      </a></th>
-    <th height="29" width="140">Data:
-      <?=$data?></th>
-    <th height="29" width="100">Versão:
-      <?=$versao?></th>
-  </tr>
-</table>
-<?php
+	?>
+	<table border='0'>
+	  <tr>
+	    <th height="29" width="140"><a href="mostrarProjeto.php?id_projeto=<?=$id_projeto?>&versao=<?=$versao?>">
+	      <?=$nome_projeto?>
+	      </a></th>
+	    <th height="29" width="140">Data:
+	      <?=$data?></th>
+	    <th height="29" width="100">Versão:
+	      <?=$versao?></th>
+	  </tr>
+	</table>
+	<?php
 }
 
 ?>

@@ -45,7 +45,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         <script language="javascript1.3"> 
 
         // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 
-        function reCarrega(URL) { 
+        function reCarrega(URL)
+        { 
             document.location.replace(URL); 
         } 
 
@@ -64,7 +65,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function altCenario(cenario) { 
+        function altCenario(cenario)
+        { 
             var url = 'alt_cenario.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_cenario=' + cenario; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=660,width=550,resizable,scrollbars,titlebar';
@@ -86,7 +88,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function rmvCenario(cenario) { 
+        function rmvCenario(cenario)
+        { 
             var url = 'rmv_cenario.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_cenario=' + cenario; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -108,7 +111,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function altLexico(lexico) { 
+        function altLexico(lexico)
+        { 
             var url = 'alt_lexico.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_lexico=' + lexico; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
@@ -130,7 +134,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function rmvLexico(lexico) { 
+        function rmvLexico(lexico)
+        { 
             var url = 'rmv_lexico.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_lexico=' + lexico; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -155,7 +160,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function altConceito(conceito) { 
+        function altConceito(conceito)
+        { 
             var url = 'alt_conceito.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_conceito=' + conceito; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -177,15 +183,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function rmvConceito(conceito) { 
+        function rmvConceito(conceito)
+        { 
             var url = 'rmv_conceito.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_conceito=' + conceito; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
             open(url, where, window_spec); 
         } 
         
-        function rmvRelacao(relacao) { 
-            
+        function rmvRelacao(relacao)
+        {
             var url = 'rmv_relacao.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>' + '&id_relacao=' + relacao; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -210,7 +217,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function pedidoCenario() { 
+        function pedidoCenario()
+        { 
             <?php    
              if (isset($id_projeto))    
              {    
@@ -247,25 +255,24 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 //            - Verificar pedidos de alteração de termos do léxico 
 //            ( ver Verificar pedidos de alteração de termos do léxico); 
 
-?>    
+			?>    
+        function pedidoLexico()
+        { 
 
-        function pedidoLexico() { 
-
-         <?php    
-                     if (isset($id_projeto))    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_lexico.php?id_projeto=' + '<?=$id_projeto?>'; 
-                     <?php    
-                     }    
-                     else    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_lexico.php?' 
-                     <?php    
-                     }    
-
-            ?>    
+         	<?php    
+			if (isset($id_projeto))    
+            {    
+          		?>    
+				var url = 'ver_pedido_lexico.php?id_projeto=' + '<?=$id_projeto?>'; 
+             	<?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'ver_pedido_lexico.php?' 
+            	<?php    
+			}    
+            	?>
 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -289,46 +296,44 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function pedidoConceito() { 
-
+        function pedidoConceito()
+        { 
          <?php    
-                     if (isset($id_projeto))    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_conceito.php?id_projeto=' + '<?=$id_projeto?>'; 
-                     <?php    
-                     }    
-                     else    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_conceito.php?' 
-                     <?php    
-                     }    
+			if (isset($id_projeto))    
+            {    
+	            ?>    
+				var url = 'ver_pedido_conceito.php?id_projeto=' + '<?=$id_projeto?>'; 
+	            <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'ver_pedido_conceito.php?' 
+                <?php    
+			}    
 
             ?>    
-
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
             open(url, where, window_spec); 
         } 
         
-        function pedidoRelacao() { 
-
-         <?php    
-                     if (isset($id_projeto))    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_relacao.php?id_projeto=' + '<?=$id_projeto?>'; 
-                     <?php    
-                     }    
-                     else    
-                     {    
-                     ?>    
-						var url = 'ver_pedido_relacao.php?' 
-                     <?php    
-                     }    
-
-            ?>    
+        function pedidoRelacao()
+        { 
+			<?php    
+            if (isset($id_projeto))    
+            {    
+	            ?>    
+				var url = 'ver_pedido_relacao.php?id_projeto=' + '<?=$id_projeto?>'; 
+	            <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'ver_pedido_relacao.php?' 
+                <?php    
+			}    
+            	?>    
 
             var where = '_blank'; 
             var window_spec = 'dependent,height=300,width=550,resizable,scrollbars,titlebar'; 
@@ -351,7 +356,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function addUsuario() { 
+        function addUsuario()
+        { 
             var url = 'add_usuario.php'; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=320,width=490,resizable,scrollbars,titlebar'; 
@@ -375,7 +381,8 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 ?>    
 
-        function relUsuario() { 
+        function relUsuario()
+        { 
             var url = 'rel_usuario.php'; 
             var where = '_blank'; 
             var window_spec = 'dependent,height=380,width=550,resizable,scrollbars,titlebar'; 
@@ -396,26 +403,23 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 //            Aparecendo na tela as opções de: 
 //            -Gerar xml deste projeto (ver Gerar relatórios XML); 
 
-?>    
-
+			?>    
         function geraXML() 
         { 
-
-        <?php    
-                             if (isset($id_projeto))    
-                             {    
-                             ?>    
-								var url = 'form_xml.php?id_projeto=' + '<?=$id_projeto?>'; 
-                             <?php    
-                             }    
-                             else    
-                             {    
-                             ?>    
-								var url = 'form_xml.php?' 
-                             <?php    
-                             }    
-
-            ?>    
+        	<?php    
+			if (isset($id_projeto))    
+            {    
+            	?>    
+				var url = 'form_xml.php?id_projeto=' + '<?=$id_projeto?>'; 
+                <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'form_xml.php?' 
+                <?php    
+			}    
+            	?>    
 
             var where = '_blank'; 
             var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar'; 
@@ -423,22 +427,20 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         } 
 
         function recuperaXML() 
-                { 
-
-        <?php    
-                             if (isset($id_projeto))    
-                             {    
-                             ?>    
-								var url = 'recuperarXML.php?id_projeto=' + '<?=$id_projeto?>'; 
-                             <?php    
-                             }    
-                             else    
-                             {    
-                             ?>    
-								var url = 'recuperarXML.php?' 
-                             <?php    
-                             }    
-
+		{ 
+        	<?php    
+            if (isset($id_projeto))    
+            {    
+            	?>    
+				var url = 'recuperarXML.php?id_projeto=' + '<?=$id_projeto?>'; 
+                <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'recuperarXML.php?' 
+                <?php    
+			}    
             ?>    
 
             var where = '_blank'; 
@@ -449,20 +451,20 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 		function geraGrafo() 
         { 
 
-        <?php    
+        	<?php    
 			if (isset($id_projeto))    
             {    
                 ?>    
-					var url = 'gerarGrafo.php?id_projeto=' + '<?=$id_projeto?>'; 
+				var url = 'gerarGrafo.php?id_projeto=' + '<?=$id_projeto?>'; 
                 <?php    
-            }else    
+            }
+            else    
             {    
                 ?>    
-					var url = 'gerarGrafo.php?' 
+				var url = 'gerarGrafo.php?' 
                 <?php    
             }    
-
-        ?>    
+        	?>    
 
             var where = '_blank'; 
             var window_spec = 'dependent,height=330,width=550,resizable,scrollbars,titlebar'; 
@@ -473,7 +475,6 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 		<?php   
 
 		// Ontologia 
-
 		// Objetivo:  Gerar ontologia do projeto 
 		
 		?>    
@@ -481,19 +482,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         { 
 
         <?php    
-                             if (isset($id_projeto))    
-                             {    
-                             ?>    
-								var url = 'inicio.php?id_projeto=' + '<?=$id_projeto?>'; 
-                             <?php    
-                             }    
-                             else    
-                             {    
-                             ?>    
-								var url = 'inicio.php?' 
-                             <?php    
-                             }    
-
+			if (isset($id_projeto))    
+            {    
+            	?>    
+				var url = 'inicio.php?id_projeto=' + '<?=$id_projeto?>'; 
+				<?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'inicio.php?' 
+                <?php    
+			}    
             ?>    
 
             var where = '_blank'; 
@@ -511,21 +511,20 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         { 
 
         <?php    
-                             if (isset($id_projeto))    
-                             {    
-                             ?>    
-								var url = 'form_daml.php?id_projeto=' + '<?=$id_projeto?>'; 
-                             <?php    
-                             }    
-                             else    
-                             {    
-                             ?>    
-								var url = 'form_daml.php?' 
-                             <?php    
-                             }    
+         	if (isset($id_projeto))    
+            {    
+            	?>    
+				var url = 'form_daml.php?id_projeto=' + '<?=$id_projeto?>'; 
+                <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'form_daml.php?' 
+                <?php    
+			}    
 
             ?>    
-
             var where = '_blank'; 
             var window_spec = 'dependent,height=375,width=550,resizable,scrollbars,titlebar'; 
             open(url, where, window_spec); 
@@ -539,18 +538,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
         { 
 
         <?php    
-                             if (isset($id_projeto))    
-                             {    
-                             ?>    
-								var url = 'recuperaDAML.php?id_projeto=' + '<?=$id_projeto?>'; 
-                             <?php    
-                             }    
-                             else    
-                             {    
-                             ?>    
-								var url = 'recuperaDAML.php?' 
-                             <?php    
-                             }    
+			if (isset($id_projeto))    
+            {    
+	            ?>    
+				var url = 'recuperaDAML.php?id_projeto=' + '<?=$id_projeto?>'; 
+	            <?php    
+			}    
+            else    
+            {    
+            	?>    
+				var url = 'recuperaDAML.php?' 
+                <?php    
+			}    
 
             ?>    
 
@@ -573,18 +572,28 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 include("frame_inferior.php");    
 
 
-if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE) 
+if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE)
+{  
     $vetorVazio = array();
-    if ($t == "c")        { print "<h3>Informações sobre o cenário</h3>";   
-
-    } elseif ($t == "l")  { print "<h3>Informações sobre o símbolo</h3>";   
-
-    } elseif ($t == "oc") { print "<h3>Informações sobre o conceito</h3>";    
-
-    } elseif ($t == "or") { print "<h3>Informações sobre a relação</h3>";   
-
-    } elseif ($t == "oa") { print "<h3>Informações sobre o axioma</h3>";   
-
+    if ($t == "c")       
+	{
+		print "<h3>Informações sobre o cenário</h3>";   
+    }
+    else if ($t == "l") 
+    {
+    	print "<h3>Informações sobre o símbolo</h3>";   
+    }
+    else if ($t == "oc")
+	{
+		print "<h3>Informações sobre o conceito</h3>";    
+    }
+    else if ($t == "or")
+	{
+		print "<h3>Informações sobre a relação</h3>";   
+    }
+    else if ($t == "oa")
+	{
+		print "<h3>Informações sobre o axioma</h3>";   
     }    
 
 ?>
@@ -600,7 +609,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
           
           <?php   
     
-	if ($t == "c") {        // se for cenario 
+	if ($t == "c")        // se for cenario
+	{ 
         
 		$q = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
               FROM cenario    
@@ -661,11 +671,10 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
           <!-- LÉXICO -->
           
           <?php    
-    } elseif ($t == "l") {
-              
-        $q = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto    
-              FROM lexico    
-              WHERE id_lexico = $id";    
+    }
+    else if ($t == "l")
+	{          
+        $q = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto FROM lexico WHERE id_lexico = $id";    
       
 		$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
         $result = mysql_fetch_array($qrr);
@@ -738,7 +747,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
           <!-- ONTOLOGIA - CONCEITO -->
           
           <?php    
-    } elseif ($t == "oc") {        // se for cenario 
+    }
+    else if ($t == "oc") // se for cenario
+	{         
         
 		$q = "SELECT id_conceito, nome, descricao   
               FROM   conceito   
@@ -767,7 +778,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
           <!-- ONTOLOGIA - RELAÇÕES -->
           
           <?php    
-    } elseif ($t == "or") {        // se for cenario 
+    }
+    elseif ($t == "or") // se for cenario
+    { 
         $q = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";    
@@ -795,16 +808,25 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 <!--                     TERCEIRA PARTE                                     -->
 
 <?php    
-    if ($t == "c")       { print "<h3>Cenários que referenciam este cenário</h3>";   
-
-    } elseif ($t == "l") { print "<h3>Cenários e termos do léxico que referenciam este termo</h3>";   
-
-    } elseif ($t == "oc") { print "<h3>Relações do conceito</h3>";   
-
-    } elseif ($t == "or") { print "<h3>Conceitos referentes à relação</h3>";   
-
-    } elseif ($t == "oa") { print "<h3>Axioma</h3>";   
-
+    if ($t == "c")
+	{ 
+		print "<h3>Cenários que referenciam este cenário</h3>";   
+    }
+    else if ($t == "l")
+	{
+		print "<h3>Cenários e termos do léxico que referenciam este termo</h3>";   
+    }
+    else if ($t == "oc")
+	{ 
+		print "<h3>Relações do conceito</h3>";   
+    }
+    else if ($t == "or")
+	{
+		print "<h3>Conceitos referentes à relação</h3>";   
+    }
+    else if ($t == "oa")
+	{
+		print "<h3>Axioma</h3>";
     }    
 ?>
 
@@ -814,7 +836,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 
     frame_inferior($c, $t, $id);    
 
-} elseif (isset($id_projeto)) {         // SCRIPT CHAMADO PELO HEADING.PHP 
+}
+else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
+{ 
 
     // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um 
     // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
@@ -856,7 +880,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 //            Caso contrário, ver Usuário escolhe Projeto. 
 
     // Verifica se o usuario eh administrador deste projeto 
-    if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto)) {    
+    if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto))
+	{    
 ?>
 <br>
 <table ALIGN=CENTER>
@@ -947,7 +972,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
   </TR>
         </table>
 <?php    
-    }   else
+    }  
+    else
 	{
 ?>
 <br>
@@ -961,7 +987,9 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
         </table>
 <?php
 	}
-} else {        // SCRIPT CHAMADO PELO INDEX.PHP 
+}
+else        // SCRIPT CHAMADO PELO INDEX.PHP
+{ 
 ?>
 <p>Selecione um projeto acima, ou crie um novo projeto.</p>
 <?php    
