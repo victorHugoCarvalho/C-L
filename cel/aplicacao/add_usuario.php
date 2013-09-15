@@ -41,25 +41,25 @@ if (isset($submit)) // Se chamado pelo botao de submit
             // Todos os campos estao preenchidos. O sistema deve agora verificar
             // se ja nao existe alguem cadastrado com o mesmo login informado pelo usuario.
 
-			// Cenï¿½rio - Incluir usuï¿½rio independente 
+			// Cenï¿½rio - Incluir usuário independente 
 			
-			// Objetivo:  Permitir um usuï¿½rio, que nï¿½o esteja cadastrado como administrador, se cadastrar 
+			// Objetivo:  Permitir um usuário, que não esteja cadastrado como administrador, se cadastrar 
 			//            com o perfil de administrador	
-			// Contexto:  Sistema aberto Usuï¿½rio deseja cadastrar-se ao sistema como administrador. 
-			//            Usuï¿½rio na tela de cadastro de usuï¿½rio 
-			//            Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
-			// Atores:    Usuï¿½rio, Sistema	
+			// Contexto:  Sistema aberto Usuário deseja cadastrar-se ao sistema como administrador. 
+			//            Usuário na tela de cadastro de usuário 
+			// Pré-Condições: Usuário ter acessado ao sistema	
+			// Atores:    Usuário, Sistema	
 			// Recursos:  Interface, Banco de Dados	
-			// Episï¿½dios: O sistema retorna para o usuï¿½rio uma interface com campos para entrada de
-			//            um Nome, email, login, uma senha e a confirmaï¿½ï¿½o da senha.
-			//            O usuï¿½rio preenche os campos e clica em cadastrar 
-			//            O sistema entï¿½o checa para ver se todos os campos estï¿½o preenchidos.
+			// Episódios: O sistema retorna para o usuário uma interface com campos para entrada de
+			//            um Nome, email, login, uma senha e a confirmação da senha.
+			//            O usuário preenche os campos e clica em cadastrar 
+			//            O sistema então checa para ver se todos os campos estão preenchidos.
 			//              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
 			//               os campos devem ser preenchidos.
 			//              Caso todos os campos estiverem preenchidos, o sistema checa no banco
-			//               de dados para ver se esse login jï¿½ existe..
-			//              Caso aquele login digitado jï¿½ exista, o sistema retorna a mesma pï¿½gina
-			//               para o usuï¿½rio avisando que o usuï¿½rio deve escolher outro login,.
+			//               de dados para ver se esse login já existe..
+			//              Caso aquele login digitado já exista, o sistema retorna a mesma página
+			//               para o usuário avisando que o usuário deve escolher outro login,.
 
             $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";

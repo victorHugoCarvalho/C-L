@@ -5,7 +5,7 @@ include("httprequest.inc");
 include_once("bd.inc") ;
 
 // add_lexico.php: Este script cadastra um novo termo no lexico do projeto. 
-//                 ï¿½ passada, atraves da URL, uma variavel $id_projeto, que
+//                 é passada, atraves da URL, uma variavel $id_projeto, que
 //                 indica em que projeto deve ser inserido o novo termo.
 
 session_start();
@@ -15,8 +15,8 @@ if (!isset($sucesso))
     $sucesso = 'n' ;
 }
 
-// checks whether the user has been authenticated
-chkUser("index.php");   
+
+chkUser("index.php");   // checks whether the user has been authenticated
 
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
@@ -24,15 +24,15 @@ $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 //Script chamado atraves do submit do formulario
 if (isset($submit))
 {
-	$lexicoExistente = checarLexicoExistente($_SESSION['id_projeto_corrente'],$nome);
+	$existenceLexico = checarLexicoExistente($_SESSION['id_projeto_corrente'],$nome);
 	if( !isset($listSinonimo))
 	{
 		$listSinonimo = array();
 	}
    
-	$ExisteSinonimo = checarSinonimo($_SESSION['id_projeto_corrente'], $listSinonimo);
+	$existenceSynonyms = checarSinonimo($_SESSION['id_projeto_corrente'], $listSinonimo);
 
-	if ( ($lexicoExistente == true) AND ($ExisteSinonimo == true ) )
+	if ( ($existenceLexico == true) AND ($existenceSynonyms == true ) )
 	{
 		$id_usuario_corrente = $_SESSION['id_usuario_corrente'];        
 		inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario_corrente, $listSinonimo, $classificacao) ;

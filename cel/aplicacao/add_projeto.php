@@ -5,27 +5,27 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// Cenï¿½rio controle de acesso
-chkUser("index.php");        
+
+chkUser("index.php");        // checks whether the user has been authenticated
 
 // Este script eh chamado quando ocorre uma solicitacao de inclusao
 // de novo projeto, ou quando um novo usuario se cadastra no sistema
 
 
-//Cenï¿½rio  -  Cadastrar Novo Projeto 
-//Objetivo:	   Permitir ao usuï¿½rio cadastrar um novo projeto
-//Contexto:	   Usuï¿½rio deseja incluir um novo projeto na base de dados
-//              Prï¿½-Condiï¿½ï¿½o: Login  
-//Atores:	   Usuï¿½rio
+//Cenário  -  Cadastrar Novo Projeto 
+//Objetivo:	   Permitir ao Usuário cadastrar um novo projeto
+//Contexto:	   Usuário deseja incluir um novo projeto na base de dados
+//Pré-Condições: Login  
+//Atores:	   Usuário
 //Recursos:	   Sistema, dados do projeto, base de dados
-//Episï¿½dios:   O Usuï¿½rio clica na opï¿½ï¿½o ï¿½adicionar projetoï¿½ encontrada no menu superior.
-//             O sistema disponibiliza uma tela para o usuï¿½rio especificar os dados do novo projeto,
-//              como o nome do projeto e sua descriï¿½ï¿½o.
-//             O usuï¿½rio clica no botï¿½o inserir.
-//             O sistema grava o novo projeto na base de dados e automaticamente constrï¿½i a Navegaï¿½ï¿½o
+//Episódios:   O Usuário clica na opção é adicionar projeto encontrada no menu superior.
+//             O sistema disponibiliza uma tela para o usuário especificar os dados do novo projeto,
+//              como o nome do projeto e sua descrição.
+//             O usuário clica no botão inserir.
+//             O sistema grava o novo projeto na base de dados e automaticamente construção a Navegação
 //              para este novo projeto.
-//Exceï¿½ï¿½o:	   Se for especificado um nome de projeto jï¿½ existente e que pertenï¿½a ou tenha a participaï¿½ï¿½o
-//                 deste usuï¿½rio, o sistema exibe uma mensagem de erro.
+//Exceção:	   Se for especificado um nome de projeto já existente e que pertença ou tenha a participação
+//                 deste usuário, o sistema exibe uma mensagem de erro.
 
 // Chamado atraves do botao de submit
 if (isset($submit))
@@ -48,7 +48,7 @@ if (isset($submit))
 <html>
 <title>Erro</title>
 <body>
-<p style="color: red; font-weight: bold; text-align: center">Nome de projeto jï¿½ existente!</p>
+<p style="color: red; font-weight: bold; text-align: center">Nome de projeto já existente!</p>
 <center>
   <a href="JavaScript:window.history.go(-1)">Voltar</a>
 </center>
@@ -109,7 +109,7 @@ else
               <td><input maxlength="128" name="nome" size="48" type="text"></td>
             </tr>
     <tr>
-              <td>Descriï¿½ï¿½o:</td>
+              <td>Descrição:</td>
               <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
             <tr>
               <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
@@ -117,7 +117,7 @@ else
   </table>
         </form>
 <br>
-<i><a href="showSource.php?file=add_projeto.php">Veja o cï¿½digo fonte!</a></i>
+<i><a href="showSource.php?file=add_projeto.php">Veja o código fonte!</a></i>
 </body>
 </html>
 <?php
