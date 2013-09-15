@@ -12,8 +12,8 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php");        
+
+chkUser("index.php");  // checks whether the user has been authenticated       
 
 if (!isset($sucesso))
 {
@@ -39,21 +39,21 @@ if (isset($submit))
         print("<!-- Tentando Inserir Cenario --><BR>");
 
         /* Substitui todas as ocorrencias de ">" e "<" por " " */
-        $titulo     = str_replace( ">" , " " , str_replace ( "<" , " " , $titulo     ) ) ;
-        $objetivo   = str_replace( ">" , " " , str_replace ( "<" , " " , $objetivo   ) ) ;
-        $contexto   = str_replace( ">" , " " , str_replace ( "<" , " " , $contexto   ) ) ;
-        $atores     = str_replace( ">" , " " , str_replace ( "<" , " " , $atores     ) ) ;
-        $recursos   = str_replace( ">" , " " , str_replace ( "<" , " " , $recursos   ) ) ;
-        $excecao    = str_replace( ">" , " " , str_replace ( "<" , " " , $excecao    ) ) ;
-        $episodios  = str_replace( ">" , " " , str_replace ( "<" , " " , $episodios  ) ) ;
+        $title       = str_replace( ">" , " " , str_replace ( "<" , " " , $title      ) ) ;
+        $objective   = str_replace( ">" , " " , str_replace ( "<" , " " , $objective  ) ) ;
+        $context     = str_replace( ">" , " " , str_replace ( "<" , " " , $context    ) ) ;
+        $actors      = str_replace( ">" , " " , str_replace ( "<" , " " , $actors     ) ) ;
+        $resources   = str_replace( ">" , " " , str_replace ( "<" , " " , $resources  ) ) ;
+        $exception   = str_replace( ">" , " " , str_replace ( "<" , " " , $exception  ) ) ;
+        $episode     = str_replace( ">" , " " , str_replace ( "<" , " " , $episode  ) ) ;
         inserirPedidoAdicionarCenario($_SESSION['id_projeto_corrente'],       
-                                      $titulo,
-                                      $objetivo,
-                                      $contexto,
-                                      $atores,
-                                      $recursos,
-                                      $excecao,
-                                      $episodios,
+                                      $title,
+                                      $objective,
+                                      $context,
+                                      $actors,
+                                      $resources,
+                                      $exception,
+                                      $episode,
                                       $_SESSION['id_usuario_corrente']);
      	print("<!-- Cenario Inserido Com Sucesso! --><BR>");
      }

@@ -4,7 +4,7 @@ session_start();
 
 include("funcoes_genericas.php");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado
+chkUser("index.php");        // checks whether the user has been authenticated
 
 ?>
 
@@ -91,28 +91,28 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 
 include("frame_inferior.php");
 
-if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE)
+if (isset($id_type) && isset($type)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE)
 
-    if ($t == "c") {
+    if ($type == "c") {
 ?>
-<h3>Informaï¿½ï¿½es sobre o cenï¿½rio</h3>
+<h3>Informações sobre o cenário</h3>
 <?php
     } else {
 ?>
-<h3>Informaï¿½ï¿½es sobre o lï¿½xico</h3>
+<h3>Informações sobre o léxico</h3>
 <?php
     }
 ?>
 <table>
           <?php
-    $c = bd_connect() or die("Erro ao conectar ao SGBD");
+    $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-    if ($t == "c") {        // se for cenario
-        $q = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
+    if ($type == "c") {        // se for cenario
+        $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
               FROM cenario
-              WHERE id_cenario = $id";
-        $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($qrr);
+              WHERE id_cenario = $id_type";
+        $SendQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($SendQuery);
 ?>
           <tr>
     <td>Titulo:</td>
@@ -135,27 +135,27 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     <td><?=$result['recursos']?></td>
   </tr>
           <tr>
-    <td>Episï¿½dios:</td>
+    <td>Episódios:</td>
     <td><?=$result['episodios']?></td>
   </tr>
           <tr>
-    <td height="40" valign="bottom"><a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenï¿½rio</a></td>
-    <td valign="bottom"><a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenï¿½rio</a></td>
+    <td height="40" valign="bottom"><a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenário</a></td>
+    <td valign="bottom"><a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenário</a></td>
   </tr>
           <?php
     } else {
-        $q = "SELECT id_lexico, nome, nocao, impacto
+        $query = "SELECT id_lexico, nome, nocao, impacto
               FROM lexico
-              WHERE id_lexico = $id";
-        $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($qrr);
+              WHERE id_lexico = $id_type";
+        $SendQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($SendQuery);
 ?>
           <tr>
     <td>Nome:</td>
     <td><?=$result['nome']?></td>
   </tr>
           <tr>
-    <td>Noï¿½ï¿½o:</td>
+    <td>Noção:</td>
     <td><?=$result['nocao']?></td>
   </tr>
           <tr>
@@ -163,8 +163,8 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     <td><?=$result['impacto']?></td>
   </tr>
           <tr>
-    <td height="40" valign="bottom"><a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Lï¿½xico</a></td>
-    <td valign="bottom"><a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Lï¿½xico</a></td>
+    <td height="40" valign="bottom"><a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Léxico</a></td>
+    <td valign="bottom"><a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Léxico</a></td>
   </tr>
           <?php
     }
@@ -174,17 +174,17 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
 <br>
 <br>
 <?php
-    if ($t == "c") {
+    if ($type == "c") {
 ?>
-<h3>Cenï¿½rios que referenciam este cenï¿½rio</h3>
+<h3>Cenários que referenciam este cenário</h3>
 <?php
     } else {
 ?>
-<h3>Cenï¿½rios e termos do lï¿½xico que referenciam este termo</h3>
+<h3>Cenários e termos do léxico que referenciam este termo</h3>
 <?php
     }
 
-    frame_inferior($c, $t, $id);
+    frame_inferior($connected_SGBD, $type, $id_type);
 
 } elseif (isset($id_projeto)) {         // SCRIPT CHAMADO PELO HEADING.PHP
 
@@ -203,11 +203,11 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     <td><?=simple_query("nome", "projeto", "id_projeto = $id_projeto")?></td>
   </tr>
           <tr>
-    <td>Data de criaï¿½ï¿½o:</td>
+    <td>Data de criação:</td>
     <td><?=simple_query("TO_CHAR(data_criacao, 'DD/MM/YY')", "projeto", "id_projeto = $id_projeto")?></td>
   </tr>
           <tr>
-    <td>Descriï¿½ï¿½o:</td>
+    <td>Descrição:</td>
     <td><?=simple_query("descricao", "projeto", "id_projeto = $id_projeto")?></td>
   </tr>
         </table>
@@ -217,11 +217,11 @@ if (isset($id) && isset($t)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU 
     if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto)) {
 ?>
 <br>
-<p><b>Vocï¿½ ï¿½ um administrador deste projeto</b></p>
-<p><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteraï¿½ï¿½o de Cenï¿½rios</a></p>
-<p><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteraï¿½ï¿½o de termos do Lï¿½xico</a></p>
-<p><a href="#" onClick="addUsuario();">Adicionar usuï¿½rio (nï¿½o existente) neste projeto</a></p>
-<p><a href="#" onClick="relUsuario();">Relacionar usuï¿½rios jï¿½ existentes com este projeto</a></p>
+<p><b>Você é um administrador deste projeto</b></p>
+<p><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteração de Cenários</a></p>
+<p><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteraçao de termos do Léxico</a></p>
+<p><a href="#" onClick="addUsuario();">Adicionar usuários (não existente) neste projeto</a></p>
+<p><a href="#" onClick="relUsuario();">Relacionar usuários já existentes com este projeto</a></p>
 <p><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></p>
 <?php
     }
