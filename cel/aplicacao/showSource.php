@@ -1,5 +1,5 @@
 <?php
-$file = $HTTP_GET_VARS['file'];
+$file = $_GET['file'];
 
 if (isset($HTTP_GET_VARS["file"]))
 {    
