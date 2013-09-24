@@ -58,7 +58,7 @@ function MTMakeLastSubmenu(menu, isExpanded, collapseIcon, expandIcon)
 
 function MTMAddSubItem(item)
 {
-	if (this.submenu == null
+	if (this.submenu == null)
 	{
 		this.MTMakeSubmenu(new MTMenu(), false, this.icon, this.openIcon);
 	}
@@ -408,480 +408,490 @@ function MTMStartMenu(thisEvent)
 
 function MTMDisplayMenu()
 {
-	if (MTMUA.MTMable && !MTMUpdating)
-	{
-		MTMUpdating = true;
-		MTMLevel = 0;
+    if (MTMUA.MTMable && !MTMUpdating)
+    {
+        MTMUpdating = true;
+        MTMLevel = 0;
 
-		if (MTMFirstRun)
-		{
-			MTMUA.getFrames();
+        if (MTMFirstRun)
+        {
+            MTMUA.getFrames();
 
-			if (MTMUseCookies)
-			{ 
-				MTMFetchCookies();
+            if (MTMUseCookies)
+            { 
+                MTMFetchCookies();
 				
-				if (MTMTrackedCookie)
-				{
-					MTMTCArray = MTMTrackedCookie.split("::");
-					MTMTrackedItem = MTMTCArray[0];
+                if (MTMTrackedCookie)
+                {
+                    MTMTCArray = MTMTrackedCookie.split("::");
+                    MTMTrackedItem = MTMTCArray[0];
 					
-					if(parent.frames[MTMTCArray[1]])
-					{
-						parent.frames[MTMTCArray[1]].location = MTMTCArray[2];
-					}
-					MTMTCArray = null;
-				}
-			}
-		}
-		
-		if(MTMTrack)
-		{
-			MTMTrackedItem = MTMTrackExpand(menu);
-		}
-
-		if (MTMExpansion && MTMSubsAutoClose) 
-		{
-			MTMCloseSubs(menu); 
-		}
-
-		if (MTMUA.DOMable)
-		{
-			if (MTMFirstRun)
-			{
-				MTMinitializeDOMDocument();
-			}
-		}
-		else if(MTMFirstRun || MTMUA.browserType != "IE")
-		{
-			MTMUA.document.open("text/html", "replace");
-			MTMOutputString = (MTMDOCTYPE ? (MTMDOCTYPE + "\n") : '') + "<html><head>\n";
-			if (MTMcontentType) 
-			{
-				MTMOutputString += '<meta http-equiv="Content-Type" content="' + MTMcontentType + '">\n';
-			}
-			
-			if(MTMLinkedSS)
-			{
-				MTMOutputString += '<link rel="stylesheet" type="text/css" href="' + MTMUA.preHREF + MTMSSHREF + '">\n';
-			}
-			else
-			{
-				MTMUA.document.writeln(MTMOutputString);
-				MTMOutputString = "";
-				MTMcreateStyleSheet();
-			}
-			
-			if (MTMUA.browserType == "IE" && MTMrightClickMessage)
-			{
-				MTMOutputString +=  '<scr' + 'ipt type="text/javascript">\nfunction MTMcatchRight()
-									"{\nif(event && (event.button == 2 || event.button == 3)) {\nalert("'
-									+ MTMrightClickMessage + '");\nreturn false;\n}\nreturn true;\n}
-									"\n\ndocument.onmousedown = MTMcatchRight;\n';
-				MTMOutputString += '<\/scr' + 'ipt>\n';
-			}
-			
-			MTMOutputString += '</head>\n<body ';
-			
-			if (MTMBackground != "")
-			{
-				MTMOutputString += 'background="' + MTMUA.preHREF + MTMenuImageDirectory + MTMBackground + '" ';
-			}
-			
-			MTMOutputString +=  'bgcolor="' + MTMBGColor + '" text="' + MTMTextColor + '" link="' + MTMLinkColor + 
-								'" vlink="' + MTMLinkColor + '" alink="' + MTMLinkColor + '">\n';
-			MTMUA.document.writeln(MTMOutputString + (MTMHeader ? MTMHeader : "") + 
-								   '\n<table border="0" cellpadding="0" cellspacing="0" width="' + MTMTableWidth +
-								   '" id="mtmtable">\n');
-		}
-
-		if (!MTMFirstRun && (MTMUA.DOMable || MTMUA.browserType == "IE"))
-		{
-			if (!MTMUA.menuTable) 
-			{
-				MTMUA.menuTable = MTMUA.document.all('mtmtable');
-			}
-
-			while(MTMUA.menuTable.rows.length > 1) 
-			{
-				MTMUA.menuTable.deleteRow(1);
-			}
-		}
-
-		MTMOutputString = '<img src="' + MTMUA.preHREF + MTMenuImageDirectory + MTMRootIcon +
-						  '" align="left" border="0" vspace="0" hspace="0">';
-		
-		if (MTMUA.cssEnabled)
-		{
-			MTMOutputString += '<span id="root">&nbsp;' + MTMenuText + '</span>';
-		}
-		else
-		{
-			MTMOutputString += '<font size="' + MTMRootFontSize + '" face="' + MTMRootFont + '" color="' + MTMRootColor + '">' + MTMenuText + '</font>';
-		}
-		
-		if (MTMFirstRun || (!MTMUA.DOMable && MTMUA.browserType != "IE"))
-		{
-			MTMAddCell(MTMOutputString);
-		}
-
-		MTMListItems(menu);
-
-		if (!MTMUA.DOMable && (MTMFirstRun || MTMUA.browserType != "IE"))
-		{
-			MTMUA.document.writeln('</table>\n' + (MTMFooter ? MTMFooter : "") + '\n');
-			
-			if (MTMLinkedJSURL && MTMUA.browserType != "IE")
-			{
-				MTMUA.document.writeln('<scr' + 'ipt defer type="text/javascript" src="' + MTMUA.preHREF + MTMLinkedJSURL +'"></scr' + 'ipt>');
-			}
-			MTMUA.document.writeln('\n</body>\n</html>');
-			MTMUA.document.close();
-		}
-
-		if ((MTMClickedItem || MTMTrackedItem) && !(MTMUA.browserType == "NN" && MTMUA.majVersion == 3))
-		{
-			MTMItemName = "sub" + (MTMClickedItem ? MTMClickedItem.number : MTMTrackedItem);
-		
-			if(document.layers && MTMUA.menuFrame.scrollbars)
-			{
-				var i;
-				for (i = 0; i < MTMUA.document.anchors.length; i++)
-				{
-					if (MTMUA.document.links[i].name == MTMItemName)
-					{
-						MTMyval = MTMUA.document.links[i].y;
-						MTMUA.document.links[i].focus();
-						break;
-					}
-				}
-				MTMWinSize = MTMUA.menuFrame.innerHeight;
-			}
-			else if(MTMUA.browserType != "O")
-			{
-				if (MTMUA.browserType == "NN" && MTMUA.majVersion == 5)
-				{
-					MTMUA.document.all = MTMUA.document.getElementsByTagName("*");
-				}
-				MTMyval = MTMGetYPos(MTMUA.document.all[MTMItemName]);
-				MTMUA.document.all[MTMItemName].focus();
-				MTMWinSize = MTMUA.browserType == "IE" ? MTMUA.document.body.offsetHeight : MTMUA.menuFrame.innerHeight;
-			}
-			if (MTMyval > (MTMWinSize - 60))
-			{
-				MTMUA.menuFrame.scrollTo(0, parseInt(MTMyval - (MTMWinSize * 1/3)));
-			}
-		}
-
-		if (!MTMFirstRun && MTMUA.cookieEnabled)
-		{ 
-			if (MTMCookieString != "")
-			{
-				setCookie(MTMCookieName, MTMCookieString.substring(0,4000), MTMCookieDays);
-				if (MTMTrackedCookieName) 
-				{
-					if (MTMTCArray)
-					{
-						setCookie(MTMTrackedCookieName, MTMTCArray.join("::"), MTMCookieDays);
-					}
-					else
-					{
-						setCookie(MTMTrackedCookieName, "", -1);
-					}
-				}
-			}
-			else
-			{
-				setCookie(MTMCookieName, "", -1);
-			}
-		}
-		
-		if (MTMLinkedJSURL && MTMLinkedInitFunction && !(MTMUA.browserType == "IE" && MTMUA.majVersion == 4))
-		{
-			setTimeout('MTMUA.menuFrame.' + MTMLinkedInitFunction + '()', 10);
-		}
-
-		MTMFirstRun = false;
-		MTMClickedItem = false;
-		MTMExpansion = false;
-		MTMTrack = false;
-		MTMCookieString = "";
-	}
+                    if(parent.frames[MTMTCArray[1]])
+                    {
+                        parent.frames[MTMTCArray[1]].location = MTMTCArray[2];
+                    }
+                    MTMTCArray = null;
+                }
+            }
+        }
 	
-MTMUpdating = false;
+        if(MTMTrack)
+        {
+            MTMTrackedItem = MTMTrackExpand(menu);
+        }
+
+        if (MTMExpansion && MTMSubsAutoClose) 
+        {
+            MTMCloseSubs(menu); 
+        }
+
+        if (MTMUA.DOMable)
+        {
+            if (MTMFirstRun)
+            {
+                MTMinitializeDOMDocument();
+            }
+        }
+        else if (MTMFirstRun || MTMUA.browserType != "IE")
+        {
+            MTMUA.document.open("text/html", "replace");
+            MTMOutputString = (MTMDOCTYPE ? (MTMDOCTYPE + "\n") : '') + "<html><head>\n";
+            if (MTMcontentType) 
+            {
+                MTMOutputString += '<meta http-equiv="Content-Type" content="' + MTMcontentType + '">\n';
+            }
+		
+            if(MTMLinkedSS)
+            {
+                MTMOutputString += '<link rel="stylesheet" type="text/css" href="' + MTMUA.preHREF + MTMSSHREF + '">\n';
+            }
+            else
+            {
+                MTMUA.document.writeln(MTMOutputString);
+                MTMOutputString = "";
+                MTMcreateStyleSheet();
+            }
+			
+            if (MTMUA.browserType == "IE" && MTMrightClickMessage)
+            {
+                MTMOutputString +=  '<scr' + 'ipt type="text/javascript">'
+                function MTMcatchRight()
+                {
+                    if (event && (event.button == 2 || event.button == 3))
+                    {
+                        alert("'+ MTMrightClickMessage + '");
+                        return false;
+                    }
+                    return true;
+                }
+    		
+                document.onmousedown = MTMcatchRight;
+                MTMOutputString += '<\/scr' + 'ipt>\n';
+            }
+		
+            MTMOutputString += '</head>\n<body ';
+    		
+            if (MTMBackground != "")
+            {
+                MTMOutputString += 'background="' + MTMUA.preHREF + MTMenuImageDirectory + MTMBackground + '" ';
+            }
+			
+            MTMOutputString +=  'bgcolor="' + MTMBGColor + '" text="' + MTMTextColor + '" link="' + MTMLinkColor + 
+                                '" vlink="' + MTMLinkColor + '" alink="' + MTMLinkColor + '">\n';
+                        
+            MTMUA.document.writeln(MTMOutputString + (MTMHeader ? MTMHeader : "") + 
+                                    '\n<table border="0" cellpadding="0" cellspacing="0" width="' + MTMTableWidth +
+								   '" id="mtmtable">\n');
+        }
+
+        if (!MTMFirstRun && (MTMUA.DOMable || MTMUA.browserType == "IE"))
+        {
+            if (!MTMUA.menuTable) 
+            {
+                MTMUA.menuTable = MTMUA.document.all('mtmtable');
+            }
+
+            while(MTMUA.menuTable.rows.length > 1) 
+            {
+                MTMUA.menuTable.deleteRow(1);
+            }
+        }
+
+        MTMOutputString = '<img src="' + MTMUA.preHREF + MTMenuImageDirectory + MTMRootIcon +
+                        '" align="left" border="0" vspace="0" hspace="0">';
+		
+        if (MTMUA.cssEnabled)
+        {
+            MTMOutputString += '<span id="root">&nbsp;' + MTMenuText + '</span>';
+        }
+        else
+        {
+            MTMOutputString += '<font size="' + MTMRootFontSize + '" face="' + MTMRootFont + '" color="' + MTMRootColor + '">' + MTMenuText + '</font>';
+        }
+		
+        if (MTMFirstRun || (!MTMUA.DOMable && MTMUA.browserType != "IE"))
+        {
+            MTMAddCell(MTMOutputString);
+        }
+
+        MTMListItems(menu);
+
+        if (!MTMUA.DOMable && (MTMFirstRun || MTMUA.browserType != "IE"))
+        {
+            MTMUA.document.writeln('</table>\n' + (MTMFooter ? MTMFooter : "") + '\n');
+		
+            if (MTMLinkedJSURL && MTMUA.browserType != "IE")
+            {
+                MTMUA.document.writeln('<scr' + 'ipt defer type="text/javascript" src="' + MTMUA.preHREF + MTMLinkedJSURL +'"></scr' + 'ipt>');
+            }
+            MTMUA.document.writeln('\n</body>\n</html>');
+            MTMUA.document.close();
+        }
+
+        if ((MTMClickedItem || MTMTrackedItem) && !(MTMUA.browserType == "NN" && MTMUA.majVersion == 3))
+        {
+            MTMItemName = "sub" + (MTMClickedItem ? MTMClickedItem.number : MTMTrackedItem);
+		
+            if(document.layers && MTMUA.menuFrame.scrollbars)
+            {
+                var i;
+                for (i = 0; i < MTMUA.document.anchors.length; i++)
+                {
+                    if (MTMUA.document.links[i].name == MTMItemName)
+                    {
+                        MTMyval = MTMUA.document.links[i].y;
+                        MTMUA.document.links[i].focus();
+                        break;
+                    }
+                }
+                MTMWinSize = MTMUA.menuFrame.innerHeight;
+            }
+            else if(MTMUA.browserType != "O")
+            {
+                if (MTMUA.browserType == "NN" && MTMUA.majVersion == 5)
+                {
+                    MTMUA.document.all = MTMUA.document.getElementsByTagName("*");
+                }
+                MTMyval = MTMGetYPos(MTMUA.document.all[MTMItemName]);
+                MTMUA.document.all[MTMItemName].focus();
+                MTMWinSize = MTMUA.browserType == "IE" ? MTMUA.document.body.offsetHeight : MTMUA.menuFrame.innerHeight;
+            }
+            if (MTMyval > (MTMWinSize - 60))
+            {
+                    MTMUA.menuFrame.scrollTo(0, parseInt(MTMyval - (MTMWinSize * 1/3)));
+            }
+        }
+
+        if (!MTMFirstRun && MTMUA.cookieEnabled)
+        { 
+            if (MTMCookieString != "")
+            {
+                setCookie(MTMCookieName, MTMCookieString.substring(0,4000), MTMCookieDays);
+                if (MTMTrackedCookieName) 
+                {
+                    if (MTMTCArray)
+                    {
+                        setCookie(MTMTrackedCookieName, MTMTCArray.join("::"), MTMCookieDays);
+                    }
+                    else
+                    {
+                        setCookie(MTMTrackedCookieName, "", -1);
+                    }
+                }
+            }
+            else
+            {
+                setCookie(MTMCookieName, "", -1);
+            }
+        }
+
+        if (MTMLinkedJSURL && MTMLinkedInitFunction && !(MTMUA.browserType == "IE" && MTMUA.majVersion == 4))
+        {
+            setTimeout('MTMUA.menuFrame.' + MTMLinkedInitFunction + '()', 10);
+        }
+
+        MTMFirstRun = false;
+        MTMClickedItem = false;
+        MTMExpansion = false;
+        MTMTrack = false;
+        MTMCookieString = "";
+    }
+	
+    MTMUpdating = false;
 }
 
 function MTMinitializeDOMDocument()
 {
-	var newElement;
-	if (MTMcontentType)
-	{
-		MTMUA.appendElement('head', 'meta', 'httpEquiv', 'Content-Type', 'content', MTMcontentType);
-	}
-	MTMdisableStyleSheets();
+    var newElement;
+    if (MTMcontentType)
+    {
+        MTMUA.appendElement('head', 'meta', 'httpEquiv', 'Content-Type', 'content', MTMcontentType);
+    }
+    MTMdisableStyleSheets();
 
-	if (MTMLinkedSS)
-	{
-		MTMUA.appendElement('head', 'link', 'rel', 'stylesheet', 'type', 'text/css', 'href', (MTMUA.preHREF + MTMSSHREF));
-	}
-	else
-	{
-		MTMcreateStyleSheet();
-	}
-	
-	if(MTMLinkedJSURL)
-	{
-		MTMUA.appendElement('head', 'script', 'src', (MTMUA.preHREF + MTMLinkedJSURL), 'type', 'text/javascript', 'defer', true);
-	}
-	
-	while(MTMUA.document.body.childNodes.length > 0)
-	{
-		MTMUA.document.body.removeChild(MTMUA.document.body.firstChild);
-	}
+    if (MTMLinkedSS)
+    {
+        MTMUA.appendElement('head', 'link', 'rel', 'stylesheet', 'type', 'text/css', 'href', (MTMUA.preHREF + MTMSSHREF));
+    }
+    else
+    {
+        MTMcreateStyleSheet();
+    }
 
-	if (MTMHeader)
-	{
-		if (MTMUA.browserType == "IE")
-		{
-			MTMUA.document.body.insertAdjacentHTML("afterBegin", MTMHeader);
-		}
-		else
-		{
-			var myRange = MTMUA.document.createRange();
-			myRange.setStart(MTMUA.document.body, 0);
-			var parsedHTML = myRange.createContextualFragment(MTMHeader);
-			MTMUA.document.body.appendChild(parsedHTML);
-		}
-	}
-	
-	MTMUA.appendElement('body', 'table', 'border', '0', 'cellPadding', '0', 'cellSpacing', '0', 'width', MTMTableWidth, 'id', 'mtmtable');
-	MTMUA.menuTable = MTMUA.document.getElementById('mtmtable');
-	
-	if (MTMFooter)
-	{
-		if (MTMUA.browserType == "IE")
-		{
-			MTMUA.document.body.insertAdjacentHTML("beforeEnd", MTMFooter);
-		}
-		else
-		{
-			var myRange = MTMUA.document.createRange();
-			myRange.setStart(MTMUA.document.body, 0);
-			var parsedHTML = myRange.createContextualFragment(MTMFooter);
-			MTMUA.document.body.appendChild(parsedHTML);
-		}
-	}
+    if(MTMLinkedJSURL)
+    {
+        MTMUA.appendElement('head', 'script', 'src', (MTMUA.preHREF + MTMLinkedJSURL), 'type', 'text/javascript', 'defer', true);
+    }
+
+    while(MTMUA.document.body.childNodes.length > 0)
+    {
+        MTMUA.document.body.removeChild(MTMUA.document.body.firstChild);
+    }
+
+    if (MTMHeader)
+    {
+        if (MTMUA.browserType == "IE")
+        {
+            MTMUA.document.body.insertAdjacentHTML("afterBegin", MTMHeader);
+        }
+        else
+        {
+            var myRange = MTMUA.document.createRange();
+            myRange.setStart(MTMUA.document.body, 0);
+            var parsedHTML = myRange.createContextualFragment(MTMHeader);
+            MTMUA.document.body.appendChild(parsedHTML);
+        }
+    }
+
+    MTMUA.appendElement('body', 'table', 'border', '0', 'cellPadding', '0', 'cellSpacing', '0', 'width', MTMTableWidth, 'id', 'mtmtable');
+    MTMUA.menuTable = MTMUA.document.getElementById('mtmtable');
+
+    if (MTMFooter)
+    {
+        if (MTMUA.browserType == "IE")
+        {
+            MTMUA.document.body.insertAdjacentHTML("beforeEnd", MTMFooter);
+        }
+        else
+        {
+            var myRange = MTMUA.document.createRange();
+            myRange.setStart(MTMUA.document.body, 0);
+            var parsedHTML = myRange.createContextualFragment(MTMFooter);
+            MTMUA.document.body.appendChild(parsedHTML);
+        }
+    }
 }
 
 function MTMappendElement() 
 {
-	var newElement = this.document.createElement(arguments[1]);
-	var j, newProperty;
-	
-	for (j = 2; j < arguments.length; j+=2)
-	{
-		newElement.setAttribute(arguments[j], arguments[j+1]);
-	}
-	
-	if (arguments[0] == 'head')
-	{
-		this.head.appendChild(newElement);
-	}
-	else if (arguments[0] == 'body')
-	{
-		this.document.body.appendChild(newElement);
-	}
+    var newElement = this.document.createElement(arguments[1]);
+    var j, newProperty;
+
+    for (j = 2; j < arguments.length; j+=2)
+    {
+        newElement.setAttribute(arguments[j], arguments[j+1]);
+    }
+
+    if (arguments[0] == 'head')
+    {
+        this.head.appendChild(newElement);
+    }
+    else if (arguments[0] == 'body')
+    {
+        this.document.body.appendChild(newElement);
+    }
 }
 
 function MTMListItems(menu)
 {
-	var i, isLast;
-	for (i = 0; i < menu.items.length; i++)
-	{
-		MTMIndices[MTMLevel] = i;
-		isLast = (i == menu.items.length -1);
-		MTMDisplayItem(menu.items[i], isLast);
+    var i, isLast;
+    for (i = 0; i < menu.items.length; i++)
+    {
+        MTMIndices[MTMLevel] = i;
+        isLast = (i == menu.items.length -1);
+        MTMDisplayItem(menu.items[i], isLast);
 
-		if (menu.items[i].submenu && menu.items[i].expanded)
-		{
-			MTMBar[MTMLevel] = (isLast) ? false : true;
-			MTMLevel++;
-			MTMListItems(menu.items[i].submenu);
-			MTMLevel--;
-		}
-		else
-		{
-			MTMBar[MTMLevel] = false;
-		} 
-	}
+        if (menu.items[i].submenu && menu.items[i].expanded)
+        {
+            MTMBar[MTMLevel] = (isLast) ? false : true;
+            MTMLevel++;
+            MTMListItems(menu.items[i].submenu);
+            MTMLevel--;
+    }
+        else
+        {
+            MTMBar[MTMLevel] = false;
+        } 
+    }
 }
 
 function MTMDisplayItem(item, last)
 {
-	var i, img, subNoLink;
+    var i, img, subNoLink;
 
-	var MTMfrm = "parent.frames['" + MTMCodeFrame + "']";
-	var MTMref = '.menu.items[' + MTMIndices[0] + ']';
+    var MTMfrm = "parent.frames['" + MTMCodeFrame + "']";
+    var MTMref = '.menu.items[' + MTMIndices[0] + ']';
 
-	if (MTMLevel > 0)
-	{
-		for(i = 1; i <= MTMLevel; i++)
-		{
-			MTMref += ".submenu.items[" + MTMIndices[i] + "]";
-		}
-	}
+    if (MTMLevel > 0)
+    {
+        for(i = 1; i <= MTMLevel; i++)
+        {
+            MTMref += ".submenu.items[" + MTMIndices[i] + "]";
+        }
+    }
 
-	if (MTMUA.cookieEnabled)
-	{
-		if (MTMFirstRun && MTMCookieString != "")
-		{
-			item.expanded = (MTMCookieString.charAt(MTMCookieCharNum++) == "1") ? true : false;
-		}
-		else
-		{
-			MTMCookieString += (item.expanded) ? "1" : "0";
-		}
-	}
+    if (MTMUA.cookieEnabled)
+    {
+        if (MTMFirstRun && MTMCookieString != "")
+        {
+            item.expanded = (MTMCookieString.charAt(MTMCookieCharNum++) == "1") ? true : false;
+        }
+        else
+        {
+            MTMCookieString += (item.expanded) ? "1" : "0";
+        }
+    }
 
-	if (item.submenu)
-	{
-		var usePlusMinus = false;
-		if (MTMSubsGetPlus.toLowerCase() == "always" || MTMEmulateWE)
-		{
-			usePlusMinus = true;
-		}
-		else if (MTMSubsGetPlus.toLowerCase() == "submenu")
-		{
-			for(i = 0; i < item.submenu.items.length; i++)
-			{
-				if (item.submenu.items[i].submenu) 
-				{
-					usePlusMinus = true; 
-					break;
-				}
-			}
-		}
+    if (item.submenu)
+    {
+        var usePlusMinus = false;
+        if (MTMSubsGetPlus.toLowerCase() == "always" || MTMEmulateWE)
+        {
+            usePlusMinus = true;
+        }
+        else if (MTMSubsGetPlus.toLowerCase() == "submenu")
+        {
+            for(i = 0; i < item.submenu.items.length; i++)
+            {
+                if (item.submenu.items[i].submenu) 
+                {
+                    usePlusMinus = true; 
+                    break;
+                }
+            }
+        }
 
-		var MTMClickCmd = "return " + MTMfrm + ".MTMSubAction(" + MTMfrm + MTMref + ");";
-		var MTMouseOverCmd = "parent.status='" + (item.expanded ? "Collapse " : "Expand ") + (item.text.indexOf("'") != -1 ? MTMEscapeQuotes(item.text) : item.text) + "';return true;";
-		var MTMouseOutCmd = "parent.status=parent.defaultStatus;return true;";
-	}
+        var MTMClickCmd = "return " + MTMfrm + ".MTMSubAction(" + MTMfrm + MTMref + ");";
+        var MTMouseOverCmd = "parent.status='" + (item.expanded ? "Collapse " : "Expand ") + (item.text.indexOf("'") != -1 ? MTMEscapeQuotes(item.text) : item.text) + "';return true;";
+        var MTMouseOutCmd = "parent.status=parent.defaultStatus;return true;";
+    }
 
-	MTMOutputString = "";
+    MTMOutputString = "";
 	
-	if (MTMLevel > 0)
-	{
-		for (i = 0; i < MTMLevel; i++)
-		{
-			MTMOutputString += (MTMBar[i]) ? MTMakeImage("menu_bar.gif") : MTMakeImage("menu_pixel.gif");
-		}
-	}
+    if (MTMLevel > 0)
+    {
+        for (i = 0; i < MTMLevel; i++)
+        {
+            MTMOutputString += (MTMBar[i]) ? MTMakeImage("menu_bar.gif") : MTMakeImage("menu_pixel.gif");
+        }
+    }
 
-	if (item.submenu && usePlusMinus)
-	{
-		if (item.url == "")
-		{
-			MTMOutputString += MTMakeLink(item, true, true, true, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
-		}
-		else
-		{
-			if(MTMEmulateWE)
-			{
-				MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
-			}
-			else
-			{
-				if (!item.expanded)
-				{
-					MTMOutputString += MTMakeLink(item, false, true, true, MTMClickCmd);
-				}
-				else
-				{
-					MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
-				}
-			}
-		}
+    if (item.submenu && usePlusMinus)
+    {
+        if (item.url == "")
+        {
+            MTMOutputString += MTMakeLink(item, true, true, true, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
+        }
+        else
+        {
+            if(MTMEmulateWE)
+            {
+                MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
+            }
+            else
+            {
+                if (!item.expanded)
+                {
+                    MTMOutputString += MTMakeLink(item, false, true, true, MTMClickCmd);
+                }
+                else
+                {
+                    MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
+                }
+            }
+        }
 
-		if (item.expanded)
-		{
-			img = (last) ? "menu_corner_minus.gif" : "menu_tee_minus.gif";
-		}
-		else
-		{
-			img = (last) ? "menu_corner_plus.gif" : "menu_tee_plus.gif";
-		}
-	}
-	else
-	{
-		img = (last) ? "menu_corner.gif" : "menu_tee.gif";
-	}
-	MTMOutputString += MTMakeImage(img);
+        if (item.expanded)
+        {
+            img = (last) ? "menu_corner_minus.gif" : "menu_tee_minus.gif";
+        }
+        else
+        {
+            img = (last) ? "menu_corner_plus.gif" : "menu_tee_plus.gif";
+        }
+    }
+    else
+    {
+        img = (last) ? "menu_corner.gif" : "menu_tee.gif";
+    }
+    
+    MTMOutputString += MTMakeImage(img);
 
-	if (item.submenu)
-	{
-		if (MTMEmulateWE)
-		{
-			if (item.url != "")
-			{
-				MTMOutputString += '</a>' + MTMakeLink(item, false, false, true);
-			}
-			else if (!MTMAlwaysLinkIfWE)
-			{
-				subNoLink = true;
-				MTMOutputString += '</a><span class="subtext">';
-			}
-		}
-		else if (!usePlusMinus)
-		{
-			if (item.url == "")
-			{
-				MTMOutputString += MTMakeLink(item, true, true, true, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
-			}
-			else if (!item.expanded)
-			{
-				MTMOutputString += MTMakeLink(item, false, true, true, MTMClickCmd);
-			}
-			else
-			{
-				MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
-			}
-		}
+    if (item.submenu)
+    {
+        if (MTMEmulateWE)
+        {
+            if (item.url != "")
+            {
+                MTMOutputString += '</a>' + MTMakeLink(item, false, false, true);
+            }
+            else if (!MTMAlwaysLinkIfWE)
+            {
+                subNoLink = true;
+                MTMOutputString += '</a><span class="subtext">';
+            }
+        }
+        else if (!usePlusMinus)
+        {
+            if (item.url == "")
+            {
+                MTMOutputString += MTMakeLink(item, true, true, true, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
+            }
+            else if (!item.expanded)
+            {
+                MTMOutputString += MTMakeLink(item, false, true, true, MTMClickCmd);
+            }
+            else
+            {
+                MTMOutputString += MTMakeLink(item, true, true, false, MTMClickCmd, MTMouseOverCmd, MTMouseOutCmd);
+            }
+        }
 
-		img = (item.expanded) ? item.expandIcon : item.collapseIcon;
-	}
-	else
-	{
-		MTMOutputString += MTMakeLink(item, false, true, true);
-		img = (item.icon != "") ? item.icon : MTMFetchIcon(item.url);
-	}
+        img = (item.expanded) ? item.expandIcon : item.collapseIcon;
+    }
+    else
+    {
+        MTMOutputString += MTMakeLink(item, false, true, true);
+        img = (item.icon != "") ? item.icon : MTMFetchIcon(item.url);
+    }
 
-	MTMOutputString += MTMakeImage(img);
+    MTMOutputString += MTMakeImage(img);
 
-	if (item.submenu && item.url != "" && item.expanded && !MTMEmulateWE)
-	{
-		MTMOutputString += '</a>' + MTMakeLink(item, false, false, true);
-	}
+    if (item.submenu && item.url != "" && item.expanded && !MTMEmulateWE)
+    {
+        MTMOutputString += '</a>' + MTMakeLink(item, false, false, true);
+    }
 
-	if (MTMUA.browserType == "NN" && MTMUA.majVersion == 3 && !MTMLinkedSS)
-	{
-		var stringColor;
-		if (item.submenu && (item.url == "") && (item.number == MTMClickedItem.number))
-		{
-			stringColor = (item.expanded) ? MTMSubExpandColor : MTMSubClosedColor;
-		}
-		else if (MTMTrackedItem && MTMTrackedItem == item.number)
-		{
-			stringColor = MTMTrackColor;
-		}
-		else
-		{
-			stringColor = MTMLinkColor;
-		}
-		MTMOutputString += '<font color="' + stringColor + '" size="' + MTMenuFontSize + '" face="' + MTMenuFont + '">';
-	}
-	MTMOutputString += '&nbsp;' + item.text + ((MTMUA.browserType == "NN" && MTMUA.majVersion == 3 && !MTMLinkedSS) ? '</font>' : '');
-	MTMOutputString += subNoLink ? '</span>' : '</a>';
-	MTMAddCell(MTMOutputString);
+    if (MTMUA.browserType == "NN" && MTMUA.majVersion == 3 && !MTMLinkedSS)
+    {
+        var stringColor;
+        if (item.submenu && (item.url == "") && (item.number == MTMClickedItem.number))
+        {
+            stringColor = (item.expanded) ? MTMSubExpandColor : MTMSubClosedColor;
+        }
+        else if (MTMTrackedItem && MTMTrackedItem == item.number)
+        {
+            stringColor = MTMTrackColor;
+        }
+        else
+        {
+            stringColor = MTMLinkColor;
+        }
+        MTMOutputString += '<font color="' + stringColor + '" size="' + MTMenuFontSize + '" face="' + MTMenuFont + '">';
+    }
+    MTMOutputString += '&nbsp;' + item.text + ((MTMUA.browserType == "NN" && MTMUA.majVersion == 3 && !MTMLinkedSS) ? '</font>' : '');
+    MTMOutputString += subNoLink ? '</span>' : '</a>';
+    MTMAddCell(MTMOutputString);
 }
 
 function MTMEscapeQuotes(myString)

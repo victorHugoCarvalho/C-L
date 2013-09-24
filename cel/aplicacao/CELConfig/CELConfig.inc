@@ -1,29 +1,29 @@
 <?php
 /***************************************************************
- * Módulo de Configuração do CEL e seus Plugins.               *
+ * Mï¿½dulo de Configuraï¿½ï¿½o do CEL e seus Plugins.               *
  * Arquivos: CELConfig.inc , config2.conf                      *
  * Autor:    Alex Marques Campos                               *
  * Data:     setembro de 2003                                  *
- * Versão:   0.1                                               *
+ * Versï¿½o:   0.1                                               *
  ***************************************************************/
 
 	
-/* Esta função retorna o valor contido na variavel $var, registrada no arquivo $config_file */
+/* Esta funï¿½ï¿½o retorna o valor contido na variavel $var, registrada no arquivo $config_file */
 function CELConfig_ReadVar( $var )
 {
-	$config_file = "CELConfig/config2.conf" ;
+	$config_file = "CELConfig/config2.conf.bak" ;
 
-	/* Parse do arquivo de configurações, sem as seções */
+	/* Parse do arquivo de configuraï¿½ï¿½es, sem as seï¿½ï¿½es */
 	$array_configuracoes = parse_ini_file( $config_file ) ;
         /* print_r($array_configuracoes); */
 
-	/* Parse do arquivo de configurações, com as seções */
+	/* Parse do arquivo de configuraï¿½ï¿½es, com as seï¿½ï¿½es */
 	/*
 		$array_configuracoes_por_secoes = parse_ini_file( $config_file , TRUE ) ;
 		print_r($array_configuracoes_por_secoes) ;
 	*/
 
-	/* Se a variavel não estiver incluida no arquivo de configurações... */
+	/* Se a variavel nï¿½o estiver incluida no arquivo de configuraï¿½ï¿½es... */
 	if ( !array_key_exists( $var , $array_configuracoes ) )
 	{
 	    /* ... exiba uma mensagem e termine o script atual */
@@ -35,7 +35,7 @@ function CELConfig_ReadVar( $var )
 
 	// print( "$var = $array_configuracoes[$var] <BR>\n" ) ; 	/* DEBUG */
 
-	return $array_configuracoes[$var] ;   /* retorna o conteúdo da variável */
+	return $array_configuracoes[$var] ;   /* retorna o conteï¿½do da variï¿½vel */
 }
 
 function CELConfig_DisplayVars()
