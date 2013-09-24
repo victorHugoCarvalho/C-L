@@ -57,7 +57,7 @@ if ($submit == 'Entrar')
         $row = mysql_fetch_row($qrr);
         $id_usuario_corrente = $row[0];
 
-        session_register("id_usuario_corrente");
+        $_SESSION['id_usuario_corrente'] = $row[0];
 		?>
 		<script language="javascript1.3">
 			opener.document.location.replace('<?=$url?>');

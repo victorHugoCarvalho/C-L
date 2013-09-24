@@ -17,7 +17,7 @@ if (!(function_exists("chkUser")))
 {
     function chkUser($url)
     {
-        if (isset($_SESSION()))    
+        if(!(isset($_SESSION['id_usuario_corrente'])))    
         {
             ?>
             <script language="javascript1.3">
