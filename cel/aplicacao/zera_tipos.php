@@ -6,7 +6,7 @@
 
 	
 	$query = "update lexico set tipo =  NULL;";
-	$result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error());
+	$result = mysql_query($query) or die("A consulta ao BD falhou : " . mysql_error());
 	
 	mysql_close($link);
 
