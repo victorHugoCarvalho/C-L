@@ -896,389 +896,391 @@ function MTMDisplayItem(item, last)
 
 function MTMEscapeQuotes(myString)
 {
-	var newString = "";
-	var cur_pos = myString.indexOf("'");
-	var prev_pos = 0;
+    var newString = "";
+    var cur_pos = myString.indexOf("'");
+    var prev_pos = 0;
 	
-	while (cur_pos != -1)
-	{
-		if(cur_pos == 0)
-		{
-			newString += "\\";
-		}
-		else if(myString.charAt(cur_pos-1) != "\\")
-		{
-			newString += myString.substring(prev_pos, cur_pos) + "\\";
-		}
-		else if(myString.charAt(cur_pos-1) == "\\")
-		{
-			newString += myString.substring(prev_pos, cur_pos);
-		}
-		prev_pos = cur_pos++;
-		cur_pos = myString.indexOf("'", cur_pos);
-	}
+    while (cur_pos != -1)
+    {
+        if(cur_pos == 0)
+        {
+            newString += "\\";
+        }
+        else if(myString.charAt(cur_pos-1) != "\\")
+        {
+            newString += myString.substring(prev_pos, cur_pos) + "\\";
+        }
+        else if(myString.charAt(cur_pos-1) == "\\")
+        {
+            newString += myString.substring(prev_pos, cur_pos);
+        }
+        prev_pos = cur_pos++;
+        cur_pos = myString.indexOf("'", cur_pos);
+    }
 	
-	return(newString + myString.substring(prev_pos, myString.length));
+    return(newString + myString.substring(prev_pos, myString.length));
 }
 
 function MTMTrackExpand(thisMenu)
 {
-	var i, targetPath, targetLocation;
-	var foundNumber = false;
+    var i, targetPath, targetLocation;
+    var foundNumber = false;
 	
-	for (i = 0; i < thisMenu.items.length; i++)
-	{
-		if (thisMenu.items[i].url != "" && MTMTrackTarget(thisMenu.items[i].target))
-		{
-			targetLocation = parent.frames[thisMenu.items[i].target].location;
-			targetHREF = targetLocation.href;
+    for (i = 0; i < thisMenu.items.length; i++)
+    {
+        if (thisMenu.items[i].url != "" && MTMTrackTarget(thisMenu.items[i].target))
+        {
+            targetLocation = parent.frames[thisMenu.items[i].target].location;
+            targetHREF = targetLocation.href;
 			
-			if (targetHREF.indexOf("#") != -1)
-			{
-				targetHREF = targetHREF.substr(0, targetHREF.indexOf("#"));
-			}
+            if (targetHREF.indexOf("#") != -1)
+            {
+                targetHREF = targetHREF.substr(0, targetHREF.indexOf("#"));
+            }
 			
-			if (MTMUA.browserType == "IE" && targetLocation.protocol == "file:")
-			{
-				var regExp = /\\/g;
-				targetHREF = targetHREF.replace(regExp, "\/");
-			}
+            if (MTMUA.browserType == "IE" && targetLocation.protocol == "file:")
+            {
+                var regExp = /\\/g;
+                targetHREF = targetHREF.replace(regExp, "\/");
+            }
 			
-			if(targetHREF == MTMUA.resolveURL(thisMenu.items[i].url)) {
-				return(thisMenu.items[i].number);
-			}
-		}
-		
-		if(thisMenu.items[i].submenu)
-		{
-			foundNumber = MTMTrackExpand(thisMenu.items[i].submenu);
-			if (foundNumber)
-			{
-				if (!thisMenu.items[i].expanded)
-				{
-					thisMenu.items[i].expanded = true;
-					if (!MTMClickedItem) 
-					{
-						MTMClickedItem = thisMenu.items[i];
-					}
-					MTMExpansion = true;
-				}
-				return(foundNumber);
-			}
-		}
-	}
+            if(targetHREF == MTMUA.resolveURL(thisMenu.items[i].url)) 
+            {
+                return(thisMenu.items[i].number);
+            }
+        }
 	
-	return(foundNumber);
+        if(thisMenu.items[i].submenu)
+        {
+            foundNumber = MTMTrackExpand(thisMenu.items[i].submenu);
+            if (foundNumber)
+            {
+                if (!thisMenu.items[i].expanded)
+                {
+                    thisMenu.items[i].expanded = true;
+                    if (!MTMClickedItem) 
+                    {
+                        MTMClickedItem = thisMenu.items[i];
+                    }
+                    MTMExpansion = true;
+                }
+                return(foundNumber);
+            }
+        }
+    }
+
+    return(foundNumber);
 }
 
 function MTMCloseSubs(thisMenu)
 {
-	var i, j;
-	var foundMatch = false;
+    var i, j;
+    var foundMatch = false;
 	
-	for(i = 0; i < thisMenu.items.length; i++)
-	{
-		if (thisMenu.items[i].submenu && thisMenu.items[i].expanded)
-		{
-			if (thisMenu.items[i].number == MTMClickedItem.number)
-			{
-				foundMatch = true;
-				for (j = 0; j < thisMenu.items[i].submenu.items.length; j++)
-				{
-					if (thisMenu.items[i].submenu.items[j].expanded) 
-					{
-						thisMenu.items[i].submenu.items[j].expanded = false;
-					}
-				}
-			}
-			else
-			{
-				if (foundMatch)
-				{
-					thisMenu.items[i].expanded = false; 
-				}
-				else
-				{
-					foundMatch = MTMCloseSubs(thisMenu.items[i].submenu);
-					if (!foundMatch)
-					{
-						thisMenu.items[i].expanded = false;
-					}
-				}
-			}
-		}
-	}
+    for(i = 0; i < thisMenu.items.length; i++)
+    {
+        if (thisMenu.items[i].submenu && thisMenu.items[i].expanded)
+        {
+            if (thisMenu.items[i].number == MTMClickedItem.number)
+            {
+                foundMatch = true;
+                for (j = 0; j < thisMenu.items[i].submenu.items.length; j++)
+                {
+                    if (thisMenu.items[i].submenu.items[j].expanded) 
+                    {
+                        thisMenu.items[i].submenu.items[j].expanded = false;
+                    }
+                }
+            }
+            else
+            {
+                if (foundMatch)
+                {
+                    thisMenu.items[i].expanded = false; 
+                }
+                else
+                {
+                    foundMatch = MTMCloseSubs(thisMenu.items[i].submenu);
+                    if (!foundMatch)
+                    {
+                        thisMenu.items[i].expanded = false;
+                    }
+                }
+            }
+        }
+    }
 	
-	return(foundMatch);
+    return(foundMatch);
 }
 
 function MTMFetchIcon(testString)
 {
-	var i;
-	for (i = 0; i < MTMIconList.items.length; i++)
-	{
-		if ((MTMIconList.items[i].type == 'any') && (testString.indexOf(MTMIconList.items[i].match) != -1))
-		{
-			return(MTMIconList.items[i].file);
-		}
-		else if ((MTMIconList.items[i].type == 'pre') && (testString.indexOf(MTMIconList.items[i].match) == 0))
-		{
-			return(MTMIconList.items[i].file);
-		}
-		else if ((MTMIconList.items[i].type == 'post') && (testString.indexOf(MTMIconList.items[i].match) != -1))
-		{
-			if ((testString.lastIndexOf(MTMIconList.items[i].match) + MTMIconList.items[i].match.length) == testString.length)
-			{
-				return(MTMIconList.items[i].file);
-			}
-		}
-	}
+    var i;
+    for (i = 0; i < MTMIconList.items.length; i++)
+    {
+        if ((MTMIconList.items[i].type == 'any') && (testString.indexOf(MTMIconList.items[i].match) != -1))
+        {
+            return(MTMIconList.items[i].file);
+        }   
+        else if ((MTMIconList.items[i].type == 'pre') && (testString.indexOf(MTMIconList.items[i].match) == 0))
+        {
+            return(MTMIconList.items[i].file);
+        }
+        else if ((MTMIconList.items[i].type == 'post') && (testString.indexOf(MTMIconList.items[i].match) != -1))
+        {
+            if ((testString.lastIndexOf(MTMIconList.items[i].match) + MTMIconList.items[i].match.length) == testString.length)
+            {
+                return(MTMIconList.items[i].file);
+            }
+        }
+    }
 	
-	return("menu_link_default.gif");
+    return("menu_link_default.gif");
 }
 
 function MTMGetYPos(myObj)
 {
-	return(myObj.offsetTop + ((myObj.offsetParent) ? MTMGetYPos(myObj.offsetParent) : 0));
+    return(myObj.offsetTop + ((myObj.offsetParent) ? MTMGetYPos(myObj.offsetParent) : 0));
 }
 
 function MTMakeLink(thisItem, voidURL, addName, addTitle, clickEvent, mouseOverEvent, mouseOutEvent)
 {
-	var tempString = '<a href="' + (voidURL ? 'javascript:;' : MTMUA.resolveURL(thisItem.url)) + '" ';
+    var tempString = '<a href="' + (voidURL ? 'javascript:;' : MTMUA.resolveURL(thisItem.url)) + '" ';
 	
-	if (MTMUseToolTips && addTitle && thisItem.tooltip)
-	{
-		tempString += 'title="' + thisItem.tooltip + '" ';
-	}
-	if (addName) 
-	{
-		tempString += 'name="sub' + thisItem.number + '" ';
-	}
-	if (clickEvent)
-	{
-		tempString += 'onclick="' + clickEvent + '" ';
-	}
-	if (mouseOverEvent && mouseOverEvent != "")
-	{
-		tempString += 'onmouseover="' + mouseOverEvent + '" ';
-	}
-	if (mouseOutEvent && mouseOutEvent != "")
-	{
-		tempString += 'onmouseout="' + mouseOutEvent + '" ';
-	}
-	if (thisItem.submenu && MTMClickedItem && thisItem.number == MTMClickedItem.number)
-	{
-		tempString += 'class="' + (thisItem.expanded ? "subexpanded" : "subclosed") + '" ';
-	}
-	else if (MTMTrackedItem && thisItem.number == MTMTrackedItem)
-	{
-		if (MTMTrackedCookieName)
-		{
-			MTMTCArray = new Array(thisItem.number, thisItem.target, thisItem.url);
-		}
-		tempString += 'class="tracked"';
-	}
-	if (thisItem.target != "")
-	{
-		tempString += 'target="' + thisItem.target + '" ';
-	}
+    if (MTMUseToolTips && addTitle && thisItem.tooltip)
+    {
+        tempString += 'title="' + thisItem.tooltip + '" ';
+    }
+    if (addName) 
+    {
+        tempString += 'name="sub' + thisItem.number + '" ';
+    }
+    if (clickEvent)
+    {
+        tempString += 'onclick="' + clickEvent + '" ';
+    }
+    if (mouseOverEvent && mouseOverEvent != "")
+    {
+        tempString += 'onmouseover="' + mouseOverEvent + '" ';
+    }
+    if (mouseOutEvent && mouseOutEvent != "")
+    {
+        tempString += 'onmouseout="' + mouseOutEvent + '" ';
+    }
+    if (thisItem.submenu && MTMClickedItem && thisItem.number == MTMClickedItem.number)
+    {
+        tempString += 'class="' + (thisItem.expanded ? "subexpanded" : "subclosed") + '" ';
+    }
+    else if (MTMTrackedItem && thisItem.number == MTMTrackedItem)
+    {
+        if (MTMTrackedCookieName)
+        {
+            MTMTCArray = new Array(thisItem.number, thisItem.target, thisItem.url);
+        }
+        tempString += 'class="tracked"';
+    }
+    if (thisItem.target != "")
+    {
+        tempString += 'target="' + thisItem.target + '" ';
+    }
 	
-	return(tempString + '>');
+    return(tempString + '>');
 }
 
 function MTMakeImage(thisImage)
 {
-	return('<img src="' + MTMUA.preHREF + MTMenuImageDirectory + thisImage + '" align="left" border="0" vspace="0" hspace="0" width="18" height="18">');
+    return('<img src="' + MTMUA.preHREF + MTMenuImageDirectory + thisImage + '" align="left" border="0" vspace="0" hspace="0" width="18" height="18">');
 }
 
 function MTMakeSVG(thisImage)
 {
-	return('<object type="image/svg+xml" data="' + thisImage + '" NAME="Main" width="18" height="18" ><\/object>');
+    return('<object type="image/svg+xml" data="' + thisImage + '" NAME="Main" width="18" height="18" ><\/object>');
 }
 
 function MTMTrackTarget(thisTarget)
 {
-	if (thisTarget.charAt(0) == "_")
-	{
-		return false;
-	}
-	else
-	{
-		for(i = 0; i < MTMFrameNames.length; i++)
-		{
-			if (thisTarget == MTMFrameNames[i])
-			{
-				return true;
-			}
-		}
-	}
+    if (thisTarget.charAt(0) == "_")
+    {
+        return false;
+    }
+    else
+    {
+        for(i = 0; i < MTMFrameNames.length; i++)
+        {
+            if (thisTarget == MTMFrameNames[i])
+            {
+                return true;
+            }
+        }
+    }
 	
-	return false;
+    return false;
 }
 
 function MTMAddCell(thisHTML)
 {
-	if (MTMUA.DOMable || (MTMUA.browserType == "IE" && !MTMFirstRun))
-	{
-		var myRow = MTMUA.menuTable.insertRow(MTMUA.menuTable.rows.length);
-		myRow.vAlign = "top";
-		var myCell = myRow.insertCell(myRow.cells.length);
-		myCell.noWrap = true;
-		myCell.innerHTML = thisHTML;
+    if (MTMUA.DOMable || (MTMUA.browserType == "IE" && !MTMFirstRun))
+    {
+        var myRow = MTMUA.menuTable.insertRow(MTMUA.menuTable.rows.length);
+        myRow.vAlign = "top";
+        var myCell = myRow.insertCell(myRow.cells.length);
+        myCell.noWrap = true;
+        myCell.innerHTML = thisHTML;
 	}
-	else
-	{
-		MTMUA.document.writeln('<tr valign="top"><td nowrap>' + thisHTML + '<\/td><\/tr>');
-	}
+    else
+    {
+        MTMUA.document.writeln('<tr valign="top"><td nowrap>' + thisHTML + '<\/td><\/tr>');
+    }
 }
 
 function MTMcreateStyleSheet()
 {
-	var i;
+    var i;
 
-	if (!MTMstyleRules)
-	{
-		MTMstyleRules = new MTMstyleRuleSet();
-		with(MTMstyleRules)
-		{
-			addRule('body', 'color:' + MTMTextColor + ';');
+    if (!MTMstyleRules)
+    {
+        MTMstyleRules = new MTMstyleRuleSet();
+        
+        with(MTMstyleRules)
+        {
+            addRule('body', 'color:' + MTMTextColor + ';');
 			
-			if (MTMuseScrollbarCSS && MTMUA.browserType != "NN")
-			{
-				addRule('body', 'scrollbar-3dlight-color:' + MTMscrollbar3dLightColor + ';scrollbar-arrow-color:' + MTMscrollbarArrowColor + ';scrollbar-base-color:' + MTMscrollbarBaseColor + ';scrollbar-darkshadow-color:' + MTMscrollbarDarkShadowColor + ';scrollbar-face-color:' + MTMscrollbarFaceColor + ';scrollbar-highlight-color:' + MTMscrollbarHighlightColor + ';scrollbar-shadow-color:' + MTMscrollbarShadowColor + ';scrollbar-track-color:' + MTMscrollbarTrackColor + ';');
-			}
+            if (MTMuseScrollbarCSS && MTMUA.browserType != "NN")
+            {
+                addRule('body', 'scrollbar-3dlight-color:' + MTMscrollbar3dLightColor + ';scrollbar-arrow-color:' + MTMscrollbarArrowColor + ';scrollbar-base-color:' + MTMscrollbarBaseColor + ';scrollbar-darkshadow-color:' + MTMscrollbarDarkShadowColor + ';scrollbar-face-color:' + MTMscrollbarFaceColor + ';scrollbar-highlight-color:' + MTMscrollbarHighlightColor + ';scrollbar-shadow-color:' + MTMscrollbarShadowColor + ';scrollbar-track-color:' + MTMscrollbarTrackColor + ';');
+            }
 			
-			addRule('#root', 'color:' + MTMRootColor + ';background:transparent;font-family:' + MTMRootFont + ';font-size:' + MTMRootCSSize + ';');
-			addRule('.subtext', 'font-family:' + MTMenuFont + ';font-size:' + MTMenuCSSize + ';color:' + MTMSubTextColor + ';background: transparent;');
-			addRule('a', 'font-family:' + MTMenuFont + ';font-size:' + MTMenuCSSize + ';text-decoration:none;color:' + MTMLinkColor + ';background:transparent;');
-			addRule('a:hover', 'color:' + MTMAhoverColor + ';background:transparent;');
-			addRule('a.tracked', 'color:' + MTMTrackColor + ';background:transparent;');
-			addRule('a.subexpanded', 'color:' + MTMSubExpandColor + ';background:transparent;');
-			addRule('a.subclosed', 'color:' + MTMSubClosedColor + ';background:transparent;');
-		}
-	}
+            addRule('#root', 'color:' + MTMRootColor + ';background:transparent;font-family:' + MTMRootFont + ';font-size:' + MTMRootCSSize + ';');
+            addRule('.subtext', 'font-family:' + MTMenuFont + ';font-size:' + MTMenuCSSize + ';color:' + MTMSubTextColor + ';background: transparent;');
+            addRule('a', 'font-family:' + MTMenuFont + ';font-size:' + MTMenuCSSize + ';text-decoration:none;color:' + MTMLinkColor + ';background:transparent;');
+            addRule('a:hover', 'color:' + MTMAhoverColor + ';background:transparent;');
+            addRule('a.tracked', 'color:' + MTMTrackColor + ';background:transparent;');
+            addRule('a.subexpanded', 'color:' + MTMSubExpandColor + ';background:transparent;');
+            addRule('a.subclosed', 'color:' + MTMSubClosedColor + ';background:transparent;');
+        }
+    }
 
-	if (MTMUA.DOMable)
-	{
-		if(MTMUA.browserType == "IE")
-		{
-			MTMUA.document.createStyleSheet();
-			var newStyleSheet = MTMUA.document.styleSheets(MTMUA.document.styleSheets.length-1);
-		}
-		else if(MTMUA.browserType == "NN")
-		{
-			var newStyleSheet = MTMUA.document.getElementById('mtmsheet');
-			if(newStyleSheet)
-			{
-				newStyleSheet.disabled = false;
-			}
-		}
-	}
-	else
-	{
-		var outputHTML = '<style type="text/css">\n';
-	}
+    if (MTMUA.DOMable)
+    {
+        if(MTMUA.browserType == "IE")
+        {
+            MTMUA.document.createStyleSheet();
+            var newStyleSheet = MTMUA.document.styleSheets(MTMUA.document.styleSheets.length-1);
+        }
+        else if(MTMUA.browserType == "NN")
+        {
+            var newStyleSheet = MTMUA.document.getElementById('mtmsheet');
+            if(newStyleSheet)
+            {
+                newStyleSheet.disabled = false;
+            }
+        }
+    }
+    else
+    {
+        var outputHTML = '<style type="text/css">\n';
+    }
 	
-	for (i = 0; i < MTMstyleRules.rules.length; i++)
-	{
-		if (MTMUA.DOMable && MTMUA.browserType == "IE")
-		{
-			newStyleSheet.addRule(MTMstyleRules.rules[i].selector, MTMstyleRules.rules[i].style);
-		}
-		else if (MTMUA.DOMable && MTMUA.browserType == "NN" && newStyleSheet)
-		{
-			newStyleSheet.sheet.insertRule((MTMstyleRules.rules[i].selector + " { " + MTMstyleRules.rules[i].style + " } "), newStyleSheet.sheet.cssRules.length);
-		}
-		else
-		{
-			outputHTML += MTMstyleRules.rules[i].selector + ' {\n' + MTMstyleRules.rules[i].style + '\n}\n';
-		}
-	}
+    for (i = 0; i < MTMstyleRules.rules.length; i++)
+    {
+        if (MTMUA.DOMable && MTMUA.browserType == "IE")
+        {
+            newStyleSheet.addRule(MTMstyleRules.rules[i].selector, MTMstyleRules.rules[i].style);
+        }
+        else if (MTMUA.DOMable && MTMUA.browserType == "NN" && newStyleSheet)
+        {
+            newStyleSheet.sheet.insertRule((MTMstyleRules.rules[i].selector + " { " + MTMstyleRules.rules[i].style + " } "), newStyleSheet.sheet.cssRules.length);
+        }
+        else
+        {
+            outputHTML += MTMstyleRules.rules[i].selector + ' {\n' + MTMstyleRules.rules[i].style + '\n}\n';
+        }
+    }
 	
-	for (i = 0; i < MTMExtraCSS.rules.length; i++)
-	{
-		if (MTMUA.DOMable && MTMUA.browserType == "IE")
-		{
-			newStyleSheet.addRule(MTMExtraCSS.rules[i].selector, MTMExtraCSS.rules[i].style);
-		}
-		else if (MTMUA.DOMable && MTMUA.browserType == "NN" && newStyleSheet)
-		{
-			newStyleSheet.sheet.insertRule((MTMExtraCSS.rules[i].selector + "{" + MTMExtraCSS.rules[i].style + "}"), newStyleSheet.sheet.cssRules.length);
-		}
-		else
-		{
-			outputHTML += MTMExtraCSS.rules[i].selector + ' {\n' + MTMExtraCSS.rules[i].style + '\n}\n';
-		}
-	}
+    for (i = 0; i < MTMExtraCSS.rules.length; i++)
+    {
+        if (MTMUA.DOMable && MTMUA.browserType == "IE")
+        {
+            newStyleSheet.addRule(MTMExtraCSS.rules[i].selector, MTMExtraCSS.rules[i].style);
+        }
+        else if (MTMUA.DOMable && MTMUA.browserType == "NN" && newStyleSheet)
+        {
+            newStyleSheet.sheet.insertRule((MTMExtraCSS.rules[i].selector + "{" + MTMExtraCSS.rules[i].style + "}"), newStyleSheet.sheet.cssRules.length);
+        }
+        else
+        {
+            outputHTML += MTMExtraCSS.rules[i].selector + ' {\n' + MTMExtraCSS.rules[i].style + '\n}\n';
+        }
+    }
 	
-	if (MTMFirstRun && MTMUA.DOMable)
-	{
-		with (MTMUA.document.body)
-		{
-			bgColor = MTMBGColor;
-			text = MTMTextColor;
-			link = MTMLinkColor;
-			vLink = MTMLinkColor;
-			aLink = MTMLinkColor;
+    if (MTMFirstRun && MTMUA.DOMable)
+    {
+        with (MTMUA.document.body)
+        {
+            bgColor = MTMBGColor;
+            text = MTMTextColor;
+            link = MTMLinkColor;
+            vLink = MTMLinkColor;
+            aLink = MTMLinkColor;
 			
-			if (MTMBackground)
-			{
-				background = MTMUA.preHREF + MTMenuImageDirectory + MTMBackground;
-			}
-		}
-	}
-	else if (!MTMUA.DOMable)
-	{
-		MTMUA.document.writeln(outputHTML + '</style>');
-	}
+            if (MTMBackground)
+            {
+                background = MTMUA.preHREF + MTMenuImageDirectory + MTMBackground;
+            }
+        }
+    }
+    else if (!MTMUA.DOMable)
+    {
+        MTMUA.document.writeln(outputHTML + '</style>');
+    }
 }
 
 function MTMdisableStyleSheets()
 {
-	if (MTMUA.browserType == "IE")
-	{
-		for (i = 0; i < MTMUA.document.styleSheets.length; i++)
-		{
-			MTMUA.document.styleSheets(i).disabled = true;
-		}
-	}
-	else if(MTMUA.browserType == "NN")
-	{
-		var myCollection = MTMUA.document.getElementsByTagName('style');
-		for (i = 0; i < myCollection.length; i++)
-		{
-			myCollection.item(i).disabled = true;
-		}
+    if (MTMUA.browserType == "IE")
+    {
+        for (i = 0; i < MTMUA.document.styleSheets.length; i++)
+        {
+            MTMUA.document.styleSheets(i).disabled = true;
+        }
+    }
+    else if(MTMUA.browserType == "NN")
+    {
+        var myCollection = MTMUA.document.getElementsByTagName('style');
+        for (i = 0; i < myCollection.length; i++)
+        {
+            myCollection.item(i).disabled = true;
+        }
 		
-		var myCollection = MTMUA.document.getElementsByTagName('link');
-		for (i = 0; i < myCollection.length; i++)
-		{
-			if (myCollection.item(i).getAttribute('type') == "text/css")
-			{
-				myCollection.item(i).disabled = true;
-			}
-		}
-	}
+        var myCollection = MTMUA.document.getElementsByTagName('link');
+        for (i = 0; i < myCollection.length; i++)
+        {
+            if (myCollection.item(i).getAttribute('type') == "text/css")
+            {
+                myCollection.item(i).disabled = true;
+            }
+        }
+    }
 }
 
 function MTMFetchCookies()
 {
-	var cookieString = getCookie(MTMCookieName);
-	if (cookieString == null) 
-	{
-		setCookie(MTMCookieName, "Say-No-If-You-Use-Confirm-Cookies");
-		cookieString = getCookie(MTMCookieName);
-		MTMUA.cookieEnabled = (cookieString == null) ? false : true;
-		return;
-	}
+    var cookieString = getCookie(MTMCookieName);
+    if (cookieString == null) 
+    {
+        setCookie(MTMCookieName, "Say-No-If-You-Use-Confirm-Cookies");
+        cookieString = getCookie(MTMCookieName);
+        MTMUA.cookieEnabled = (cookieString == null) ? false : true;
+        return;
+    }
 
-	MTMCookieString = cookieString;
-	if(MTMTrackedCookieName)
-	{
-		MTMTrackedCookie = getCookie(MTMTrackedCookieName);
-	}
+    MTMCookieString = cookieString;
+    if(MTMTrackedCookieName)
+    {
+        MTMTrackedCookie = getCookie(MTMTrackedCookieName);
+    }
 	
-	MTMUA.cookieEnabled = true;
+    MTMUA.cookieEnabled = true;
 }
 
 // These are from Netscape's Client-Side JavaScript Guide.
@@ -1286,33 +1288,33 @@ function MTMFetchCookies()
 
 function getCookie(Name)
 {
-	var search = Name + "="
-	if (document.cookie.length > 0) // if there are any cookies
-	{
-		offset = document.cookie.indexOf(search)
-		if (offset != -1) // if cookie exists
-		{ 
-			offset += search.length
-			// set index of beginning of value
-			end = document.cookie.indexOf(";", offset)
-			// set index of end of cookie value
-			if (end == -1)
-			{
-				end = document.cookie.length
-			}
+    var search = Name + "="
+    if (document.cookie.length > 0) // if there are any cookies
+    {
+        offset = document.cookie.indexOf(search)
+        if (offset != -1) // if cookie exists
+        { 
+            offset += search.length
+            // set index of beginning of value
+            end = document.cookie.indexOf(";", offset)
+            // set index of end of cookie value
+            if (end == -1)
+            {
+                end = document.cookie.length
+            }
 			
-			return unescape(document.cookie.substring(offset, end))
-		}
-	}
+            return unescape(document.cookie.substring(offset, end))
+        }
+    }
 }
 
 function setCookie(name, value, daysExpire)
 {
-	if(daysExpire)
-	{
-		var expires = new Date();
-		expires.setTime(expires.getTime() + 1000*60*60*24*daysExpire);
-	}
+    if(daysExpire)
+    {
+        var expires = new Date();
+        expires.setTime(expires.getTime() + 1000*60*60*24*daysExpire);
+    }
 	
-	document.cookie = name + "=" + escape(value) + (daysExpire == null ? "" : (";expires=" + expires.toGMTString())) + ";path=/";
+    document.cookie = name + "=" + escape(value) + (daysExpire == null ? "" : (";expires=" + expires.toGMTString())) + ";path=/";
 }

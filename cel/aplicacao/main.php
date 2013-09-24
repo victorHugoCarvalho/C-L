@@ -18,7 +18,7 @@ include("httprequest.inc");
 include_once("coloca_links.php");
 
 
-// Checa se o usuário foi autenticado
+// Checa se o usuï¿½rio foi autenticado
 chkUser("index.php");   
 
 //Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
@@ -52,16 +52,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Atualizar Cenário 
+// Cenï¿½rio - Atualizar Cenï¿½rio 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Cenário por um usuário 
-//Contexto:    Usuário deseja incluir um cenário ainda não cadastrado, alterar e/ou excluir 
-//              um cenário previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Cenï¿½rio por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um cenï¿½rio ainda nï¿½o cadastrado, alterar e/ou excluir 
+//              um cenï¿½rio previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Alterar então ALTERAR CENÁRIO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Alterar entï¿½o ALTERAR CENï¿½RIO 
 
 ?>    
 
@@ -75,16 +75,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Atualizar Cenário 
+// Cenï¿½rio - Atualizar Cenï¿½rio 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Cenário por um usuário 
-//Contexto:    Usuário deseja incluir um cenário ainda não cadastrado, alterar e/ou excluir 
-//              um cenário previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Cenï¿½rio por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um cenï¿½rio ainda nï¿½o cadastrado, alterar e/ou excluir 
+//              um cenï¿½rio previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Excluir então EXCLUIR CENÁRIO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Excluir entï¿½o EXCLUIR CENï¿½RIO 
 
 ?>    
 
@@ -98,16 +98,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-//Cenários -  Atualizar Léxico 
+//Cenï¿½rios -  Atualizar Lï¿½xico 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Léxico por um usuário 
-//Contexto:    Usuário deseja incluir um lexico ainda não cadastrado, alterar e/ou 
-//              excluir um cenário/léxico previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Lï¿½xico por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um lexico ainda nï¿½o cadastrado, alterar e/ou 
+//              excluir um cenï¿½rio/lï¿½xico previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Alterar então ALTERAR LÉXICO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Alterar entï¿½o ALTERAR Lï¿½XICO 
 
 ?>    
 
@@ -121,16 +121,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-//Cenários -  Atualizar Léxico 
+//Cenï¿½rios -  Atualizar Lï¿½xico 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Léxico por um usuário 
-//Contexto:    Usuário deseja incluir um lexico ainda não cadastrado, alterar e/ou 
-//              excluir um cenário/léxico previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Lï¿½xico por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um lexico ainda nï¿½o cadastrado, alterar e/ou 
+//              excluir um cenï¿½rio/lï¿½xico previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Excluir então EXCLUIR LÉXICO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Excluir entï¿½o EXCLUIR Lï¿½XICO 
 
 ?>    
 
@@ -147,16 +147,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Atualizar Cenário 
+// Cenï¿½rio - Atualizar Cenï¿½rio 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Cenário por um usuário 
-//Contexto:    Usuário deseja incluir um cenário ainda não cadastrado, alterar e/ou excluir 
-//              um cenário previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Cenï¿½rio por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um cenï¿½rio ainda nï¿½o cadastrado, alterar e/ou excluir 
+//              um cenï¿½rio previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Alterar então ALTERAR CENÁRIO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Alterar entï¿½o ALTERAR CENï¿½RIO 
 
 ?>    
 
@@ -170,16 +170,16 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Atualizar Conceito
+// Cenï¿½rio - Atualizar Conceito
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Cenário por um usuário 
-//Contexto:    Usuário deseja incluir um cenário ainda não cadastrado, alterar e/ou excluir 
-//              um cenário previamente cadastrados. 
-//              Pré-Condição: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Cenï¿½rio por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um cenï¿½rio ainda nï¿½o cadastrado, alterar e/ou excluir 
+//              um cenï¿½rio previamente cadastrados. 
+//              Prï¿½-Condiï¿½ï¿½o: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Excluir então EXCLUIR CENÁRIO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Excluir entï¿½o EXCLUIR CENï¿½RIO 
 
 ?>    
 
@@ -202,18 +202,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 <?php    
 
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            -Verificar pedidos de alteração de cenário (ver Verificar pedidos de alteração 
-//            de cenário); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            -Verificar pedidos de alteraï¿½ï¿½o de cenï¿½rio (ver Verificar pedidos de alteraï¿½ï¿½o 
+//            de cenï¿½rio); 
 
 ?>    
 
@@ -242,18 +242,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            - Verificar pedidos de alteração de termos do léxico 
-//            ( ver Verificar pedidos de alteração de termos do léxico); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            - Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico 
+//            ( ver Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico); 
 
 			?>    
         function pedidoLexico()
@@ -281,18 +281,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            - Verificar pedidos de alteração de termos do léxico 
-//            ( ver Verificar pedidos de alteração de termos do léxico); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            - Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico 
+//            ( ver Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico); 
 
 ?>    
 
@@ -342,17 +342,17 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php   
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            -Adicionar usuário (não existente) neste projeto (ver Adicionar Usuário); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            -Adicionar usuï¿½rio (nï¿½o existente) neste projeto (ver Adicionar Usuï¿½rio); 
 
 ?>    
 
@@ -366,18 +366,18 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            -Relacionar usuários já existentes com este projeto 
-//            (ver Relacionar usuários com projetos); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            -Relacionar usuï¿½rios jï¿½ existentes com este projeto 
+//            (ver Relacionar usuï¿½rios com projetos); 
 
 ?>    
 
@@ -391,17 +391,17 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php    
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            -Gerar xml deste projeto (ver Gerar relatórios XML); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            -Gerar xml deste projeto (ver Gerar relatï¿½rios XML); 
 
 			?>    
         function geraXML() 
@@ -532,7 +532,7 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 
 <?php   
 
-// Objetivo: Recuperar histórico da ontologia em DAML 
+// Objetivo: Recuperar histï¿½rico da ontologia em DAML 
 ?>    
         function recuperaDAML() 
         { 
@@ -577,23 +577,23 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     $vetorVazio = array();
     if ($t == "c")       
 	{
-		print "<h3>Informações sobre o cenário</h3>";   
+		print "<h3>Informaï¿½ï¿½es sobre o cenï¿½rio</h3>";   
     }
     else if ($t == "l") 
     {
-    	print "<h3>Informações sobre o símbolo</h3>";   
+    	print "<h3>Informaï¿½ï¿½es sobre o sï¿½mbolo</h3>";   
     }
     else if ($t == "oc")
 	{
-		print "<h3>Informações sobre o conceito</h3>";    
+		print "<h3>Informaï¿½ï¿½es sobre o conceito</h3>";    
     }
     else if ($t == "or")
 	{
-		print "<h3>Informações sobre a relação</h3>";   
+		print "<h3>Informaï¿½ï¿½es sobre a relaï¿½ï¿½o</h3>";   
     }
     else if ($t == "oa")
 	{
-		print "<h3>Informações sobre o axioma</h3>";   
+		print "<h3>Informaï¿½ï¿½es sobre o axioma</h3>";   
     }    
 
 ?>
@@ -605,7 +605,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     $c = bd_connect() or die("Erro ao conectar ao SGBD");    
 ?>
           
-          <!-- CENÁRIO -->
+          <!-- CENï¿½RIO -->
           
           <?php   
     
@@ -624,7 +624,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 		$vetorDeCenarios = carrega_vetor_cenario( $c_id_projeto, $id, true ); // carrega vetor de cenario
         quicksort( $vetorDeCenarios, 0, count($vetorDeCenarios)-1,'cenario' );
       
-	    $vetorDeLexicos = carrega_vetor_lexicos( $c_id_projeto, 0, false ); // carrega vetor de léxicos 
+	    $vetorDeLexicos = carrega_vetor_lexicos( $c_id_projeto, 0, false ); // carrega vetor de lï¿½xicos 
         quicksort( $vetorDeLexicos, 0, count($vetorDeLexicos)-1,'lexico' );
     		
 ?>
@@ -650,11 +650,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['recursos'], $vetorDeLexicos, $vetorVazio ) ) ; ?></td>
   </tr>
           <tr>
-    <th>Exceção:</th>
+    <th>Exceï¿½ï¿½o:</th>
     <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['excecao'], $vetorDeLexicos, $vetorVazio) ) ; ?></td>
   </tr>
           <tr>
-    <th>Episódios:</th>
+    <th>Episï¿½dios:</th>
     <td CLASS="Estilo"><?php 
 	  		echo nl2br(monta_links( $result['episodios'], $vetorDeLexicos, $vetorDeCenarios ) ); ?></td>
   </tr>
@@ -662,13 +662,13 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 <BR>
 <TABLE>
           <tr>
-    <td CLASS="Estilo" height="40" valign=MIDDLE><a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenário</a>
+    <td CLASS="Estilo" height="40" valign=MIDDLE><a href="#" onClick="altCenario(<?=$result['id_cenario']?>);">Alterar Cenï¿½rio</a>
               </th>
-            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenário</a>
+            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvCenario(<?=$result['id_cenario']?>);">Remover Cenï¿½rio</a>
               </th>
           </tr>
           
-          <!-- LÉXICO -->
+          <!-- Lï¿½XICO -->
           
           <?php    
     }
@@ -691,11 +691,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <td CLASS="Estilo"><?php echo $result['nome']; ?></td>
   </tr>
           <tr>
-    <th>Noção:</th>
+    <th>Noï¿½ï¿½o:</th>
     <td CLASS="Estilo"><?php echo nl2br( monta_links( $result['nocao'], $vetorDeLexicos, $vetorVazio ) ); ?></td>
   </tr>
           <tr>
-    <th>Classificação:</th>
+    <th>Classificaï¿½ï¿½o:</th>
     <td CLASS="Estilo"><?=nl2br( $result['tipo'] ) ?></td>
   </tr>
           <tr>
@@ -703,7 +703,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <td CLASS="Estilo"><?php echo nl2br( monta_links( $result['impacto'], $vetorDeLexicos, $vetorVazio ) ); ?></td>
   </tr>
           <tr>
-    <th>Sinônimo(s):</th>
+    <th>Sinï¿½nimo(s):</th>
     <?php //sinonimos 
                  $id_projeto = $_SESSION['id_projeto_corrente'];    
                  $qSinonimo = "SELECT * FROM sinonimo WHERE id_lexico = $id";    
@@ -738,9 +738,9 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 <BR>
 <TABLE>
           <tr>
-    <td CLASS="Estilo" height="40" valign="middle"><a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Símbolo</a>
+    <td CLASS="Estilo" height="40" valign="middle"><a href="#" onClick="altLexico(<?=$result['id_lexico']?>);">Alterar Sï¿½mbolo</a>
               </th>
-            <td CLASS="Estilo" valign="middle"><a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Símbolo</a>
+            <td CLASS="Estilo" valign="middle"><a href="#" onClick="rmvLexico(<?=$result['id_lexico']?>);">Remover Sï¿½mbolo</a>
               </th>
           </tr>
           
@@ -763,7 +763,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <td CLASS="Estilo"><?=$result['nome']?></td>
   </tr>
           <tr>
-    <th>Descrição:</th>
+    <th>Descriï¿½ï¿½o:</th>
     <td CLASS="Estilo"><?=nl2br($result['descricao'])?></td>
   </tr>
         </TABLE>
@@ -775,7 +775,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
               </th>
           </tr>
           
-          <!-- ONTOLOGIA - RELAÇÕES -->
+          <!-- ONTOLOGIA - RELAï¿½ï¿½ES -->
           
           <?php    
     }
@@ -796,7 +796,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 <TABLE>
           <tr>
     <td CLASS="Estilo" height="40" valign=MIDDLE></th>
-            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvRelacao(<?=$result['id_relacao']?>);">Remover Relação</a>
+            <td CLASS="Estilo"  valign=MIDDLE><a href="#" onClick="rmvRelacao(<?=$result['id_relacao']?>);">Remover Relaï¿½ï¿½o</a>
               </th>
           </tr>
           <?php    
@@ -810,19 +810,19 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 <?php    
     if ($t == "c")
 	{ 
-		print "<h3>Cenários que referenciam este cenário</h3>";   
+		print "<h3>Cenï¿½rios que referenciam este cenï¿½rio</h3>";   
     }
     else if ($t == "l")
 	{
-		print "<h3>Cenários e termos do léxico que referenciam este termo</h3>";   
+		print "<h3>Cenï¿½rios e termos do lï¿½xico que referenciam este termo</h3>";   
     }
     else if ($t == "oc")
 	{ 
-		print "<h3>Relações do conceito</h3>";   
+		print "<h3>Relaï¿½ï¿½es do conceito</h3>";   
     }
     else if ($t == "or")
 	{
-		print "<h3>Conceitos referentes à relação</h3>";   
+		print "<h3>Conceitos referentes ï¿½ relaï¿½ï¿½o</h3>";   
     }
     else if ($t == "oa")
 	{
@@ -855,29 +855,29 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
     <td CLASS="Estilo"><?=simple_query("nome", "projeto", "id_projeto = $id_projeto")?></td>
   </tr>
           <tr>
-    <th>Data de criação:</th>
+    <th>Data de criaï¿½ï¿½o:</th>
     <?php    
                     $data = simple_query("data_criacao", "projeto", "id_projeto = $id_projeto");    
                 ?>
     <td CLASS="Estilo"><?=formataData($data)?></td>
   </tr>
           <tr>
-    <th>Descrição:</th>
+    <th>Descriï¿½ï¿½o:</th>
     <td CLASS="Estilo"><?=nl2br(simple_query("descricao", "projeto", "id_projeto = $id_projeto"))?></td>
   </tr>
         </table>
 <?php    
 
-// Cenário - Escolher Projeto 
+// Cenï¿½rio - Escolher Projeto 
 
-// Objetivo:  Permitir ao Administrador/Usuário escolher um projeto. 
-// Contexto:  O Administrador/Usuário deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser Administrador 
-// Atores:    Administrador, Usuário 
-// Recursos:  Usuários cadastrados 
-// Episódios: Caso o Usuario selecione da lista de projetos um projeto da qual ele seja 
+// Objetivo:  Permitir ao Administrador/Usuï¿½rio escolher um projeto. 
+// Contexto:  O Administrador/Usuï¿½rio deseja escolher um projeto. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser Administrador 
+// Atores:    Administrador, Usuï¿½rio 
+// Recursos:  Usuï¿½rios cadastrados 
+// Episï¿½dios: Caso o Usuario selecione da lista de projetos um projeto da qual ele seja 
 //            administrador, ver Administrador escolhe Projeto. 
-//            Caso contrário, ver Usuário escolhe Projeto. 
+//            Caso contrï¿½rio, ver Usuï¿½rio escolhe Projeto. 
 
     // Verifica se o usuario eh administrador deste projeto 
     if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto))
@@ -886,50 +886,50 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
 <br>
 <table ALIGN=CENTER>
           <tr>
-    <th>Você é um administrador deste projeto:</th>
+    <th>Vocï¿½ ï¿½ um administrador deste projeto:</th>
     <?php    
 
-// Cenário - Administrador escolhe Projeto 
+// Cenï¿½rio - Administrador escolhe Projeto 
 
 // Objetivo:  Permitir ao Administrador escolher um projeto. 
 // Contexto:  O Administrador deseja escolher um projeto. 
-//            Pré-Condições: Login, Ser administrador do projeto selecionado. 
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado. 
 // Atores:    Administrador 
 // Recursos:  Projetos doAdministrador 
-// Episódios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
+// Episï¿½dios: O Administrador seleciona da lista de projetos um projeto da qual ele seja 
 //            administrador. 
-//            Aparecendo na tela as opções de: 
-//            -Verificar pedidos de alteração de cenário (ver Verificar pedidos de alteração 
-//            de cenário); 
-//            - Verificar pedidos de alteração de termos do léxico 
-//            ( ver Verificar pedidos de alteração de termos do léxico); 
-//            -Adicionar usuário (não existente) neste projeto (ver Adicionar Usuário); 
-//            -Relacionar usuários já existentes com este projeto 
-//            (ver Relacionar usuários com projetos); 
-//            -Gerar xml deste projeto (ver Gerar relatórios XML); 
+//            Aparecendo na tela as opï¿½ï¿½es de: 
+//            -Verificar pedidos de alteraï¿½ï¿½o de cenï¿½rio (ver Verificar pedidos de alteraï¿½ï¿½o 
+//            de cenï¿½rio); 
+//            - Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico 
+//            ( ver Verificar pedidos de alteraï¿½ï¿½o de termos do lï¿½xico); 
+//            -Adicionar usuï¿½rio (nï¿½o existente) neste projeto (ver Adicionar Usuï¿½rio); 
+//            -Relacionar usuï¿½rios jï¿½ existentes com este projeto 
+//            (ver Relacionar usuï¿½rios com projetos); 
+//            -Gerar xml deste projeto (ver Gerar relatï¿½rios XML); 
 
 ?>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="addUsuario();">Adicionar usuário (não cadastrado) neste projeto</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="addUsuario();">Adicionar usuï¿½rio (nï¿½o cadastrado) neste projeto</a></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="relUsuario();">Adicionar usuários já existentes neste projeto</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="relUsuario();">Adicionar usuï¿½rios jï¿½ existentes neste projeto</a></td>
   </TR>
           <TR>
     <td CLASS="Estilo">&nbsp;</td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteração de Cenários</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoCenario();">Verificar pedidos de alteraï¿½ï¿½o de Cenï¿½rios</a></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteração de termos do Léxico</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoLexico();">Verificar pedidos de alteraï¿½ï¿½o de termos do Lï¿½xico</a></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="pedidoConceito();">Verificar pedidos de alteração de Conceitos</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoConceito();">Verificar pedidos de alteraï¿½ï¿½o de Conceitos</a></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="pedidoRelacao();">Verificar pedidos de alteração de Relações</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="pedidoRelacao();">Verificar pedidos de alteraï¿½ï¿½o de Relaï¿½ï¿½es</a></td>
   </TR>
           <TR>
     <td CLASS="Estilo">&nbsp;</td>
@@ -953,7 +953,7 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
     <td CLASS="Estilo"><a href="#" onClick="geraDAML();">Gerar DAML da ontologia do projeto</a></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><a href="#" onClick="recuperaDAML();">Histórico em DAML da ontologia do projeto</a></td>
+    <td CLASS="Estilo"><a href="#" onClick="recuperaDAML();">Histï¿½rico em DAML da ontologia do projeto</a></td>
   </TR>
           <TR>
     <td CLASS="Estilo"><a href="http://www.daml.org/validator/" target="new">*Validador de Ontologias na Web</a></td>
@@ -968,7 +968,7 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
     <td CLASS="Estilo"><font size="1">*Para usar Ontologias Geradas pelo C&L: </font></td>
   </TR>
           <TR>
-    <td CLASS="Estilo"><font size="1">Histórico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>
+    <td CLASS="Estilo"><font size="1">Histï¿½rico em DAML da ontologia do projeto -> Botao Direito do Mouse -> Copiar Atalho</font></td>
   </TR>
         </table>
 <?php    
@@ -979,7 +979,7 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
 <br>
 <table ALIGN=CENTER>
           <tr>
-    <th>Você não é um administrador deste projeto:</th>
+    <th>Vocï¿½ nï¿½o ï¿½ um administrador deste projeto:</th>
   </tr>
           <tr>
     <td CLASS="Estilo"><a href="#" onClick="geraGrafo();" >Gerar grafo deste projeto</a></td>
@@ -995,6 +995,6 @@ else        // SCRIPT CHAMADO PELO INDEX.PHP
 <?php    
 }    
 ?>
-<i><a href="showSource.php?file=main.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=main.php">Veja o cï¿½digo fonte!</a></i>
 </body>
 </html>
