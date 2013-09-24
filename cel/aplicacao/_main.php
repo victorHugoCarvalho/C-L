@@ -4,7 +4,8 @@ session_start();
 
 include("funcoes_genericas.php");
 
-chkUser("index.php");        // checks whether the user has been authenticated
+// checks whether the user has been authenticated
+chkUser("index.php");        
 
 ?>
 
@@ -12,8 +13,8 @@ chkUser("index.php");        // checks whether the user has been authenticated
         <head>
         <script language="javascript1.3">
 
-        // Funcoes que serao usadas quando o script
-        // for chamado atraves dele proprio ou da arvore
+        //Functions that will be used when the script 
+        //is called through his own or tree
         function reCarrega(URL) {
             document.location.replace(URL);
         }
@@ -46,8 +47,8 @@ chkUser("index.php");        // checks whether the user has been authenticated
             open(url, where, window_spec);
         }
 
-        // Funcoes que serao usadas quando o script
-        // for chamado atraves da heading.php
+      	//Functions that will be used when the script 
+        //Is called through the heading.php
         function pedidoCenario() {
             var url = 'ver_pedido_cenario.php?id_projeto=' + '<?=$id_projeto?>';
             var where = '_blank';
@@ -91,7 +92,11 @@ chkUser("index.php");        // checks whether the user has been authenticated
 
 include("frame_inferior.php");
 
-if (isset($id_type) && isset($type)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PELA ARVORE)
+$id_type = 0;
+$type = 0;
+
+//Script called by own main.php (or the tree)
+if (isset($id_type) && isset($type)) {      
 
     if ($type == "c") {
 ?>
@@ -186,15 +191,15 @@ if (isset($id_type) && isset($type)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.
 
     frame_inferior($connected_SGBD, $type, $id_type);
 
-} elseif (isset($id_projeto)) {         // SCRIPT CHAMADO PELO HEADING.PHP
+} elseif (isset($id_projeto)) {         //Script called by heading.php
 
-    // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um
-    // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh
-    // feita usando JavaScript (no heading.php), devemos checar se este id realmente
-    // corresponde a um projeto que o usuario tenha acesso (seguranca).
+	//  Was passed a variable $ id_projeto. This variable should contain the id of a
+	//  project that the User is registered. However, as the passage is
+	//  done using JavaScript (in heading.php), we check if this id really
+	//  correspons to a project that the User has access (security).
     check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");
 
-    // Seta uma variavel de sessao correspondente ao projeto atual
+    // Set a session variable corresponding to the current project
     $_SESSION['id_projeto_corrente'] = $id_projeto;
 ?>
 <table>
@@ -213,7 +218,7 @@ if (isset($id_type) && isset($type)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.
         </table>
 <?php
 
-    // Verifica se o usuario eh administrador deste projeto
+    // Set a session variable corresponding to the current project
     if (is_admin($_SESSION['id_usuario_corrente'], $id_projeto)) {
 ?>
 <br>
@@ -225,7 +230,7 @@ if (isset($id_type) && isset($type)) {      // SCRIPT CHAMADO PELO PROPRIO MAIN.
 <p><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></p>
 <?php
     }
-} else {        // SCRIPT CHAMADO PELO INDEX.PHP
+} else {        //Script called by index.php
 ?>
 <p>Selecione um projeto acima, ou crie um novo projeto.</p>
 <?php
