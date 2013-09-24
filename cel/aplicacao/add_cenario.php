@@ -4,20 +4,26 @@ session_start();
 
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-// class add_cenario.php: Este script cadastra um novo cenario do projeto. Eh
-// passada, atraves da URL, uma variavel $id_projeto, que
-// indica em que projeto deve ser inserido o novo cenario.
+// class add_cenario.php: This script registers a new term in the lexicon of the project. 
+//Is sent through the URL, a variable $ id_project, which indicates that indicates 
+//where the new term should be inserted.
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
 
 
-chkUser("index.php");  // checks whether the user has been authenticated       
+chkUser("index.php");  // checks whether the user has been authenticated   
 
-if (!isset($sucesso))
+define('NO', 'n');
+define('YES', 's');
+
+if (!isset($success))
 {
-    $sucesso = "n" ;
+    $success = NO ;
+}else
+{
+    //Nothing to do.
 }
 
 // Connect to the SGBD
@@ -25,16 +31,9 @@ $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) 
 {
-    $existenceScenario = checarCenarioExistente($_SESSION['id_projeto_corrente'],$titulo);
-    ?>
-	<!-- TESTS -->
-	<!--
-		RET = <?=$existenceScenario?> => RET = <?PHP $existenceScenario? print("TRUE") : print("FALSE") ; ?><BR>
-	    $sucesso = <?=$sucesso?><BR>
-	    _GET["sucesso"] = <?=$_GET["sucesso"]?><BR>   
-	-->
-<?php
-    if ($existenceScenario == true)
+    $existenceScenery = checarCenarioExistente($_SESSION['id_projeto_corrente'],$titulo);
+
+    if ($existenceScenery == true)
     {    
         print("<!-- Tentando Inserir Cenario --><BR>");
 
@@ -92,7 +91,7 @@ if (isset($submit))
 <?php
 
 } 
-else // Script chamado atraves do menu superior 
+else // Script called via the top menu
 {
 	$nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 	?>
@@ -125,6 +124,10 @@ else // Script chamado atraves do menu superior
 						form.titulo.focus();
 						return false;
 					} 
+					else
+					{
+					    //Nothing to do.
+					}
 				}
 				      
 				if ((objetivo == ""))
@@ -132,6 +135,10 @@ else // Script chamado atraves do menu superior
 					alert ("Por favor, digite o objetivo do cenário.")
 				    form.objetivo.focus()
 				    return false;
+				}
+				else
+				{
+				    //Nothing to do.
 				}    
 				      
 				if ((contexto == ""))
@@ -139,6 +146,10 @@ else // Script chamado atraves do menu superior
 					alert ("Por favor, digite o contexto do cenário.")
 				    form.contexto.focus()
 				    return false;
+				}
+				else
+				{
+				    //Nothing to do.
 				}        
 			}
 			//-->
@@ -149,7 +160,7 @@ else // Script chamado atraves do menu superior
 			
 			//Objetivo:        Permitir ao usuário a inclusão de um novo cenário
 			//Contexto:        Usuário deseja incluir um novo cenário.
-			//              Pré-Condição: Login, cenário ainda não cadastrado
+			//Pré-Condição: Login, cenário ainda não cadastrado
 			//Atores:        Usuário, Sistema
 			//Recursos:        Dados a serem cadastrados
 			//Episódios:    O sistema fornecerá para o usuário uma tela com os seguintes campos de texto:
@@ -172,7 +183,7 @@ else // Script chamado atraves do menu superior
 		<h4>Adicionar Cenário</h4>
 		<br>
 		<?php
-		if ( $sucesso == "s" )
+		if ( $success == YES )
 		{
 		?>
 		<p style="color: blue; font-weight: bold; text-align: center">Cenário inserido com sucesso!</p>
