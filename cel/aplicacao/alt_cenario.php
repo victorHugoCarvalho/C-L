@@ -22,13 +22,13 @@ if (isset($submit))
 {
     inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'],
                                 $id_cenario,
-                                $titulo,
-                                $objetivo,
-                                $contexto,
-                                $atores,
-                                $recursos,
-                                $excecao,
-                                $episodios,
+                                $title,
+                                $objective,
+                                $context,
+                                $actors,
+                                $resources,
+                                $exception,
+                                $episodes,
                                 $justificativa,
                                 $_SESSION['id_usuario_corrente']);
 	?>
@@ -38,7 +38,7 @@ if (isset($submit))
 		opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Operaï¿½ï¿½o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 	
 		self.close();
@@ -55,28 +55,28 @@ else  // Script chamado atraves do link no cenario corrente
     $executeQuery = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($executeQuery);
 
-	// Cenário -    Alterar Cenário 
+	// Cenï¿½rio -    Alterar Cenï¿½rio 
 	
-	//Objetivo:	    Permitir a alteração de um cenário por um usuário
-	//Contexto:	    Usuário deseja alterar cenário previamente cadastrado
-	//Pré-Condição: Login, Cenário cadastrado no sistema
-	//Atores:	    Usuário
+	//Objetivo:	    Permitir a alteraï¿½ï¿½o de um cenï¿½rio por um usuï¿½rio
+	//Contexto:	    Usuï¿½rio deseja alterar cenï¿½rio previamente cadastrado
+	//Prï¿½-Condiï¿½ï¿½o: Login, Cenï¿½rio cadastrado no sistema
+	//Atores:	    Usuï¿½rio
 	//Recursos:	    Sistema, dados cadastrados
-	//Excessões:    O nome do cenário sendo alterado é modificado para o nome de um cenário já existente.
-	//Episódios:	O sistema fornecerá para o usuário a mesma tela de INCLUIR CENÁRIO,
-	//              porém com os seguintes dados do cenário a ser alterado preenchidos
-	//              e editáveis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episódios.
-	//              Os campos Projeto e Título estarão preenchidos, mas não editáveis.
-	//              Será exibido um campo Justificativa para o usuário colocar uma
-	//              justificativa para a alteração feita.
+	//Excessï¿½es:    O nome do cenï¿½rio sendo alterado ï¿½ modificado para o nome de um cenï¿½rio jï¿½ existente.
+	//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR CENï¿½RIO,
+	//              porï¿½m com os seguintes dados do cenï¿½rio a ser alterado preenchidos
+	//              e editï¿½veis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episï¿½dios.
+	//              Os campos Projeto e Tï¿½tulo estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
+	//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
+	//              justificativa para a alteraï¿½ï¿½o feita.
 	
 	?>
 <html>
 <head>
-<title>Alterar Cenário</title>
+<title>Alterar Cenï¿½rio</title>
 </head>
 <body>
-<h4>Alterar Cenário</h4>
+<h4>Alterar Cenï¿½rio</h4>
 <br>
 <form action="?id_projeto=<?=$id_projeto?>" method="post">
   <table>
@@ -86,8 +86,8 @@ else  // Script chamado atraves do link no cenario corrente
     </tr>
     <input type="hidden" name="id_cenario" value="<?=$result['id_cenario']?>">
     
-      <td>Título:</td>
-      <? $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']); ?>
+      <td>Tï¿½tulo:</td>
+      <?php $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']); ?>
       <input type="hidden" name="titulo" value="<?=$result['titulo']?>">
       <td><input disabled maxlength="128" name="titulo2" size="48" type="text" value="<?=$result['titulo']?>"></td>
     <tr>
@@ -115,13 +115,13 @@ else  // Script chamado atraves do link no cenario corrente
 </textarea></td>
     </tr>
     <tr>
-      <td>Exceção:</td>
+      <td>Exceï¿½ï¿½o:</td>
       <? $result['excecao'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['excecao']); ?>
       <td><textarea name="excecao" cols="48" rows="3"><?=$result['excecao']?>
 </textarea></td>
     </tr>
     <tr>
-      <td>Episódios:</td>
+      <td>Episï¿½dios:</td>
       <? $result['episodios'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['episodios']); ?>
       <td><textarea  cols="48" name="episodios" rows="5"><?=$result['episodios']?>
 </textarea></td>
@@ -131,10 +131,10 @@ else  // Script chamado atraves do link no cenario corrente
       <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
     </tr>
     <tr>
-      <td colspan="2"><b><small>Essa justificativa é necessária apenas para aqueles usuários que não são administradores.</small></b></td>
+      <td colspan="2"><b><small>Essa justificativa ï¿½ necessï¿½ria apenas para aqueles usuï¿½rios que nï¿½o sï¿½o administradores.</small></b></td>
     </tr>
     <tr>
-      <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cenário" onClick="updateOpener()"></td>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cenï¿½rio" onClick="updateOpener()"></td>
     </tr>
   </table>
 </form>
@@ -142,7 +142,7 @@ else  // Script chamado atraves do link no cenario corrente
   <a href="javascript:self.close();">Fechar</a>
 </center>
 <br>
-<i><a href="showSource.php?file=alt_cenario.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=alt_cenario.php">Veja o cï¿½digo fonte!</a></i>
 </body>
 </html>
 <?php

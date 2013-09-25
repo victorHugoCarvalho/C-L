@@ -39,16 +39,16 @@ if (!(function_exists("chkUser")))
 ###################################################################
 if (!(function_exists("inclui_cenario"))) 
 {
-    function inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios)
+    function inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
     {
         //global $result;      // Conexao com a base de dados
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
         
         $query = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios) 
-		VALUES ($id_projeto,'$data', '".prepara_dado(strtolower($titulo))."', '".prepara_dado($objetivo)."',
-		'".prepara_dado($contexto)."', '".prepara_dado($atores)."', '".prepara_dado($recursos)."',
-		'".prepara_dado($excecao)."', '".prepara_dado($episodios)."')";
+		VALUES ($id_projeto,'$data', '".prepara_dado(strtolower($title))."', '".prepara_dado($objective)."',
+		'".prepara_dado($context)."', '".prepara_dado($actors)."', '".prepara_dado($resources)."',
+		'".prepara_dado($exception)."', '".prepara_dado($episodes)."')";
 			  
 		mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $query = "SELECT max(id_cenario) FROM cenario";
@@ -226,12 +226,12 @@ if (!(function_exists("simple_query")))
 
 if (!(function_exists("adicionar_cenario")))
 {
-    function adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios)
+    function adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
     {
         // Conecta ao SGBD
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         // Inclui o cenario na base de dados (sem transformar os campos, sem criar os relacionamentos)
-        $id_incluido = inclui_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios);
+        $id_incluido = inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         
         $query = "SELECT id_cenario, titulo, contexto, episodios
               FROM cenario
@@ -249,7 +249,7 @@ if (!(function_exists("adicionar_cenario")))
         while ($result = mysql_fetch_array($queryResult)) 
         {    // Para todos os cenarios
         
-        	$tituloEscapado = escapa_metacaracteres( $titulo );
+        	$tituloEscapado = escapa_metacaracteres( $title );
 			$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 	                
 	        if((preg_match($regex, $result['contexto']) != 0) ||
@@ -264,8 +264,8 @@ if (!(function_exists("adicionar_cenario")))
 			$tituloEscapado = escapa_metacaracteres( $result['titulo'] );
         	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";        
       
-        	if((preg_match($regex, $contexto) != 0) ||
-         		(preg_match($regex, $episodios) != 0) ) 
+        	if((preg_match($regex, $context) != 0) ||
+         		(preg_match($regex, $episodes) != 0) ) 
          	{   // (2.3)        
         
         		$query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_incluido, " . $result['id_cenario'] . ")"; //(2.4.1)
@@ -286,13 +286,13 @@ if (!(function_exists("adicionar_cenario")))
         $nomeEscapado = escapa_metacaracteres( $result2['nome']);
 		$regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-	        if((preg_match($regex, $titulo) != 0) ||
-	            (preg_match($regex, $objetivo) != 0) ||
-	            (preg_match($regex, $contexto) != 0) ||
-	            (preg_match($regex, $atores) != 0) ||
-	            (preg_match($regex, $recursos) != 0) ||
-	            (preg_match($regex, $episodios) != 0) ||
-	            (preg_match($regex, $excecao) != 0) ) 
+	        if((preg_match($regex, $title) != 0) ||
+	            (preg_match($regex, $objective) != 0) ||
+	            (preg_match($regex, $context) != 0) ||
+	            (preg_match($regex, $actors) != 0) ||
+	            (preg_match($regex, $resources) != 0) ||
+	            (preg_match($regex, $episodes) != 0) ||
+	            (preg_match($regex, $exception) != 0) ) 
 	        {   // (3.2)
 	                
 		        $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = " . $result2['id_lexico'];
@@ -344,12 +344,12 @@ if (!(function_exists("adicionar_cenario")))
 	            $nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
 				$regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 	            
-	         	if ((preg_match($regex, $objetivo) != 0) ||
-	            	(preg_match($regex, $contexto) != 0) ||
-	             	(preg_match($regex, $atores) != 0) ||
-	            	(preg_match($regex, $recursos) != 0) ||
-	            	(preg_match($regex, $episodios) != 0) ||
-	            	(preg_match($regex, $excecao) != 0) ) 
+	         	if ((preg_match($regex, $objective) != 0) ||
+	            	(preg_match($regex, $context) != 0) ||
+	             	(preg_match($regex, $actors) != 0) ||
+	            	(preg_match($regex, $resources) != 0) ||
+	            	(preg_match($regex, $episodes) != 0) ||
+	            	(preg_match($regex, $exception) != 0) ) 
 	            {
 		            
 		            $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = $id_lexicoSinonimo[$i] ";
@@ -599,7 +599,7 @@ if (!(function_exists("removeCenario")))
 ###################################################################
 if (!(function_exists("alteraCenario"))) 
 {
-    function alteraCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios)
+    function alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes)
     {
         $DB = new PGDB () ;
         $sql1 = new QUERY ($DB) ;
@@ -618,12 +618,12 @@ if (!(function_exists("alteraCenario")))
         # atualiza o cenario
         
         $sql4->execute ("update cenario set 
-		objetivo = '".prepara_dado($objetivo)."', 
-		contexto = '".prepara_dado($contexto)."', 
-		atores = '".prepara_dado($atores)."', 
-		recursos = '".prepara_dado($recursos)."', 
-		episodios = '".prepara_dado($episodios)."', 
-		excecao = '".prepara_dado($excecao)."' 
+		objetivo = '".prepara_dado($objective)."', 
+		contexto = '".prepara_dado($context)."', 
+		atores = '".prepara_dado($actors)."', 
+		recursos = '".prepara_dado($resources)."', 
+		episodios = '".prepara_dado($episodes)."', 
+		excecao = '".prepara_dado($exception)."' 
 		where id_cenario = $id_cenario ");
         
         // monta_relacoes($id_projeto);
@@ -640,7 +640,7 @@ if (!(function_exists("alteraCenario")))
         
         while ($result = mysql_fetch_array($queryResult)) 
         {    // Para todos os cenarios
-			$tituloEscapado = escapa_metacaracteres( $titulo );
+			$tituloEscapado = escapa_metacaracteres( $title );
 	       	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 	                
 	       	if((preg_match($regex, $result['contexto']) != 0) || (preg_match($regex, $result['episodios']) != 0) ) 
@@ -653,7 +653,7 @@ if (!(function_exists("alteraCenario")))
 			$tituloEscapado = escapa_metacaracteres( $result['titulo'] );
         	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";        
       
-	        if((preg_match($regex, $contexto) != 0) || (preg_match($regex, $episodios) != 0)) 
+	        if((preg_match($regex, $context) != 0) || (preg_match($regex, $episodes) != 0)) 
          	{   // (2.3)        
         		$query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_cenario, " . $result['id_cenario'] . ")"; //(2.4.1)
         		mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
@@ -670,13 +670,13 @@ if (!(function_exists("alteraCenario")))
 			$nomeEscapado = escapa_metacaracteres( $result2['nome'] );
         	$regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-         	if((preg_match($regex, $titulo) != 0) ||
-            	(preg_match($regex, $objetivo) != 0) ||
-            	(preg_match($regex, $contexto) != 0) ||
-            	(preg_match($regex, $atores) != 0) ||
-            	(preg_match($regex, $recursos) != 0) ||
-            	(preg_match($regex, $episodios) != 0) ||
-            	(preg_match($regex, $excecao) != 0) ) 
+         	if((preg_match($regex, $title) != 0) ||
+            	(preg_match($regex, $objective) != 0) ||
+            	(preg_match($regex, $context) != 0) ||
+            	(preg_match($regex, $actors) != 0) ||
+            	(preg_match($regex, $resources) != 0) ||
+            	(preg_match($regex, $episodes) != 0) ||
+            	(preg_match($regex, $exception) != 0) ) 
         	{   // (3.2)
                 
         	$queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_cenario AND id_lexico = " . $result2['id_lexico'];
@@ -727,12 +727,12 @@ if (!(function_exists("alteraCenario")))
 				$nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
 	            $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 	            
-		        if ((preg_match($regex, $objetivo) != 0) ||
-		             (preg_match($regex, $contexto) != 0) ||
-		             (preg_match($regex, $atores) != 0) ||
-		             (preg_match($regex, $recursos) != 0) ||
-		             (preg_match($regex, $episodios) != 0) ||
-		             (preg_match($regex, $excecao) != 0) ) 
+		        if ((preg_match($regex, $objective) != 0) ||
+		             (preg_match($regex, $context) != 0) ||
+		             (preg_match($regex, $actors) != 0) ||
+		             (preg_match($regex, $resources) != 0) ||
+		             (preg_match($regex, $episodes) != 0) ||
+		             (preg_match($regex, $exception) != 0) ) 
 		        {
 		            
 		            $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_cenario AND id_lexico = $id_lexicoSinonimo[$i] ";
@@ -1208,12 +1208,12 @@ function checarSinonimo($projeto, $listSinonimo)
 # no projeto (1.2)
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
-function checarCenarioExistente($projeto, $titulo)
+function checarCenarioExistente($projeto, $title)
 {
     $naoexiste = false;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $query = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$titulo' ";
+    $query = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$title' ";
     $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($queryResult);
     if ( $resultArray == false )
@@ -1234,7 +1234,7 @@ function checarCenarioExistente($projeto, $titulo)
 # add_cenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarCenario"))) {
-    function inserirPedidoAdicionarCenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios, $id_usuario)
+    function inserirPedidoAdicionarCenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
     {
         $DB = new PGDB();
         $insert  = new QUERY($DB);
@@ -1248,7 +1248,7 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
         
         if ( $resultArray == false ) //nao e gerente
         {
-            $insert->execute("INSERT INTO pedidocen (id_projeto, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, '$titulo', '$objetivo', '$contexto', '$atores', '$recursos', '$excecao', '$episodios', $id_usuario, 'inserir', 0)");
+            $insert->execute("INSERT INTO pedidocen (id_projeto, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, '$title', '$objective', '$context', '$actors', '$resources', '$exception', '$episodes', $id_usuario, 'inserir', 0)");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
             $record = $select->gofirst();
@@ -1261,13 +1261,13 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
                 $mailGerente = $record['email'];
-                mail("$mailGerente", "Pedido de Inclus�o Cen�rio", "O usuario do sistema $nome\nPede para inserir o cenario $titulo \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
+                mail("$mailGerente", "Pedido de Inclus�o Cen�rio", "O usuario do sistema $nome\nPede para inserir o cenario $title \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
                 $record2 = $select2->gonext();
             }
         }
         else //Eh gerente
         { 
-        	adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) ;
+        	adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes) ;
         }
     }
 }
@@ -1282,7 +1282,7 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
 # alt_cenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoAlterarCenario"))) {
-    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos,$excecao, $episodios, $justificativa, $id_usuario)
+    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources,$exception, $episodes, $justificativa, $id_usuario)
     {
         $DB = new PGDB();
         $insert = new QUERY($DB);
@@ -1296,7 +1296,7 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
         
         if ( $resultArray == false ) //nao e gerente
         {
-            $insert->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_cenario, '$titulo', '$objetivo', '$contexto', '$atores', '$recursos', '$excecao', '$episodios', $id_usuario, 'alterar', 0, '$justificativa')");
+            $insert->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_cenario, '$title', '$objective', '$context', '$actors', '$resources', '$exception', '$episodes', $id_usuario, 'alterar', 0, '$justificativa')");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
             $record = $select->gofirst();
@@ -1309,13 +1309,13 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
                 $mailGerente = $record['email'];
-                mail("$mailGerente", "Pedido de Altera��o Cen�rio", "O usuario do sistema $nome\nPede para alterar o cenario $titulo \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
+                mail("$mailGerente", "Pedido de Altera��o Cen�rio", "O usuario do sistema $nome\nPede para alterar o cenario $title \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
                 $record2 = $select2->gonext();
             }
         }
         else //Eh gerente
         { 
-        	alteraCenario($id_projeto, $id_cenario, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios);
+        	alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         }
     }
 }
@@ -1346,8 +1346,8 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
         {
             $select->execute("SELECT * FROM cenario WHERE id_cenario = $id_cenario");
             $cenario = $select->gofirst();
-            $titulo = $cenario['titulo'];
-            $insert->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, $id_cenario, '$titulo', $id_usuario, 'remover', 0)");
+            $title = $cenario['titulo'];
+            $insert->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, $id_cenario, '$title', $id_usuario, 'remover', 0)");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 AND id_projeto = $id_projeto");
             $record = $select->gofirst();
@@ -1746,20 +1746,20 @@ if (!(function_exists("tratarPedidoCenario")))
             {
                 
                 $id_projeto = $record['id_projeto'] ;
-                $titulo = $record['titulo'] ;
-                $objetivo = $record['objetivo'] ;
-                $contexto = $record['contexto'] ;
-                $atores = $record['atores'] ;
-                $recursos = $record['recursos'] ;
-                $excecao = $record['excecao'] ;
-                $episodios = $record['episodios'] ;
+                $title = $record['titulo'] ;
+                $objective = $record['objetivo'] ;
+                $context = $record['contexto'] ;
+                $actors = $record['atores'] ;
+                $resources = $record['recursos'] ;
+                $exception = $record['excecao'] ;
+                $episodes = $record['episodios'] ;
                 if (!strcasecmp($tipoPedido,'alterar'))
                 {
                     $id_cenario = $record['id_cenario'] ;
                     removeCenario($id_projeto,$id_cenario) ;
                     //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
                 }
-                adicionar_cenario($id_projeto, $titulo, $objetivo, $contexto, $atores, $recursos, $excecao, $episodios) ;
+                adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes) ;
             }
             //$delete->execute ("DELETE FROM pedidocen WHERE id_pedido = $id_pedido") ;
         }
