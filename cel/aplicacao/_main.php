@@ -133,8 +133,8 @@ if (isset($id_type) && isset($type))
         $query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, episodios
               FROM cenario
               WHERE id_cenario = $id_type";
-        $SendQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($SendQuery);
+        $ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($ExecuteQuery);
 ?>
           <tr>
     <td>Titulo:</td>
@@ -171,8 +171,8 @@ if (isset($id_type) && isset($type))
         $query = "SELECT id_lexico, nome, nocao, impacto
               FROM lexico
               WHERE id_lexico = $id_type";
-        $SendQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
-        $result = mysql_fetch_array($SendQuery);
+        $ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query de selecao");
+        $result = mysql_fetch_array($ExecuteQuery);
 ?>
           <tr>
     <td>Nome:</td>
@@ -254,6 +254,10 @@ elseif (isset($id_projeto))
 <p><a href="#" onClick="relUsuario();">Relacionar usuários já existentes com este projeto</a></p>
 <p><a href="#" onClick="geraXML();">Gerar XML deste projeto</a></p>
 <?php
+    }
+    else
+    {
+    	//Nothing to do.
     }
 } 
 else 
