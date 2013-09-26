@@ -11,18 +11,19 @@ if (!(class_exists("PGDB"))) {
 /* chkUser(): checa se o usu�rio acessando foi autenticado (presen�a da vari�vel de sess�o
 $id_usuario_corrente). Caso ele j� tenha sido autenticado, continua-se com a execu��o do
 script. Caso contr�rio, abre-se uma janela de logon. */
-if (!(function_exists("chkUser"))) {
+if (!(function_exists("chkUser")))
+{
 	function chkUser($url)
 	{
 		if (!(session_is_registered("id_usuario_corrente"))) {
-?>
-<script language="javascript1.3">
+                ?>
+                <script language="javascript1.3">
 
-open('login.php?url=<?=$url?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
+                    open('login.php?url=<?=$url?>', 'login', 'dependent,height=430,width=490,resizable,scrollbars,titlebar');
 
-</script>
-<?php
-exit();
+                </script>
+                <?php
+                exit();
 		}
 	}
 }
@@ -37,14 +38,14 @@ if (!(function_exists("inclui_cenario"))) {
 	function inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
 	{
 		//global $r;      // Conexao com a base de dados
-		$r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		
-		$q = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios)
+		$query = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios)
               VALUES ($id_projeto,'now', '" . strtolower($title) . "', '$objective', '$context', '$actors', '$resources', '$exception', '$episodes')";
-		mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		$q = "SELECT max(id_cenario) FROM cenario";
-		$qrr = mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		$result = mysql_fetch_row($qrr);
+		mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$query = "SELECT max(id_cenario) FROM cenario";
+		$queyResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = mysql_fetch_row($queyResult);
 		return $result[0];
 	}
 }
@@ -56,33 +57,36 @@ if (!(function_exists("inclui_cenario"))) {
 # Devolve o id_lexico. (1.4)
 #
 ###################################################################
-if (!(function_exists("inclui_lexico"))) {
+if (!(function_exists("inclui_lexico")))
+{
 	function inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)
 	{
-		$r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		$data = date("Y-m-d");
-		$q = "INSERT INTO lexico (id_projeto, data, nome, nocao, impacto, tipo)
-              VALUES ($id_projeto, '$data', '" . strtolower($nome) . "', '$nocao', '$impacto', '$classificacao')";
-		mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$query = "INSERT INTO lexico (id_projeto, data, nome, nocao, impacto, tipo)
+                VALUES ($id_projeto, '$data', '" . strtolower($nome) . "', '$nocao', '$impacto', '$classificacao')";
+		mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		
 		//sinonimo
-		$newLexId = mysql_insert_id($r);
+		$newLexId = mysql_insert_id($result);
 		
 		
-		if( ! is_array($sinonimos) )
-		$sinonimos = array();
+		if (!is_array($sinonimos))
+                {
+                    $sinonimos = array();
+                }
 		
-		foreach($sinonimos as $novoSin){
+		foreach($sinonimos as $novoSin)
+                {
 			
-			$q = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
-            	VALUES ($newLexId, '" . strtolower($novoSin) . "', $id_projeto)";
-			
-			mysql_query($q, $r) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+			$query = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
+                        VALUES ($newLexId, '" . strtolower($novoSin) . "', $id_projeto)";
+			mysql_query($query, $result) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		}
 		
-		$q = "SELECT max(id_lexico) FROM lexico";
-		$qrr = mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		$result = mysql_fetch_row($qrr);
+		$query = "SELECT max(id_lexico) FROM lexico";
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = mysql_fetch_row($queryResult);
 		return $result[0];
 	}
 }
@@ -94,41 +98,41 @@ if (!(function_exists("inclui_lexico"))) {
 # Devolve o id_cprojeto. (1.4)
 #
 ###################################################################
-if (!(function_exists("inclui_projeto"))) {
+if (!(function_exists("inclui_projeto")))
+{
 	function inclui_projeto($nome, $descricao)
 	{
-		$r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		//verifica se usuario ja existe
-		$qv = "SELECT * FROM projeto WHERE nome = '$nome'";
-		$qvr = mysql_query($qv) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryVerification = "SELECT * FROM projeto WHERE nome = '$nome'";
+		$queryVerificationResult = mysql_query($queryVerification) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		
 		//$result = mysql_fetch_row($qvr);
-		$resultArray = mysql_fetch_array($qvr);
+		$resultArray = mysql_fetch_array($queryVerificationResult);
 		
-		
-		if ( $resultArray != false )
+		if ($resultArray != false)
 		{
 			//verifica se o nome existente corresponde a um projeto que este usuario participa
 			$id_projeto_repetido = $resultArray['id_projeto'];
-			
 			$id_usuario_corrente = $_SESSION['id_usuario_corrente'];
+			$queryVerificationUser = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
+			$queryVerificationUserResult = mysql_query($queryVerificationUser) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+			$resultArray = mysql_fetch_row($queryVerificationUserResult);
 			
-			$qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
-			
-			$qvuv = mysql_query($qvu) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-			
-			$resultArray = mysql_fetch_row($qvuv);
-			
-			if ($resultArray[0] != null )
+			if ($resultArray[0] != null)
 			{
 				return -1;
-			}
+			}  
+                        else
+                        {
+                            //Nothin to do
+                        }
 			
 		}
 		
-		$q = "SELECT MAX(id_projeto) FROM projeto";
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de MAX ID<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		$result = mysql_fetch_row($qrr);
+		$query = "SELECT MAX(id_projeto) FROM projeto";
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de MAX ID<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = mysql_fetch_row($queryResult);
 		
 		if ( $result[0] == false )
 		{
@@ -140,28 +144,33 @@ if (!(function_exists("inclui_projeto"))) {
 		}
 		$data = date("Y-m-d");
 		
-		$qr = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
+		$query = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
 	              VALUES ($result[0],'$nome','$data' , '$descricao')";
 		
-		mysql_query($qr) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		mysql_query($query) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		
 		return $result[0];
 	}
 }
 
-if (!(function_exists("replace_skip_tags"))) {
-	function replace_skip_tags($search, $subject, $t_lnk, $id_lnk) {
+if (!(function_exists("replace_skip_tags")))
+{
+	function replace_skip_tags($search, $subject, $t_lnk, $id_lnk)
+        {
 		$title = ($t_lnk == "c") ? "Cenario" : "Lexico";
 		$subject_tmp = preg_replace("/>(.*)(" . $search . ")(.*)</Ui", ">$1$2abcdef$3<", $subject);
-		if ($t_lnk == "l") {
+		if ($t_lnk == "l")
+                {
 			$subject_tmp2 = preg_replace("/(\s|\b)(" . $search . ")(\s|\b)/i", '$1<a title="' . $title . '" href="main.php?t=' . $t_lnk . '&id=' . $id_lnk . '">$2</a>$3', $subject_tmp);
-		} else {
+		}
+                else
+                {
 			$subject_tmp2 = preg_replace("/(\s|\b)(" . $search . ")(\s|\b)/i", '$1<a title="' . $title . '" href="main.php?t=' . $t_lnk . '&id=' . $id_lnk . '"><span style="font-variant: small-caps">$2</span></a>$3', $subject_tmp);
 		}
 		$subject_tmp3 = preg_replace("/>(.*)(" . $search . ")abcdef(.*)</Ui", ">$1$2$3<", $subject_tmp2);
 		
 		?>
-<?php
+                                <?php
 			        /*
 				$arquivo = fopen("teste_BUG_expressao_regular.txt","a") ;
 				
@@ -188,51 +197,59 @@ if (!(function_exists("replace_skip_tags"))) {
 				fclose($arquivo) ;
 				*/
 				?>
-<?
+                <?
 		
 		return $subject_tmp3;
 	}
 }
 
-if (!(function_exists("recarrega"))) {
-	function recarrega($url) {
-?>
-<script language="javascript1.3">
+if (!(function_exists("recarrega")))
+{
+	function recarrega($url)
+        {
+            ?>
+            <script language="javascript1.3">
 
-location.replace('<?=$url?>');
+                location.replace('<?=$url?>');
 
-</script>
+            </script>
 <?php
 	}
 }
 
-if (!(function_exists("breakpoint"))) {
-	function breakpoint($num) {
-?>
-<script language="javascript1.3">
+if (!(function_exists("breakpoint")))
+{
+	function breakpoint($number)
+        {
+            ?>
+            <script language="javascript1.3">
 
-alert('<?=$num?>');
+            alert('<?=$number?>');
 
-</script>
-<?php
+            </script>
+            <?php
 	}
 }
 
-if (!(function_exists("simple_query"))) {
-/*	function simple_query($field, $table, $where) {
+if (!(function_exists("simple_query")))
+{
+/*	function simple_query($field, $table, $where)
+ *      {
 		$r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		$q = "SELECT $field FROM $table WHERE $where";
 		$qrr = mysql_query($q) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		$result = mysql_fetch_row($qrr);
-		return $result[0];      
+		return $result[0];
+ *      }      
   */
-    function simple_query($field, $table, $where) {
-        $r = bd_connect() or die("Erro ao conectar ao SGBD");
-        $q = "SELECT $field FROM $table WHERE $where";
-        $qrr = mysql_query($q) or die("Erro ao enviar a query");
-        $result = mysql_fetch_row($qrr);
-        return $result[0];		
-	}
+        function simple_query($field, $table, $where)
+        {
+            $result = bd_connect() or die("Erro ao conectar ao SGBD");
+            $query = "SELECT $field FROM $table WHERE $where";
+            $queryResult = mysql_query($query) or die("Erro ao enviar a query");
+            $result = mysql_fetch_row($queryResult);
+            return $result[0];		
+        }
 }
 
 
@@ -261,143 +278,143 @@ if (!(function_exists("simple_query"))) {
 //      3.3. Se algum campo sofreu alteracao:
 //          3.3.1. Incluir entrada na tabela 'centolex';
 
-if (!(function_exists("adicionar_cenario"))) {
+if (!(function_exists("adicionar_cenario")))
+{
 	function adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
 	{
 		// Conecta ao SGBD
-		$r = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		// Inclui o cenario na base de dados (sem transformar os campos
 		// em links e sem criar os relacionamentos)
 		$id_incluido = inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes);
 		
-		$q = "SELECT id_cenario, titulo, contexto, episodios
-              FROM cenario
-              WHERE id_projeto = $id_projeto
-              AND id_cenario != $id_incluido
-              ORDER BY CHAR_LENGTH(titulo) DESC";
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de SELECT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		while ($result = mysql_fetch_array($qrr)) {    // (2) Para todos os cenarios
+		$query = "SELECT id_cenario, titulo, contexto, episodios
+                    FROM cenario WHERE id_projeto = $id_projeto
+                    AND id_cenario != $id_incluido
+                    ORDER BY CHAR_LENGTH(titulo) DESC";
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de SELECT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		while ($result = mysql_fetch_array($queryResult)) // (2) Para todos os cenarios
+                {    
 		
-		$result_m = replace_skip_tags($title, $result, "c", $id_incluido);
-		
-		if ($result['contexto'] != $result_m['contexto'] ||
-		$result['episodios'] != $result_m['episodios']) {   // (2.3)
-		
-		$q = "UPDATE cenario SET
-                      contexto = '" . $result_m['contexto'] . "',
-                      episodios = '" . $result_m['episodios'] . "'
-                      WHERE id_cenario = " . $result['id_cenario'];
-		mysql_query($q) or die("Erro ao enviar a query de UPDATE<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.2.1 tbm)
-		$q = "INSERT INTO centocen (id_cenario_from, id_cenario_to)
-                      VALUES (" . $result['id_cenario'] . ", $id_incluido)";
-		mysql_query($q) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.3.1)
-		}
-		
-		// Para podermos executar (2.4), devemos retirar os links (possivelmente presentes)
-		// dos titulos dos outros cenarios do mesmo projeto. Esta regexp remove tags HTML.
-		$result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']);
-		
-		$contexto_m = replace_skip_tags($result['titulo'], $context, "c", $result['id_cenario']);
-		$episodios_m = replace_skip_tags($result['titulo'], $episodes, "c", $result['id_cenario']);
-		
-		if ($context != $contexto_m ||
-		$episodes != $episodios_m) {   // (2.5)
-		$q = "UPDATE cenario SET
-                      contexto = '$contexto_m',
-                      episodios = '$episodios_m'
-                      WHERE id_cenario = $id_incluido";
-		mysql_query($q) or die("Erro ao enviar a query de UPDATE 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.5.1)
-		
-		// $qCen = "SELECT * FROM centocen WHERE id_cenario_from = $id_incluido AND id_cenario_to = " . $result['id_cenario'];
-		//  $qrCen = mysql_query($qCen) or die("Erro ao enviar a query de select no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		//  $resultArrayCen = mysql_fetch_array($qrCen);
-		
-		//  if ($resultArrayCen == false)
-		//  {
-		$q = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_incluido, " . $result['id_cenario'] . ")";
-		//$q = "INSERT INTO centocen (id_cenario_to, id_cenario_from) VALUES ($id_incluido, " . $result['id_cenario'] . ")";
-		mysql_query($q) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.5.2)
-		//  }
-		// Atualiza definicao de $objective, $context, $actors, $resources, $episodes
-		$context = $contexto_m;
-		$episodes = $episodios_m;
-		}   // if
+                        $result_m = replace_skip_tags($title, $result, "c", $id_incluido);
+
+                        if ($result['contexto'] != $result_m['contexto'] ||
+                        $result['episodios'] != $result_m['episodios']) {   // (2.3)
+
+                        $query = "UPDATE cenario SET
+                              contexto = '" . $result_m['contexto'] . "',
+                              episodios = '" . $result_m['episodios'] . "'
+                              WHERE id_cenario = " . $result['id_cenario'];
+                        mysql_query($query) or die("Erro ao enviar a query de UPDATE<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.2.1 tbm)
+                        $query = "INSERT INTO centocen (id_cenario_from, id_cenario_to)
+                              VALUES (" . $result['id_cenario'] . ", $id_incluido)";
+                        mysql_query($query) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.3.1)
+                        }
+
+                        // Para podermos executar (2.4), devemos retirar os links (possivelmente presentes)
+                        // dos titulos dos outros cenarios do mesmo projeto. Esta regexp remove tags HTML.
+                        $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']);
+
+                        $contexto_m = replace_skip_tags($result['titulo'], $context, "c", $result['id_cenario']);
+                        $episodios_m = replace_skip_tags($result['titulo'], $episodes, "c", $result['id_cenario']);
+
+                        if ($context != $contexto_m ||
+                            $episodes != $episodios_m)
+                        {   // (2.5)
+                                $query = "UPDATE cenario SET
+                                        contexto = '$contexto_m',
+                                        episodios = '$episodios_m'
+                                        WHERE id_cenario = $id_incluido";
+                                mysql_query($query) or die("Erro ao enviar a query de UPDATE 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.5.1)
+
+                                // $qCen = "SELECT * FROM centocen WHERE id_cenario_from = $id_incluido AND id_cenario_to = " . $result['id_cenario'];
+                                //  $qrCen = mysql_query($qCen) or die("Erro ao enviar a query de select no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+                                //  $resultArrayCen = mysql_fetch_array($qrCen);
+
+                                //  if ($resultArrayCen == false)
+                                //  {
+                                $query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_incluido, " . $result['id_cenario'] . ")";
+                                //$q = "INSERT INTO centocen (id_cenario_to, id_cenario_from) VALUES ($id_incluido, " . $result['id_cenario'] . ")";
+                                mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (2.5.2)
+                                //  }
+                                // Atualiza definicao de $objective, $context, $actors, $resources, $episodes
+                                $context = $contexto_m;
+                                $episodes = $episodios_m;
+                        }   // if
 		}   // while
 		
-		$q = "SELECT id_lexico, nome FROM lexico WHERE id_projeto = $id_projeto";
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de SELECT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		while ($result = mysql_fetch_array($qrr)) {    // (3)
-		//$titulo_m = replace_skip_tags($result['nome'], $title, "l", $result['id_lexico']);
-		$objetivo_m = replace_skip_tags($result['nome'], $objective, "l", $result['id_lexico']);
-		$contexto_m = replace_skip_tags($result['nome'], $context, "l", $result['id_lexico']);
-		$atores_m = replace_skip_tags($result['nome'], $actors, "l", $result['id_lexico']);
-		$recursos_m = replace_skip_tags($result['nome'], $resources, "l", $result['id_lexico']);
-		$excecao_m = replace_skip_tags($result['nome'], $exception, "l", $result['id_lexico']);
-		$episodios_m = replace_skip_tags($result['nome'], $episodes, "l", $result['id_lexico']);
-		if (//$title != $titulo_m      ||
-		$objective  != $objetivo_m ||
-		$context  != $contexto_m ||
-		$actors    != $atores_m   ||
-		$resources  != $recursos_m ||
-		$exception   != $excecao_m  ||
-		$episodes != $episodios_m) {   // (3.3)
-		$q = "UPDATE cenario SET
-                      objetivo  = '$objetivo_m',
-                      contexto  = '$contexto_m',
-                      atores    = '$atores_m',
-                      recursos  = '$recursos_m',
-                      excecao   = '$excecao_m',
-                      episodios = '$episodios_m'
-                      WHERE id_cenario = $id_incluido";
-		mysql_query($q) or die("Erro ao enviar a query de UPDATE3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.2.1)
-		
-		$qCen = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = " . $result['id_lexico'];
-		$qrCen = mysql_query($qCen) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		$resultArrayCen = mysql_fetch_array($qrCen);
-		
-		if ($resultArrayCen == false)
-		{
-			$q = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, " . $result['id_lexico'] . ")";
-			mysql_query($q) or die("Erro ao enviar a query de INSERT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
-		}
-		// Atualiza definicao de $title, $objective, $context, $actors, $resources, $episodes
-		//$title    = $titulo_m;
-		$objective  = $objetivo_m;
-		$context  = $contexto_m;
-		$actors    = $atores_m;
-		$resources  = $recursos_m;
-		$exception   = $excecao_m;
-		$episodes = $episodios_m;
-		}   // if
+		$query = "SELECT id_lexico, nome FROM lexico WHERE id_projeto = $id_projeto";
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de SELECT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		while ($result = mysql_fetch_array($queryResult))    // (3)
+                {
+                        //$titulo_m = replace_skip_tags($result['nome'], $title, "l", $result['id_lexico']);
+                        $objetivo_m = replace_skip_tags($result['nome'], $objective, "l", $result['id_lexico']);
+                        $contexto_m = replace_skip_tags($result['nome'], $context, "l", $result['id_lexico']);
+                        $atores_m = replace_skip_tags($result['nome'], $actors, "l", $result['id_lexico']);
+                        $recursos_m = replace_skip_tags($result['nome'], $resources, "l", $result['id_lexico']);
+                        $excecao_m = replace_skip_tags($result['nome'], $exception, "l", $result['id_lexico']);
+                        $episodios_m = replace_skip_tags($result['nome'], $episodes, "l", $result['id_lexico']);
+                        if (//$title != $titulo_m      ||
+                            $objective  != $objetivo_m || $context  != $contexto_m || 
+                            $actors    != $atores_m   || $resources  != $recursos_m ||
+                            $exception   != $excecao_m  || $episodes != $episodios_m)    // (3.3)
+                        {
+                                $query = "UPDATE cenario SET
+                                        objetivo  = '$objetivo_m',
+                                        contexto  = '$contexto_m',
+                                        atores    = '$atores_m',
+                                        recursos  = '$recursos_m',
+                                        excecao   = '$excecao_m',
+                                        episodios = '$episodios_m'
+                                        WHERE id_cenario = $id_incluido";
+                                mysql_query($query) or die("Erro ao enviar a query de UPDATE3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.2.1)
+
+                                $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = " . $result['id_lexico'];
+                                $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+                                $resultArrayCenario = mysql_fetch_array($queryResultCenario);
+
+                                if ($resultArrayCenario == false)
+                                {
+                                        $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, " . $result['id_lexico'] . ")";
+                                        mysql_query($query) or die("Erro ao enviar a query de INSERT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
+                                }
+                                // Atualiza definicao de $title, $objective, $context, $actors, $resources, $episodes
+                                //$title    = $titulo_m;
+                                $objective  = $objetivo_m;
+                                $context  = $contexto_m;
+                                $actors    = $atores_m;
+                                $resources  = $recursos_m;
+                                $exception   = $excecao_m;
+                                $episodes = $episodios_m;
+                        }   // if
 		}   // while
 		
 		//Sinonimos
 		
 		
-		$qSinonimos = "SELECT nome, id_lexico FROM sinonimo WHERE id_projeto = $id_projeto AND id_pedidolex = 0";
+		$querySinonimos = "SELECT nome, id_lexico FROM sinonimo WHERE id_projeto = $id_projeto AND id_pedidolex = 0";
 		
-		$qrrSinonimos = mysql_query($qSinonimos) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryResultSinonimos = mysql_query($querySinonimos) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		
 		$nomesSinonimos = array();
 		
 		$id_lexicoSinonimo = array();
 		
-		while($rowSinonimo = mysql_fetch_array($qrrSinonimos)){
+		while($rowSinonimo = mysql_fetch_array($queryResultSinonimos)){
 			
 			$nomesSinonimos[]     = $rowSinonimo["nome"];
 			$id_lexicoSinonimo[]  = $rowSinonimo["id_lexico"];
 			
 		}
 		$qlc = "SELECT id_cenario, titulo, contexto, episodios, objetivo, atores, recursos, excecao
-              FROM cenario
-              WHERE id_projeto = $id_projeto
-              AND id_cenario = $id_incluido";
+                        FROM cenario WHERE id_projeto = $id_projeto
+                        AND id_cenario = $id_incluido";
+                
 		$count = count($nomesSinonimos);
 		for ($i = 0; $i < $count; $i++)
 		{
-			
-			$qrr = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-			while ($result = mysql_fetch_array($qrr)) {    // (3)
+			$queryResult = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+			while ($result = mysql_fetch_array($queryResult)) {    // (3)
 			// $titulo_m = replace_skip_tags($nomesSinonimos[$i], $title, "l", $id_lexicoSinonimo[$i]);
 			$objetivo_m = replace_skip_tags($nomesSinonimos[$i], $objective, "l", $id_lexicoSinonimo[$i]);
 			$contexto_m = replace_skip_tags($nomesSinonimos[$i], $context, "l", $id_lexicoSinonimo[$i]);
@@ -406,40 +423,42 @@ if (!(function_exists("adicionar_cenario"))) {
 			$excecao_m = replace_skip_tags($nomesSinonimos[$i], $exception, "l", $id_lexicoSinonimo[$i]);
 			$episodios_m = replace_skip_tags($nomesSinonimos[$i], $episodes, "l", $id_lexicoSinonimo[$i]);
 			if (//$title != $titulo_m      ||
-			$objective  != $objetivo_m ||
-			$context  != $contexto_m ||
-			$actors    != $atores_m   ||
-			$resources  != $recursos_m ||
-			$exception   != $excecao_m  ||
-			$episodes != $episodios_m) {   // (3.3)
-			$q = "UPDATE cenario SET
-                      objetivo  = '$objetivo_m',
-                      contexto  = '$contexto_m',
-                      atores    = '$atores_m',
-                      recursos  = '$recursos_m',
-                      excecao   = '$excecao_m',
-                      episodios = '$episodios_m'
-                      WHERE id_cenario = $id_incluido";
-			mysql_query($q) or die("Erro ao enviar a query de update 4<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.2.1)
-			
-			$qCen = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = $id_lexicoSinonimo[$i] ";
-			$qrCen = mysql_query($qCen) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-			$resultArrayCen = mysql_fetch_array($qrCen);
-			
-			if ($resultArrayCen == false)
-			{
-				$q = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, $id_lexicoSinonimo[$i])";
-				mysql_query($q) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
-			}
-			// Atualiza definicao de $title, $objective, $context, $actors, $resources, $episodes
-			//$title    = $titulo_m;
-			$objective  = $objetivo_m;
-			$context  = $contexto_m;
-			$actors    = $atores_m;
-			$resources  = $recursos_m;
-			$exception   = $excecao_m;
-			$episodes = $episodios_m;
-			}   // if
+                            $objective  != $objetivo_m ||
+                            $context  != $contexto_m ||
+                            $actors    != $atores_m   ||
+                            $resources  != $recursos_m ||
+                            $exception   != $excecao_m  ||
+                            $episodes != $episodios_m)
+                        {   // (3.3)
+                                $query = "UPDATE cenario SET
+                                        objetivo  = '$objetivo_m',
+                                        contexto  = '$contexto_m',
+                                        atores    = '$atores_m',
+                                        recursos  = '$recursos_m',
+                                        excecao   = '$excecao_m',
+                                        episodios = '$episodios_m'
+                                        WHERE id_cenario = $id_incluido";
+                                
+                                mysql_query($query) or die("Erro ao enviar a query de update 4<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.2.1)
+
+                                $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = $id_lexicoSinonimo[$i] ";
+                                $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+                                $resultArrayCenario = mysql_fetch_array($queryResultCenario);
+
+                                if ($resultArrayCenario == false)
+                                {
+                                        $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, $id_lexicoSinonimo[$i])";
+                                        mysql_query($query) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
+                                }
+                                // Atualiza definicao de $title, $objective, $context, $actors, $resources, $episodes
+                                //$title    = $titulo_m;
+                                $objective  = $objetivo_m;
+                                $context  = $contexto_m;
+                                $actors    = $atores_m;
+                                $resources  = $recursos_m;
+                                $exception   = $excecao_m;
+                                $episodes = $episodios_m;
+                                }   // if
 			}   // while
 			
 		} //for

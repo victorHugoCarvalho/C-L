@@ -13,8 +13,8 @@ extract($_GET);
 $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 
 $qq = "select * from publicacao where id_projeto = $id_projeto AND versao = $versao";
-$qrr = mysql_query($qq) or die("Erro ao enviar a query ao BD");
-$row = mysql_fetch_row($qrr);
+$queryResult = mysql_query($qq) or die("Erro ao enviar a query ao BD");
+$row = mysql_fetch_row($queryResult);
 $xml_banco = $row[3];
 
 $i = 1;

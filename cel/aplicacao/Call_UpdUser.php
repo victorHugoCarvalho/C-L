@@ -3,29 +3,29 @@ session_start();
 
 include_once("bd.inc");
 
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$result = bd_connect() or die("Erro ao conectar ao SGBD");
 
-// Cenário - Alterar cadastro
+// Cenï¿½rio - Alterar cadastro
 //
-//Objetivo:	 Permitir ao usuário realizar alteração nos seus dados cadastrais	
-//Contexto:	 Sistema aberto, Usuário ter acessado ao sistema e logado 
-//           Usuário deseja alterar seus dados cadastrais 
-//           Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:	 Usuário, Sistema.	
+//Objetivo:	 Permitir ao usuï¿½rio realizar alteraï¿½ï¿½o nos seus dados cadastrais	
+//Contexto:	 Sistema aberto, Usuï¿½rio ter acessado ao sistema e logado 
+//           Usuï¿½rio deseja alterar seus dados cadastrais 
+//           Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+//Atores:	 Usuï¿½rio, Sistema.	
 //Recursos:	 Interface	
-//Episódios: O sistema fornecerá para o usuário uma tela com os seguintes campos de texto,
-//           preenchidos com os dados do usuário,  para serem alterados:
-//           nome, email, login, senha e confirmação da senha; e um botão de atualizar
-//           as informações fornecidas
+//Episï¿½dios: O sistema fornecerï¿½ para o usuï¿½rio uma tela com os seguintes campos de texto,
+//           preenchidos com os dados do usuï¿½rio,  para serem alterados:
+//           nome, email, login, senha e confirmaï¿½ï¿½o da senha; e um botï¿½o de atualizar
+//           as informaï¿½ï¿½es fornecidas
 
 $id_usuario = $_SESSION['id_usuario_corrente'];
 
 
-$q = "SELECT * FROM usuario WHERE id_usuario='$id_usuario'";
+$query = "SELECT * FROM usuario WHERE id_usuario='$id_usuario'";
 
-$qrr = mysql_query($q) or die("Erro ao executar a query");
+$queryResult = mysql_query($query) or die("Erro ao executar a query");
 
-  $row = mysql_fetch_row($qrr);
+  $row = mysql_fetch_row($queryResult);
   $nome  = $row[1];
   $email = $row[2];
   $login = $row[3];
@@ -35,7 +35,7 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 ?>
 <html>
 	<head>
-	<title>Alterar dados de Usuário</title>
+	<title>Alterar dados de Usuï¿½rio</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	</head>
 	
@@ -43,7 +43,7 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 		<!--
 		function TestarBranco(form)
 		{
-			login      = form.login.value;
+                        login      = form.login.value;
 			senha      = form.senha.value;
 			senha_conf = form.senha_conf.value;
 			nome       = form.nome.value;
@@ -53,31 +53,31 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 			{ 
 				alert ("Por favor, digite o seu Login.")
 				form.login.focus()
-		      	return false;
-		    }
+                                return false;
+                        }
 			if (email == "")
 			{
 				alert ( "Por favor, digite o seu e-mail.")
-		      	form.email.focus();
-		      	return false;
+                                form.email.focus();
+                                return false;
 		   	}
 		  	if (senha == "")
-		    { 
+                        { 
 		  	    alert ("Por favor, digite a sua senha.")
-		      	form.senha.focus()
-		      	return false;
-		    }
-		    if (nome == "")
-		    { 
-		        alert ("Por favor, digite o seu nome.")
-		      	form.nome.focus()
-		      	return false;
-		    }
+                            form.senha.focus()
+                            return false;
+                        }
+                        if (nome == "")
+                        { 
+                            alert ("Por favor, digite o seu nome.")
+                            form.nome.focus()
+                            return false;
+                        }
 		   	if (senha != senha_conf)
 		   	{
-		      	alert ( "A senha e a confirmacao nao sao as mesmas!")
-		      	form.senha.focus();
-		      	return false;
+                            alert ( "A senha e a confirmacao nao sao as mesmas!")
+                            form.senha.focus();
+                            return false;
 		   	}
 		}
 		
@@ -86,15 +86,15 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 		{
 		  	if(email.value.length > 0)
 		  	{
-		     	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
-		     	{
-		        	return (true)
-		     	}
+                            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value))
+                            {
+                                    return (true)
+                            }
 		     	
-				alert("Atenção: o E-mail digitado não é válido.")
-				email.focus();
-				email.select();
-				return (false)
+                            alert("Atenï¿½ï¿½o: o E-mail digitado nï¿½o ï¿½ vï¿½lido.")
+                            email.focus();
+                            email.select();
+                            return (false)
 		  	}
 		}
 		
@@ -123,7 +123,7 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 		      <td><input name="senha" maxlength="32" size="16" type="password" value=""></td>
 		    </tr>
 		    <tr>
-		      <td>Senha (confirmação):</td>
+		      <td>Senha (confirmaï¿½ï¿½o):</td>
 		      <td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
 		    </tr>
 		    <tr>
@@ -132,6 +132,6 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 		  </table>
 		</form>
 		<br>
-		<i><a href="showSource.php?file=Call_UpdUser.php">Veja o código fonte!</a></i>
+		<i><a href="showSource.php?file=Call_UpdUser.php">Veja o cï¿½digo fonte!</a></i>
 	</body>
 </html>

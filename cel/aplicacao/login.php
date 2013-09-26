@@ -3,16 +3,16 @@
 /**
 @Titulo: Acessar o sistema
 
-@Objetivo: Permitir que o usuário acesse a Aplicação de Edição de Léxicos e de Edição de Cenários, cadastre-se no sistema ou requisite sua senha no caso de tê-la esquecido.
+@Objetivo: Permitir que o usuï¿½rio acesse a Aplicaï¿½ï¿½o de Ediï¿½ï¿½o de Lï¿½xicos e de Ediï¿½ï¿½o de Cenï¿½rios, cadastre-se no sistema ou requisite sua senha no caso de tï¿½-la esquecido.
 
-@Contexto: A página da aplicação é acessada. Na página de abertura ../cel/aplicacao/login.php o usuário insere login ou senha incorretos - $wrong=true.
+@Contexto: A pï¿½gina da aplicaï¿½ï¿½o ï¿½ acessada. Na pï¿½gina de abertura ../cel/aplicacao/login.php o usuï¿½rio insere login ou senha incorretos - $wrong=true.
 
-@Atores: usuário, aplicação
+@Atores: usuï¿½rio, aplicaï¿½ï¿½o
 
 @Recursos: URL de acesso ao sistema,  login, senha, bd.inc, httprequest.inc, $wrong, $url, showSource.php?file=login.php, esqueciSenha.php, add_usuario.php?novo=true 
 **/
 
-/** @Episodio 1: Iniciar sessão **/
+/** @Episodio 1: Iniciar sessï¿½o **/
 session_start();
 
 include("bd.inc");
@@ -26,20 +26,20 @@ $wrong = "false";
 include("httprequest.inc");
 
 /** @Episodio 2: Conectar o SGBD **/
-/** @Restrição: a função bd_connect definida em bd.inc é utilizada **/
-/** @Exceção: Erro ao conectar banco de dados **/
+/** @Restriï¿½ï¿½o: a funï¿½ï¿½o bd_connect definida em bd.inc ï¿½ utilizada **/
+/** @Exceï¿½ï¿½o: Erro ao conectar banco de dados **/
 
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
-/** @Episodio 9: Se o formulário tiver sido submetido então verificar se o login e senha estão corretos. **/
+/** @Episodio 9: Se o formulï¿½rio tiver sido submetido entï¿½o verificar se o login e senha estï¿½o corretos. **/
 if ($submit == 'Entrar') 
 {        
 	$senha_cript = md5($senha);
-	$q = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha_cript'";
-    $qrr = mysql_query($q) or die("Erro ao executar a query");
+	$query = "SELECT id_usuario FROM usuario WHERE login='$login' AND senha='$senha_cript'";
+    $queryResult = mysql_query($query) or die("Erro ao executar a query");
   
-	/** @Episodio 10: Se o login e/ou senha estiverem incorretos então retornar a página de login com wrong=true na URL. **/
-	if (!mysql_num_rows($qrr))
+	/** @Episodio 10: Se o login e/ou senha estiverem incorretos entï¿½o retornar a pï¿½gina de login com wrong=true na URL. **/
+	if (!mysql_num_rows($queryResult))
 	{        
 
 		?>
@@ -51,10 +51,10 @@ if ($submit == 'Entrar')
 		$wrong = $_get["wrong"];
     } 
 
-	/** @Episodio 11: Se o login e senha estiverem corretos então registrar sessão para o usuário, fechar login.php e abrir aplicação . **/
+	/** @Episodio 11: Se o login e senha estiverem corretos entï¿½o registrar sessï¿½o para o usuï¿½rio, fechar login.php e abrir aplicaï¿½ï¿½o . **/
 	else
 	{
-        $row = mysql_fetch_row($qrr);
+        $row = mysql_fetch_row($queryResult);
         $id_usuario_corrente = $row[0];
 
         $_SESSION['id_usuario_corrente'] = $row[0];
@@ -67,7 +67,7 @@ if ($submit == 'Entrar')
     }
 } 
 
-/** @Episodio 3: Mostrar o formulário de login para usuário. **/
+/** @Episodio 3: Mostrar o formulï¿½rio de login para usuï¿½rio. **/
 else
 {    
 	?>
@@ -78,7 +78,7 @@ else
 	<body>
 	<?php
 
-	/** @Episodio 4: Se wrong = true então mostrar a mensagem Login ou Senha incorreto . **/
+	/** @Episodio 4: Se wrong = true entï¿½o mostrar a mensagem Login ou Senha incorreto . **/
 	if ($wrong=="true")
 	{
 		?>
@@ -88,7 +88,7 @@ else
 		<?php
 	} 
 	
-	/** @Episodio 5: Se wrong != true então mostrar a mensagem Entre com seu login e senha. **/
+	/** @Episodio 5: Se wrong != true entï¿½o mostrar a mensagem Entre com seu login e senha. **/
 	else
 	{
 		?>
@@ -116,15 +116,15 @@ else
 	        <td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td>
 	      </tr>
 	    </table>
-	    <?php 		/** @Episodio 6: [CADASTRAR NOVO USUÁRIO] **/ ?>
+	    <?php 		/** @Episodio 6: [CADASTRAR NOVO USUï¿½RIO] **/ ?>
 	    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
 	      <?php 	    /** @Episodio 7: [LEMBRAR SENHA] **/ ?>
 	      <a href="esqueciSenha.php">Esqueci senha</a></p>
 	  </div>
 	</form>
 	</body>
-	<?php		/** @Episodio 8: [MOSTRAR O CÓDIGO FONTE] **/ ?>
-	<i><a href="showSource.php?file=login.php">Veja o código fonte!</a></i>
+	<?php		/** @Episodio 8: [MOSTRAR O Cï¿½DIGO FONTE] **/ ?>
+	<i><a href="showSource.php?file=login.php">Veja o cï¿½digo fonte!</a></i>
 	</html>
 	<?php
 }
