@@ -15,25 +15,25 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <form action="gerador_xml.php" method="post">
-  <h2>Propriedades do Relatório a ser Gerado:</h2>
+  <h2>Propriedades do Relat&oacute;rio a ser Gerado:</h2>
   <?php
 
-//Cenário - Gerar Relatórios XML 
+//Cenï¿½rio - Gerar Relatï¿½rios XML 
 
-//Objetivo:    Permitir ao administrador gerar relatórios em formato XML de um projeto,
+//Objetivo:    Permitir ao administrador gerar relatï¿½rios em formato XML de um projeto,
 //          identificados por data.     
-//Contexto:    Gerente deseja gerar um relatório para um dos projetos da qual é administrador.
-//          Pré-Condição: Login, projeto cadastrado.
+//Contexto:    Gerente deseja gerar um relatï¿½rio para um dos projetos da qual ï¿½ administrador.
+//          Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado.
 //Atores:    Administrador     
-//Recursos:    Sistema, dados do relatório, dados cadastrados do projeto, banco de dados.     
-//Episódios:O administrador clica na opção de Gerar Relatório XML.
-//          Restrição: Somente o Administrador do projeto pode ter essa função visível.
-//          O sistema fornece para o administrador uma tela onde deverá fornecer os dados
-//          do relatório para sua posterior identificação, como data e versão. 
+//Recursos:    Sistema, dados do relatï¿½rio, dados cadastrados do projeto, banco de dados.     
+//Episï¿½dios:O administrador clica na opï¿½ï¿½o de Gerar Relatï¿½rio XML.
+//          Restriï¿½ï¿½o: Somente o Administrador do projeto pode ter essa funï¿½ï¿½o visï¿½vel.
+//          O sistema fornece para o administrador uma tela onde deverï¿½ fornecer os dados
+//          do relatï¿½rio para sua posterior identificaï¿½ï¿½o, como data e versï¿½o. 
 
    $today = getdate(); 
 ?>
-  &nbsp;Data da Versão:
+  &nbsp;Data da Vers&atilde;o:
   <?= $today['mday'];?>
   /
   <?= $today['mon'];?>
@@ -44,7 +44,7 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
     <input  type="hidden" name="data_mes" size="3" value="<?= $today['mon'];?>">
     <input type="hidden" name="data_ano" size="6" value="<?= $today['year'];?>">
     &nbsp;</p>
-  Versão do XML: &nbsp;
+  Vers&atilde;o do XML: &nbsp;
   <input type="text" name="versao" size="15">
   <p>Exibir
     
@@ -56,6 +56,6 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
   </p>
 </form>
 <br>
-<i><a href="showSource.php?file=form_xml.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=form_xml.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>

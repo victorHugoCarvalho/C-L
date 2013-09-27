@@ -8,7 +8,7 @@
 
 // frame_inferior.php 
 // Dada a base, o tipo "c", "l", "oc", "or" e "oa" e o 
-// id do respectivo, mostra os dados necessários 
+// id do respectivo, mostra os dados necessï¿½rios 
 // no frame. 
 
     function frame_inferior( $bd, $tipo, $id  ) 
@@ -19,7 +19,7 @@
 
         if ( $tipo == "c" )            // Se for cenario 
         { 
-            // Seleciona os cenários que referenciam o cenário 
+            // Seleciona os cenï¿½rios que referenciam o cenï¿½rio 
             // com o id passado. 
             $qry_cenario = "SELECT id_cenario, titulo 
                             FROM   cenario, centocen 
@@ -27,12 +27,12 @@
                             AND    id_cenario_to = " . $id ; 
 
             $tb_cenario = mysql_query( $qry_cenario ) or 
-                          die( "Erro ao enviar a query de selecao." ) ; 
+                          die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
 ?>
 
 <table>
 <tr>
-  <th>Cenários</th>
+  <th>Cen&aacute;rios</th>
 </tr>
 <?php 
             while ( $row = mysql_fetch_row( $tb_cenario ) ) 
@@ -50,7 +50,7 @@
 
         else if ( $tipo == "l" ) 
         { 
-            // Seleciona os cenários que referenciam o léxico 
+            // Seleciona os cenï¿½rios que referenciam o lï¿½xico 
             // com o id passado. 
             $qry_cenario = "SELECT c.id_cenario, c.titulo 
                             FROM   cenario c, centolex cl 
@@ -58,7 +58,7 @@
                             AND    cl.id_lexico = " . $id ; 
 
             $tb_cenario = mysql_query( $qry_cenario ) or 
-                          die( "Erro ao enviar a query de selecao." ) ; 
+                          die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
 
             // Seleciona os lexicos que referenciam o lexico 
             // com o id passado. 
@@ -68,12 +68,12 @@
                            AND    id_lexico_to = " . $id ; 
 
             $tb_lexico = mysql_query( $qry_lexico ) or 
-                         die( "Erro ao enviar a query de selecao." ) ; 
+                         die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
 ?>
   <table>
     <tr>
-      <th>Cenários</th>
-      <th>Léxicos</th>
+      <th>Cen&aacute;rios</th>
+      <th>L&eacute;xicos</th>
     </tr>
     <?php 
             while ( 1 ) 
@@ -124,9 +124,9 @@
                  AND      c.id_conceito = rc.id_conceito 
                  AND      r.id_relacao = rc.id_relacao 
                  ORDER BY r.nome  ";  
-           $result = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());  
+           $result = mysql_query($q) or die("Erro ao enviar a query de sele&oacute;&atilde;o !!". mysql_error());  
         
-           print "<TABLE><tr><th align=left CLASS=\"Estilo\">Relação</th><th align=left CLASS=\"Estilo\">Conceito</Th></tr>"; 
+           print "<TABLE><tr><th align=left CLASS=\"Estilo\">Rela&ccedil;&atilde;o</th><th align=left CLASS=\"Estilo\">Conceito</Th></tr>"; 
 
            while ($line = mysql_fetch_array($result, MYSQL_BOTH))   
            { 
@@ -137,7 +137,7 @@
 
         } //elseif 
 
-        else if ( $tipo == "or" ) /* RELAÇÃO */ 
+        else if ( $tipo == "or" ) /* RELAï¿½ï¿½O */ 
         { 
            $q = "SELECT DISTINCT  c.id_conceito, c.nome 
                  FROM     conceito c, relacao_conceito rc, relacao r 
@@ -145,7 +145,7 @@
                  AND      c.id_conceito = rc.id_conceito 
                  AND      r.id_relacao = rc.id_relacao 
                  ORDER BY r.nome  ";  
-           $result = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());  
+           $result = mysql_query($q) or die("Erro ao enviar a query de sele&oacute;&atilde;o !!". mysql_error());  
         
            print "<TABLE><tr><th align=left CLASS=\"Estilo\">Conceitos</th></tr>"; 
 
@@ -165,7 +165,7 @@
                  FROM     axioma
                  WHERE    id_axioma = \"$id\";";  
 
-           $result = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());  
+           $result = mysql_query($q) or die("Erro ao enviar a query de sele&oacute;&atilde;o !!". mysql_error());  
         
            print "<TABLE><tr><th align=left CLASS=\"Estilo\">Conceito</th><th align=left CLASS=\"Estilo\">Conceito disjunto</th></tr>"; 
 
@@ -174,12 +174,12 @@
               $axi = explode(" disjoint ", $line[1]);     
 
               $q1 = "SELECT * FROM conceito WHERE nome = \"$axi[0]\";";          
-              $result1 = mysql_query($q1) or die("Erro ao enviar a query de selecao !!". mysql_error());  
+              $result1 = mysql_query($q1) or die("Erro ao enviar a query de sele&oacute;&atilde;o !!". mysql_error());  
               $line1 = mysql_fetch_array($result1, MYSQL_BOTH) ; 
               print "<tr><td CLASS=\"Estilo\"><a href=\"main.php?id=$line1[0]&t=oc\">$axi[0]</a></td>";
 
               $q2 = "SELECT * FROM conceito WHERE nome = \"$axi[1]\";";          
-              $result2 = mysql_query($q2) or die("Erro ao enviar a query de selecao !!". mysql_error());  
+              $result2 = mysql_query($q2) or die("Erro ao enviar a query de sele&oacute;&atilde;o !!". mysql_error());  
               $line2 = mysql_fetch_array($result2, MYSQL_BOTH) ; 
               print "<td CLASS=\"Estilo\"><a href=\"main.php?id=$line2[0]&t=oc\">$axi[1]</a></td></tr>"; 
            } 

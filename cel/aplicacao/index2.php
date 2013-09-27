@@ -1,4 +1,4 @@
-<title>C&L - Cenários e Léxico</title>
+<title>C&L - Cen&aacute;rios e L&eacute;xico</title>
 
 <!--
 <frameset rows="103,*" cols="*" frameborder="NO" border="0" framespacing="0">

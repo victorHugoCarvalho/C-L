@@ -1,7 +1,7 @@
 <?php
 /*
 ##   Simple PostgreSQL Abstraction Layer v1.0
-##   by Cem ÇEVÝK <cemc@linux.org.tr>
+##   by Cem ï¿½EVï¿½K <cemc@linux.org.tr>
 ##   Sturday, January 06, 2001
 ##
 ##   Easy way to access database and store fetched results.
@@ -32,7 +32,7 @@
 ##          $DB->close ();
 */
 
-/* Atenção!!!
+/* Atenï¿½ï¿½o!!!
  *
  * Este script foi adaptado para o MySQL!!!
  *
@@ -91,7 +91,7 @@ class PGDB extends Abstract_DB
 
     function open($dbname, $user, $passwd, $host, $port)
 	{
-    	$this->db_linkid = bd_connect() or die("Erro na conexão à BD : " . mysql_error()) ;
+    	$this->db_linkid = bd_connect() or die("Erro na conex&atilde;o ao BD : " . mysql_error()) ;
 
 		if ($this->db_linkid)
 		{

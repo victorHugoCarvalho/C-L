@@ -35,7 +35,7 @@ $r = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($id_projeto))
 {  
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");  
+    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");  
     $q = "SELECT nome FROM projeto WHERE id_projeto = $id_projeto";  
     $qrr = mysql_query($q) or die("Erro ao enviar a query");  
     $result = mysql_fetch_array($qrr);  
@@ -106,7 +106,7 @@ MTMIconList.addIcon(new MTMIcon("menu_link_pdf.gif", ".pdf", "post"));
 
 var menu = null; 
 menu = new MTMenu(); 
-menu.addItem("Cenários"); 
+menu.addItem("Cenï¿½rios"); 
 // + submenu 
 var mc = null; 
 mc = new MTMenu(); 
@@ -117,7 +117,7 @@ $q = "SELECT id_cenario, titulo
       WHERE id_projeto = $id_projeto  
       ORDER BY titulo";  
 
-$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");  
+$qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o");  
 // Devemos retirar todas as tags HTML do titulo do cenario. Possivelmente 
 // havera tags de links (<a> </a>). Caso nao tiremos, havera erro ao 
 // mostra-lo no menu. Este search & replace retira qualquer coisa que 
@@ -136,7 +136,7 @@ while ($row = mysql_fetch_row($qrr)) // para cada cenario do projeto
 	// + submenu 
 	var mcs_<?=$row[0]?> = null; 
 	mcs_<?=$row[0]?> = new MTMenu(); 
-	mcs_<?=$row[0]?>.addItem("Sub-cenários", "", null, "Cenários que este cenário referencia"); 
+	mcs_<?=$row[0]?>.addItem("Sub-cenï¿½rios", "", null, "Cen&aacute;rios que este cen&aacute;rio refer&ecirc;ncia"); 
 	// + submenu 
 	var mcsrc_<?=$row[0]?> = null; 
 	mcsrc_<?=$row[0]?> = new MTMenu(); 
@@ -170,7 +170,7 @@ while ($row = mysql_fetch_row($qrr)) // para cada cenario do projeto
 // - submenu 
 menu.makeLastSubmenu(mc); 
 
-menu.addItem("Léxico"); 
+menu.addItem("Lï¿½xico"); 
 // + submenu 
 var ml = null; 
 ml = new MTMenu(); 
@@ -181,7 +181,7 @@ $q = "SELECT id_lexico, nome
       WHERE id_projeto = $id_projeto  
       ORDER BY nome";  
 
-$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");  
+$qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o");  
 while ($row=mysql_fetch_row($qrr))   // para cada lexico do projeto
 { 
 	?>  
@@ -190,7 +190,7 @@ while ($row=mysql_fetch_row($qrr))   // para cada lexico do projeto
 	// + submenu 
 	var mls_<?=$row[0]?> = null; 
 	mls_<?=$row[0]?> = new MTMenu(); 
-	// mls_<?=$row[0]?>.addItem("Léxico", "", null, "Termos do léxico que este termo referencia"); 
+	// mls_<?=$row[0]?>.addItem("L&eacute;xico", "", null, "Termos do l&eacute;xico que este termo refer&ecirc;ncia"); 
 	// + submenu 
 	// var mlsrl_<?=$row[0]?> = null; 
 	// mlsrl_<?=$row[0]?> = new MTMenu(); 
@@ -245,7 +245,7 @@ menu.makeLastSubmenu(mo);
           WHERE id_projeto = $id_projeto  
           ORDER BY nome";  
 
-    $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");  
+    $qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o");  
     while ($row=mysql_fetch_row($qrr))  // para cada conceito do projeto 
     {   
         print "moc.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=oc\");"; 
@@ -258,9 +258,9 @@ menu.makeLastSubmenu(mo);
 
 
 
-// RELAÇÕES 
+// RELAï¿½ï¿½ES 
 // ++ submenu 
-   mo.addItem("Relações"); 
+   mo.addItem("Relaï¿½ï¿½es"); 
    var mor = null; 
    mor = new MTMenu(); 
 
@@ -270,8 +270,8 @@ menu.makeLastSubmenu(mo);
           WHERE    id_projeto = $id_projeto  
           ORDER BY nome";  
 
-    $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");  
-    while ($row=mysql_fetch_row($qrr))   // para cada relação do projeto 
+    $qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o");  
+    while ($row=mysql_fetch_row($qrr))   // para cada relaï¿½ï¿½o do projeto 
     {    
         print "mor.addItem(\"$row[1]\", \"main.php?id=$row[0]&t=or\");"; 
     } 
@@ -295,7 +295,7 @@ menu.makeLastSubmenu(mo);
          WHERE    id_projeto = $id_projeto  
          ORDER BY axioma";  
 
-   $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao");  
+   $qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o");  
 
    while ($row=mysql_fetch_row($qrr))  // para cada axioma do projeto 
    {  

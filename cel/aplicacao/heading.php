@@ -7,18 +7,18 @@ include("funcoes_genericas.php");
 
 chkUser("index.php");        // Cenario: controle de acesso
 
-// Cenário - Usuário escolhe Projeto
+// Cenï¿½rio - Usuï¿½rio escolhe Projeto
 
-// Objetivo:  Permitir ao Usuário escolher um projeto.
-// Contexto:  O Usuário deseja escoher um projeto.
-// Pré-Condições: Login
-// Atores:    Usuário
+// Objetivo:  Permitir ao Usuï¿½rio escolher um projeto.
+// Contexto:  O Usuï¿½rio deseja escoher um projeto.
+// Prï¿½-Condiï¿½ï¿½es: Login
+// Atores:    Usuï¿½rio
 // Recursos:  Projetos
-// Episódios: O Usuário seleciona da lista de projetos um projeto da qual ele não seja 
+// Episï¿½dios: O Usuï¿½rio seleciona da lista de projetos um projeto da qual ele nï¿½o seja 
 //            administrador. 
-//            O Usuário poderá:
-//              - Atualizar cenário:
-//              - Atualizar léxico.
+//            O Usuï¿½rio poderï¿½:
+//              - Atualizar cenï¿½rio:
+//              - Atualizar lï¿½xico.
 
 if( isset( $_GET['id_projeto']))
 {
@@ -57,7 +57,7 @@ if (isset($id_projeto)) {   // $id_projeto soh nao estara setada caso seja a pri
                             // vez que o usuario esteja acessando o sistema
 
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");
+    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");
 ?>
 
 function setPrjSelected() {
@@ -77,16 +77,16 @@ function setPrjSelected() {
 function novoCenario() {
  <?php
 
-// Cenário - Atualizar Cenário 
+// Cenï¿½rio - Atualizar Cenï¿½rio 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Cenário por um usuário 
-//Contexto:    Usuário deseja incluir um cenário ainda não cadastrado, alterar e/ou excluir 
-//              um cenário previamente cadastrados. 
-//Pré-Condições: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Cenï¿½rio por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um cenï¿½rio ainda nï¿½o cadastrado, alterar e/ou excluir 
+//              um cenï¿½rio previamente cadastrados. 
+//Prï¿½-Condiï¿½ï¿½es: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Alterar então INCLUIR CENÁRIO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Alterar entï¿½o INCLUIR CENï¿½RIO 
 
 	if (isset($id_projeto))
     {
@@ -109,16 +109,16 @@ function novoCenario() {
 function novoLexico() {
  <?php
 
-//Cenário -  Atualizar Léxico 
+//Cenï¿½rio -  Atualizar Lï¿½xico 
 
-//Objetivo:    Permitir Inclusão, Alteração e Exclusão de um Léxico por um usuário 
-//Contexto:    Usuário deseja incluir um lexico ainda não cadastrado, alterar e/ou 
-//              excluir um cenário/léxico previamente cadastrados. 
-//Pré-Condições: Login 
-//Atores:    Usuário, Gerente do projeto 
+//Objetivo:    Permitir Inclusï¿½o, Alteraï¿½ï¿½o e Exclusï¿½o de um Lï¿½xico por um usuï¿½rio 
+//Contexto:    Usuï¿½rio deseja incluir um lexico ainda nï¿½o cadastrado, alterar e/ou 
+//              excluir um cenï¿½rio/lï¿½xico previamente cadastrados. 
+//Prï¿½-Condiï¿½ï¿½es: Login 
+//Atores:    Usuï¿½rio, Gerente do projeto 
 //Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Episódios:    O usuário clica no menu superior na opção: 
-//                Se usuário clica em Alterar então INCLUIR LÉXICO 
+//Episï¿½dios:    O usuï¿½rio clica no menu superior na opï¿½ï¿½o: 
+//                Se usuï¿½rio clica em Alterar entï¿½o INCLUIR Lï¿½XICO 
 
 	if (isset($id_projeto))
 	{
@@ -184,7 +184,7 @@ if (isset($id_projeto))
     else
 	{
 		?>
-    	<font color="#FF0033">Usuï¿½rio normal</font>
+    	<font color="#FF0033">Usu&aacute;rio normal</font>
         <?php
 	}
 }   
@@ -201,8 +201,8 @@ else
 <?php
 
 // ** Cenario "Login" **
-// O sistema dá ao usuário a opção de cadastrar um novo projeto
-// ou utilizar um projeto em que ele faça parte.
+// O sistema dï¿½ ao usuï¿½rio a opï¿½ï¿½o de cadastrar um novo projeto
+// ou utilizar um projeto em que ele faï¿½a parte.
 
 // conecta ao SGBD
 $r = bd_connect() or die("Erro ao conectar ao SGBD");
@@ -240,36 +240,36 @@ if (isset($id_projeto))   	// Se o usuario ja tiver escolhido um projeto,
                             // e de informacoes (pagina principal) do projeto
 
 
-// Cenário - Administrador escolhe Projeto
+// Cenï¿½rio - Administrador escolhe Projeto
 
 // Objetivo:  Permitir ao Administrador escolher um projeto.
 // Contexto:  O Administrador deseja escolher um projeto.
-// Pré-Condições: Login, Ser administrador do projeto selecionado.
+// Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado.
 // Atores:    Administrador
 // Recursos:  Projetos doAdministrador
-// Episódios: Aparecendo no menu as opções de: 
-//            -Adicionar Cenário (ver Adicionar Cenário); 
-//            -Adicionar Léxico (ver Adicionar Léxico); 
+// Episï¿½dios: Aparecendo no menu as opï¿½ï¿½es de: 
+//            -Adicionar Cenï¿½rio (ver Adicionar Cenï¿½rio); 
+//            -Adicionar Lï¿½xico (ver Adicionar Lï¿½xico); 
 //            -Info; 
 //            -Adicionar Projeto; 
 //            -Alterar Cadastro.
 
 
 ?>
-              <a href="#" onClick="novoCenario();">Adicionar Cenário</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar Símbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informações sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
+              <a href="#" onClick="novoCenario();">Adicionar Cen&aacute;rio</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar S&iacute;mbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informaï¿½ï¿½es sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
               <?php
 }
 ?>
               <?php
 
-//Cenário  -  Cadastrar Novo Projeto 
+//Cenï¿½rio  -  Cadastrar Novo Projeto 
 
-//Objetivo:    Permitir ao Usuário cadastrar um novo projeto
-//Contexto:    Usuário deseja incluir um novo projeto na base de dados
-//Pré-Condições: Login
-//Atores:      Usuário
+//Objetivo:    Permitir ao Usuï¿½rio cadastrar um novo projeto
+//Contexto:    Usuï¿½rio deseja incluir um novo projeto na base de dados
+//Prï¿½-Condiï¿½ï¿½es: Login
+//Atores:      Usuï¿½rio
 //Recursos:    Sistema, dados do projeto, base de dados
-//Episódios:   O Usuário clica na opção adicionar projeto encontrada no menu superior.
+//Episï¿½dios:   O Usuï¿½rio clica na opï¿½ï¿½o adicionar projeto encontrada no menu superior.
 
 ?>
               <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
@@ -277,14 +277,14 @@ if (isset($id_projeto))   	// Se o usuario ja tiver escolhido um projeto,
               <?php
 
 
-//Cenário  -   Remover Novo Projeto 
+//Cenï¿½rio  -   Remover Novo Projeto 
 
 //Objetivo:    Permitir ao Administrador do projeto remover um projeto
 //Contexto:    Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//Pré-Condições: Login, Ser administrador do projeto selecionado.
+//Prï¿½-Condiï¿½ï¿½es: Login, Ser administrador do projeto selecionado.
 //Atores:      Administrador
 //Recursos:    Sistema, dados do projeto, base de dados
-//Episódios:   O Usuário clica na opção remover projeto encontrada no menu superior.
+//Episï¿½dios:   O Usuï¿½rio clica na opï¿½ï¿½o remover projeto encontrada no menu superior.
 
 
 if (isset($id_projeto))
@@ -302,29 +302,29 @@ if (isset($id_projeto))
 	}
 }       
 
-// Cenário - Logar no sistema
+// Cenï¿½rio - Logar no sistema
 
-// Objetivo:  Permitir ao Usuário entrar no sistema e escolher um projeto que ele esteja 
+// Objetivo:  Permitir ao Usuï¿½rio entrar no sistema e escolher um projeto que ele esteja 
 //              cadastrado, ou cadastrar novo projeto	
-// Contexto:  Sistema está aberto Usuário na tela de login do sistema. 
-//            Usuário sabe a sua senha Usuário deseja entrar no sistema com seu perfil 
-// Pré-Condições: Usuário ter acessado ao sistema	
-// Atores:	  Usuário, Sistema	
+// Contexto:  Sistema estï¿½ aberto Usuï¿½rio na tela de login do sistema. 
+//            Usuï¿½rio sabe a sua senha Usuï¿½rio deseja entrar no sistema com seu perfil 
+// Prï¿½-Condiï¿½ï¿½es: Usuï¿½rio ter acessado ao sistema	
+// Atores:	  Usuï¿½rio, Sistema	
 // Recursos:  Banco de Dados	
-// Episódios: O sistema dá ao Usuário as opções
-//             - ALTERAR CADASTRO, no qual o Usuário terá a possibilidade de realizar 
-//               alterações nos seus dados cadastrais
+// Episï¿½dios: O sistema dï¿½ ao Usuï¿½rio as opï¿½ï¿½es
+//             - ALTERAR CADASTRO, no qual o Usuï¿½rio terï¿½ a possibilidade de realizar 
+//               alteraï¿½ï¿½es nos seus dados cadastrais
 
 
-// Cenário - Alterar cadastro
+// Cenï¿½rio - Alterar cadastro
 //
-//Objetivo:  Permitir ao Usuário realizar alterações nos seus dados cadastrais	
-//Contexto:  Sistema aberto, Usuário ter acessado ao sistema e logado 
-//           Usuário deseja alterar seus dados cadastrais 
-//Pré-Condições: Usuário ter acessado ao sistema	
-//Atores:    Usuário, Sistema.	
+//Objetivo:  Permitir ao Usuï¿½rio realizar alteraï¿½ï¿½es nos seus dados cadastrais	
+//Contexto:  Sistema aberto, Usuï¿½rio ter acessado ao sistema e logado 
+//           Usuï¿½rio deseja alterar seus dados cadastrais 
+//Prï¿½-Condiï¿½ï¿½es: Usuï¿½rio ter acessado ao sistema	
+//Atores:    Usuï¿½rio, Sistema.	
 //Recursos:  Interface	
-//Episódios: O Usuário clica na opção de alterar cadastro da interface
+//Episï¿½dios: O Usuï¿½rio clica na opï¿½ï¿½o de alterar cadastro da interface
 
 ?>
               <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
@@ -332,31 +332,31 @@ if (isset($id_projeto))
               <?php
 
 
-// Cenário - Logar no sistema
+// Cenï¿½rio - Logar no sistema
 
-// Objetivo:  Permitir ao Usuário entrar no sistema e escolher um projeto que ele esteja 
+// Objetivo:  Permitir ao Usuï¿½rio entrar no sistema e escolher um projeto que ele esteja 
 //              cadastrado, ou cadastrar novo projeto	
-// Contexto:  Sistema está aberto Usuário na tela de login do sistema. 
-//            Usuário sabe a sua senha Usuário deseja entrar no sistema com seu perfil 
-// Pré-Condições: Usuário ter acessado ao sistema	
-// Atores:    Usuário, Sistema	
+// Contexto:  Sistema estï¿½ aberto Usuï¿½rio na tela de login do sistema. 
+//            Usuï¿½rio sabe a sua senha Usuï¿½rio deseja entrar no sistema com seu perfil 
+// Prï¿½-Condiï¿½ï¿½es: Usuï¿½rio ter acessado ao sistema	
+// Atores:    Usuï¿½rio, Sistema	
 // Recursos:  Banco de Dados	
-// Episódios: O sistema dá ao Usuário as opções:
-//             - REALIZAR LOGOUT, no qual o Usuário terá a possibilidade de sair da 
-//               sessão e se logar novamente
+// Episï¿½dios: O sistema dï¿½ ao Usuï¿½rio as opï¿½ï¿½es:
+//             - REALIZAR LOGOUT, no qual o Usuï¿½rio terï¿½ a possibilidade de sair da 
+//               sessï¿½o e se logar novamente
 
 
-// Cenário - Realizar logout
+// Cenï¿½rio - Realizar logout
 
-// Objetivo:  Permitir ao Usuário realizar o logout, mantendo a integridade do que foi 
+// Objetivo:  Permitir ao Usuï¿½rio realizar o logout, mantendo a integridade do que foi 
 //            realizado,  e retorna a tela de login	
-// Contexto:  Sistema aberto. Usuário ter acessado ao sistema. 
-//            Usuário deseja sair da aplicação e manter a integridade do que foi 
+// Contexto:  Sistema aberto. Usuï¿½rio ter acessado ao sistema. 
+//            Usuï¿½rio deseja sair da aplicaï¿½ï¿½o e manter a integridade do que foi 
 //            realizado 
-// Pré-Condições: Usuário ter acessado ao sistema	
-// Atores:	  Usuário, Sistema.	
+// Prï¿½-Condiï¿½ï¿½es: Usuï¿½rio ter acessado ao sistema	
+// Atores:	  Usuï¿½rio, Sistema.	
 // Recursos:  Interface	
-// Episódios: O Usuário clica na opção de logout
+// Episï¿½dios: O Usuï¿½rio clica na opï¿½ï¿½o de logout
 
 ?>
               <a href="logout.php" target="_parent");">Sair</a>&nbsp;&nbsp;&nbsp; <a href="ajuda.htm" target="_blank"> Ajuda</a></td>

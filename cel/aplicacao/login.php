@@ -124,7 +124,7 @@ else
 	</form>
 	</body>
 	<?php		/** @Episodio 8: [MOSTRAR O C�DIGO FONTE] **/ ?>
-	<i><a href="showSource.php?file=login.php">Veja o c�digo fonte!</a></i>
+	<i><a href="showSource.php?file=login.php">Veja o c&oacute;digo fonte!</a></i>
 	</html>
 	<?php
 }

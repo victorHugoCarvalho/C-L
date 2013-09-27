@@ -17,20 +17,20 @@ $link = bd_connect();
   <h2>Propriedades da ontologia:</h2>
   <?php 
 
-//Objetivo: Gerar Relatórios DAML
+//Objetivo: Gerar Relatï¿½rios DAML
 
    $today = getdate();  
 
-// Recupera nome do usuário
+// Recupera nome do usuï¿½rio
    $sql_user = "select nome from usuario where id_usuario='". $_SESSION['id_usuario_corrente'] . "';";
-   $query_user = mysql_query($sql_user) or die("Erro ao verificar usuário!". mysql_error());  
+   $query_user = mysql_query($sql_user) or die("Erro ao verificar usu&aacute;rio!". mysql_error());  
    $result = mysql_fetch_array($query_user); 
    $usuario = $result[0];
 
 mysql_close($link);
 
 ?>
-  &nbsp;Data da Versão:
+  &nbsp;Data da Vers&atilde;o:
   <?= $today['mday'];?>
   /
   <?= $today['mon'];?>
@@ -42,7 +42,7 @@ mysql_close($link);
   <p>
   <table>
     <tr>
-      <td>Título: </td>
+      <td>T&iacute;tulo: </td>
       <td><input type="text" name="title" size="15"></td>
     </tr>
     <tr>
@@ -50,15 +50,15 @@ mysql_close($link);
       <td><input type="text" name="subject" size="50"></td>
     </tr>
     <tr>
-      <td>Descrição: </td>
+      <td>Descri&ccedil;&atilde;o: </td>
       <td><input type="text" name="description" size="50"></td>
     </tr>
     <tr>
-      <td>Usuário: </td>
+      <td>Usu&aacute;rio: </td>
       <td><input type="text" name="user" value= "<?=$usuario?>" size="50"></td>
     </tr>
     <tr>
-      <td>Versão: </td>
+      <td>Vers&atilde;o: </td>
       <td><input type="text" name="versionInfo" size="15"></td>
     </tr>
   </table>
@@ -67,6 +67,6 @@ mysql_close($link);
   </p>
 </form>
 <br>
-<i><a href="showSource.php?file=form_daml.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=form_daml.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>

@@ -35,7 +35,7 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
 ?>
 <html>
 	<head>
-	<title>Alterar dados de Usu�rio</title>
+	<title>Alterar dados de Usu&aacute;rio</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	</head>
 	
@@ -123,7 +123,7 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
 		      <td><input name="senha" maxlength="32" size="16" type="password" value=""></td>
 		    </tr>
 		    <tr>
-		      <td>Senha (confirma��o):</td>
+		      <td>Senha (confirma&ccedil;&atilde;o):</td>
 		      <td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
 		    </tr>
 		    <tr>
@@ -132,6 +132,6 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
 		  </table>
 		</form>
 		<br>
-		<i><a href="showSource.php?file=Call_UpdUser.php">Veja o c�digo fonte!</a></i>
+		<i><a href="showSource.php?file=Call_UpdUser.php">Veja o c&oacute;digo fonte!</a></i>
 	</body>
 </html>

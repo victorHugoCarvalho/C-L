@@ -20,7 +20,7 @@ session_start();
 /*
 Cenario:     Verificar com o usuario a existencia de um nome numa lista.
 Objetivo:    Verificar com o usuario a existencia de um nome numa lista.
-Contexto:    Algoritmo de traducão iniciado.
+Contexto:    Algoritmo de traducï¿½o iniciado.
 Atores:      Usuario.
 Recursos:    Sistema, nome, lista.
 Episodios:
@@ -45,7 +45,7 @@ function exist($name, $list)
 	
 	if (count($_SESSION["verbos_selecionados"])!=0)
 	{
-		echo "Propriedades já cadastradas para esse impacto:<p>";
+		echo "Propriedades jï¿½ cadastradas para esse impacto:<p>";
 		foreach($_SESSION["verbos_selecionados"] as $verbo)
 		{
 			echo "   - " . $verbo . "<br>";
@@ -56,7 +56,7 @@ function exist($name, $list)
             <?=$name?>
             "</code><br>
             <br>
-            <b>A propriedade já está cadastrada na lista abaixo?</b><br>
+            <b>A propriedade j&aacute; est&aacute; cadastrada na lista abaixo?</b><br>
             <SELECT id='indice' name='indice' size=10 width="300">
               <?php
 	foreach ($list as $key=>$termo)
@@ -72,11 +72,11 @@ function exist($name, $list)
             <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice != -1) echo"checked" ?>>
             sim
             <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice == -1) echo"checked" ?> >
-            não <BR>
+            n&atilde;o <BR>
             <input type="text" value="<?php print strip_tags($name) ?>" id="nome" name="nome" size="20">
             <input type="submit" value="Inserir Propriedade" id="B1" name="B1" disabled>
             <BR>
-            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            <INPUT type="button" value="Prï¿½ximo Passo >>" name="B2" onClick="fim()">
             </p>
             <script language="JavaScript">
             
@@ -119,7 +119,7 @@ function exist($name, $list)
 		}
 		else
 		{
-			alert("É necessario ao menos um verbo para cada impacto.");
+			alert("&Eacute; necessario ao menos um verbo para cada impacto.");
 		}
 	}
 
@@ -138,7 +138,7 @@ function exist($name, $list)
 /*
 Cenario:    Verificar a importancia de um termo com ajuda do usuario.
 Objetivo:    Verificar a importancia de um termo com ajuda do usuario.
-Contexto:    Algoritmo de traducão iniciado.
+Contexto:    Algoritmo de traducï¿½o iniciado.
 Atores:        Usuario.
 Recursos:    Sistema, termo.
 Episodios:
@@ -183,7 +183,7 @@ function importancia_central($termo, $impactos)
 /* -------- INCERTO --------
 Cenario:    Verificar se um conceito referencia outro.
 Objetivo:   Verificar se um conceito referencia outro.
-Contexto:   Algoritmo de traducão iniciado.
+Contexto:   Algoritmo de traducï¿½o iniciado.
 Atores:     Usuario.
 Recursos:   Conceito1, conceito2.
 Episodios:
@@ -381,7 +381,7 @@ function insere_relacao ($rel, $conc, $imp, $list)
 			print "<H4>Propriedade:	 $rel </H4><BR>";
 			if (count($_SESSION["predicados_selecionados"])!=0)
 			{
-				echo "Predicados já cadastrados para essa propriedade:<p>";
+				echo "Predicados jï¿½ cadastrados para essa propriedade:<p>";
 				foreach($_SESSION["predicados_selecionados"] as $verbo)
 				{
 					echo "- " . $verbo . "<br>";
@@ -392,7 +392,7 @@ function insere_relacao ($rel, $conc, $imp, $list)
             <?=$imp?>
             </CODE><br>
             <BR>
-            <b>O predicado da relação já está cadastrado na lista abaixo?</b><br>
+            <b>O predicado da rela&ccedil;&atilde;o j&aacute; est&aacute; cadastrado na lista abaixo?</b><br>
             <SELECT id='indice' name='indice' size=10 width="300">
               <?php
 			 foreach ($list as $key=>$termo)
@@ -408,9 +408,9 @@ function insere_relacao ($rel, $conc, $imp, $list)
             <input type="radio" onClick="seExiste('TRUE')" value="TRUE" id="existe" name="existe" size="20" <?php if($indice2!==-1) echo"checked" ?>>
             sim
             <input type="radio" onClick="seExiste('FALSE')" value="FALSE" id="existe" name="existe" size="20" <?php if($indice2===-1) echo"checked" ?> >
-            não <BR>
+            n&atilde;o <BR>
             <DIV id=naoExiste> <BR>
-              <b>Se não existe, ele pertence à lista de elementos do nosso namespace(abaixo)?</b><br>
+              <b>Se n&atilde;o existe, ele pertence &agrave; lista de elementos do nosso namespace(abaixo)?</b><br>
               <SELECT onChange='seleciona(this[this.selectedIndex].text)' size=10 width="300">
                 <?php
 			 $selected=false;
@@ -435,7 +435,7 @@ function insere_relacao ($rel, $conc, $imp, $list)
               </table>
             </div>
             <input type="submit" value="Inserir Predicado" id="B1" name="B1" size="20">
-            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            <INPUT type="button" value="Pr&oacute;ximo Passo >>" name="B2" onClick="fim()">
             </p>
             <script language='javascript'>
 				function seleciona(valor)
@@ -455,7 +455,7 @@ function insere_relacao ($rel, $conc, $imp, $list)
 						form.submit();
 					}
 					else
-						alert('É necessário ao menos um predicado para cada verbo');
+						alert('ï¿½ necessï¿½rio ao menos um predicado para cada verbo');
 				}
 
 				function seExiste(valor)
@@ -496,7 +496,7 @@ function disjuncao( $nome, $list )
 
 	if (count($_SESSION["axiomas_selecionados"])!=0)
 	{
-		echo "Termos disjunos já discriminados para esse conceito:<p>";
+		echo "Termos disjunos jï¿½ discriminados para esse conceito:<p>";
 		foreach($_SESSION["axiomas_selecionados"] as $axioma)
 		{
 			echo "- " . $axioma . "<br>";
@@ -504,7 +504,7 @@ function disjuncao( $nome, $list )
 		echo "</p>";
 	}
 
-	print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabulário mínimo?";
+	print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabul&aacute;rio m&iacute;nimo?";
 
         ?>
           <form id='rel_form' name='rel_form'  method="POST" action="algoritmo.php">
@@ -537,9 +537,9 @@ function disjuncao( $nome, $list )
             <input type="radio" onClick="seExiste('TRUE')" value="TRUE" name="existe" size="20">
             sim
             <input type="radio" onClick="seExiste('FALSE')" value="FALSE" name="existe" size="20" checked>
-            não<br>
+            n&atilde;o<br>
             <input type="button" value="Inserir Axioma" id="B1" name="B1" onClick="insere()">
-            <INPUT type="button" value="Próximo Passo >>" name="B2" onClick="fim()">
+            <INPUT type="button" value="Pr&oacute;ximo Passo >>" name="B2" onClick="fim()">
             </p>
             <script language='javascript'>
 				function seleciona(valor)
@@ -685,7 +685,7 @@ else
               <input type="radio" value="TRUE" name="load" size="20">
               sim
               <input type="radio" value="FALSE" name="load" size="20">
-              não
+              n&atilde;o
               <input type="submit" value="Enviar" name="B1" size="20">
             </p>
           </form>
