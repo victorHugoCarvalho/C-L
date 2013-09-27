@@ -1,15 +1,15 @@
 <?php
 
-// rmv_relacao.php: Este script faz um pedido de remover uma relacao do projeto.
-// Arquivo chamador: main.php
+// Remove_relationship.php: This script makes a request to remove a relation of the project.
+// File that calls: main.php
 
 session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php");        
+
+chkUser("index.php");     // checks whether the user has been authenticated   
 
 inserirPedidoRemoverRelacao($_SESSION['id_projeto_corrente'], $id_relacao, $_SESSION['id_usuario_corrente']);
 
@@ -21,19 +21,18 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 
 <?php
 
-// Cenário -  Excluir Conceito 
-
-//Objetivo:	Permitir ao Usuário Excluir um conceito que esteja ativo
-//Contexto:	Usuário deseja excluir um conceito
-//Pré-Condição: Login, cenário cadastrado no sistema
-//Atores:	Usuário, Sistema
-//Recursos:	Dados informados
-//Episódios:	O sistema fornecerá uma tela para o usuário justificar a necessidade daquela
-//              exclusão para que o administrador possa ler e aprovar ou não a mesma.
-//              Esta tela também conterá um botão para a confirmação da exclusão.
-//              Restrição: Depois de clicar no botão, o sistema verifica se todos os campos foram preenchidos 
-//Exceção:	Se todos os campos não foram preenchidos, retorna para o usuário uma mensagem
-//              avisando que todos os campos devem ser preenchidos e um botão de voltar para a pagina anterior.
+//  Scenery - Delete Relation
+//  Purpose: Allow User to Delete a Relation that is active
+//  Context: User wants to delete a Relation
+//  Precondition: Login, backdrop registered in the system
+//  Actors: User, System
+//  Resources: Data informed
+//  Episodes: The system will provide a screen for the user to justify the need for that
+//  Exclusion so that the administrator can read and approve or disapprove the same.
+//  This screen also contains a button to confirm the deletion.
+//  Restriction: After clicking the button, the system checks whether all fields were filled
+//  Exception: If all fields are empty, returns to the user a message
+//  Warning that all fields must be completed and a button to return to the previous page.
 
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-// Escapa os metacaracteres do PHP
+// Escapes metacharacters of PHP
 
 function escapa_metacaracteres ( $string )
 {
@@ -10,18 +10,18 @@ function escapa_metacaracteres ( $string )
 
 function prepara_dado( $string ) 
 {
-	//Remove espaços em branco do inicio e do fim da string
-	//$string = trim( $string );
+    //Removes whitespace from the beginning and end of string
+    //$string = trim( $string );
 	
-	// Substitui o & por amp; (para que não de problemas ao gerar o XML)
+	//Replace & with amp; (lest problems when generating the XML)
 	
 	$string = ereg_replace("&", "&amp;", $string);
 	
-	// Retira tags html e php da string
-	
+	//Removes html tags and php string
 	$string = strip_tags($string);
 	
-	// Verifica se a diretiva get_magic_quotes_gpc() esta ativada, se estiver a função stripslashes é utilizada na string
+	//Checks whether the policy get_magic_quotes_gpc () is enabled, 
+	//if the function is used in the string stripslashes.
 	
 	$string = get_magic_quotes_gpc() ? stripslashes($string) : $string;
 	$string = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($string) : mysql_escape_string($string);

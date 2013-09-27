@@ -1,9 +1,11 @@
 <html>
-<head>
-<title></title>
-</head>
 
-<body>
+    <head>
+        <title></title>
+    </head>
+
+    <body>
+    
 <?php
 
 
@@ -45,6 +47,10 @@ function converte_impactos()
 			print "Cannot write to file ($filename)";
 			exit;
 		}
+		else
+		{
+			//Nothing to do.
+		}
 	}
 	
 	fclose($handle);
@@ -63,6 +69,11 @@ function converte_impactos()
 			$pegar_id = 1;
 			continue;
 		}
+		else
+		{
+			//Nothing to do.
+		}
+		
 		if($pegar_id)
 		{
 			$id = sscanf($line,"%d");
@@ -70,12 +81,20 @@ function converte_impactos()
 			$pegar_id = 0;
 			continue;
 		}
+		else
+		{
+			//Nothing to do.
+		}
             
 		print ($line . "<br>\n" );
 		if( strcmp(trim($line),"") != 0 )
 		{		
 			$query  = "insert into impacto (id_lexico, impacto) values ('$id_lexico', '$line');";
 			$result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . " " . $line ." ". $id_lexico . " " . __LINE__);
+		}
+		else
+		{
+			//Nothing to do.
 		}
 	}
 	

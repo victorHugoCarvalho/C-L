@@ -1,9 +1,12 @@
 <html>
-<head>
-<title></title>
-</head>
 
-<body>
+    <head>
+        <title></title>
+    </head>
+
+    <body>
+    
+    
 <?php
 
 include_once("bd.inc") ;

@@ -12,7 +12,7 @@ chkUser("index.php");        // checks whether the user has been authenticated
 //new project, or when a New User register on the system
 
 
-// Scenario - Register New Project
+// Scenery - Register New Project
 // Purpose: Allow user to register a new project
 // Context: User want to include a new project in the database
 // Precondition: Login

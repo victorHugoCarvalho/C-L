@@ -13,23 +13,23 @@ $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 ?>
 <html>
 <head>
-<title>Alterar dados de Usuário</title>
+<title>Alterar dados de Usu&aacute;rio</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 
 <body>
 <?php
 
-// Cenário - Alterar cadastro
-//
-//Objetivo:  Permitir ao usuário realizar alteração nos seus dados cadastrais	
-//Contexto:  Sistema aberto, Usuário ter acessado ao sistema e logado 
-//           Usuário deseja alterar seus dados cadastrais 
-//           Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:    Usuário, Sistema.	
-//Recursos:  Interface	
-//Episódios: O usuário altera os dados desejados
-// 	     Usuário clica no botão de atualizar
+// Scenery - Changing registration
+
+// Purpose: Allow the user to perform changes in your registration data
+// Context: Open System, User have accessed the system and logged
+//         User want to change your registration
+// Precondition: User has accessed the system	
+// Actors: User, System.
+// Features: Interface
+// Episodes: The user changes the desired data
+//          User clicks on the refresh button
 
 $senha_script = md5($senha);
 $query = "UPDATE usuario SET  nome ='$nome' , login = '$login' , email = '$email' , senha = '$senha_script' WHERE  id_usuario='$id_usuario'";

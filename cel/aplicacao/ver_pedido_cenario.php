@@ -1,19 +1,20 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// ver_pedido_cenario.php: Esse script exibe os varios pedidos referentes
-// ao cenario.O gerente tem a opcao de ver os pedidos
-// jah validados. O gerente tb podera validar e processar pedidos.
-// O gerente tera uma terceira opcao que eh a de remover o pedido
-// validado ou nao da lista de pedidos.O gerente podera responder
-// a um pedido via e-mail direto desta pagina.
-// Arquivo chamador: heading.php
+// ver_pedido_cenario.php: This script shows many scenery
+// The manager can see the requests already validate.
+// The manager can also validate and process requests.
+// The manager will have a third option:
+// remove a request that is validated or not from request list.
+// The manager can answear a request by e-mail directly from this page.
+// File that calls: heading.php
+
 session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php"); 
+
+chkUser("index.php"); 	// checks whether the user has been authenticated
 
 if (isset($submit))
 {
@@ -59,22 +60,22 @@ else
 	<form action="?id_projeto=<?=$id_projeto?>" method="post">
 	  <?php
 	
-	// Cen�rio - Verificar pedidos de altera��o de cen�rios
-	
-	//Objetivo:	Permitir ao administrador gerenciar os pedidos de altera��o de cen�rios.
-	//Contexto:	Gerente deseja visualizar os pedidos de altera��o de cen�rios.
-	//Pr�-Condi��o: Login, projeto cadastrado.
-	//Atores:	Administrador
-	//Recursos:	Sistema, banco de dados.
-	//Epis�dios: O administrador clica na op��o de Verificar pedidos de altera��o de cen�rios.
-	//           Restri��o: Somente o Administrador do projeto pode ter essa fun��o vis�vel.
-	//           O sistema fornece para o administrador uma tela onde poder� visualizar o hist�rico
-	//           de todas as altera��es pendentes ou n�o para os cen�rios.
-	//           Para novos pedidos de inclus�o ou altera��o de cen�rios,
-	//           o sistema permite que o administrador opte por Aprovar ou Remover.
-	//           Para os pedidos de inclus�o ou altera��o j� aprovados,
-	//           o sistema somente habilita a op��o remover para o administrador.
-	//           Para efetivar as sele��es de aprova��o e remo��o, basta clicar em Processar.
+//      Scenery - Verify change requests of scenerys
+//
+//      Purpose: Allow the administrator to manage change requests of scenerys
+//      Context: Manager wish to view change requests of terms of the scenerys
+//      Precondition: Login, registered project.
+//      Actors: Administrator
+//      Features: System, database.
+//      Episodes: 1- The administrator clicks the option Check requests change of scenerys.
+//      Restriction: Only the Project Manager can have this function visible.
+//                2- The system provides the administrator a screen where he can view the
+//      history of all pending changes or not for the scenerys.
+//                3- For new requests for the inclusion or modification of scenerys,
+//      the system allows the administrator chooses Approve or Remove. 
+//                4- For requests to add or change already approved, the system only 
+//      enables the option to remove
+//                5-To carry selections approval and removal, simply click Process.
 	
 	$DB = new PGDB();
 	$select = new QUERY($DB);

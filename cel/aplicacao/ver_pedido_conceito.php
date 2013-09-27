@@ -1,19 +1,20 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// ver_pedido_conceito.php: Esse script exibe os varios pedidos referentes
-// ao conceito.O gerente tem a opcao de ver os pedidos
-// jah validados. O gerente tb podera validar e processar pedidos.
-// O gerente tera uma terceira opcao que eh a de remover o pedido
-// validado ou nao da lista de pedidos.O gerente podera responder
-// a um pedido via e-mail direto desta pagina.
-// Arquivo chamador: heading.php
+// ver_pedido_conceito.php: This script shows many concepts
+// The manager can see the requests already validate.
+// The manager can also validate and process requests.
+// The manager will have a third option:
+// remove a request that is validated or not from request list.
+// The manager can answear a request by e-mail directly from this page.
+// File that calls: heading.php
+
 session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php"); 
+
+chkUser("index.php"); 	// checks whether the user has been authenticated
 
 if (isset($submit)) 
 {
@@ -53,29 +54,29 @@ else
 	?>
 	<html>
 	<head>
-	<title>Pedidos de alteração dos Conceitos</title>
+	<title>Pedidos de altera&ccedil;&atilde;o dos Conceitos</title>
 	</head>
 	<body>
-	<h2>Pedidos de Alteração no Conjunto de Conceitos</h2>
+	<h2>Pedidos de Altera&ccedil;&atilde;o no Conjunto de Conceitos</h2>
 	<form action="?id_projeto=<?=$id_projeto?>" method="post">
 	  <?php
 	
-	// Cenário - Verificar pedidos de alteração de conceitos
-	
-	//Objetivo:	Permitir ao administrador gerenciar os pedidos de alteração de conceitos.
-	//Contexto:	Gerente deseja visualizar os pedidos de alteração de conceitos.
-	//              Pré-Condição: Login, projeto cadastrado.
-	//Atores:	Administrador
-	//Recursos:	Sistema, banco de dados.
-	//Episódios: O administrador clica na opção de Verificar pedidos de alteração de cenários.
-	//           Restrição: Somente o Administrador do projeto pode ter essa função visível.
-	//           O sistema fornece para o administrador uma tela onde poderá visualizar o histórico
-	//           de todas as alterações pendentes ou não para os cenários.
-	//           Para novos pedidos de inclusão ou alteração de cenários,
-	//           o sistema permite que o administrador opte por Aprovar ou Remover.
-	//           Para os pedidos de inclusão ou alteração já aprovados,
-	//           o sistema somente habilita a opção remover para o administrador.
-	//           Para efetivar as seleções de aprovação e remoção, basta clicar em Processar.
+//      Scenery - Verify change requests of concepts
+//
+//      Purpose: Allow the administrator to manage change requests of concept.
+//      Context: Manager wish to view change requests of concept.
+//      Precondition: Login, registered project.
+//      Actors: Administrator
+//      Features: System, database.
+//      Episodes: 1- The administrator clicks the option Check requests change of concept.
+//      Restriction: Only the Project Manager can have this function visible.
+//                2- The system provides the administrator a screen where he can view the
+//      history of all pending changes or not for the concepts.
+//                3- For new requests for the inclusion or modification of concepts,
+//      the system allows the administrator chooses Approve or Remove. 
+//                4- For requests
+//      to add or change already approved, the system only enables the option to remove
+//                5- To carry selections approval and removal, simply click Process.
 	
 	$DB = new PGDB();
 	$select = new QUERY($DB);
@@ -173,7 +174,7 @@ else
 	  <input name="submit" type="submit" value="Processar">
 	</form>
 	<br>
-	<i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o código fonte!</a></i>
+	<i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o c&oacute;digo fonte!</a></i>
 	</body>
 	</html>
 	<?php
