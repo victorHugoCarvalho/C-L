@@ -1208,12 +1208,12 @@ function checarSinonimo($projeto, $listSinonimo)
 # no projeto (1.2)
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
-function checarCenarioExistente($projeto, $title)
+function checarCenarioExistente($project, $title)
 {
     $naoexiste = false;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $query = "SELECT * FROM cenario WHERE id_projeto = $projeto AND titulo = '$title' ";
+    $query = "SELECT * FROM cenario WHERE id_projeto = $project AND titulo = '$title' ";
     $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($queryResult);
     if ( $resultArray == false )
