@@ -86,7 +86,7 @@ if (isset($submit))
 	//location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") ); ?>add_cenario.php?id_projeto=<?=$id_projeto?>&sucesso=s" ;
 	
 	
-	location.href = "add_cenario.php?id_projeto=<?=$id_projeto?>&sucesso=s";
+	location.href = "add_cenario.php?id_projeto=<?=$id_projeto?>&success=s";
 	
 	</script>
 <?php

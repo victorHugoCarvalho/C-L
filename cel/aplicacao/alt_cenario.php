@@ -29,7 +29,7 @@ if (isset($submit))
                                 $resources,
                                 $exception,
                                 $episodes,
-                                $justificativa,
+                                $justification,
                                 $_SESSION['id_usuario_corrente']);
 	?>
 <script language="javascript1.3">
@@ -88,47 +88,47 @@ else  // Script chamado atraves do link no cenario corrente
     
       <td>T�tulo:</td>
       <?php $result['titulo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['titulo']); ?>
-      <input type="hidden" name="titulo" value="<?=$result['titulo']?>">
+      <input type="hidden" name="title" value="<?=$result['titulo']?>">
       <td><input disabled maxlength="128" name="titulo2" size="48" type="text" value="<?=$result['titulo']?>"></td>
     <tr>
       <td>Objetivo:</td>
       <? $result['objetivo'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['objetivo']); ?>
-      <td><textarea name="objetivo" cols="48" rows="3"><?=$result['objetivo']?>
+      <td><textarea name="objective" cols="48" rows="3"><?=$result['objetivo']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Contexto:</td>
       <? $result['contexto'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['contexto']); ?>
-      <td><textarea name="contexto" cols="48" rows="3"><?=$result['contexto']?>
+      <td><textarea name="context" cols="48" rows="3"><?=$result['contexto']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Atores:</td>
       <? $result['atores'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['atores']); ?>
-      <td><textarea name="atores" cols="48" rows="3"><?=$result['atores']?>
+      <td><textarea name="actors" cols="48" rows="3"><?=$result['atores']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Recursos:</td>
       <? $result['recursos'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['recursos']); ?>
-      <td><textarea name="recursos" cols="48" rows="3"><?=$result['recursos']?>
+      <td><textarea name="resources" cols="48" rows="3"><?=$result['recursos']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Exce��o:</td>
       <? $result['excecao'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['excecao']); ?>
-      <td><textarea name="excecao" cols="48" rows="3"><?=$result['excecao']?>
+      <td><textarea name="exception" cols="48" rows="3"><?=$result['excecao']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Epis�dios:</td>
       <? $result['episodios'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['episodios']); ?>
-      <td><textarea  cols="48" name="episodios" rows="5"><?=$result['episodios']?>
+      <td><textarea  cols="48" name="episodes" rows="5"><?=$result['episodios']?>
 </textarea></td>
     </tr>
     <tr>
       <td>Justificativa para a altera&ccedil;&atilde;o:</td>
-      <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
+      <td><textarea name="justification" cols="48" rows="2"></textarea></td>
     </tr>
     <tr>
       <td colspan="2"><b><small>Essa justificativa � necess�ria apenas para aqueles usu�rios que n�o s�o administradores.</small></b></td>
