@@ -8,31 +8,30 @@ include("httprequest.inc");
 
 chkUser("index.php");        // checks whether the user has been authenticated
 
-// Este script eh chamado quando ocorre uma solicitacao de inclusao
-// de novo projeto, ou quando um novo usuario se cadastra no sistema
+//This script is called when a solicitation of inclusion
+//new project, or when a New User register on the system
 
 
-//Cen�rio  -  Cadastrar Novo Projeto 
-//Objetivo:	   Permitir ao Usu�rio cadastrar um novo projeto
-//Contexto:	   Usu�rio deseja incluir um novo projeto na base de dados
-//Pr�-Condi��es: Login  
-//Atores:	   Usu�rio
-//Recursos:	   Sistema, dados do projeto, base de dados
-//Epis�dios:   O Usu�rio clica na op��o � adicionar projeto encontrada no menu superior.
-//             O sistema disponibiliza uma tela para o usu�rio especificar os dados do novo projeto,
-//              como o nome do projeto e sua descri��o.
-//             O usu�rio clica no bot�o inserir.
-//             O sistema grava o novo projeto na base de dados e automaticamente constru��o a Navega��o
-//              para este novo projeto.
-//Exce��o:	   Se for especificado um nome de projeto j� existente e que perten�a ou tenha a participa��o
-//                 deste usu�rio, o sistema exibe uma mensagem de erro.
+// Scenario - Register New Project
+// Purpose: Allow user to register a new project
+// Context: User want to include a new project in the database
+// Precondition: Login
+// Actors: User
+// Resources: System, design data, database
+// Episodes:  The User clicks the option to add design found in the top menu.
+//             as the project name and description.
+//           The user clicks the insert button.
+//                The system saves the new project in the database and automatically builds the navigation
+//                for this new project.
+// Exception: If it is specified a project name already exists and belongs or has participation
+//            this user, the system displays an error message.o.
 
-// Chamado atraves do botao de submit
+// Called by the button submit
 if (isset($submit))
 {    
 	$id_projeto_incluido = inclui_projeto($nome, $descricao);
     
-	// Inserir na tabela participa
+	// inserts in the table participa
     
 	if ($id_projeto_incluido != -1 )
     {
@@ -84,13 +83,17 @@ else
 		}
 		else
 		{
-			padrao = /[\\\/\?"<>:|]/;
-			nOK = padrao.exec(document.forms[0].nome.value);
-			if (nOK)
+			pattern = /[\\\/\?"<>:|]/;
+			outOfPattern = pattern.exec(document.forms[0].nome.value);
+			if (outOfPattern)
 			{
 				window.alert ("O nome do projeto n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
 				document.forms[0].nome.focus();
 				return false;
+			}
+			else
+			{
+			    //Nothing to do.
 			}	 
 		}
 
@@ -109,7 +112,7 @@ else
               <td><input maxlength="128" name="nome" size="48" type="text"></td>
             </tr>
     <tr>
-              <td>Descri��o:</td>
+              <td>Descri&ccedil;&atilde;o:</td>
               <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
             <tr>
               <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
@@ -117,7 +120,7 @@ else
   </table>
         </form>
 <br>
-<i><a href="showSource.php?file=add_projeto.php">Veja o c�digo fonte!</a></i>
+<i><a href="showSource.php?file=add_projeto.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>
 <?php
