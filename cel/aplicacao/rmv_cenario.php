@@ -21,25 +21,25 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 
 <?php
 
-// Cenário -  Excluir Cenário 
+// Cenï¿½rio -  Excluir Cenï¿½rio 
 
-//Objetivo:	Permitir ao Usuário Excluir um cenário que esteja ativo
-//Contexto:	Usuário deseja excluir um cenário
-//Pré-Condição: Login, cenário cadastrado no sistema
-//Atores:	Usuário, Sistema
+//Objetivo:	Permitir ao Usuï¿½rio Excluir um cenï¿½rio que esteja ativo
+//Contexto:	Usuï¿½rio deseja excluir um cenï¿½rio
+//Prï¿½-Condiï¿½ï¿½o: Login, cenï¿½rio cadastrado no sistema
+//Atores:	Usuï¿½rio, Sistema
 //Recursos:	Dados informados
-//Episódios:	O sistema fornecerá uma tela para o usuário justificar a necessidade daquela
-//              exclusão para que o administrador possa ler e aprovar ou não a mesma.
-//              Esta tela também conterá um botão para a confirmação da exclusão.
-//              Restrição: Depois de clicar no botão, o sistema verifica se todos os campos foram preenchidos 
-//Exceção:	Se todos os campos não foram preenchidos, retorna para o usuário uma mensagem
-//              avisando que todos os campos devem ser preenchidos e um botão de voltar para a pagina anterior.
+//Episï¿½dios:	O sistema fornecerï¿½ uma tela para o usuï¿½rio justificar a necessidade daquela
+//              exclusï¿½o para que o administrador possa ler e aprovar ou nï¿½o a mesma.
+//              Esta tela tambï¿½m conterï¿½ um botï¿½o para a confirmaï¿½ï¿½o da exclusï¿½o.
+//              Restriï¿½ï¿½o: Depois de clicar no botï¿½o, o sistema verifica se todos os campos foram preenchidos 
+//Exceï¿½ï¿½o:	Se todos os campos nï¿½o foram preenchidos, retorna para o usuï¿½rio uma mensagem
+//              avisando que todos os campos devem ser preenchidos e um botï¿½o de voltar para a pagina anterior.
 
 ?>
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 
 self.close();

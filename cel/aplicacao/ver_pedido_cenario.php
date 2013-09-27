@@ -39,7 +39,7 @@ if (isset($submit))
             opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-	<h4>Opera��o efetuada com sucesso!</h4>
+	<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 	<script language="javascript1.3">
 	
             self.close();
@@ -52,10 +52,10 @@ else
 	?>
 	<html>
 	<head>
-	<title>Pedidos de altera��o dos Cen�rios</title>
+	<title>Pedidos de altera&ccedil;&atilde;o dos Cen&aacute;rios</title>
 	</head>
 	<body>
-	<h2>Pedidos de Altera��o no Conjunto de Cen�rios</h2>
+	<h2>Pedidos de Altera&ccedil;&atilde;o no Conjunto de Cen&aacute;rios</h2>
 	<form action="?id_projeto=<?=$id_projeto?>" method="post">
 	  <?php
 	
@@ -104,17 +104,17 @@ else
 				?>
 			  	<br>
 			  	<h3>
-			  	O usu�rio <a  href="mailto:<?=$usuario['email']?>" >
+			  	O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 			  	<?=$usuario['nome']?>
 			  	</a> pede para
 			  	<?=$tipo_pedido?>
-			  	o cen�rio <font color="#ff0000">
+			  	o cen&aacute;rio <font color="#ff0000">
 			 	<?=$record['titulo']?>
 			  	</font>
 			  	<?
 				if (!strcasecmp($tipo_pedido,'alterar'))
 				{
-					echo"para cen�rio abaixo:</h3>";
+					echo"para cen&aacute;rio abaixo:</h3>";
 				}
 				else
 				{
@@ -123,7 +123,7 @@ else
 				?>
 				  <table>
 				    
-				      <td><b>T�tulo:</b></td>
+				      <td><b>T&iacute;tulo:</b></td>
 				      <td><?=$record['titulo']?></td>
 				    <tr>
 				      <td><b>Objetivo:</b></td>
@@ -142,11 +142,11 @@ else
 				      <td><?=$record['recursos']?></td>
 				    </tr>
 				    <tr>
-				      <td><b>Exce��o:</b></td>
+				      <td><b>Exce&ccedil;&atilde;o:</b></td>
 				      <td><?=$record['excecao']?></td>
 				    </tr>
 				    <tr>
-				      <td><b>Epis�dios:</b></td>
+				      <td><b>Epis&oacute;dios:</b></td>
 				      <td><textarea cols="48" name="episodios" rows="5"><?=$record['episodios']?>
 				</textarea></td>
 				    </tr>
@@ -161,11 +161,11 @@ else
 			else
 			{
 				?>
-			  	<h3>O usu�rio <a  href="mailto:<?=$usuario['email']?>" >
+			  	<h3>O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 			    <?=$usuario['nome']?>
 			    </a> pede para
 			    <?=$tipo_pedido?>
-			    o cen�rio <font color="#ff0000">
+			    o cen&aacute;rio <font color="#ff0000">
 			    <?=$record['titulo']?>
 			    </font></h3>
 			  	<?php 
@@ -189,7 +189,7 @@ else
 	<input name="submit" type="submit" value="Processar">
 	</form>
             <br>
-            <i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o c�digo fonte!</a></i>
+            <i><a href="showSource.php?file=ver_pedido_cenario.php">Veja o c&oacute;digo fonte!</a></i>
 	</body>
 	</html>
 	<?php
