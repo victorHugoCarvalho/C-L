@@ -9,7 +9,7 @@ function bd_connect()
 	$BDpassword = CELConfig_ReadVar("BD_password") ;
 	$BDdatabase = CELConfig_ReadVar("BD_database") ;
 
-	$connected_SGBD = mysql_pconnect( $ipValor , $BDuser , $BDpassword ) or die( "Erro na conexão ao BD : " . mysql_error() ) ;
+	$connected_SGBD = mysql_pconnect( $ipValor , $BDuser , $BDpassword ) or die( "Erro na conex&atilde;o ao BD : " . mysql_error() ) ;
 	
 	if ($connected_SGBD && mysql_select_db($BDdatabase))	
 	{

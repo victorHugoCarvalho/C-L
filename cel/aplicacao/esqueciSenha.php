@@ -29,19 +29,19 @@ login = form.login.value
   <div align="center">
     <?php
 
-// Cenário - Lembrar senha 
+// Cenï¿½rio - Lembrar senha 
 
-//Objetivo:   Permitir o usuário cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:   Sistema está aberto, Usuário esqueceu sua senha Usuário na tela de lembrança de 
+//Objetivo:   Permitir o usuï¿½rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
+//Contexto:   Sistema estï¿½ aberto, Usuï¿½rio esqueceu sua senha Usuï¿½rio na tela de lembranï¿½a de 
 //             senha. 
-//            Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:     Usuário, Sistema	
+//            Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+//Atores:     Usuï¿½rio, Sistema	
 //Recursos:   Banco de Dados	
-//Episódios:  O usuário acessa a tela de login do sistema. 
-//            O usuário clica no link “Esqueci senha” 
-//            O sistema apresenta uma mensagem na tela, pedindo ao usuário que digite o seu 
+//Episï¿½dios:  O usuï¿½rio acessa a tela de login do sistema. 
+//            O usuï¿½rio clica no link ï¿½Esqueci senhaï¿½ 
+//            O sistema apresenta uma mensagem na tela, pedindo ao usuï¿½rio que digite o seu 
 //            login na caixa de texto. 
-//            O usuário digita o seu login e clica no botão Enviar. 
+//            O usuï¿½rio digita o seu login e clica no botï¿½o Enviar. 
              	
 ?>
     <p style="color: green; font-weight: bold; text-align: center">Entre com seu Login:</p>
@@ -64,6 +64,6 @@ login = form.login.value
     <a href="JavaScript:window.history.go(-1)">Voltar</a>
   </center>
 </form>
-<i><a href="showSource.php?file=esqueciSenha.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=esqueciSenha.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>

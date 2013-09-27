@@ -5,18 +5,18 @@ include_once("CELConfig/CELConfig.inc");
 session_start();
 
 
-// Cenário - Realizar logout
+// Cenï¿½rio - Realizar logout
 
-// Objetivo:  Permitir ao usuário realizar o logout, mantendo a integridade do que foi 
+// Objetivo:  Permitir ao usuï¿½rio realizar o logout, mantendo a integridade do que foi 
 //            realizado,  e retorna a tela de login	
-// Contexto:  Sistema aberto. Usuário ter acessado ao sistema. 
-//            Usuário deseja sair da aplicação e manter a integridade do que foi 
+// Contexto:  Sistema aberto. Usuï¿½rio ter acessado ao sistema. 
+//            Usuï¿½rio deseja sair da aplicaï¿½ï¿½o e manter a integridade do que foi 
 //            realizado 
-//            Pré-Condição: Usuário ter acessado ao sistema	
-// Atores:	  Usuário, Sistema.	
+//            Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+// Atores:	  Usuï¿½rio, Sistema.	
 // Recursos:  Interface	
-// Episódios: O sistema fecha a sessão do usuário, mantendo a integridade do que foi realizado 
-//            O sistema retorna a interface de login, possibilitando o usuário se logar 
+// Episï¿½dios: O sistema fecha a sessï¿½o do usuï¿½rio, mantendo a integridade do que foi realizado 
+//            O sistema retorna a interface de login, possibilitando o usuï¿½rio se logar 
 //            novamente 	
 
 	session_destroy();
@@ -27,9 +27,9 @@ session_start();
 <script language="javascript1.3">
 
 
-document.writeln('<p style="color: blue; font-weight: bold; text-align: center">A aplicação teminou escolha uma das opções abaixo:</p>');
+document.writeln('<p style="color: blue; font-weight: bold; text-align: center">A aplica&ccedil;&atilde;o teminou escolha uma das op&ccedil;&otilde;es abaixo:</p>');
 document.writeln('<p align="center"><a href="javascript:logoff();">Entrar novamente</a></p>');
-document.writeln('<p align="center"><a href="http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . "../" ); ?>">Página inicial</a></p>');
+document.writeln('<p align="center"><a href="http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . "../" ); ?>">P&aacute;gina inicial</a></p>');
 document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 
 function logoff()

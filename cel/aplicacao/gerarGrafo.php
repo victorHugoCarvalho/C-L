@@ -18,13 +18,13 @@ $XML = "";
 </head>
 <?php
 
-//Cenário -  Gerar Grafo 
+//Cenï¿½rio -  Gerar Grafo 
 
 //Objetivo:   Permitir ao administrador gerar o grafo de um projeto
-//Contexto:   Gerente deseja gerar um grafo para uma das versões de XML
+//Contexto:   Gerente deseja gerar um grafo para uma das versï¿½es de XML
 //Atores:     Administrador
 //Recursos:   Sistema, XML, dados cadastrados do projeto, banco de dados.
-//Episódios:  Restrição: Possuir um XML gerado do projeto
+//Episï¿½dios:  Restriï¿½ï¿½o: Possuir um XML gerado do projeto
 
 $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 $q = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto'";
@@ -41,7 +41,7 @@ while ( $result = mysql_fetch_row($qrr) )
 	?>
 <table>
   <tr>
-    <th>Versão:</th>
+    <th>Vers&atilde;o:</th>
     <td><?=$versao?></td>
     <th>Data:</th>
     <td><?=$data?></td>
@@ -53,6 +53,6 @@ while ( $result = mysql_fetch_row($qrr) )
 }
 ?>
 <br>
-<i><a href="showSource.php?file=recuperarXML.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=recuperarXML.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>

@@ -86,7 +86,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
 
                 ?>
 <script language="JavaScript">
-                    alert ("Login j� existente no sistema. Favor escolher outro login.")
+                    alert ("Login j&aacute; existente no sistema. Favor escolher outro login.")
                 </script>
 <?php
                 recarrega("?novo=$novo");
@@ -166,7 +166,7 @@ if (isset($submit)) // Se chamado pelo botao de submit
 ?>
 <script language="javascript1.3">
 		
-			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu�rio <b><?=$nome_usuario?></b> cadastrado e inclu�do no projeto <b><?=$nome_projeto?></b></p>');
+			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu&aacute;rio <b><?=$nome_usuario?></b> cadastrado e inclu&iacute;do no projeto <b><?=$nome_projeto?></b></p>');
 			document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 		
 		</script>
@@ -193,7 +193,7 @@ else // Script chamado normalmente
 ?>
 <html>
 <head>
-<title>Cadastro de Usu�rio</title>
+<title>Cadastro de Usu&aacute;rio</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <body>
@@ -250,7 +250,7 @@ else // Script chamado normalmente
     <tr>
       <td>Senha:</td>
       <td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
-      <td>Senha (confirmacao):</td>
+      <td>Senha (confirma&ccedil;&atilde;o):</td>
       <td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
     </tr>
     <tr>
@@ -274,7 +274,7 @@ else // Script chamado normalmente
   </table>
 </form>
 <br>
-<i><a href="showSource.php?file=add_usuario.php">Veja o codigo fonte!</a></i>
+<i><a href="showSource.php?file=add_usuario.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>
 <?php

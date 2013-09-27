@@ -28,7 +28,7 @@ if (isset($submit))
 		$listSinonimo = array();
 	}
 	
-    //tira os sinônimos caso haja um nulo.
+    //tira os sinï¿½nimos caso haja um nulo.
     $count = count($listSinonimo);                                                        
     for ($i = 0; $i < $count; $i++)   
     {
@@ -49,7 +49,7 @@ if (isset($submit))
 	?>
 <html>
 <head>
-<title>Alterar Léxico</title>
+<title>Alterar L&eacute;xico</title>
 </head>
 <body>
 <script language="javascript1.3">
@@ -58,7 +58,7 @@ if (isset($submit))
 	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 	 
 	self.close();
@@ -84,7 +84,7 @@ else        // Script chamado atraves do link do lexico corrente
 	?>
 <html>
 <head>
-<title>Alterar Léxico</title>
+<title>Alterar L&eacute;xico</title>
 </head>
 <body>
 <script language="JavaScript">
@@ -96,7 +96,7 @@ else        // Script chamado atraves do link do lexico corrente
 		
 		if(nocao == "")
 		{
-			alert (" Por favor, forneça a NOÇÃO do léxico.\n O campo NOÇÃO é de preenchimento obrigatório.");
+			alert (" Por favor, forneï¿½a a NOï¿½ï¿½O do lï¿½xico.\n O campo NOï¿½ï¿½O ï¿½ de preenchimento obrigatï¿½rio.");
 	      	form.nocao.focus();
 	      	return false;
 	    }
@@ -147,24 +147,24 @@ else        // Script chamado atraves do link do lexico corrente
 	//-->
 	
 	<?php
-		//Cenários -  Alterar Léxico 
+		//Cenï¿½rios -  Alterar Lï¿½xico 
 		
-		//Objetivo:	Permitir a alteração de uma entrada do dicionário léxico por um usuário	
-		//Contexto:	Usuário deseja alterar um léxico previamente cadastrado
-		//Pré-Condição: Login, léxico cadastrado no sistema
-		//Atores:	Usuário
+		//Objetivo:	Permitir a alteraï¿½ï¿½o de uma entrada do dicionï¿½rio lï¿½xico por um usuï¿½rio	
+		//Contexto:	Usuï¿½rio deseja alterar um lï¿½xico previamente cadastrado
+		//Prï¿½-Condiï¿½ï¿½o: Login, lï¿½xico cadastrado no sistema
+		//Atores:	Usuï¿½rio
 		//Recursos:	Sistema, dados cadastrados
-		//Episódios:	O sistema fornecerá para o usuário a mesma tela de INCLUIR LÉXICO,
-		//              porém com os seguintes dados do léxico a ser alterado preenchidos
-		//              e editáveis nos seus respectivos campos: Noção e Impacto.
-		//              Os campos Projeto e Nome estarão preenchidos, mas não editáveis.
-		//              Será exibido um campo Justificativa para o usuário colocar uma
-		//              justificativa para a alteração feita.	
+		//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR Lï¿½XICO,
+		//              porï¿½m com os seguintes dados do lï¿½xico a ser alterado preenchidos
+		//              e editï¿½veis nos seus respectivos campos: Noï¿½ï¿½o e Impacto.
+		//              Os campos Projeto e Nome estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
+		//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
+		//              justificativa para a alteraï¿½ï¿½o feita.	
 	
 	?>
 	
 	</SCRIPT>
-<h4>Alterar Símbolo</h4>
+<h4>Alterar S&iacute;mbolo</h4>
 <br>
 <form action="?id_projeto=<?=$id_projeto?>" method="post" onSubmit="return(doSubmit());">
   <table>
@@ -179,7 +179,7 @@ else        // Script chamado atraves do link do lexico corrente
         <input type="hidden"  maxlength="64" name="nome" size="48" type="text" value="<?=$result['nome'];?>"></td>
     </tr>
     <tr valign="top">
-      <td>Sinônimos:</td>
+      <td>Sin&ocirc;nimos:</td>
       <td width="0%"><input name="sinonimo" size="15" type="text" maxlength="50">
         &nbsp;&nbsp;&nbsp;&nbsp;
         <input type="button" value="Adicionar" onClick="addSinonimo()">
@@ -191,89 +191,53 @@ else        // Script chamado atraves do link do lexico corrente
     
     <td></td>
       <td width="100%">
-    
-      <left>
-    <select multiple name="listSinonimo[]"  style="width: 400px;"  size="5">
-      <?php
-						  	while($rowSin = mysql_fetch_array($qrrSin))
-	  						{
-	  							?>
-      <option value="<?=$rowSin["nome"]?>">
-      <?=$rowSin["nome"]?>
-      </option>
-      <?php
-	 						}
-						  	?>
-        <select>
+      	<left>
+    		<select multiple name="listSinonimo[]"  style="width: 400px;"  size="5">
+      		<?php
+				while($rowSin = mysql_fetch_array($qrrSin))
+	  			{
+	  		?>
+      			<option value="<?=$rowSin["nome"]?>">
+      			<?=$rowSin["nome"]?>
+     			 </option>
+      			<?php
+	 			}
+				?>
+        	<select>
         </left>
         <br>
-      
-        </td>
-      
-        </tr>
-      
-        <tr>
-      
-        <td>
-        No
-        ç
-        ã
-        o:
-        </td>
-      
-        <td>
-      
-        <textarea name="nocao" cols="48" rows="3" >
-      <?=$result['nocao'];?>
-        </textarea>
-      
-        </td>
-      
-        </tr>
-      
-        <tr>
-      
-        <td>
-        Impacto:
-        </td>
-      
-        <td>
-      
-        <textarea name="impacto" cols="48" rows="3">
-      <?=$result['impacto'];?>
-        </textarea>
-      
-        </td>
-      
-        </tr>
-      
-        <tr>
-      
-        <td>
-        Classifica
-        ç
-        ao:
-        </td>
-      
-        <td>
-      
-        <SELECT id='classificacao' name='classificacao' size=1 width="300">
-      
-      <OPTION value='sujeito' <?php if($result['tipo'] == 'sujeito') echo "selected"?>>Sujeito</OPTION>
-      <OPTION value='objeto' <?php if($result['tipo'] == 'objeto') echo "selected"?>>Objeto</OPTION>
-      <OPTION value='verbo' <?php if($result['tipo'] == 'verbo') echo "selected"?>>Verbo</OPTION>
-      <OPTION value='estado' <?php if($result['tipo'] == 'estado') echo "selected"?>>Estado</OPTION>
-    </SELECT>
       </td>
-    
+      
       </tr>
-    
+      
+        <tr>
+        	<td>No&ccedil;&atilde;o:</td>
+        	<td><textarea name="nocao" cols="48" rows="3" ><?=$result['nocao'];?></textarea></td>
+        </tr>
+      
+        <tr>
+        	<td>Impacto:</td>
+        	<td><textarea name="impacto" cols="48" rows="3"><?=$result['impacto'];?></textarea></td>
+        </tr>
+      
+        <tr>
+        	<td>Classifica&ccedil;&atilde;o:</td>
+        	<td>
+        		<SELECT id='classificacao' name='classificacao' size=1 width="300">
+	      			<OPTION value='sujeito' <?php if($result['tipo'] == 'sujeito') echo "selected"?>>Sujeito</OPTION>
+      				<OPTION value='objeto' <?php if($result['tipo'] == 'objeto') echo "selected"?>>Objeto</OPTION>
+      				<OPTION value='verbo' <?php if($result['tipo'] == 'verbo') echo "selected"?>>Verbo</OPTION>
+      				<OPTION value='estado' <?php if($result['tipo'] == 'estado') echo "selected"?>>Estado</OPTION>
+    			</SELECT>
+      		</td>
+      	</tr>
+
     <tr>
       <td>Justificativa para a altera&ccedil;&atilde;o:</td>
       <td><textarea name="justificativa" cols="48" rows="6"></textarea></td>
     </tr>
     <tr>
-      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Alterar Símbolo"></td>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Alterar S&iacute;mbolo"></td>
     </tr>
   </table>
 </form>
@@ -281,9 +245,9 @@ else        // Script chamado atraves do link do lexico corrente
   <a href="javascript:self.close();">Fechar</a>
 </center>
 <br>
-<i><a href="showSource.php?file=alt_lexico.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=alt_lexico.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>
 <?php
 }
-	?>
+?>

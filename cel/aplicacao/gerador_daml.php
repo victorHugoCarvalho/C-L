@@ -12,9 +12,9 @@ $link = bd_connect();
 
 if ( $_POST['user'] == "")  
 {  
-// Recupera nome do usuário 
+// Recupera nome do usuï¿½rio 
    $sql_user = "select nome from usuario where id_usuario='". $_SESSION['id_usuario_corrente'] . "';";  
-   $query_user = mysql_query($sql_user) or die("Erro ao verificar usuário!". mysql_error());    
+   $query_user = mysql_query($sql_user) or die("Erro ao verificar usu&aacute;rio!". mysql_error());    
    $result = mysql_fetch_array($query_user);   
    $usuario = $result[0];  
 }  
@@ -25,13 +25,13 @@ else
 
 // Recupera nome do projeto 
    $sql_project = "select nome from projeto where id_projeto='". $_SESSION['id_projeto_corrente'] . "';";  
-   $query_project = mysql_query($sql_project) or die("Erro ao verificar usuário!". mysql_error());    
+   $query_project = mysql_query($sql_project) or die("Erro ao verificar usu&aacute;rio!". mysql_error());    
    $result = mysql_fetch_array($query_project);   
    $project = $result[0];  
 
 $site = $_SESSION['site'];  
 $dir = $_SESSION['diretorio'];   
-$arquivo = strtr($project, "ãäåöõÕ", "aaaooo") . "__" . date("j-m-Y_H-i-s") . ".daml";  
+$arquivo = strtr($project, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "aaaooo") . "__" . date("j-m-Y_H-i-s") . ".daml";  
       
 $i = array ("title" => $_POST['title'] ,       
                  "creator" => $usuario ,       

@@ -2,15 +2,15 @@
 include("bd.inc");
 include("httprequest.inc");
 
-// Cenário - Lembrar senha 
+// Cenï¿½rio - Lembrar senha 
 
-//Objetivo:	 Permitir o usuário cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema está aberto, Usuário esqueceu sua senha Usuário na tela de lembrança de 
+//Objetivo:	 Permitir o usuï¿½rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
+//Contexto:	 Sistema estï¿½ aberto, Usuï¿½rio esqueceu sua senha Usuï¿½rio na tela de lembranï¿½a de 
 //           senha. 
-//           Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:	 Usuário, Sistema	
+//           Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+//Atores:	 Usuï¿½rio, Sistema	
 //Recursos:	 Banco de Dados	
-//Episódios: O sistema verifica se o login informado é cadastrado no banco de dados.     
+//Episï¿½dios: O sistema verifica se o login informado ï¿½ cadastrado no banco de dados.     
 //           Se o login informado for cadastrado, sistema consulta no banco de dados qual 
 //           o email e senha do login informado.           
  
@@ -48,19 +48,19 @@ else
    $login = $row[3];
    $senha = $row[4];
    
-// Cenário - Lembrar senha 
+// Cenï¿½rio - Lembrar senha 
 
-//Objetivo:	 Permitir o usuário cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema está aberto, Usuário esqueceu sua senha Usuário na tela de lembrança de 
+//Objetivo:	 Permitir o usuï¿½rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
+//Contexto:	 Sistema estï¿½ aberto, Usuï¿½rio esqueceu sua senha Usuï¿½rio na tela de lembranï¿½a de 
 //           senha. 
-//           Pré-Condição: Usuário ter acessado ao sistema	
-//Atores:	 Usuário, Sistema	
+//           Prï¿½-Condiï¿½ï¿½o: Usuï¿½rio ter acessado ao sistema	
+//Atores:	 Usuï¿½rio, Sistema	
 //Recursos:	 Banco de Dados	
-//Episódios: Sistema envia a senha para o email cadastrado correspondente ao login que 
-//           foi informado pelo usuário.     
-//           Caso não exista nenhum login cadastrado igual ao informado pelo usuário, 
-//           sistema exibe mensagem de erro na tela dizendo que login é inexistente, e 
-//           exibe um botão voltar, que redireciona o usuário para a tela de login novamente.
+//Episï¿½dios: Sistema envia a senha para o email cadastrado correspondente ao login que 
+//           foi informado pelo usuï¿½rio.     
+//           Caso nï¿½o exista nenhum login cadastrado igual ao informado pelo usuï¿½rio, 
+//           sistema exibe mensagem de erro na tela dizendo que login ï¿½ inexistente, e 
+//           exibe um botï¿½o voltar, que redireciona o usuï¿½rio para a tela de login novamente.
 
    //$Vemail = ini_set("SMTP","mail.gmail.com");  
 
@@ -80,9 +80,9 @@ else
 			$cod .= substr($str,$rand,1);
 		}	
 		return $cod;
-	}// Chamando a função: gerarandonstring([quantidadedecaracteres])echo gerarandonstring(20);
+	}// Chamando a funï¿½ï¿½o: gerarandonstring([quantidadedecaracteres])echo gerarandonstring(20);
   
-	// Gera uma nova senha randômica	
+	// Gera uma nova senha randï¿½mica	
    $nova_senha = gerarandonstring(6);
    //Criptografa senha
    $nova_senha_cript = md5($nova_senha);
@@ -92,7 +92,7 @@ else
    $qUp = "update usuario set senha = '$nova_senha_cript' where login = '$login'";
    $qrrUp = mysql_query($qUp) or die("Erro ao executar a query de update na tabela usuario");
    
-   $corpo_email = "Caro $nome,\n Como solicitado, estamos enviando sua nova senha para acesso ao sistema C&L.\n\n login: $login \n senha: $nova_senha \n\n Para evitar futuros transtornos altere sua senha o mais breve possível. \n Obrigado! \n Equipe de Suporte do C&L.";
+   $corpo_email = "Caro $nome,\n Como solicitado, estamos enviando sua nova senha para acesso ao sistema C&L.\n\n login: $login \n senha: $nova_senha \n\n Para evitar futuros transtornos altere sua senha o mais breve poss&iacute;vel. \n Obrigado! \n Equipe de Suporte do C&L.";
    $headers = "";
    if(mail("$mail", "Nova senha do C&L" , "$corpo_email" , $headers))
    { 	

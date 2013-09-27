@@ -28,24 +28,24 @@ else
 
 // Dada a base e o id do projeto, gera-se o xml
 
-// dos cenários e léxicos.
+// dos cenï¿½rios e lï¿½xicos.
 
-//Cenário - Gerar Relatórios XML 
+//Cenï¿½rio - Gerar Relatï¿½rios XML 
 
-//Objetivo:    Permitir ao administrador gerar relatórios em formato XML de um projeto, identificados por data.     
-//Contexto:    Gerente deseja gerar um relatório para um dos projetos da qual é administrador.
-//          Pré-Condição: Login, projeto cadastrado.
+//Objetivo:    Permitir ao administrador gerar relatï¿½rios em formato XML de um projeto, identificados por data.     
+//Contexto:    Gerente deseja gerar um relatï¿½rio para um dos projetos da qual ï¿½ administrador.
+//          Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado.
 //Atores:    Administrador     
-//Recursos:    Sistema, dados do relatório, dados cadastrados do projeto, banco de dados.     
-//Episódios:O sistema fornece para o administrador uma tela onde deverá fornecer os dados
-//          do relatório para sua posterior identificação, como data e versão. 
-//          Para efetivar a geração do relatório, basta clicar em Gerar. 
-//          Restrição: O sistema executará duas validações: 
-//                      - Se a data é válida.
-//                      - Se existem cenários e léxicos em datas iguais ou anteriores.
-//          Gerando com sucesso o relatório a partir dos dados cadastrados do projeto,
-//          o sistema fornece ao administrador a tela de visualização do relatório XML criado. 
-//          Restrição: Recuperar os dados em XML do Banco de dados e os transformar por uma XSL para a exibição.      
+//Recursos:    Sistema, dados do relatï¿½rio, dados cadastrados do projeto, banco de dados.     
+//Episï¿½dios:O sistema fornece para o administrador uma tela onde deverï¿½ fornecer os dados
+//          do relatï¿½rio para sua posterior identificaï¿½ï¿½o, como data e versï¿½o. 
+//          Para efetivar a geraï¿½ï¿½o do relatï¿½rio, basta clicar em Gerar. 
+//          Restriï¿½ï¿½o: O sistema executarï¿½ duas validaï¿½ï¿½es: 
+//                      - Se a data ï¿½ vï¿½lida.
+//                      - Se existem cenï¿½rios e lï¿½xicos em datas iguais ou anteriores.
+//          Gerando com sucesso o relatï¿½rio a partir dos dados cadastrados do projeto,
+//          o sistema fornece ao administrador a tela de visualizaï¿½ï¿½o do relatï¿½rio XML criado. 
+//          Restriï¿½ï¿½o: Recuperar os dados em XML do Banco de dados e os transformar por uma XSL para a exibiï¿½ï¿½o.      
 
 if (!(function_exists("gerar_xml"))) {
     function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
@@ -65,14 +65,14 @@ if (!(function_exists("gerar_xml"))) {
 	    $qry_nome = "SELECT nome
                      FROM projeto
                      WHERE id_projeto = " . $id_projeto ;
-	    $tb_nome = mysql_query ( $qry_nome ) or die ( "Erro ao enviar a query de selecao." ) ;
+	    $tb_nome = mysql_query ( $qry_nome ) or die ( "Erro ao enviar a query de sele&ccedil;&atilde;o." ) ;
 
         // Adiciona o nome do projeto no xml		
 		$xml_resultante = $xml_resultante . "<nome>" . mysql_result ( $tb_nome, 0 ) . "</nome>\n"; 
 
-        ## CENÁRIOS ##
+        ## CENï¿½RIOS ##
         
-        // Seleciona os cenários de um projeto.
+        // Seleciona os cenï¿½rios de um projeto.
 
         $qry_cenario = "SELECT id_cenario ,
                                titulo ,
@@ -87,7 +87,7 @@ if (!(function_exists("gerar_xml"))) {
                         . ") AND (data <=" . " '" . $data_pesquisa . "'". ")
                         ORDER BY id_cenario,data DESC";
 
-        $tb_cenario = mysql_query( $qry_cenario ) or die( "Erro ao enviar a query de selecao." ) ;
+        $tb_cenario = mysql_query( $qry_cenario ) or die( "Erro ao enviar a query de sele&ccedil;&atilde;o." ) ;
 
         $primeiro = true;
 
@@ -95,7 +95,7 @@ if (!(function_exists("gerar_xml"))) {
 		
 		$vetor_todos_lexicos = carrega_vetor_lexicos($id_projeto, 0, false);
 
-		// Para cada cenário
+		// Para cada cenï¿½rio
 		
   	    while ( $row = mysql_fetch_row( $tb_cenario ) ) 
         {
@@ -107,7 +107,7 @@ if (!(function_exists("gerar_xml"))) {
             
             if (($id_temp != $id_cenario) or (primeiro))
             {
-                $titulo = '<titulo id="' . strtr(strip_tags ( $row[ 1 ] ),"áâãàóõôéêç","aaaaoooeec") . '">' . ucwords(strip_tags ( $row[ 1 ] )) . '</titulo>' ;
+                $titulo = '<titulo id="' . strtr(strip_tags ( $row[ 1 ] ),"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","aaaaoooeec") . '">' . ucwords(strip_tags ( $row[ 1 ] )) . '</titulo>' ;
 
                 $objetivo = "<objetivo>" . "<sentenca>" . gera_xml_links ( monta_links ( $row[ 2 ], $vetor_todos_lexicos, $vetorVazio ) ) . "</sentenca>" . "<PT/>" . "</objetivo>" ;
 																		   			
@@ -144,7 +144,7 @@ if (!(function_exists("gerar_xml"))) {
                 //??$id_temp = id_cenario;
            }
         
-        } // while dos cenários
+        } // while dos cenï¿½rios
         
         // Seleciona os lexicos de um projeto.
         
@@ -159,7 +159,7 @@ if (!(function_exists("gerar_xml"))) {
 
                 ORDER BY id_lexico,data DESC";
 
-        $tb_lexico = mysql_query( $qry_lexico ) or die( "Erro ao enviar a query de selecao." ) ;
+        $tb_lexico = mysql_query( $qry_lexico ) or die( "Erro ao enviar a query de sele&ccedil;&atilde;o." ) ;
 
         $primeiro = true;
 
@@ -175,7 +175,7 @@ if (!(function_exists("gerar_xml"))) {
             if (($id_temp != $id_lexico) or (primeiro))
             {
 
-				$nome = '<nome_simbolo id="' . strtr(strip_tags ( $row[ 1 ] ),"áâãàóõôéêç","aaaaoooeec") . '">' . '<texto>' . ucwords(strip_tags ( $row[ 1 ] )) . '</texto>' . '</nome_simbolo>' ;
+				$nome = '<nome_simbolo id="' . strtr(strip_tags ( $row[ 1 ] ),"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","aaaaoooeec") . '">' . '<texto>' . ucwords(strip_tags ( $row[ 1 ] )) . '</texto>' . '</nome_simbolo>' ;
 
 				
 				// Consulta os sinonimos do simbolo
@@ -184,7 +184,7 @@ if (!(function_exists("gerar_xml"))) {
 									WHERE (id_projeto = " . $id_projeto . ") 
 									AND (id_lexico = " . $row[0] ." )";	
 				
-				$resultSinonimos = mysql_query( $querySinonimo ) or die( "Erro ao enviar a query de selecao de sinonimos." ) ;
+				$resultSinonimos = mysql_query( $querySinonimo ) or die( "Erro ao enviar a query de sele&ccedil;&atilde;o de sin&ocirc;nimos." ) ;
 				
 				//Para cada sinonimo do simbolo
 				$sinonimo = "<sinonimos>";
@@ -227,102 +227,102 @@ if (!(function_exists("gerar_xml"))) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//Cenário - Gerar links nos Relatórios XML criados
+//Cenï¿½rio - Gerar links nos Relatï¿½rios XML criados
 //
-//Objetivo:    Permitir que os relatórios gerados em formato XML possuam termos com links 
-//          para os seus respectivos léxicos
+//Objetivo:    Permitir que os relatï¿½rios gerados em formato XML possuam termos com links 
+//          para os seus respectivos lï¿½xicos
 //
-//Contexto:    Gerente deseja gerar um relatório em XML para um dos projetos da qual é administrador.
-//          Pré-Condição: Login, projeto cadastrado, acesso ao banco de dados.
+//Contexto:    Gerente deseja gerar um relatï¿½rio em XML para um dos projetos da qual ï¿½ administrador.
+//          Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado, acesso ao banco de dados.
 //
 //Atores:    Sistema    
 //
-//Recursos:    Sistema, sentenças a serem linkadas, dados cadastrados do projeto, banco de dados. 
+//Recursos:    Sistema, sentenï¿½as a serem linkadas, dados cadastrados do projeto, banco de dados. 
 //    
-//Episódios:O sistema recebe a sentença com os tags próprios do C&L e retorna o código do link HTML
-//            equivalente para os léxicos cadatrados no sistema. 
+//Episï¿½dios:O sistema recebe a sentenï¿½a com os tags prï¿½prios do C&L e retorna o cï¿½digo do link HTML
+//            equivalente para os lï¿½xicos cadatrados no sistema. 
 //     
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//Léxicos:
+//Lï¿½xicos:
 //
-//     Função:            gera_xml_links
-//     Descrição:         Analisa uma sentença recebida afim de identificar as tags utilizadas no C&L
-//                        para linkar os léxicos e transformar em links XML.
-//     Sinônimos:         -
+//     Funï¿½ï¿½o:            gera_xml_links
+//     Descriï¿½ï¿½o:         Analisa uma sentenï¿½a recebida afim de identificar as tags utilizadas no C&L
+//                        para linkar os lï¿½xicos e transformar em links XML.
+//     Sinï¿½nimos:         -
 //     Exemplo: 
 //        ENTRADA: <!--CL:tam:2--><a title="Lexico" href="main.php?t=l&id=228">software livre</a>
 //                 <!--/CL-->
-//        SAÍDA:  <a title="Lexico" href="main.php?t=l&id=228"><texto referencia_lexico=software 
+//        SAï¿½DA:  <a title="Lexico" href="main.php?t=l&id=228"><texto referencia_lexico=software 
 //                livre>software livre</texto></a>
 //
-//     Variável:            $sentenca
-//     Descrição:         Armazena a expressão passada por argumento a ser tranformada em link.
-//     Sinônimos:         -
+//     Variï¿½vel:            $sentenca
+//     Descriï¿½ï¿½o:         Armazena a expressï¿½o passada por argumento a ser tranformada em link.
+//     Sinï¿½nimos:         -
 //     Exemplo:             <!--CL:tam:2--><a title="Lexico" href="main.php?t=l&id=228">software livre
 //                        </a><!--/CL-->
 //
-//     Variável:            $regex
-//     Descrição:            Armazena o pattern a ser utilizado ao se separar a sentença.
-//     Sinônimos:            -
+//     Variï¿½vel:            $regex
+//     Descriï¿½ï¿½o:            Armazena o pattern a ser utilizado ao se separar a sentenï¿½a.
+//     Sinï¿½nimos:            -
 //     Exemplo:            "/(<!--CL:tam:\d+-->(<a[^>]*?\>)([^<]*?)<\/a><!--\/CL-->)/mi"
 //
-//     Variável:            $vetor_texto
-//     Descrição:         Array que armazena palavra por palavra a senteça a ser linkada, sem o tag.
-//     Sinônimos:         -
+//     Variï¿½vel:            $vetor_texto
+//     Descriï¿½ï¿½o:         Array que armazena palavra por palavra a senteï¿½a a ser linkada, sem o tag.
+//     Sinï¿½nimos:         -
 //     Exemplo:             $vetor_texto[0] => software
 //                        $vetor_texto[1] => livre
 //
-//     Variável:            $inside_tag
-//     Descrição:         Determina se a análise está sendo feita dentro ou fora do tag
-//     Sinônimos:         -
+//     Variï¿½vel:            $inside_tag
+//     Descriï¿½ï¿½o:         Determina se a anï¿½lise estï¿½ sendo feita dentro ou fora do tag
+//     Sinï¿½nimos:         -
 //     Exemplo:             false
 //
-//     Variável:            $tamanho_vetor_texto
-//     Descrição:         Armazena a número de palavras que se encontram no array $vetor_texto. 
-//     Sinônimos:         -
+//     Variï¿½vel:            $tamanho_vetor_texto
+//     Descriï¿½ï¿½o:         Armazena a nï¿½mero de palavras que se encontram no array $vetor_texto. 
+//     Sinï¿½nimos:         -
 //     Exemplo:             2
 //
-//     Variável:            $i
-//     Descrição:         Variável utilizada como um contador para uso genérico.
-//     Sinônimos:         -
+//     Variï¿½vel:            $i
+//     Descriï¿½ï¿½o:         Variï¿½vel utilizada como um contador para uso genï¿½rico.
+//     Sinï¿½nimos:         -
 //     Exemplo:             -
 //
-//     Variável:            $match
-//     Descrição:         Armazena o valor 1 caso a string "/href="main.php\?t=(.)&id=(\d+?)"/mi"
-//                        seja encontrada na no array $vetor_texto. Caso contrário, armazena 0.
-//     Sinônimos:         -
+//     Variï¿½vel:            $match
+//     Descriï¿½ï¿½o:         Armazena o valor 1 caso a string "/href="main.php\?t=(.)&id=(\d+?)"/mi"
+//                        seja encontrada na no array $vetor_texto. Caso contrï¿½rio, armazena 0.
+//     Sinï¿½nimos:         -
 //     Exemplo:             0
 //
-//     Variável:            $id_projeto
-//     Descrição:         Armazena o número identificador do projeto corrente.
-//     Sinônimos:         -
+//     Variï¿½vel:            $id_projeto
+//     Descriï¿½ï¿½o:         Armazena o nï¿½mero identificador do projeto corrente.
+//     Sinï¿½nimos:         -
 //     Exemplo:             1
 //
-//     Variável:            $atributo
-//     Descrição:         Armazena um tag que indica a referência para um léxico
-//     Sinônimos:         -
+//     Variï¿½vel:            $atributo
+//     Descriï¿½ï¿½o:         Armazena um tag que indica a referï¿½ncia para um lï¿½xico
+//     Sinï¿½nimos:         -
 //     Exemplo:             referencia_lexico
 //
-//     Variável:            $query
-//     Descrição:         Armazena a consulta a ser feita no banco de dados
-//     Sinônimos:         -
+//     Variï¿½vel:            $query
+//     Descriï¿½ï¿½o:         Armazena a consulta a ser feita no banco de dados
+//     Sinï¿½nimos:         -
 //     Exemplo:             SELECT nome FROM lexico WHERE id_projeto = $id_projeto
 //
-//     Variável:            $result
-//     Descrição:         Armazena o resultado da consulta feita ao banco de dados
-//     Sinônimos:         -
+//     Variï¿½vel:            $result
+//     Descriï¿½ï¿½o:         Armazena o resultado da consulta feita ao banco de dados
+//     Sinï¿½nimos:         -
 //     Exemplo:             -
 //
-//     Variável:            $row
-//     Descrição:         Array que armazena tupla a tupla o resultado da consulta realizada
-//     Sinônimos:         -
+//     Variï¿½vel:            $row
+//     Descriï¿½ï¿½o:         Array que armazena tupla a tupla o resultado da consulta realizada
+//     Sinï¿½nimos:         -
 //     Exemplo:             -
 //
-//     Variável:            $valor
-//     Descrição:         Armazena uma tupla, substituindo os caracteres acentuados pelos seus 
-//                        equivalentes sem acentuação.
-//     Sinônimos:         -
+//     Variï¿½vel:            $valor
+//     Descriï¿½ï¿½o:         Armazena uma tupla, substituindo os caracteres acentuados pelos seus 
+//                        equivalentes sem acentuaï¿½ï¿½o.
+//     Sinï¿½nimos:         -
 //     Exemplo:             acentuacao
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -349,20 +349,20 @@ if (!(function_exists("gera_xml_links"))) {
                 {
                     $id_projeto = $_SESSION['id_projeto_corrente'];
                         
-                    // Verifica se é léxico 
+                    // Verifica se ï¿½ lï¿½xico 
                     if($match[1]=='l')
                     {
                         // Retira o link do texto
                        $vetor_texto[$i]="";
                         
-                        //link para léxico
+                        //link para lï¿½xico
                         $atributo = "referencia_lexico";                        
                             
                         $query = "SELECT nome FROM lexico WHERE id_projeto = $id_projeto AND id_lexico = $match[2] ";
                         $result = mysql_query($query) or die("Erro ao enviar a query lexico");
                         $row = mysql_fetch_row($result);
-                    	// Pega o nome do léxico
-                        $valor = strtr( $row[ 0 ] ,"áâãàóõôéêç","aaaaoooeec");
+                    	// Pega o nome do lï¿½xico
+                        $valor = strtr( $row[ 0 ] ,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","aaaaoooeec");
                             
                         $vetor_texto[$i+1] = '<texto '.$atributo.'="'.$valor.'">'.$vetor_texto[$i+1].'</texto>';
                     } else if($match[1]=='c')
@@ -370,14 +370,14 @@ if (!(function_exists("gera_xml_links"))) {
                         // Retira o link do texto
                         $vetor_texto[$i]="";
                         
-                        //link para cenário
+                        //link para cenï¿½rio
                         $atributo = "referencia_cenario";                        
                             
                         $query = "SELECT titulo FROM cenario WHERE id_projeto = $id_projeto AND id_cenario = $match[2] ";
                         $result = mysql_query($query) or die("Erro ao enviar a query cenario");
                         $row = mysql_fetch_row($result);
                         // Pega o titulo do cenario
-                        $valor = strtr( $row[ 0 ] ,"áâãàóõôéêç","aaaaoooeec");
+                        $valor = strtr( $row[ 0 ] ,"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","aaaaoooeec");
                             
                         $vetor_texto[$i+1] = '<texto '.$atributo.'="'.$valor.'">'.strip_tags($vetor_texto[$i+1]).'</texto>';
                     }
@@ -413,7 +413,7 @@ if (!(function_exists("gera_xml_links"))) {
       $qVerifica = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
       $qrrVerifica = mysql_query($qVerifica);
 
-		// Se não existir nenhum XML com o id passado ele cria
+		// Se nï¿½o existir nenhum XML com o id passado ele cria
         if ( !mysql_num_rows($qrrVerifica) )
         {
 
@@ -435,7 +435,7 @@ if (!(function_exists("gera_xml_links"))) {
 <title>Projeto</title>
 </head>
 <body bgcolor="#FFFFFF">
-<p style="color: red; font-weight: bold; text-align: center">Essa versão já existe!</p>
+<p style="color: red; font-weight: bold; text-align: center">Essa vers&atilde;o j&aacute; existe!</p>
 <br>
 <br>
 <center>

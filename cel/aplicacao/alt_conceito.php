@@ -34,7 +34,7 @@ if (isset($submit)){
 	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 	
 	self.close();
@@ -51,19 +51,19 @@ else // Script chamado atraves do link no cenario corrente
     $executeQuery = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($executeQuery);
 
-	// Cenário -    Alterar Conceito 
+	// Cenï¿½rio -    Alterar Conceito 
 	
-	//Objetivo:	Permitir a alteração de um conceito por um usuário
-	//Contexto:	Usuário deseja alterar conceito previamente cadastrado
-	//              Pré-Condição: Login, Cenário cadastrado no sistema
-	//Atores:	Usuário
+	//Objetivo:	Permitir a alteraï¿½ï¿½o de um conceito por um usuï¿½rio
+	//Contexto:	Usuï¿½rio deseja alterar conceito previamente cadastrado
+	//              Prï¿½-Condiï¿½ï¿½o: Login, Cenï¿½rio cadastrado no sistema
+	//Atores:	Usuï¿½rio
 	//Recursos:	Sistema, dados cadastrados
-	//Episódios:	O sistema fornecerá para o usuário a mesma tela de INCLUIR CENÁRIO,
-	//              porém com os seguintes dados do cenário a ser alterado preenchidos
-	//              e editáveis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episódios.
-	//              Os campos Projeto e Título estarão preenchidos, mas não editáveis.
-	//              Será exibido um campo Justificativa para o usuário colocar uma
-	//              justificativa para a alteração feita.
+	//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR CENï¿½RIO,
+	//              porï¿½m com os seguintes dados do cenï¿½rio a ser alterado preenchidos
+	//              e editï¿½veis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episï¿½dios.
+	//              Os campos Projeto e Tï¿½tulo estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
+	//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
+	//              justificativa para a alteraï¿½ï¿½o feita.
 	
 	?>
 <html>
@@ -86,7 +86,7 @@ else // Script chamado atraves do link no cenario corrente
       <input type="hidden" name="nome" value="<?=$result['nome']?>">
       <td><input disabled maxlength="128" name="nome2" size="48" type="text" value="<?=$result['nome']?>"></td>
     <tr>
-      <td>Descricao:</td>
+      <td>Descri&ccedil;&atilde;o:</td>
       <? $result['descricao'] = preg_replace("'<[\/\!]*?[^<>]*?>'si", "", $result['descricao']); ?>
       <td><textarea name="descricao" cols="48" rows="3"><?=$result['descricao']?>
 </textarea></td>
@@ -102,12 +102,12 @@ else // Script chamado atraves do link no cenario corrente
       <td><textarea name="justificativa" cols="48" rows="2"></textarea></td>
     </tr>
     <tr>
-      <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cenário" onClick="updateOpener()"></td>
+      <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Alterar Cen&aacute;rio" onClick="updateOpener()"></td>
     </tr>
   </table>
 </form>
 <br>
-<i><a href="showSource.php?file=alt_cenario.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=alt_cenario.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>
 <?php

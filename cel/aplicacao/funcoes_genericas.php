@@ -401,9 +401,9 @@ if (!(function_exists("adicionar_lexico")))
               FROM cenario
               WHERE id_projeto = $id_projeto";
         
-        $queryResult = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $executeQuery = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        while ($result = mysql_fetch_array($queryResult)) 
+        while ($result = mysql_fetch_array($executeQuery)) 
         {    // 2  - Para todos os cenarios
         
            $nomeEscapado = escapa_metacaracteres( $nome );
@@ -431,8 +431,8 @@ if (!(function_exists("adicionar_lexico")))
         for ($i = 0; $i < $count; $i++)
         {
             
-            $queryResult = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-            while ($result2 = mysql_fetch_array($queryResult))
+            $executeQuery = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+            while ($result2 = mysql_fetch_array($executeQuery))
             {
                 
                 $nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );

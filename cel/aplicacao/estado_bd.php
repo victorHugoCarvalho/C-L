@@ -5,7 +5,7 @@ include_once("bd.inc");
 $link = bd_connect();
 
 $query = "show tables" ;
-$result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$result = mysql_query($query) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
 
 
     print "<font color=#7c75b2 face=arial><h3>TABELAS e seus ATRIBUTOS<h3></font>";
@@ -14,7 +14,7 @@ while ($line = mysql_fetch_array($result, MYSQL_BOTH))
 { 
     print "<table border=1><tr><td bgcolor=#7c75b2 width=120><font color=white>". $line[0] . "</font></td>";
     $tabela = "describe " . $line[0] ;
-    $atributos = mysql_query($tabela) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+    $atributos = mysql_query($tabela) or die("A consulta ï¿½ BD falhou : " . mysql_error() . __LINE__); 
     while ($linha = mysql_fetch_array($atributos, MYSQL_BOTH)) 
     {  
        print  "<td>" . $linha[0] . " </td>";
@@ -25,16 +25,16 @@ while ($line = mysql_fetch_array($result, MYSQL_BOTH))
 
 
 
-/* PROJETO que está sendo traduzido pelo Jerônimo (Adm_Imoveis)*/
+/* PROJETO que estï¿½ sendo traduzido pelo Jerï¿½nimo (Adm_Imoveis)*/
 
 $projetos = "select * from projeto where nome='Adm_Imoveis' order by id_projeto" ;
-$resultado = mysql_query($projetos) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
-  print "<br><br><font color=#7c75b2 face=arial><h3>Projeto que está sendo traduzido pelo Jerônimo<h3></font>";
+$resultado = mysql_query($projetos) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
+  print "<br><br><font color=#7c75b2 face=arial><h3>Projeto que est&aacute; sendo traduzido pelo Jer&ocirc;nimo<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_projeto</font></td> 
                   <td bgcolor=#7c75b2 width=120><font color=white>nome</font></td>
-                  <td bgcolor=#7c75b2 width=120><font color=white>data da criação</font></td>
-                  <td bgcolor=#7c75b2 width=120><font color=white>descrição</font></td>
+                  <td bgcolor=#7c75b2 width=120><font color=white>data da cria&ccedil;&atilde;o</font></td>
+                  <td bgcolor=#7c75b2 width=120><font color=white>descri&ccedil;&atilde;o</font></td>
                   <td bgcolor=#7c75b2 width=120><font color=white>id_status</font></td>
            </tr>";
 
@@ -47,7 +47,7 @@ $resultado = mysql_query($projetos) or die("A consulta à BD falhou : " . mysql_e
   /* PEDIDOREL */
 
 $resultados = "select * from pedidorel order by nome" ;
-$resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($resultados) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>PedidoRel<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_pedido</font></td> 
@@ -71,7 +71,7 @@ $resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql
 /* LEXICO */
 
 $resultados = "select * from lexico order by nome" ;
-$resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($resultados) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Lexico<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_lexico</font></td> 
@@ -94,7 +94,7 @@ $resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql
 /* ALGORITMO */
 
 $resultados = "select * from algoritmo" ;
-$resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($resultados) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Algoritmo<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_variavel</font></td> 
@@ -112,7 +112,7 @@ $resultado = mysql_query($resultados) or die("A consulta à BD falhou : " . mysql
 /* CONCEITOS */
 
 $conceitos = "select * from conceito order by nome asc" ;
-$resultado = mysql_query($conceitos) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($conceitos) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Conceitos<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_conceito</font></td> 
@@ -131,11 +131,11 @@ $resultado = mysql_query($conceitos) or die("A consulta à BD falhou : " . mysql_
 
 
 
-/* RELAÇÕES */
+/* RELAï¿½ï¿½ES */
 
 $relacoes = "select * from relacao order by id_relacao" ;
-$resultado = mysql_query($relacoes) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
-  print "<br><br><font color=#7c75b2 face=arial><h3>Relações<h3></font>";
+$resultado = mysql_query($relacoes) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
+  print "<br><br><font color=#7c75b2 face=arial><h3>Relaï¿½ï¿½es<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_relacao</font></td> 
              <td bgcolor=#7c75b2 width=120><font color=white>nome</font></td>
@@ -152,7 +152,7 @@ $resultado = mysql_query($relacoes) or die("A consulta à BD falhou : " . mysql_e
 /* HIERARQUIA */
 
 $hierarquia = "select * from hierarquia" ;
-$resultado = mysql_query($hierarquia) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($hierarquia) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Hierarquia<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_hierarquia</font></td> 
@@ -169,11 +169,11 @@ $resultado = mysql_query($hierarquia) or die("A consulta à BD falhou : " . mysql
 
 
 
-/* RELAÇÕES ENTRE CONCEITOS */
+/* RELAï¿½ï¿½ES ENTRE CONCEITOS */
 
 $rc = "select c.nome, r.nome, rc.predicado, rc.id_projeto from relacao_conceito rc, relacao r, conceito c WHERE c.id_conceito = rc.id_conceito AND rc.id_relacao = r.id_relacao ORDER BY c.nome, r.nome ASC;" ;
-$resultado = mysql_query($rc) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
-  print "<br><br><font color=#7c75b2 face=arial><h3>Relação entre conceitos<h3></font>";
+$resultado = mysql_query($rc) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
+  print "<br><br><font color=#7c75b2 face=arial><h3>Relaï¿½ï¿½o entre conceitos<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>conceito</font></td> 
              <td bgcolor=#7c75b2 width=120><font color=white>relacao</font></td>
@@ -193,7 +193,7 @@ $resultado = mysql_query($rc) or die("A consulta à BD falhou : " . mysql_error()
 /* AXIOMAS */
 
 $axiomas = "select * from axioma order by id_axioma" ;
-$resultado = mysql_query($axiomas) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($axiomas) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Axiomas<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_axioma</font></td> 
@@ -208,11 +208,11 @@ $resultado = mysql_query($axiomas) or die("A consulta à BD falhou : " . mysql_er
   print "</table>";
 
 
-/* USUÁRIOS */
+/* USUï¿½RIOS */
 
 $usuarios = "select * from usuario order by id_usuario" ;
-$resultado = mysql_query($usuarios) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
-  print "<br><br><font color=#7c75b2 face=arial><h3>Usuários<h3></font>";
+$resultado = mysql_query($usuarios) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
+  print "<br><br><font color=#7c75b2 face=arial><h3>Usuï¿½rios<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_usuario</font></td> 
              <td bgcolor=#7c75b2 width=120><font color=white>nome</font></td>
@@ -231,7 +231,7 @@ $resultado = mysql_query($usuarios) or die("A consulta à BD falhou : " . mysql_e
 /* PARTICIPA */
 
 $participa = "select * from participa order by id_projeto" ;
-$resultado = mysql_query($participa) or die("A consulta à BD falhou : " . mysql_error() . __LINE__); 
+$resultado = mysql_query($participa) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__); 
   print "<br><br><font color=#7c75b2 face=arial><h3>Participa<h3></font>";
   print "<table border=1>";
   print "<tr><td bgcolor=#7c75b2 width=120><font color=white>id_usuario</font></td> 
