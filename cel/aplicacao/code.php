@@ -106,7 +106,7 @@ MTMIconList.addIcon(new MTMIcon("menu_link_pdf.gif", ".pdf", "post"));
 
 var menu = null; 
 menu = new MTMenu(); 
-menu.addItem("Cen�rios"); 
+menu.addItem("Cen&aacute;rios"); 
 // + submenu 
 var mc = null; 
 mc = new MTMenu(); 
@@ -170,7 +170,7 @@ while ($row = mysql_fetch_row($qrr)) // para cada cenario do projeto
 // - submenu 
 menu.makeLastSubmenu(mc); 
 
-menu.addItem("L�xico"); 
+menu.addItem("L&eacute;xico"); 
 // + submenu 
 var ml = null; 
 ml = new MTMenu(); 
@@ -260,7 +260,7 @@ menu.makeLastSubmenu(mo);
 
 // RELA��ES 
 // ++ submenu 
-   mo.addItem("Rela��es"); 
+   mo.addItem("Rela&ccedil;&otilde;es"); 
    var mor = null; 
    mor = new MTMenu(); 
 

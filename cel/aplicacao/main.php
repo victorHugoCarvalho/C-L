@@ -650,11 +650,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['recursos'], $vetorDeLexicos, $vetorVazio ) ) ; ?></td>
   </tr>
           <tr>
-    <th>Exce��o:</th>
+    <th>Exce&ccedil;&atilde;o:</th>
     <td CLASS="Estilo"><?php echo nl2br(monta_links( $result['excecao'], $vetorDeLexicos, $vetorVazio) ) ; ?></td>
   </tr>
           <tr>
-    <th>Epis�dios:</th>
+    <th>Epis&oacute;dios:</th>
     <td CLASS="Estilo"><?php 
 	  		echo nl2br(monta_links( $result['episodios'], $vetorDeLexicos, $vetorDeCenarios ) ); ?></td>
   </tr>
@@ -814,7 +814,7 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     }
     else if ($t == "l")
 	{
-		print "<h3>Cen�rios e termos do l&eacute;xico que referenciam este termo</h3>";   
+		print "<h3>Cen&aacute;rios e termos do l&eacute;xico que referenciam este termo</h3>";   
     }
     else if ($t == "oc")
 	{ 
