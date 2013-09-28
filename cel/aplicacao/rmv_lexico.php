@@ -11,20 +11,20 @@ include("httprequest.inc");
 // checks whether the user has been authenticated
 chkUser("index.php");        
 
-//Cenários -  Excluir Léxico 
+//Cenï¿½rios -  Excluir Lï¿½xico 
 
-//Objetivo:	Permitir ao Usuário Excluir uma palavra do léxico que esteja ativa
-//Contexto:	Usuário deseja excluir uma palavra do léxico
-//Pré-Condição: Login, palavra do léxico cadastrada no sistema 
-//Atores:	Usuário, Sistema
+//Objetivo:	Permitir ao Usuï¿½rio Excluir uma palavra do lï¿½xico que esteja ativa
+//Contexto:	Usuï¿½rio deseja excluir uma palavra do lï¿½xico
+//Prï¿½-Condiï¿½ï¿½o: Login, palavra do lï¿½xico cadastrada no sistema 
+//Atores:	Usuï¿½rio, Sistema
 //Recursos:	Dados informados
-//Episódios:	O sistema fornecerá uma tela para o usuário justificar a necessidade
-//              daquela exclusão para que o administrador possa ler e aprovar ou não.
-//              Esta tela também conterá um botão para a confirmação da exclusão.
-//              Restrição: Depois de clicado o botão o sistema verifica se todos os campos foram preenchidos 
-//Exceção:	Se todos os campos não foram preenchidos, retorna para o usuário 
+//Episï¿½dios:	O sistema fornecerï¿½ uma tela para o usuï¿½rio justificar a necessidade
+//              daquela exclusï¿½o para que o administrador possa ler e aprovar ou nï¿½o.
+//              Esta tela tambï¿½m conterï¿½ um botï¿½o para a confirmaï¿½ï¿½o da exclusï¿½o.
+//              Restriï¿½ï¿½o: Depois de clicado o botï¿½o o sistema verifica se todos os campos foram preenchidos 
+//Exceï¿½ï¿½o:	Se todos os campos nï¿½o foram preenchidos, retorna para o usuï¿½rio 
 //              uma mensagem avisando que todos os campos devem ser preenchidos 
-//              e um botão de voltar para a pagina anterior.
+//              e um botï¿½o de voltar para a pagina anterior.
 
 inserirPedidoRemoverLexico($id_projeto, $id_lexico, $_SESSION['id_usuario_corrente']);
 
@@ -36,7 +36,7 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 
 </script>
 
-<h4>Operação efetuada com sucesso!</h4>
+<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 <script language="javascript1.3">
 
 self.close();

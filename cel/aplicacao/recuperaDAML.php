@@ -1,18 +1,18 @@
 <HTML>
 <HEAD>
 <LINK rel="stylesheet" type="text/css" href="style.css">
-<TITLE>Recuperação de Arquivos DAML</TITLE>
+<TITLE>Recupera&ccedil;&atilde;o de Arquivos DAML</TITLE>
 </HEAD>
 
 <BODY>
-<H2>Histórico de Arquivos DAML</H2>
+<H2>Hist&oacute;rico de Arquivos DAML</H2>
 <?PHP 
 
     include_once( "CELConfig/CELConfig.inc" ) ;
     /* 
         Arquivo   : recuperaDAML.php 
-        Versão       : 1.0 
-        Comentário: Este programa lista todos os arquivos DAML    gerados    em $_SESSION['diretorio'] 
+        Versï¿½o       : 1.0 
+        Comentï¿½rio: Este programa lista todos os arquivos DAML    gerados    em $_SESSION['diretorio'] 
     */ 
      
     function extrair_data( $nome_arquivo ) 
@@ -33,7 +33,7 @@
         { 
             case 1: $mes_por_extenso = "janeiro"; break; 
             case 2: $mes_por_extenso = "fevereiro"; break; 
-            case 3: $mes_por_extenso = "março"; break; 
+            case 3: $mes_por_extenso = "marï¿½o"; break; 
             case 4: $mes_por_extenso = "abril"; break; 
             case 5: $mes_por_extenso = "maio"; break; 
             case 6: $mes_por_extenso = "junho"; break; 
@@ -45,7 +45,7 @@
             case 12: $mes_por_extenso = "dezembro"; break; 
         }         
          
-        return $dia . " de " . $mes_por_extenso . " de " . $ano . " às " . $hora . ":" . $minuto . "." . $segundo . "\n"; 
+        return $dia . " de " . $mes_por_extenso . " de " . $ano . " &agrave;s " . $hora . ":" . $minuto . "." . $segundo . "\n"; 
     } 
      
     function extrair_projeto( $nome_arquivo ) 
@@ -71,8 +71,8 @@
           
           if ( $site == "http:///" )
           {
-             print( "Atenção: O arquivo de configuração do CELConfig (padrão: config2.conf) precisa ser configurado
-             		corretamente.<BR>\n * Não foram preenchidas as variáveis 'HTTPD_ip','CEL_dir_relativo' 
+             print( "Aten&ccedil;&atilde;o: O arquivo de configura&ccedil;&atilde;o do CELConfig (padr&atilde;o: config2.conf) precisa ser configurado
+             		corretamente.<BR>\n * N&atilde;o foram preenchidas as vari&aacute;veis 'HTTPD_ip','CEL_dir_relativo' 
              		e 'DAML_dir_relativo_ao_CEL'.<BR>\nPor favor, verifique o arquivo e tente novamente.<BR>\n" );
           }
     }

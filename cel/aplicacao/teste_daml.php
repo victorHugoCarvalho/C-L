@@ -13,7 +13,7 @@ $file = nome_arquivo_daml();
 
 $array_info = array ("title" => "Ontologia de teste" ,     
             "creator" => "Pedro" ,     
-            "description" => "teste de tradução de léxico para ontologia" ,     
+            "description" => "teste de tradu&ccedil;&atilde;o de l&eacute;xico para ontologia" ,     
             "subject" => "" ,       
             "versionInfo" => "1.1" ) ;     
 

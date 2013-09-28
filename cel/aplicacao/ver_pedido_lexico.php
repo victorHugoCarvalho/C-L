@@ -39,7 +39,7 @@ if (isset($submit))
 			opener.parent.frames['code'].location.reload();
 			opener.parent.frames['text'].location.replace("main.php") ;
 		</script>
-	<h4>Operação efetuada com sucesso!</h4>
+	<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 	<script language="javascript1.2">
 		self.close();
 		</script>
@@ -106,18 +106,18 @@ else
 			{
 				?>
 				<h3>
-				O usuário <a  href="mailto:<?=$usuario['email']?>" >
+				O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 				<?=$usuario['nome']?>
 				</a> pede para
 				<?=$tipo_pedido?>
-				o léxico <font color="#ff0000">
+				o l&eacute;xico <font color="#ff0000">
 				<?=$record['nome']?>
 				</font>
 				<?  
 				
 				if (!strcasecmp($tipo_pedido,'alterar'))
 				{
-					echo"para léxico abaixo:</h3>" ;
+					echo"para lï¿½xico abaixo:</h3>" ;
 				}
 				else
 				{
@@ -128,7 +128,7 @@ else
 				<td><b>Nome:</b></td>
 				<td><?=$record['nome']?></td>
 				<tr>
-					<td><b>Noção:</b></td>
+					<td><b>No&ccedil;&atilde;o:</b></td>
 				    <td><?=$record['nocao']?></td>
 				</tr>
 				<tr>
@@ -136,7 +136,7 @@ else
 				    <td><?=$record['impacto']?></td>
 				</tr>
 				<tr>
-					<td><b>Sinônimos:</b></td>
+					<td><b>Sin&ocirc;nimos:</b></td>
 				    <td><?php
 				    $sinonimo = $select3->gofirst();
 				    $strSinonimos = "";
@@ -162,11 +162,11 @@ else
 			else
 			{
 				?>
-				<h3>O usuário <a  href="mailto:<?=$usuario['email']?>" >
+				<h3>O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 				<?=$usuario['nome']?>
 				</a> pede para
 				<?=$tipo_pedido?>
-				o léxico <font color="#ff0000">
+				o l&eacute;xico <font color="#ff0000">
 				<?=$record['nome']?>
 				</font></h3>
 				<?php 

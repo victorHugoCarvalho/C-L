@@ -18,16 +18,16 @@ $XML = "";
 </head>
 <?php
 
-//Cenário -  Gerar Relatórios XML 
+//Cenï¿½rio -  Gerar Relatï¿½rios XML 
 
-//Objetivo:   Permitir ao administrador gerar relatórios em formato XML de um projeto,
+//Objetivo:   Permitir ao administrador gerar relatï¿½rios em formato XML de um projeto,
 //             identificados por data.
-//Contexto:   Gerente deseja gerar um relatório para um dos projetos da qual é administrador.
-//              Pré-Condição: Login, projeto cadastrado.
+//Contexto:   Gerente deseja gerar um relatï¿½rio para um dos projetos da qual ï¿½ administrador.
+//              Prï¿½-Condiï¿½ï¿½o: Login, projeto cadastrado.
 //Atores:     Administrador
-//Recursos:   Sistema, dados do relatório, dados cadastrados do projeto, banco de dados.
-//Episódios:  Restrição: Recuperar os dados em XML do Banco de dados e os transformar
-//                       por uma XSL para a exibição.
+//Recursos:   Sistema, dados do relatï¿½rio, dados cadastrados do projeto, banco de dados.
+//Episï¿½dios:  Restriï¿½ï¿½o: Recuperar os dados em XML do Banco de dados e os transformar
+//                       por uma XSL para a exibiï¿½ï¿½o.
 
 $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 if (isset($apaga))
@@ -52,7 +52,7 @@ while ( $result = mysql_fetch_row($qrr) )
 	?>
 	<table>
 	  <tr>
-	    <th>Versão:</th>
+	    <th>Versï¿½o:</th>
 	    <td><?=$versao?></td>
 	    <th>Data:</th>
 	    <td><?=$data?></td>
@@ -65,6 +65,6 @@ while ( $result = mysql_fetch_row($qrr) )
 
 ?>
 <br>
-<i><a href="showSource.php?file=recuperarXML.php">Veja o código fonte!</a></i>
+<i><a href="showSource.php?file=recuperarXML.php">Veja o c&oacute;digo fonte!</a></i>
 </body>
 </html>

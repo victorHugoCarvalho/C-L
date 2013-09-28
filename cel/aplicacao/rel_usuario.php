@@ -43,7 +43,7 @@ else
 	?>
 	<html>
         <head>
-        <title>Selecione os usuários</title>
+        <title>Selecione os usu&aacute;rios</title>
         <script language="javascript1.3" src="MSelect.js"></script>
         <script language="javascript1.3">
 
@@ -77,10 +77,10 @@ else
 </style>
         </head>
         <body onLoad="createMSelect();">
-<h4>Selecione os usuários para participar do projeto "<span style="color: orange">
+<h4>Selecione os usu&aacute;rios para participar do projeto "<span style="color: orange">
   <?=simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente'])?>
   </span>":</h4>
-<p style="color: red">Mantenha <strong>CTRL</strong> pressionado para selecionar múltiplas opções</p>
+<p style="color: red">Mantenha <strong>CTRL</strong> pressionado para selecionar m&uacute;ltiplas op&ccedil;&otilde;es</p>
 <form action="" method="post" onSubmit="selAll();">
           <table cellspacing="8" width="100%">
     <tr>
@@ -92,14 +92,14 @@ else
               <td rowspan="2"><select name="usuarios[]" multiple size="6">
                   <?php
 
-// Cenário - Relacionar usuários ao projeto
+// Cenï¿½rio - Relacionar usuï¿½rios ao projeto
 
-// Objetivo:  Permitir ao Administrador relacionar novos usuários cadastrados ao projeto selecionado.
-// Contexto:  O Administrador deseja relacionar novos usuários cadastrados ao projeto selecionado.
-//            Pré-Condições: Ser administrador do projeto que deseja relacionar os usuários
+// Objetivo:  Permitir ao Administrador relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+// Contexto:  O Administrador deseja relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+//            Prï¿½-Condiï¿½ï¿½es: Ser administrador do projeto que deseja relacionar os usuï¿½rios
 // Atores:    Administrador
-// Recursos:  Usuários cadastrados
-// Episódios: O Administrador clica no link “Relacionar usuário já existentes com este projeto”.
+// Recursos:  Usuï¿½rios cadastrados
+// Episï¿½dios: O Administrador clica no link ï¿½Relacionar usuï¿½rio jï¿½ existentes com este projetoï¿½.
 
     // Selecionar todos os usuarios que participam deste projeto,
     // menos o administrador que esta executando este script
@@ -118,15 +118,15 @@ else
         </option>
 		<?php
 
-		// Cenário - Relacionar usuários ao projeto
-		// Objetivo:  Permitir ao Administrador relacionar novos usuários cadastrados ao projeto selecionado.
-		// Contexto:  O Administrador deseja relacionar novos usuários cadastrados ao projeto selecionado.
-		//            Pré-Condições: Ser administrador do projeto que deseja relacionar os usuários
+		// Cenï¿½rio - Relacionar usuï¿½rios ao projeto
+		// Objetivo:  Permitir ao Administrador relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+		// Contexto:  O Administrador deseja relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+		//            Prï¿½-Condiï¿½ï¿½es: Ser administrador do projeto que deseja relacionar os usuï¿½rios
 		// Atores:    Administrador
-		// Recursos:  Usuários cadastrados
-		// Episódios: Excluindo usuário(s) do projeto: o administrador seleciona os usuários cadastrados 
-		//            (já existentes) da lista Participantes (usuários que pertencem a este projeto) 
-		//            e clica no botão -> . 
+		// Recursos:  Usuï¿½rios cadastrados
+		// Episï¿½dios: Excluindo usuï¿½rio(s) do projeto: o administrador seleciona os usuï¿½rios cadastrados 
+		//            (jï¿½ existentes) da lista Participantes (usuï¿½rios que pertencem a este projeto) 
+		//            e clica no botï¿½o -> . 
 		?>
 		<?php
     }
@@ -167,16 +167,16 @@ else
         </option>
         <?php
 
-		// Cenário - Relacionar usuários ao projeto
+		// Cenï¿½rio - Relacionar usuï¿½rios ao projeto
 		
-		// Objetivo:  Permitir ao Administrador relacionar novos usuários cadastrados ao projeto selecionado.
-		// Contexto:  O Administrador deseja relacionar novos usuários cadastrados ao projeto selecionado.
-		//            Pré-Condições: Ser administrador do projeto que deseja relacionar os usuários
+		// Objetivo:  Permitir ao Administrador relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+		// Contexto:  O Administrador deseja relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+		//            Prï¿½-Condiï¿½ï¿½es: Ser administrador do projeto que deseja relacionar os usuï¿½rios
 		// Atores:    Administrador
-		// Recursos:  Usuários cadastrados
-		// Episódios: Incluindo usuário(s) ao projeto: o administrador seleciona os usuários cadastrados 
-		//           (já existentes) da lista de usuários que não pertencem a este projeto e 
-		//           clica no botão <- . 
+		// Recursos:  Usuï¿½rios cadastrados
+		// Episï¿½dios: Incluindo usuï¿½rio(s) ao projeto: o administrador seleciona os usuï¿½rios cadastrados 
+		//           (jï¿½ existentes) da lista de usuï¿½rios que nï¿½o pertencem a este projeto e 
+		//           clica no botï¿½o <- . 
 		
 		?>
 		<?php
@@ -190,14 +190,14 @@ else
     </tr>
     <?php
 
-	// Cenário - Relacionar usuários ao projeto
+	// Cenï¿½rio - Relacionar usuï¿½rios ao projeto
 	
-	// Objetivo:  Permitir ao Administrador relacionar novos usuários cadastrados ao projeto selecionado.
-	// Contexto:  O Administrador deseja relacionar novos usuários cadastrados ao projeto selecionado.
-	//            Pré-Condições: Ser administrador do projeto que deseja relacionar os usuários
+	// Objetivo:  Permitir ao Administrador relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+	// Contexto:  O Administrador deseja relacionar novos usuï¿½rios cadastrados ao projeto selecionado.
+	//            Prï¿½-Condiï¿½ï¿½es: Ser administrador do projeto que deseja relacionar os usuï¿½rios
 	// Atores:    Administrador
-	// Recursos:  Usuários cadastrados
-	// Episódios: Para atualizar os relacionamentos realizados, o administrador clica no botão Atualizar.
+	// Recursos:  Usuï¿½rios cadastrados
+	// Episï¿½dios: Para atualizar os relacionamentos realizados, o administrador clica no botï¿½o Atualizar.
 	
 	?>
 	<tr>
@@ -206,7 +206,7 @@ else
 	</table>
 	</form>
 	<br>
-	<i><a href="showSource.php?file=rel_usuario.php">Veja o código fonte!</a></i>
+	<i><a href="showSource.php?file=rel_usuario.php">Veja o c&oacute;digo fonte!</a></i>
 	</body>
 	</html>
 	<?php

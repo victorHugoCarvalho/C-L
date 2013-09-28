@@ -40,7 +40,7 @@ if (isset($submit))
 	opener.parent.frames['text'].location.replace('main.php?id_projeto=' + '<?=$_SESSION['id_projeto_corrente']?>');
 	
 	</script>
-	<h4>Operação efetuada com sucesso!</h4>
+	<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
 	<script language="javascript1.3">
 	
 	self.close();
@@ -105,11 +105,11 @@ else
 			?>
 				<br>
 			  	<h3>
-			  	O usuário <a  href="mailto:<?=$usuario['email']?>" >
+			  	O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 			  	<?=$usuario['nome']?>
 			  	</a> pede para
 			  	<?=$tipo_pedido?>
-			  	a relação <font color="#ff0000">
+			  	a rela&ccedil;&atilde;o <font color="#ff0000">
 			  	<?=$record['nome']?>
 			  	</font>
 			  	<?  
@@ -137,11 +137,11 @@ else
 			else
 			{
 					?>
-				  <h3>O usuário <a  href="mailto:<?=$usuario['email']?>" >
+				  <h3>O usu&aacute;rio <a  href="mailto:<?=$usuario['email']?>" >
 				    <?=$usuario['nome']?>
 				    </a> pede para
 				    <?=$tipo_pedido?>
-				    a relação <font color="#ff0000">
+				    a rela&ccedil;&atilde;o <font color="#ff0000">
 				    <?=$record['nome']?>
 				    </font></h3>
 				  <?php 

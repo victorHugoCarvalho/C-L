@@ -8,17 +8,17 @@ include("httprequest.inc");
 //chkUser("index.php");        // Cenario: controle de acesso
 
 
-//Cenário  -  Remover Projeto 
+//Cenï¿½rio  -  Remover Projeto 
 
 //Objetivo:	   Permitir ao Administrador do projeto remover um projeto
 //Contexto:	   Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//                 Pré-Condição: Login, Ser administrador do projeto selecionado.  
+//                 Prï¿½-Condiï¿½ï¿½o: Login, Ser administrador do projeto selecionado.  
 //Atores:	   Administrador
 //Recursos:	   Sistema, dados do projeto, base de dados
-//Episódios:   O Administrador clica na opção “remover projeto” encontrada no menu superior.
+//Episï¿½dios:   O Administrador clica na opï¿½ï¿½o ï¿½remover projetoï¿½ encontrada no menu superior.
 //             O sistema disponibiliza uma tela para o administrador ter certeza de que esta removendo o projeto correto.
-//             O Administrador clica no link de remoção.
-//             O sistema chama a página que removerá o projeto do banco de dados.
+//             O Administrador clica no link de remoï¿½ï¿½o.
+//             O sistema chama a pï¿½gina que removerï¿½ o projeto do banco de dados.
 ?>
 <html>
 	<head>
@@ -59,13 +59,13 @@ include("httprequest.inc");
 		<br>
 		<br>
 		<center>
-		  <b>Cuidado!O projeto será apagado para todos seus usuários!</b>
+		  <b>Cuidado!O projeto ser&aacute; apagado para todos seus usu&aacute;rios!</b>
 		</center>
 		<p><br>
 		  <center>
 		    <a href="remove_projeto_base.php">Apagar o projeto</a>
 		  </center>
 		</p>
-		<p> <i><a href="showSource.php?file=remove_projeto.php">Veja o código fonte!</a></i> </p>
+		<p> <i><a href="showSource.php?file=remove_projeto.php">Veja o c&oacute;digo fonte!</a></i> </p>
 	</body>
 </html>

@@ -15,16 +15,16 @@ include("funcoes_genericas.php");
 
 $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 
-//Cenário - Escolher Projeto
+//Cenï¿½rio - Escolher Projeto
 
-//Objetivo:   Permitir ao Administrador/Usuário escolher um projeto.
-//Contexto:   O Administrador/Usuário deseja escolher um projeto.
-//            Pré-Condições: Login, Ser Administrador
-//Atores:     Administrador, Usuário
-//Recursos:   Usuários cadastrados
-//Episódios:  Caso o Usuario selecione da lista de projetos um projeto da qual ele seja administrador,
+//Objetivo:   Permitir ao Administrador/Usuï¿½rio escolher um projeto.
+//Contexto:   O Administrador/Usuï¿½rio deseja escolher um projeto.
+//            Prï¿½-Condiï¿½ï¿½es: Login, Ser Administrador
+//Atores:     Administrador, Usuï¿½rio
+//Recursos:   Usuï¿½rios cadastrados
+//Episï¿½dios:  Caso o Usuario selecione da lista de projetos um projeto da qual ele seja administrador,
 //            ver ADMINISTRADOR ESCOLHE PROJETO.
-//            Caso contrário, ver USUÁRIO ESCOLHE PROJETO.
+//            Caso contrï¿½rio, ver USUï¿½RIO ESCOLHE PROJETO.
 
 $q = "SELECT * FROM publicacao";
 $qrr = mysql_query($q) or die("Erro ao enviar a query de busca");
@@ -52,7 +52,7 @@ while ( $result = mysql_fetch_row($qrr) )
 	      </a></th>
 	    <th height="29" width="140">Data:
 	      <?=$data?></th>
-	    <th height="29" width="100">Versão:
+	    <th height="29" width="100">Vers&atilde;o:
 	      <?=$versao?></th>
 	  </tr>
 	</table>

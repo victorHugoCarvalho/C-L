@@ -7,7 +7,7 @@ include_once("coloca_links.php");
 
 function monta_relacoes($id_projeto)
 {
-	// Apaga todas as relações existentes das tabelas centocen, centolex e lextolex
+	// Apaga todas as relaï¿½ï¿½es existentes das tabelas centocen, centolex e lextolex
 	
 	$DB = new PGDB () ;
     $sql1 = new QUERY ($DB) ;
@@ -18,7 +18,7 @@ function monta_relacoes($id_projeto)
     //$sql2->execute ("DELETE FROM centolex") ;
     //$sql3->execute ("DELETE FROM lextolex") ;
 
-	// Refaz as relações das tabelas centocen, centolex e lextolex
+	// Refaz as relaï¿½ï¿½es das tabelas centocen, centolex e lextolex
 
 	//seleciona todos os cenarios
 	
@@ -88,7 +88,7 @@ function monta_relacoes($id_projeto)
 		adiciona_relacionamento($id_cenario_atual, 'cenario', $tempEpisodios);
 	}
 	
-	// Seleciona todos os léxicos
+	// Seleciona todos os lï¿½xicos
 	
 	$q = "SELECT * FROM lexico WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(nome) DESC";
 	$qrr = mysql_query($q) or die("Erro ao enviar a query");   
@@ -118,7 +118,7 @@ function monta_relacoes($id_projeto)
 	} 
 }
 
-// marca as relações de léxicos para léxicos
+// marca as relaï¿½ï¿½es de lï¿½xicos para lï¿½xicos
 
 function lexico_para_lexico($id_lexico, $texto, $vetor_lexicos)
 {
@@ -137,7 +137,7 @@ function lexico_para_lexico($id_lexico, $texto, $vetor_lexicos)
     return $texto;
 }
 
-// Marca as relações de cenários para léxicos
+// Marca as relaï¿½ï¿½es de cenï¿½rios para lï¿½xicos
 
 function cenario_para_lexico($id_cenario, $texto, $vetor_lexicos )
 {
@@ -157,7 +157,7 @@ function cenario_para_lexico($id_cenario, $texto, $vetor_lexicos )
 }
 
 
-// Marca as relações de cenários para cenários
+// Marca as relaï¿½ï¿½es de cenï¿½rios para cenï¿½rios
 	
 function cenario_para_cenario($id_cenario, $texto, $vetor_cenarios )
 {
@@ -176,7 +176,7 @@ function cenario_para_cenario($id_cenario, $texto, $vetor_cenarios )
     return $texto;
 }
 
-// Marca as relaçoes de cenário para cenário e cenário para léxico no mesmo texto
+// Marca as relaï¿½oes de cenï¿½rio para cenï¿½rio e cenï¿½rio para lï¿½xico no mesmo texto
 
 function cenario_para_lexico_cenario_para_cenario( $id_cenario,$texto, $vetor_lexicos, $vetor_cenarios )
 {
@@ -209,11 +209,11 @@ function cenario_para_lexico_cenario_para_cenario( $id_cenario,$texto, $vetor_le
     }   
     return $texto;
 }
-// Função que adiciona os relacionamentos nas tabelas centocen, centolex e lextolex
+// Funï¿½ï¿½o que adiciona os relacionamentos nas tabelas centocen, centolex e lextolex
 // Atraves da analise das marcas
 
-// id_from id do léxico ou cenário que referencia outro cenário ou léxico
-// $tipo_from tipo de quem esta referenciando ( se é léxico ou cenário)
+// id_from id do lï¿½xico ou cenï¿½rio que referencia outro cenï¿½rio ou lï¿½xico
+// $tipo_from tipo de quem esta referenciando ( se ï¿½ lï¿½xico ou cenï¿½rio)
 
 function adiciona_relacionamento( $id_from, $tipo_from, $texto )
 {
@@ -237,26 +237,26 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
                     $id_to .= $texto[$i];
                  	$i++;	
                  }
-                 if ($tipo=="l")// Destino é um léxico (id_lexico_to)
+                 if ($tipo=="l")// Destino ï¿½ um lï¿½xico (id_lexico_to)
                  {
-                 	 if (strcasecmp($tipo_from,'lexico') == 0 )// Origem é um léxico (id_lexico_from -> id_lexico_to)
+                 	 if (strcasecmp($tipo_from,'lexico') == 0 )// Origem ï¿½ um lï¿½xico (id_lexico_from -> id_lexico_to)
                  	 {
-                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'léxico para léxico")</script>';
-                 	 	//adiciona relação de lexico para léxico	
+                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'l&eacute;xico para l&eacute;xico")</script>';
+                 	 	//adiciona relaï¿½ï¿½o de lexico para lï¿½xico	
                  	 }
-                 	 else if (strcasecmp($tipo_from,'cenario') == 0)// Origem é um cenário (id_cenario -> id_lexico)
+                 	 else if (strcasecmp($tipo_from,'cenario') == 0)// Origem ï¿½ um cenï¿½rio (id_cenario -> id_lexico)
                  	 {
-                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cenário para léxico")</script>';
-                 	 	//adiciona relação de cenário para léxico
+                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cen&aacute;rio para l&eacute;xico")</script>';
+                 	 	//adiciona relaï¿½ï¿½o de cenï¿½rio para lï¿½xico
                  	 }
                  }
                  
-                 if ($tipo=="c")// Destino é um cenário (id_cenario_to)
+                 if ($tipo=="c")// Destino ï¿½ um cenï¿½rio (id_cenario_to)
                  {
-                     if(strcasecmp($tipo_from,'cenario') == 0)// Origem é um cenario (id_cenario_from -> id_cenario_to)
+                     if(strcasecmp($tipo_from,'cenario') == 0)// Origem ï¿½ um cenario (id_cenario_from -> id_cenario_to)
                      {
-                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cenário para cenário")</script>';
-                 	 	// Relacionamentos do tipo cenário para cenário
+                 	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cen&aacute;rio para cen&aacute;rio")</script>';
+                 	 	// Relacionamentos do tipo cenï¿½rio para cenï¿½rio
                  	 	// Adiciona relacao de cenario para cenario na tabela centocen
                  	 	//$q = "INSERT 
 				      	//		INTO centocen (id_cenario_from, id_cenario_to)

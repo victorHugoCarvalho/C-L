@@ -15,7 +15,7 @@ session_start();
 
 function converte_impactos()
 {
-	$link = bd_connect() or die("Erro na conexão ao BD : " . mysql_error() . __LINE__);
+	$link = bd_connect() or die("Erro na conex&atilde;o ao BD : " . mysql_error() . __LINE__);
 	
 	$filename = "teste.txt";
 	
@@ -24,12 +24,12 @@ function converte_impactos()
 	
 	if (!$handle = fopen($filename, 'w'))
 	{
-		print "Nao foi possível abrir o arquivo !!!($filename)";
+		print "Nao foi poss&iacute;vel abrir o arquivo !!!($filename)";
 		exit;
 	}
 	
-	// É importante escrever para o arquivo teste.txt para separar
-	// impactos que estão num mesmo impacto
+	// ï¿½ importante escrever para o arquivo teste.txt para separar
+	// impactos que estï¿½o num mesmo impacto
 	
 	while($line = mysql_fetch_array($result, MYSQL_ASSOC))
 	{
@@ -90,7 +90,7 @@ function converte_impactos()
 		if( strcmp(trim($line),"") != 0 )
 		{		
 			$query  = "insert into impacto (id_lexico, impacto) values ('$id_lexico', '$line');";
-			$result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . " " . $line ." ". $id_lexico . " " . __LINE__);
+			$result = mysql_query($query) or die("A consulta ao BD falhou : " . mysql_error() . " " . $line ." ". $id_lexico . " " . __LINE__);
 		}
 		else
 		{
@@ -99,7 +99,7 @@ function converte_impactos()
 	}
 	
 	$query  = "select * from impacto order by id_lexico;";
-	$result = mysql_query($query) or die("A consulta à BD falhou : " . mysql_error() . __LINE__);
+	$result = mysql_query($query) or die("A consulta ao BD falhou : " . mysql_error() . __LINE__);
 	$result2 = mysql_num_rows($result);
 	
 	mysql_close($link);
