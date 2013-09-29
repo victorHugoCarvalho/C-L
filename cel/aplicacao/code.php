@@ -136,7 +136,7 @@ while ($row = mysql_fetch_row($qrr)) // para cada cenario do projeto
 	// + submenu 
 	var mcs_<?=$row[0]?> = null; 
 	mcs_<?=$row[0]?> = new MTMenu(); 
-	mcs_<?=$row[0]?>.addItem("Sub-cen�rios", "", null, "Cen&aacute;rios que este cen&aacute;rio refer&ecirc;ncia"); 
+	mcs_<?=$row[0]?>.addItem("Sub-cen&aacute;rios", "", null, "Cen&aacute;rios que este cen&aacute;rio refer&ecirc;ncia"); 
 	// + submenu 
 	var mcsrc_<?=$row[0]?> = null; 
 	mcsrc_<?=$row[0]?> = new MTMenu(); 

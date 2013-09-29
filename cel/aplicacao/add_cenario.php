@@ -5,8 +5,8 @@ session_start();
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
 // class add_cenario.php: This script registers a new term in the lexicon of the project. 
-//Is sent through the URL, a variable $ id_project, which indicates that indicates 
-//where the new term should be inserted.
+// Is sent through the URL, a variable $ idProject, which indicates that indicates 
+// where the new term should be inserted.
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
@@ -32,13 +32,12 @@ $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 if (isset($submit)) 
 {
-    $existenceScenery = checarCenarioExistente($_SESSION['id_projeto_corrente'],$title);
+    $scenarioExists = checkScenarioExists($_SESSION['id_projeto_corrente'],$title);
 
-    if ($existenceScenery == true)
+    if ($scenarioExists == false)
     {    
-        print("<!-- Tentando Inserir Cenario --><BR>");
+        print("<!-- Tentando Inserir Cen&aacute;rio --><BR>");
 
-        /* Substitui todas as ocorrencias de ">" e "<" por " " */
         $title       = str_replace( ">" , " " , str_replace ( "<" , " " , $title      ) ) ;
         $objective   = str_replace( ">" , " " , str_replace ( "<" , " " , $objective  ) ) ;
         $context     = str_replace( ">" , " " , str_replace ( "<" , " " , $context    ) ) ;
@@ -46,7 +45,7 @@ if (isset($submit))
         $resources   = str_replace( ">" , " " , str_replace ( "<" , " " , $resources  ) ) ;
         $exception   = str_replace( ">" , " " , str_replace ( "<" , " " , $exception  ) ) ;
         $episodes     = str_replace( ">" , " " , str_replace ( "<" , " " , $episodes  ) ) ;
-        inserirPedidoAdicionarCenario($_SESSION['id_projeto_corrente'],       
+        addInsertRequestScenario($_SESSION['id_projeto_corrente'],       
                                       $title,
                                       $objective,
                                       $context,
@@ -55,7 +54,7 @@ if (isset($submit))
                                       $exception,
                                       $episodes,
                                       $_SESSION['id_usuario_corrente']);
-     	print("<!-- Cenario Inserido Com Sucesso! --><BR>");
+     	print("<!-- Cen&aacute;rio Inserido Com Sucesso! --><BR>");
      }
      else
      {
@@ -80,21 +79,18 @@ if (isset($submit))
 	
 	<script language="javascript1.2">
 	
-	opener.parent.frames['code'].location.reload();
-	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
-	//self.close();
-	//location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") ); ?>add_cenario.php?id_projeto=<?=$id_projeto?>&sucesso=s" ;
+		opener.parent.frames['code'].location.reload();
+		opener.parent.frames['text'].location.replace('main.php?idProject=<?=$_SESSION['id_projeto_corrente']?>');
+		//self.close();
+		//location.href = "http://<?php print( CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") ); ?>add_cenario.php?idProject=<?=$idProject?>&success=s" ;
 	
-	
-	location.href = "add_cenario.php?id_projeto=<?=$id_projeto?>&success=s";
-	
+		location.href = "add_cenario.php?idProject=<?=$idProject?>&success=s";
 	</script>
-<?php
-
+	<?php
 } 
 else // Script called via the top menu
 {
-	$nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+	$nameProject = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 	?>
 	<html>
 		<head>
@@ -103,26 +99,26 @@ else // Script called via the top menu
 	<body>
 		<script language="JavaScript">
 			<!--
-			function TestarBranco(form)
+			function blankTest(form)
 			{
-				titulo = form.titulo.value;
-				objetivo = form.objetivo.value;
-				contexto = form.contexto.value;
+				title = form.title.value;
+				objective = form.objective.value;
+				context = form.context.value;
 				
-				if ((titulo == ""))
+				if ((title == ""))
 				{ 
-					alert ("Por favor, digite o titulo do cen�rio.")
-					form.titulo.focus()
+					alert ("Por favor, digite o titulo do cen\u00e1rio.")
+					form.title.focus()
 					return false;
 				} 
 				else
 				{
-					padrao = /[\\\/\?"<>:|]/;
-					OK = padrao.exec(titulo);
+					pattern = /[\\\/\?"<>:|]/;
+					OK = pattern.exec(title);
 					if (OK)
 					{
-						window.alert ("O t�tulo do cen�rio n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
-						form.titulo.focus();
+						window.alert ("O t\u00edtulo do cen\u00e1rio n\u00e3o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+						form.title.focus();
 						return false;
 					} 
 					else
@@ -131,10 +127,10 @@ else // Script called via the top menu
 					}
 				}
 				      
-				if ((objetivo == ""))
+				if ((objective == ""))
 				{
-					alert ("Por favor, digite o objetivo do cen�rio.")
-				    form.objetivo.focus()
+					alert ("Por favor, digite o objetivo do cen\u00e1rio.")
+				    form.objective.focus()
 				    return false;
 				}
 				else
@@ -142,41 +138,43 @@ else // Script called via the top menu
 				    //Nothing to do.
 				}    
 				      
-				if ((contexto == ""))
+				if ((context == ""))
 				{
-					alert ("Por favor, digite o contexto do cen�rio.")
-				    form.contexto.focus()
+					alert ("Por favor, digite o contexto do cen\u00e1rio.")
+				    form.context.focus()
 				    return false;
 				}
 				else
 				{
 				    //Nothing to do.
-				}        
+				}
+				
+				return true;
 			}
 			//-->
 			
 			<?php
 			
-			// Cen�rio -  Incluir Cen�rio 
+			// Scenario - insert scenario 
 			
-			//Objetivo:        Permitir ao usu�rio a inclus��o de um novo cen�rio
-			//Contexto:        Usu�rio deseja incluir um novo cen�rio.
-			//Pr�-Condi��o: Login, cen�rio ainda n�o cadastrado
-			//Atores:        Usu�rio, Sistema
-			//Recursos:        Dados a serem cadastrados
-			//Epis�dios:    O sistema fornecer� para o usu�rio uma tela com os seguintes campos de texto:
-			//                - Nome Cen�rio
-			//                - Objetivo.  Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-			//                - Contexto.  Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-			//                - Atores.    Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-			//                - Recursos.  Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-			//                - Exce��o.   Restri��o: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-			//                - Epis�dios. Restri��o: Caixa de texto com pelo menos 16 linhas de escrita vis�veis
-			//                - Bot�o para confirmar a inclus��o do novo cen�rio
-			//              Restri��es: Depois de clicar no bot�o de confirma��o,
-			//                          o sistema verifica se todos os campos foram preenchidos. 
-			// Exce��o:        Se todos os campos n�o foram preenchidos, retorna para o usu�rio uma mensagem avisando
-			//              que todos os campos devem ser preenchidos e um bot�o de voltar para a pagina anterior.
+			// Objective: Allow the user to insert a new scenario
+			// Context: User wants to insert a new scenario
+			// Pre-Conditions: Login, not registered scenario
+			// Actors: User, System
+			// Resources: Data to be registered
+			// Episodes: The system will provide the following fields on the users screen
+			//   - Scenario name.
+			//   - Objective.  Restrictions: Text box with at least 5 visible writing lines.
+			//   - Context.  Restrictions: Text box with at least 5 visible writing lines.
+			//   - Actors.  Restrictions: Text box with at least 5 visible writing lines.
+			//   - Resources.  Restrictions: Text box with at least 5 visible writing lines.
+			//   - Exception.  Restrictions: Text box with at least 5 visible writing lines.
+			//   - Episodes.  Restrictions: Text box with at least 16 visible writing lines.
+			//   - Button to confirm the inclusion of a new scenario.
+			//     Restrictions: After clicking on the confirmation button,
+			//       the system verifies if all fields are filled.
+			// Exception: Se todos os campos n�o foram preenchidos, retorna para o usu�rio uma mensagem avisando
+			//   que todos os campos devem ser preenchidos e um bot�o de voltar para a pagina anterior.
 			
 			?>
 		</SCRIPT>
@@ -184,20 +182,19 @@ else // Script called via the top menu
 		<h4>Adicionar Cen&aacute;rio</h4>
 		<br>
 		<?php
-		if ( $success == YES )
+		if ($success == YES)
 		{
-		?>
-		<p style="color: blue; font-weight: bold; text-align: center">Cen&aacute;rio inserido com sucesso!</p>
-		<?php    
+			?>
+			<p style="color: blue; font-weight: bold; text-align: center">Cen&aacute;rio inserido com sucesso!</p>
+			<?php    
 		}
 		?>
 		<form action="" method="post">
 		  <table>
 		    <tr>
 		      <td>Projeto:</td>
-		      <td><input disabled size="51" type="text" value="<?=$nome_projeto?>"></td>
+		      <td><input disabled size="51" type="text" value="<?=$nameProject?>"></td>
 		    </tr>
-		    
 		      <td>T&iacute;tulo:</td>
 		      <td><input size="51" name="title" type="text" value=""></td>
 		    <tr>
@@ -225,7 +222,7 @@ else // Script called via the top menu
 		      <td><textarea cols="51" name="episodes" rows="5" WRAP="SOFT"></textarea></td>
 		    </tr>
 		    <tr>
-		      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return TestarBranco(this.form);" value="Adicionar Cen&aacute;rio"></td>
+		      <td align="center" colspan="2" height="60"><input name="submit" type="submit" onClick="return blankTest(this.form);" value="Adicionar Cen&aacute;rio"></td>
 		    </tr>
 		  </table>
 		</form>
@@ -238,4 +235,4 @@ else // Script called via the top menu
 </html>
 <?php
 }
-	?>
+?>

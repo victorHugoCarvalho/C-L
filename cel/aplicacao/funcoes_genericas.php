@@ -1208,9 +1208,9 @@ function checarSinonimo($projeto, $listSinonimo)
 # no projeto (1.2)
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
-function checarCenarioExistente($project, $title)
+function checkScenarioExists($project, $title)
 {
-    $naoexiste = false;
+    $scenarioExists = true;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $query = "SELECT * FROM cenario WHERE id_projeto = $project AND titulo = '$title' ";
@@ -1218,10 +1218,14 @@ function checarCenarioExistente($project, $title)
     $resultArray = mysql_fetch_array($queryResult);
     if ( $resultArray == false )
     {
-        $naoexiste = true;
+        $scenarioExists = false;
+    }
+    else
+    {
+    	// nothing to do
     }
     
-    return $naoexiste;
+    return $scenarioExists;
 }
 
 ###################################################################
@@ -1234,7 +1238,7 @@ function checarCenarioExistente($project, $title)
 # add_cenario.php
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarCenario"))) {
-    function inserirPedidoAdicionarCenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
+    function addInsertRequestScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
     {
         $DB = new PGDB();
         $insert  = new QUERY($DB);
@@ -1246,7 +1250,7 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
         $resultArray = mysql_fetch_array($queryResult);
         
         
-        if ( $resultArray == false ) //nao e gerente
+        if ( $resultArray == false ) // the current user is not a manager
         {
             $insert->execute("INSERT INTO pedidocen (id_projeto, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado) VALUES ($id_projeto, '$title', '$objective', '$context', '$actors', '$resources', '$exception', '$episodes', $id_usuario, 'inserir', 0)");
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
@@ -1265,9 +1269,9 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
                 $record2 = $select2->gonext();
             }
         }
-        else //Eh gerente
+        else // the current user is a manager
         { 
-        	adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes) ;
+        	adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         }
     }
 }
