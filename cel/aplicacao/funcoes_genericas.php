@@ -1134,29 +1134,29 @@ if (!(function_exists("removeRelacao")))
 # no projeto (1.2)
 # retorna true caso nao exista ou false caso exista (1.3)
 ###################################################################
-function checarLexicoExistente($projeto, $nome)
+function checkLexiconExists($project, $name)
 {
-    $naoexiste = false;
+    $exists = true;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $query = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$nome' ";
+    $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$name' ";
     $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($queryResult);
     
-    $query = "SELECT * FROM sinonimo WHERE id_projeto = $projeto AND nome = '$nome' ";
+    $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$name' ";
     $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($queryResult);
     
     if ($resultArray == false)
     {
-        $naoexiste = true;
+        $exists = false;
     }
     else
     {
-        $naoexiste = false;
+        $exists = true;
     }
     
-    return $naoexiste;
+    return $exists;
 }
 
 
@@ -1168,15 +1168,15 @@ function checarLexicoExistente($projeto, $nome)
 # um lexico com o mesmo nome do sinonimo.(1.1)
 # retorna true caso nao exista ou false caso exista (1.2)
 ###################################################################
-function checarSinonimo($projeto, $listSinonimo)
+function checkSynonymExists($project, $listSynonym)
 {
-    $naoexiste = true;
+    $exists = false;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     
-    foreach ($listSinonimo as $sinonimo){
+    foreach ($listSynonym as $synonym){
         
-        $query = "SELECT * FROM sinonimo WHERE id_projeto = $projeto AND nome = '$sinonimo' ";
+        $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$synonym' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         if ( $resultArray != false )
@@ -1184,16 +1184,16 @@ function checarSinonimo($projeto, $listSinonimo)
             $naoexiste = false;
         }
         
-        $query = "SELECT * FROM lexico WHERE id_projeto = $projeto AND nome = '$sinonimo' ";
+        $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$synonym' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         if ( $resultArray == true )
         {
-            $naoexiste = false;
+            $exists = true;
         }
     }
     
-    return $naoexiste;
+    return $exists;
     
     
 }
@@ -1386,59 +1386,59 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarLexico"))) 
 {
-    function inserirPedidoAdicionarLexico($id_projeto,$nome,$nocao,$impacto,$id_usuario,$sinonimos, $classificacao)
+    function addLexiconInsertRequest($idProject, $name, $notion, $impact, $idUser,$synonyms, $classification)
     {
         $DB = new PGDB() ;
         $insert = new QUERY($DB) ;
-        $select = new QUERY($DB) ;
-        $select2 = new QUERY($DB) ;
+        $selectUsuario = new QUERY($DB) ;
+        $selectPaticipa = new QUERY($DB) ;
         
-        $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario AND id_projeto = $id_projeto";
+        $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $idUser AND id_projeto = $idProject";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         
         
-        if ( $resultArray == false ) //nao e gerente
+        if ( $resultArray == false ) // user is not a manager
         {
-            $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_projeto,'$nome','$nocao','$impacto','$classificacao',$id_usuario,'inserir',0)");
+            $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($idProject,'$name','$notion','$impact','$classification',$idUser,'inserir',0)");
             $newId = $insert->getLastId();
-            $select->execute("SELECT * FROM usuario WHERE id_usuario = '$id_usuario'");
-            $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto");
+            $selectUsuario->execute("SELECT * FROM usuario WHERE id_usuario = '$idUser'");
+            $selectPaticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $idProject");
             
-            //insert sinonimos
+            //insert synonyms
             
-            foreach($sinonimos as $sin)
+            foreach($synonyms as $synonym)
             {
                 $insert->execute("INSERT INTO sinonimo (id_pedidolex, nome, id_projeto) 
-                VALUES ($newId, '".prepara_dado(strtolower($sin))."', $id_projeto)");
+                VALUES ($newId, '".prepara_dado(strtolower($synonym))."', $idProject)");
             }
-            //fim da insercao dos sinonimos
+            // end of the insertions of synonyms
             
-            if ($select->getntuples() == 0 &&$select2->getntuples() == 0)
+            if ($selectUsuario->getntuples() == 0 &&$selectPaticipa->getntuples() == 0)
             {
-                echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
+                echo "<BR> [ERRO]Pedido n&atilde;o foi comunicado por e-mail." ;
             }
             else
             {
-                $record = $select->gofirst ();
+                $record = $selectUsuario->gofirst ();
                 $nome2 = $record['nome'] ;
                 $email = $record['email'] ;
-                $record2 = $select2->gofirst ();
+                $record2 = $selectPaticipa->gofirst ();
                 while($record2 != 'LAST_RECORD_REACHED')
                 {
-                    $id = $record2['id_usuario'] ;
-                    $select->execute("SELECT * FROM usuario WHERE id_usuario = $id") ;
-                    $record = $select->gofirst ();
+                    $idCurrentUser = $record2['id_usuario'] ;
+                    $selectUsuario->execute("SELECT * FROM usuario WHERE id_usuario = $idCurrentUser") ;
+                    $record = $selectUsuario->gofirst ();
                     $mailGerente = $record['email'] ;
-                    mail("$mailGerente", "Pedido de Inclus�o de L�xico", "O usuario do sistema $nome2\nPede para inserir o lexico $nome \nObrigado!","From: $nome2\result\n"."Reply-To: $email\result\n");
-                    $record2 = $select2->gonext();
+                    mail("$mailGerente", "Pedido de Inclus&atilde;o de L&eacute;xico", "O usu&aacute;rio do sistema $nome2\nPede para inserir o l&eacute;xico $name \nObrigado!","From: $nome2\result\n"."Reply-To: $email\result\n");
+                    $record2 = $selectPaticipa->gonext();
                 }
             }
             
         }
-        else //Eh gerente
+        else // user is a manager
         { 
-            adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao);
+            adicionar_lexico($idProject, $name, $notion, $impact, $synonyms, $classification);
         }
     }
 }
