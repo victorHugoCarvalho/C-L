@@ -62,6 +62,8 @@ menu = new MTMenu();
 <?php   
 //Arvore de Conceitos 
 
+$arv = '';
+
 if (isset($_SESSION['lista_de_conceitos']))
 {
 	$arv = $_SESSION['lista_de_conceitos'];
@@ -80,7 +82,7 @@ foreach ($arv as $conc)
     echo " mC = new MTMenu();\n";   
     echo "menu.makeLastSubmenu(mC);\n";         
 
-    //Relações 
+    //RelaÃ§Ãµes 
     //Verbos 
     foreach ($conc->relacoes as $relacao)   
     {   
@@ -95,8 +97,7 @@ foreach ($arv as $conc)
   
         echo " mC.makeLastSubmenu(mV);\n";    
     }
-}  
-
+}
 
 mysql_close($link);   
 
