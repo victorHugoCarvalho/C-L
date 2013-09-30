@@ -364,11 +364,19 @@ class PHPMailer
             $this->SetError($this->Lang("provide_address"));
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         // Set whether the message is multipart/alternative
         if (!empty($this->AltBody))
         {
         	$this->ContentType = "multipart/alternative";
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $this->error_count = 0; // reset errors
@@ -379,6 +387,10 @@ class PHPMailer
         if ($body == "") 
         {
         	return false; 
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         // Choose the mailer
@@ -423,6 +435,10 @@ class PHPMailer
             $this->SetError($this->Lang("execute") . $this->Sendmail);
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         fputs($mail, $header);
         fputs($mail, $body);
@@ -433,6 +449,10 @@ class PHPMailer
         {
             $this->SetError($this->Lang("execute") . $this->Sendmail);
             return false;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         return true;
@@ -448,7 +468,14 @@ class PHPMailer
         $to = "";
         for($i = 0; $i < count($this->to); $i++)
         {
-            if($i != 0) { $to .= ", "; }
+            if($i != 0) 
+            { 
+            	$to .= ", "; 
+            }
+            else
+            {
+            	//Nothing to do.
+            }
             $to .= $this->to[$i][0];
         }
 
@@ -463,16 +490,25 @@ class PHPMailer
         {
         	$rt = @mail($to, $this->EncodeHeader($this->Subject), $body, $header);
         }
+        
 
         if (isset($old_from))
         {
         	ini_set("sendmail_from", $old_from);
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         if(!$rt)
         {
             $this->SetError($this->Lang("instantiate"));
             return false;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         return true;
@@ -495,6 +531,10 @@ class PHPMailer
         {
         	return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         $smtp_from = ($this->Sender == "") ? $this->From : $this->Sender;
         if (!$this->smtp->Mail($smtp_from))
@@ -504,6 +544,10 @@ class PHPMailer
             $this->smtp->Reset();
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         // Attempt to send attach all recipients
         for ($i = 0; $i < count($this->to); $i++)
@@ -512,12 +556,20 @@ class PHPMailer
             {
             	$bad_rcpt[] = $this->to[$i][0];
             }
+            else
+            {
+            	//Nothing to do.
+            }
         }
         for ($i = 0; $i < count($this->cc); $i++)
         {
             if(!$this->smtp->Recipient($this->cc[$i][0]))
             {
             	$bad_rcpt[] = $this->cc[$i][0];
+            }
+            else
+            {
+            	//Nothing to do.
             }
         }
         for ($i = 0; $i < count($this->bcc); $i++)
@@ -526,19 +578,34 @@ class PHPMailer
             {
             	$bad_rcpt[] = $this->bcc[$i][0];
             }
+            else
+            {
+            	//Nothing to do.
+            }
         }
 
         if (count($bad_rcpt) > 0) // Create error message
         {
             for($i = 0; $i < count($bad_rcpt); $i++)
             {
-                if($i != 0) { $error .= ", "; }
+                if($i != 0) 
+                { 
+                	$error .= ", "; 
+                }
+                else
+                {
+                	//Nothing to do.
+                }
                 $error .= $bad_rcpt[$i];
             }
             $error = $this->Lang("recipients_failed") . $error;
             $this->SetError($error);
             $this->smtp->Reset();
             return false;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         if(!$this->smtp->Data($header . $body))
@@ -547,6 +614,11 @@ class PHPMailer
             $this->smtp->Reset();
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
+        
         if($this->SMTPKeepAlive == true)
         {
         	$this->smtp->Reset();
@@ -570,6 +642,10 @@ class PHPMailer
         if ($this->smtp == NULL)
         {
         	$this->smtp = new SMTP();
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $this->smtp->do_debug = $this->SMTPDebug;
@@ -609,14 +685,30 @@ class PHPMailer
                         $this->smtp->Reset();
                         $connection = false;
                     }
+                    else
+                    {
+                    	//Nothing to do.
+                    }
+                }
+                else
+                {
+                	//Nothing to do.
                 }
                 $connection = true;
+            }
+            else
+            {
+            	//Nothing to do.
             }
             $index++;
         }
         if (!$connection)
         {
         	$this->SetError($this->Lang("connect_host"));
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         return $connection;
@@ -635,6 +727,14 @@ class PHPMailer
                 $this->smtp->Quit();
                 $this->smtp->Close();
             }
+            else
+            {
+            	//Nothing to do.
+            }
+        }
+        else
+        {
+        	//Nothing to do.
         }
     }
 
@@ -687,6 +787,10 @@ class PHPMailer
             	$addr_str .= ", " . $this->AddrFormat($addr[$i]);
             }
         }
+        else
+        {
+        	//Nothing to do.
+        }
         $addr_str .= $this->LE;
 
         return $addr_str;
@@ -726,6 +830,10 @@ class PHPMailer
         {
         	$message = substr($message, 0, -1);
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         $line = explode($this->LE, $message);
         $message = "";
@@ -753,6 +861,10 @@ class PHPMailer
                         {
                         	$len -= 2;
                         }
+                        else
+                        {
+                        	//Nothing to do.
+                        }
                         
                         $part = substr($word, 0, $len);
                         $word = substr($word, $len);
@@ -765,6 +877,10 @@ class PHPMailer
                     }
                     $buf = "";
                 }
+                else
+                {
+                	//Nothing to do.
+                }
                 while (strlen($word) > 0)
                 {
                     $len = $length;
@@ -775,6 +891,10 @@ class PHPMailer
                     else if (substr($word, $len - 2, 1) == "=")
                     {
                     	$len -= 2;
+                    }
+                    else
+                    {
+                    	//Nothing to do.
                     }
                     
                     $part = substr($word, 0, $len);
@@ -800,6 +920,10 @@ class PHPMailer
                     $message .= $buf_o . $soft_break;
                     $buf = $word;
                 }
+                else
+                {
+                	//Nothing to do.
+                }
 			}
           }
           $message .= $buf . $this->LE;
@@ -817,6 +941,10 @@ class PHPMailer
         if ($this->WordWrap < 1)
         {
         	return;
+        }
+        else
+        {
+        	//Nothing to do.
         }
             
         switch($this->message_type)
@@ -867,10 +995,23 @@ class PHPMailer
             {
             	$result .= $this->HeaderLine("To", "undisclosed-recipients:;");
             }
+            else
+            {
+            	//Nothing to do.
+            }
+            
             if (count($this->cc) > 0)
             {
             	$result .= $this->AddrAppend("Cc", $this->cc);
             }
+            else
+            {
+            	//Nothing to do.
+            }
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $from = array();
@@ -883,16 +1024,28 @@ class PHPMailer
         {
         	$result .= $this->AddrAppend("Bcc", $this->bcc);
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         if (count($this->ReplyTo) > 0)
         {
         	$result .= $this->AddrAppend("Reply-to", $this->ReplyTo);
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         // mail() sets the subject itself
         if ($this->Mailer != "mail")
         {
         	$result .= $this->HeaderLine("Subject", $this->EncodeHeader(trim($this->Subject)));
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $result .= sprintf("Message-ID: <%s@%s>%s", $uniq_id, $this->ServerHostname(), $this->LE);
@@ -903,6 +1056,10 @@ class PHPMailer
         {
             $result .= $this->HeaderLine("Disposition-Notification-To", 
                        "<" . trim($this->ConfirmReadingTo) . ">");
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         // Add custom headers
@@ -944,6 +1101,10 @@ class PHPMailer
         if($this->Mailer != "mail")
         {
         	$result .= $this->LE.$this->LE;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         return $result;
@@ -1016,6 +1177,10 @@ class PHPMailer
         {
         	$result = "";
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         return $result;
     }
@@ -1031,15 +1196,27 @@ class PHPMailer
         {
         	$charSet = $this->CharSet; 
         }
+        else
+        {
+        	//Nothing to do.
+        }
         
         if ($contentType == "")
         {
         	$contentType = $this->ContentType; 
         }
+        else
+        {
+        	//Nothing to do.
+        }
         
         if($encoding == "")
         {
         	$encoding = $this->Encoding; 
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $result .= $this->TextLine("--" . $boundary);
@@ -1078,13 +1255,26 @@ class PHPMailer
             {
             	$this->message_type = "attachments";
             }
+            else
+            {
+            	//Nothing to do.
+            }
             if (strlen($this->AltBody) > 0 && count($this->attachment) < 1)
             {
             	$this->message_type = "alt";
             }
+            else
+            {
+            	//Nothing to do.
+            }
+            
             if (strlen($this->AltBody) > 0 && count($this->attachment) > 0)
             {
             	$this->message_type = "alt_attachments";
+            }
+            else
+            {
+            	//Nothing to do.
             }
         }
     }
@@ -1130,11 +1320,19 @@ class PHPMailer
             $this->SetError($this->Lang("file_access") . $path);
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         $filename = basename($path);
         if ($name == "")
         {
         	$name = $filename;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         $cur = count($this->attachment);
@@ -1189,6 +1387,10 @@ class PHPMailer
             {
             	$mime[] = sprintf("Content-ID: <%s>%s", $cid, $this->LE);
             }
+            else
+            {
+            	//Nothing to do.
+            }
 
             $mime[] = sprintf("Content-Disposition: %s; filename=\"%s\"%s", 
                               $disposition, $name, $this->LE.$this->LE);
@@ -1200,6 +1402,10 @@ class PHPMailer
                 if($this->IsError()) 
                 {
                 	return "";
+                }
+                else
+                {
+                	//Nothing to do.
                 }
                 
                 $mime[] = $this->LE.$this->LE;
@@ -1231,6 +1437,10 @@ class PHPMailer
         {
             $this->SetError($this->Lang("file_open") . $path);
             return "";
+        }
+        else
+        {
+        	//Nothing to do.
         }
         
         $magic_quotes = get_magic_quotes_runtime();
@@ -1321,6 +1531,10 @@ class PHPMailer
       {
       	return ($str);
       }
+      else
+      {
+      	//Nothing to do.
+      }
 
       $maxlen = 75 - 7 - strlen($this->CharSet);
       // Try to select the encoding which should produce the shortest output
@@ -1356,6 +1570,10 @@ class PHPMailer
         if (substr($encoded, -(strlen($this->LE))) != $this->LE)
         {
         	$encoded .= $this->LE;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         // Replace every high ascii, control and = characters
@@ -1449,11 +1667,19 @@ class PHPMailer
 			$this->SetError($this->Lang("file_access") . $path);
             return false;
         }
+        else
+        {
+        	//Nothing to do.
+        }
 
         $filename = basename($path);
         if ($name == "")
         {
         	$name = $filename;
+        }
+        else
+        {
+        	//Nothing to do.
         }
 
         // Append to $attachment array
@@ -1485,6 +1711,10 @@ class PHPMailer
             {
                 $result = true;
                 break;
+            }
+            else
+            {
+            	//Nothing to do.
             }
         }
         
@@ -1614,6 +1844,14 @@ class PHPMailer
             {
             	$_SERVER = $HTTP_ENV_VARS; // must be Apache
             }
+            else
+            {
+            	//Nothing to do.
+            }
+        }
+        else
+        {
+        	//Nothing to do.
         }
         
         if (isset($_SERVER[$varName]))
@@ -1659,6 +1897,11 @@ class PHPMailer
         {
         	$this->SetLanguage("en"); // set the default language
         }
+        else
+        {
+        	//Nothing to do.
+        }
+        
     
         if (isset($this->language[$key]))
         {
