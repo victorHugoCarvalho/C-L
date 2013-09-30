@@ -8,6 +8,10 @@ function existe_relacao($rel, $list)
 		{
 			return $key;
 		}
+                else
+                {
+                    //Nothing to do
+                }
 	}
 	return -1;
 }
@@ -21,6 +25,10 @@ function existe_conceito($conc, $list)
 		{
 			return $key;
 		}
+                else
+                {
+                    //Nothing to do
+                }
 	}
 	return -1;
 }
