@@ -21,7 +21,9 @@ function carrega_vetor_lexicos( $id_projeto, $id_lexico_atual, $semAtual )
 							WHERE id_projeto = '$id_projeto' AND id_lexico <> '$id_lexico_atual' 
 							ORDER BY nome DESC";  
 							
-	}else {
+	}
+	else 
+	{
 		
 		$queryLexicos   = "SELECT id_lexico, nome    
 							FROM lexico    
@@ -58,7 +60,14 @@ function carrega_vetor_lexicos( $id_projeto, $id_lexico_atual, $semAtual )
 
 function carrega_vetor_cenario( $id_projeto, $id_cenario_atual, $semAtual )
 {
-    if (!isset($vetorDeCenarios)){ $vetorDeCenarios = array();}
+    if (!isset($vetorDeCenarios))
+    { 
+    	$vetorDeCenarios = array();
+    }
+    else
+    {
+    	//Nothing to do.
+    }
 	if( $semAtual)
 	{
 		$queryCenarios = "SELECT id_cenario, titulo    
@@ -66,7 +75,9 @@ function carrega_vetor_cenario( $id_projeto, $id_cenario_atual, $semAtual )
 							WHERE id_projeto = '$id_projeto' AND id_cenario <> '$id_cenario_atual' 
 							ORDER BY titulo DESC";    
 			
-	}else{
+	}
+	else
+	{
 		$queryCenarios = "SELECT id_cenario, titulo    
 							FROM cenario    
 							WHERE id_projeto = '$id_projeto' 
@@ -95,15 +106,22 @@ function divide_array( &$vet, $ini, $fim, $tipo )
     
     while( $i < $j )
     {
-    	if(strcasecmp($tipo,'cenario') == 0){
+    	if(strcasecmp($tipo,'cenario') == 0)
+    	{
     		if( strlen( $vet[$i]->titulo ) < strlen( $vet[$j]->titulo ) )
 	        {
 	            $str_temp = $vet[$i];
 	            $vet[$i] = $vet[$j];
 	            $vet[$j] = $str_temp;
 	            $dir--;
+	        }
+	        else
+	        {
+	        	//Nothing to do.
 	        }	
-    	}else{
+    	}
+    	else
+    	{
 	        if( strlen( $vet[$i]->nome ) < strlen( $vet[$j]->nome ) )
 	        {
 	            $str_temp = $vet[$i];
@@ -111,11 +129,19 @@ function divide_array( &$vet, $ini, $fim, $tipo )
 	            $vet[$j] = $str_temp;
 	            $dir--;
 	        }
+	        else
+	        {
+	        	//Nothing to do.
+	        }
     	}
         if( $dir == 1 )
+        {
             $j--;
+        }
         else
+        {
             $i++;
+        }
     }
     
     return $i;
@@ -131,6 +157,10 @@ function quicksort( &$vet, $ini, $fim, $tipo )
         quicksort( $vet, $ini, $k-1, $tipo );
         quicksort( $vet, $k+1, $fim, $tipo );
     }
+    else
+    {
+    	//Nothing to do.
+    }
 }
 
 // Funcao que constroi os links de acordo com o texto, passado atrav�s do par�metro $texto, lexicos, passados
@@ -139,10 +169,22 @@ function quicksort( &$vet, $ini, $fim, $tipo )
 function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios ) 
 {
   	$copiaTexto = $texto;
-	if (!isset($vetorAuxLexicos)){ $vetorAuxLexicos = array();}
-	if (!isset($vetorAuxCenarios)){ $vetorAuxCenarios = array();}
-	if (!isset($vetorDeCenarios)){ $vetorDeCenarios = array();}
-	if (!isset($vetorDeLexicos)){ $vetorDeLexicos = array();}
+	if (!isset($vetorAuxLexicos))
+	{ 
+		$vetorAuxLexicos = array();
+	}
+	if (!isset($vetorAuxCenarios))
+	{ 
+		$vetorAuxCenarios = array();
+	}
+	if (!isset($vetorDeCenarios))
+	{ 
+		$vetorDeCenarios = array();
+	}
+	if (!isset($vetorDeLexicos))
+	{ 
+		$vetorDeLexicos = array();
+	}
 
 	// Se o vetor de cen�rios estiver vazio ele s� ira procurar por refer�ncias a lexicos
 	
@@ -162,9 +204,15 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 				$vetorAuxLexicos[$a] = $vetorDeLexicos[$i];
 				$a++;
 			}
+			else
+			{
+				//Nothing to do.
+			}
 			$i++;
         }
-	}else{
+	}
+	else
+	{
 	
 		// Se o vetor de cen�rios n�o estiver vazio ele ir� procurar por l�xicos e cen�rios
 	
@@ -190,9 +238,15 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 						$vetorAuxLexicos[$a] = $vetorDeLexicos[$i];
 						$a++;
 					}
+					else
+					{
+						//Nothing to do.
+					}
 		            $i++;
 
-				}else{
+				}
+				else
+				{
 		
 					$tituloCenario = escapa_metacaracteres( $vetorDeCenarios[$j]->titulo );
 					$regex = "/(\s|\b)(" . $tituloCenario . ")(\s|\b)/i";
@@ -204,7 +258,9 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 					}
 					$j++;
 		        }
-			}else if ($tamLexicos == $i) {
+			}
+			else if ($tamLexicos == $i) 
+			{
 			
 				$tituloCenario = escapa_metacaracteres( $vetorDeCenarios[$j]->titulo );
 				$regex = "/(\s|\b)(" . $tituloCenario . ")(\s|\b)/i";
@@ -214,9 +270,15 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 					$vetorAuxCenarios[$b] = $vetorDeCenarios[$j];
 					$b++;
 				}
+				else
+				{
+					//Nothing to do.
+				}
 				$j++;
 				
-			}else if ($tamCenarios == $j){
+			}
+			else if ($tamCenarios == $j)
+			{
 			
 				$nomeLexico = escapa_metacaracteres( $vetorDeLexicos[$i]->nome );
 				$regex = "/(\s|\b)(" . $nomeLexico . ")(\s|\b)/i";
@@ -226,8 +288,16 @@ function monta_links ( $texto , $vetorDeLexicos , $vetorDeCenarios )
 					$vetorAuxLexicos[$a] = $vetorDeLexicos[$i];
 					$a++;
 				}
+				else
+				{
+					//Nothing to do.
+				}
 		        $i++;
 				
+			}
+			else
+			{
+				//Nothing to do.
 			}
 			$contador++;
 		}

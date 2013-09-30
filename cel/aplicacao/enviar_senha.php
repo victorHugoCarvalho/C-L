@@ -102,7 +102,9 @@ else
   <a href="JavaScript:window.history.go(-2)">Voltar</a>
 </center>
 <?php
-   }else{
+   }
+   else
+   {
 	?>
 <p style="color: red; font-weight: bold; text-align: center">Ocorreu um erro durante o envio do e-mail!</p>
 <center>

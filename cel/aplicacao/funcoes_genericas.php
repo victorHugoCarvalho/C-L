@@ -26,7 +26,15 @@ if (!(function_exists("chkUser")))
             <?php
             exit();
         }
+        else
+        {
+        	//Nothing to do.
+        }
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -57,6 +65,10 @@ if (!(function_exists("inclui_cenario")))
         return $result[0];
     }
 }
+else
+{
+	//Nothing to do.
+}
 ###################################################################
 # Insere um lexico no banco de dados.
 # Recebe o id_projeto, nome, no��o, impacto e os sinonimos. (1.1)
@@ -84,8 +96,13 @@ if (!(function_exists("inclui_lexico")))
         
         
         if( ! is_array($sinonimos) )
+        {
         $sinonimos = array();
-        
+        }
+        else
+        {
+        	//Nothing to do.
+        }
         foreach($sinonimos as $novoSin)
         {
        		$query = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
@@ -99,6 +116,11 @@ if (!(function_exists("inclui_lexico")))
         return $result[0];
     }
 }
+else
+{
+	//Nothing to do.
+}
+
 ###################################################################
 # Insere um projeto no banco de dados.
 # Recebe o nome e descricao. (1.1)
@@ -107,6 +129,7 @@ if (!(function_exists("inclui_lexico")))
 # Devolve o id_cprojeto. (1.4)
 #
 ###################################################################
+
 if (!(function_exists("inclui_projeto"))) 
 {
     function inclui_projeto($nome, $descricao)
@@ -137,7 +160,15 @@ if (!(function_exists("inclui_projeto")))
             {
                 return -1;
             }
+            else
+            {
+            	//Nothing to do.
+            }
             
+        }
+        else
+        {
+        	//Nothing to do.
         }
         
         $query = "SELECT MAX(id_projeto) FROM projeto";
@@ -162,6 +193,10 @@ if (!(function_exists("inclui_projeto")))
         return $result[0];
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 
 if (!(function_exists("recarrega"))) 
@@ -177,6 +212,10 @@ if (!(function_exists("recarrega")))
 <?php
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 if (!(function_exists("breakpoint"))) 
 {
@@ -191,6 +230,10 @@ if (!(function_exists("breakpoint")))
 <?php
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 if (!(function_exists("simple_query")))
 {
@@ -202,6 +245,10 @@ if (!(function_exists("simple_query")))
         $result = mysql_fetch_row($queryResult);
         return $result[0];        
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -361,13 +408,25 @@ if (!(function_exists("adicionar_cenario")))
 		                $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, $id_lexicoSinonimo[$i])";
 		                mysql_query($query) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
 		            }
+		            else
+		            {
+		            	//Nothing to do.
+		            }
 	            
-	            }   // if
-            }   // while
+	            }
+            	else
+				{
+    				//Nothing to do.
+				}   
+            }   
             
-        } //for
+        } 
         
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 //
@@ -563,6 +622,10 @@ if (!(function_exists("adicionar_lexico")))
       
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 
 ###################################################################
@@ -590,6 +653,10 @@ if (!(function_exists("removeCenario")))
         $sql4->execute ("DELETE FROM cenario WHERE id_cenario = $id_cenario") ;
         
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -650,6 +717,10 @@ if (!(function_exists("alteraCenario")))
 	                      VALUES (" . $result['id_cenario'] . ", $id_cenario)"; // (2.2.1)
 	        	mysql_query($query) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  
 	        }
+	        else
+	        {
+	        	//Nothing to do.
+	        }
 			$tituloEscapado = escapa_metacaracteres( $result['titulo'] );
         	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";        
       
@@ -657,8 +728,11 @@ if (!(function_exists("alteraCenario")))
          	{   // (2.3)        
         		$query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_cenario, " . $result['id_cenario'] . ")"; //(2.4.1)
         		mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
-        	}   // if
-      
+        	}   
+        	else
+        	{
+        		//Nothing to do.
+        	}
         }   // while
         
       
@@ -688,9 +762,13 @@ if (!(function_exists("alteraCenario")))
 	            	$query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_cenario, " . $result2['id_lexico'] . ")";
 	            	mysql_query($query) or die("Erro ao enviar a query de INSERT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
 	        	}
-        	}   // if
+	        	else
+	        	{
+	        		//Nothing to do.
+	        	}
+        	}   
       
-        }   // while
+        }   
         
         
       	//Sinonimos
@@ -744,11 +822,23 @@ if (!(function_exists("alteraCenario")))
 		                $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_cenario, $id_lexicoSinonimo[$i])";
 		                mysql_query($query) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
 		            }
+		            else
+		            {
+		            	//Nothing to do.
+		            }
 		            
-		        }   // if
-    		}   // while
-        } //for
+		        }
+            	else
+				{
+				    //Nothing to do.
+				}   
+    		}  
+        } 
     }    
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -773,6 +863,10 @@ if (!(function_exists("removeLexico")))
         $delete->execute ("DELETE FROM sinonimo WHERE id_lexico = $id_lexico") ;
         $delete->execute ("DELETE FROM lexico WHERE id_lexico = $id_lexico") ;
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -841,7 +935,11 @@ if (!(function_exists("alteraLexico")))
         
                 mysql_query($query) or die("Erro ao enviar a query de INSERT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
           
-            }//if
+            }
+            else
+            {
+            	//Nothing to do.
+            }
         }//while
 
 		# Fim da verificacao
@@ -873,9 +971,13 @@ if (!(function_exists("alteraLexico")))
                 
                   //  mysql_query($query) or die("Erro ao enviar a query de INSERT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     
-                }//if                
-            }//while            
-        } //for
+                }
+                else
+                {
+                	//Nothing to do.
+                }                
+            }            
+        }
         
         # Fim da verificacao
         
@@ -911,6 +1013,10 @@ if (!(function_exists("alteraLexico")))
                 
                 mysql_query($query) or die("Erro ao enviar a query de INSERT no lextolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 	        }
+	        else
+	        {
+	        	//Nothing to do.
+	        }
          
             # Verifica a ocorrencia do titulo dos outros lexicos no texto do lexico alterado
             
@@ -925,6 +1031,10 @@ if (!(function_exists("alteraLexico")))
                 		VALUES ($id_lexico, " . $result['id_lexico'] . ")"; 
         
                 mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
+            }
+            else
+            {
+            	//Nothing to do.
             }
        
         }// while
@@ -964,8 +1074,16 @@ if (!(function_exists("alteraLexico")))
 	                     VALUES (" . $resultl['id_lexico'] . ", $id_lexico)";            
 						mysql_query($query) or die("Erro ao enviar a query de insert(sinonimo2) no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);	
 				  }
+				  else
+				  {
+				  	//Nothing to do.
+				  }
                     
-                }//if
+                }
+                else
+                {
+                	//Nothing to do.
+                }
             }//while
         }//for
     	
@@ -1001,14 +1119,27 @@ if (!(function_exists("alteraLexico")))
 	                    
 					mysql_query($query) or die("Erro ao enviar a query de insert(sinonimo) no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);	
                }
+               else
+               {
+               	//Nothing to do.
+               }
+		   }
+		   else
+		   {
+		   	//Nothing to do.
 		   }
         }    
     
         # Cadastra os sinonimos novamente
         
         if (!is_array($sinonimos) )
+        {
         	$sinonimos = array();
-        
+        }
+        else
+        {
+        	//Nothing to do.
+        }
         foreach ($sinonimos as $novoSin)
         {
          	$query = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
@@ -1021,6 +1152,10 @@ if (!(function_exists("alteraLexico")))
         
                 
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 
@@ -1106,6 +1241,11 @@ if (!(function_exists("removeConceito")))
         $sql6->execute ("DELETE FROM relacao_conceito WHERE id_conceito = $id_conceito");
     }
 }
+else
+{
+	//Nothing to do.
+}
+
 ###################################################################
 # Essa funcao recebe um id de relacao e remove todos os seus
 # links e relacionamentos existentes.
@@ -1121,6 +1261,10 @@ if (!(function_exists("removeRelacao")))
         $sql6->execute ("DELETE FROM relacao WHERE id_relacao = $id_relacao");
         $sql6->execute ("DELETE FROM relacao_conceito WHERE id_relacao = $id_relacao");
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 ###################################################################
@@ -1237,7 +1381,8 @@ function checkScenarioExists($project, $title)
 # Arquivos que utilizam essa funcao:
 # add_cenario.php
 ###################################################################
-if (!(function_exists("inserirPedidoAdicionarCenario"))) {
+if (!(function_exists("inserirPedidoAdicionarCenario"))) 
+{
     function addInsertRequestScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
     {
         $DB = new PGDB();
@@ -1275,6 +1420,10 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
@@ -1285,7 +1434,8 @@ if (!(function_exists("inserirPedidoAdicionarCenario"))) {
 # Arquivos que utilizam essa funcao:
 # alt_cenario.php
 ###################################################################
-if (!(function_exists("inserirPedidoAlterarCenario"))) {
+if (!(function_exists("inserirPedidoAlterarCenario"))) 
+{
     function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources,$exception, $episodes, $justificativa, $id_usuario)
     {
         $DB = new PGDB();
@@ -1322,6 +1472,10 @@ if (!(function_exists("inserirPedidoAlterarCenario"))) {
         	alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         }
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 ###################################################################
@@ -1373,6 +1527,10 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
                 removeCenario($id_projeto,$id_cenario);
         }
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 ###################################################################
@@ -1442,7 +1600,10 @@ if (!(function_exists("inserirPedidoAdicionarLexico")))
         }
     }
 }
-
+else
+{
+	//Nothing to do.
+}
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
 # Para alterar um lexico ela deve receber os campos do lexicos
@@ -1509,6 +1670,10 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
         
     }
 }
+else
+{
+	//Nothing to do.
+}
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
 # Para remover um lexico ela deve receber
@@ -1541,7 +1706,8 @@ if (!(function_exists("inserirPedidoRemoverLexico")))
             $select->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
             $select2->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
 
-            if ($select->getntuples() == 0&&$select2->getntuples() == 0){
+            if ($select->getntuples() == 0&&$select2->getntuples() == 0)
+            {
                 echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
             }
             else
@@ -1566,6 +1732,10 @@ if (!(function_exists("inserirPedidoRemoverLexico")))
             removeLexico($id_projeto,$id_lexico);
         }
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 ###################################################################
@@ -1616,6 +1786,10 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
@@ -1664,6 +1838,10 @@ if (!(function_exists("inserirPedidoRemoverConceito")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 ###################################################################
 # Funcao faz um insert na tabela de pedido.
@@ -1711,6 +1889,10 @@ if (!(function_exists("inserirPedidoRemoverRelacao")))
             }
         }
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 ###################################################################
@@ -1769,6 +1951,10 @@ if (!(function_exists("tratarPedidoCenario")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 ###################################################################
 # Processa um pedido identificado pelo seu id.
 # Recebe o id do pedido.(1.1)
@@ -1822,6 +2008,10 @@ if (!(function_exists("tratarPedidoLexico")))
                         $sinonimo = $selectSin->gonext();
                     }
                 }
+                else
+                {
+                	//Nothing to do.
+                }
                 
                 if (!strcasecmp($tipoPedido,'alterar'))
                 {
@@ -1836,11 +2026,19 @@ if (!(function_exists("tratarPedidoLexico")))
                     
                     return $row["nome"];
                 }
+                else
+                {
+                	//Nothing to do.
+                }
             }
             
             return null;
         }
     }
+}
+else
+{
+	//Nothing to do.
 }
 ###################################################################
 # Processa um pedido identificado pelo seu id.
@@ -1890,6 +2088,10 @@ if (!(function_exists("tratarPedidoConceito")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 ###################################################################
 # Processa um pedido identificado pelo seu id.
@@ -1938,6 +2140,10 @@ if (!(function_exists("tratarPedidoRelacao")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 #############################################
 #Deprecated by the author:
 #Essa funcao deveria receber um id_projeto
@@ -1963,6 +2169,10 @@ if (!(function_exists("verificaGerente")))
         }
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 #############################################
 # Formata Data
@@ -1978,6 +2188,10 @@ if (!(function_exists("formataData")))
         substr( $data, 0, 4 );
         return $novaData ;
     }
+}
+else
+{
+	//Nothing to do.
 }
 
 // Retorna TRUE ssse $id_usuario eh admin de $id_projeto
@@ -1995,6 +2209,10 @@ if (!(function_exists("is_admin")))
         return (1 == mysql_num_rows($queryResult));
     }
 }
+else
+{
+	//Nothing to do.
+}
 
 // Retorna TRUE ssse $id_usuario tem permissao sobre $id_projeto
 if (!(function_exists("check_proj_perm")))
@@ -2010,6 +2228,11 @@ if (!(function_exists("check_proj_perm")))
         return (1 == mysql_num_rows($queryResult));
     }
 }
+else
+{
+	//Nothing to do.
+}
+
 ###################################################################
 # Verifica se um determinado usuario e gerente de um determinado
 # projeto
@@ -2029,6 +2252,10 @@ function verificaGerente($id_usuario, $id_projeto)
 	{
         
         $ret = 1;
+    }
+    else
+    {
+    	//Nothing to do.
     }
     
     return $ret;

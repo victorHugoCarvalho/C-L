@@ -35,7 +35,11 @@ if (!isset  ( $_SESSION['id_projeto_corrente'] ))
 {    
 
    $_SESSION['id_projeto_corrente'] = "";    
-}    
+} 
+else
+{
+	//Nothing to do.
+}   
 
 
 ?>
@@ -594,6 +598,10 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     else if ($t == "oa")
 	{
 		print "<h3>Informa&ccedil;&otilde;es sobre o axioma</h3>";   
+    }
+    else
+    {
+    	//Nothing to do.
     }    
 
 ?>
@@ -800,6 +808,10 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
               </th>
           </tr>
           <?php    
+    }
+    else
+    {
+    	//Nothing to do.
     }    
 ?>
         </table>
@@ -827,7 +839,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     else if ($t == "oa")
 	{
 		print "<h3>Axioma</h3>";
-    }    
+    }
+    else
+    {
+    	//Nothing to do.
+    }   
 ?>
 
 <!--                     QUARTA PARTE                                     -->

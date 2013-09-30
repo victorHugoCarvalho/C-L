@@ -14,7 +14,10 @@ login = form.login.value
       alert ("Por favor, digite o seu Login.") 
       form.login.focus() 
       return false;
-    } 
+    }
+  else
+  {
+      //Nothing to do.
 
 }
 

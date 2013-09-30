@@ -46,7 +46,7 @@
   <td><?=$link?></td>
   <?php 
             } // while 
-        } // if 
+        } 
 
         else if ( $tipo == "l" ) 
         { 
@@ -111,7 +111,11 @@
                 if ( !( $rowc ) && !( $rowl ) ) 
                 { 
                     break ; 
-                } // if 
+                }
+                else
+                {
+                	//Nothing to do.
+                } 
             } // while 
 
         } //elseif 
@@ -186,7 +190,11 @@
             
 
 
-        } //elseif 
+        }
+        else
+        {
+        	//Nothing to do.
+        }
         
 ?>
   </table>

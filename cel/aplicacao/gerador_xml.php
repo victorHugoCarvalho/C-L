@@ -47,7 +47,8 @@ else
 //          o sistema fornece ao administrador a tela de visualiza��o do relat�rio XML criado. 
 //          Restri��o: Recuperar os dados em XML do Banco de dados e os transformar por uma XSL para a exibi��o.      
 
-if (!(function_exists("gerar_xml"))) {
+if (!(function_exists("gerar_xml"))) 
+{
     function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
     {
         $xml_resultante = "";
@@ -57,6 +58,10 @@ if (!(function_exists("gerar_xml"))) {
         {
 			$xml_resultante = "";
 			$xml_resultante = $xml_resultante . "<?xml-stylesheet type='text/xsl' href='projeto.xsl'?>\n" ;
+        }
+        else
+        {
+        	//Nothing to do.
         }
         $xml_resultante = $xml_resultante . "<projeto>\n" ;
 
@@ -143,6 +148,10 @@ if (!(function_exists("gerar_xml"))) {
 
                 //??$id_temp = id_cenario;
            }
+           else
+           {
+           	//Nothing to do.
+           }
         
         } // while dos cen�rios
         
@@ -215,6 +224,10 @@ if (!(function_exists("gerar_xml"))) {
 
                 //$id_temp = id_lexico;
             }
+            else
+            {
+            	//Nothing to do.
+            }
 
         } // while
 
@@ -223,6 +236,10 @@ if (!(function_exists("gerar_xml"))) {
         return $xml_resultante ;
 
     } // gerar_xml
+}
+else
+{
+	//Nothing to do.
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -328,7 +345,8 @@ if (!(function_exists("gerar_xml"))) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-if (!(function_exists("gera_xml_links"))) {
+if (!(function_exists("gera_xml_links"))) 
+{
     function gera_xml_links($sentenca)
     {
         
@@ -381,6 +399,10 @@ if (!(function_exists("gera_xml_links"))) {
                             
                         $vetor_texto[$i+1] = '<texto '.$atributo.'="'.$valor.'">'.strip_tags($vetor_texto[$i+1]).'</texto>';
                     }
+                    else
+                    {
+                    	//Nothing to do.
+                    }
                     
                  	$i = $i+2;   
                 }
@@ -389,6 +411,10 @@ if (!(function_exists("gera_xml_links"))) {
                     if (trim($vetor_texto[$i])!="")
                     {
                         $vetor_texto[$i] = "<texto>".$vetor_texto[$i]."</texto>";
+                    }
+                    else
+                    {
+                    	//Nothing to do.
                     }
                     
                     $i = $i+1;
@@ -399,6 +425,10 @@ if (!(function_exists("gera_xml_links"))) {
         }
         return $sentenca;
     }
+}
+else
+{
+	//Nothing to do.
 }
 ?>
 <?php
@@ -427,8 +457,8 @@ if (!(function_exists("gera_xml_links"))) {
 			mysql_query($q) or die("Erro ao enviar a query INSERT do XML no banco de dados! ");
 			recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=".$id_projeto."&versao=".$versao);
 		}
-    else
-    {
+    	else
+    	{
     ?>
 <html>
 <head>
@@ -444,5 +474,5 @@ if (!(function_exists("gera_xml_links"))) {
 </body>
 </html>
 <?php
-    }   
+    	}   
 ?>

@@ -59,7 +59,9 @@ if ( !$daml )
 {  
     print 'Erro ao exportar ontologia para DAML!';       
 
-} else {  
+} 
+else 
+{  
 
     print 'Ontologia exportada para DAML com sucesso! <br>';       
     print 'Arquivo criado: ';       

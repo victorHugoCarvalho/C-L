@@ -50,6 +50,10 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
     {
     	$xml_resultante = $xml_resultante . "<?xml-stylesheet type=''text/xsl'' href=''projeto.xsl''?>\n" ;
     }
+    else
+    {
+    	//Nothing to do.
+    }
     
     $xml_resultante = $xml_resultante . "<projeto>\n" ;
 
@@ -127,6 +131,10 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 
             //??$id_temp = id_cenario;
         }
+        else
+        {
+        	//Nothing to do.
+        }
     } // while
 
     // Seleciona os lexicos de um projeto.
@@ -171,6 +179,10 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
             $primeiro = false;
 
             //$id_temp = id_lexico;
+        }
+        else
+        {
+        	//Nothing to do.
         }
     } // while
 
@@ -219,7 +231,8 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
         $qrrRecupera = mysql_query($qRecupera) or die("Erro ao enviar a query de busca!");
         $row = mysql_fetch_row($qrrRecupera);
 
-       	if ($flag_formatado == "ON"){
+       	if ($flag_formatado == "ON")
+		{
 
         	$xh = xslt_create();
 
@@ -227,7 +240,14 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 
             $html = @xslt_process( $xh , 'arg:/_xml' , 'projeto.xsl' , NULL , $args ) ; //retirado o endereço físico para o arquivo .xsl
            	
-           	if ( !( $html ) ) die ( "Erro ao processar o arquivo XML: " . xslt_error( $xh ) ) ;
+           	if ( !( $html ) )
+           	{
+           		die ( "Erro ao processar o arquivo XML: " . xslt_error( $xh ) ) ;
+           	}
+           	else
+           	{
+           		//Nothing to do.
+           	}
             
             xslt_free( $xh ) ;
 

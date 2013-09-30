@@ -24,11 +24,16 @@ if( isset( $_GET['id_projeto']))
 {
 	$id_projeto = $_GET['id_projeto'];
 }
+else
+{
+	//Nothing to do.
+}
 
 ?>
 <script language="javascript1.3">
 
-function getIDPrj() {
+function getIDPrj() 
+{
     var select = document.forms[0].id_projeto; // combo-box de projeto
     var indice = select.selectedIndex; // indice selecionado
     var id_projeto = select.options[indice].value; // id_projeto correspondente ao indice
@@ -36,7 +41,8 @@ function getIDPrj() {
 
 }
 
-function atualizaMenu() {   // carrega o menu correspondente ao projeto
+function atualizaMenu() 
+{   // carrega o menu correspondente ao projeto
     // Para nao fazer nada se selecionarem o "-- Selecione um Projeto --"
     if (!(document.forms[0].id_projeto.options[0].selected))
     {
@@ -45,7 +51,9 @@ function atualizaMenu() {   // carrega o menu correspondente ao projeto
 
 
           location.replace('heading.php?id_projeto=' + getIDPrj());
-    } else {
+    } 
+    else 
+    {
 
         location.reload();
     }
@@ -53,28 +61,41 @@ function atualizaMenu() {   // carrega o menu correspondente ao projeto
 }
 
 <?php
-if (isset($id_projeto)) {   // $id_projeto soh nao estara setada caso seja a primeira
-                            // vez que o usuario esteja acessando o sistema
+if (isset($id_projeto)) 
+{   // $id_projeto soh nao estara setada caso seja a primeira
+    // vez que o usuario esteja acessando o sistema
 
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
     check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");
 ?>
 
-function setPrjSelected() {
+function setPrjSelected() 
+{
     var select = document.forms[0].id_projeto;
-    for (var i = 0; i < select.length; i++) {
-        if (select.options[i].value == <?=$id_projeto?>) {
+    for (var i = 0; i < select.length; i++) 
+        {
+        if (select.options[i].value == <?=$id_projeto?>) 
+            {
             select.options[i].selected = true;
             i = select.length;
-        }
-    }
+        	}
+        	else
+        	{
+            	//Nothing to do.
+        	}
+    	}
 }
 
 <?php
 }
+else
+{
+	//Nothing to do.
+}
 ?>
 
-function novoCenario() {
+function novoCenario() 
+{
  <?php
 
 // Cen�rio - Atualizar Cen�rio 
@@ -106,7 +127,8 @@ function novoCenario() {
     open(url, where, window_spec);
 }
 
-function novoLexico() {
+function novoLexico() 
+{
  <?php
 
 //Cen�rio -  Atualizar L�xico 
@@ -139,20 +161,23 @@ function novoLexico() {
     open(url, where, window_spec);
 }
 
-function prjInfo(idprojeto) {
+function prjInfo(idprojeto) 
+{
     top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
 }
 
 </script>
 <html>
 <style>
-a {
+a 
+{
 	font-weight: bolder;
 	color: Blue;
 	font-family: Verdana, Arial;
 	text-decoration: none
 }
-a:hover {
+a:hover 
+{
 	font-weight: bolder;
 	color: Tomato;
 	font-family: Verdana, Arial;
@@ -205,10 +230,10 @@ else
 // ou utilizar um projeto em que ele fa�a parte.
 
 // conecta ao SGBD
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 // define a consulta
-$q = "SELECT p.id_projeto, p.nome, pa.gerente
+$query = "SELECT p.id_projeto, p.nome, pa.gerente
       FROM usuario u, participa pa, projeto p
       WHERE u.id_usuario = pa.id_usuario
       AND pa.id_projeto = p.id_projeto
@@ -216,9 +241,9 @@ $q = "SELECT p.id_projeto, p.nome, pa.gerente
       ORDER BY p.nome";
 
 // executa a consulta
-$qrr = mysql_query($q) or die("Erro ao executar query");
+$ExecuteQuery = mysql_query($query) or die("Erro ao executar query");
 
-while ($result = mysql_fetch_array($qrr))    // enquanto houver projetos
+while ($result = mysql_fetch_array($ExecuteQuery))    // enquanto houver projetos
 {
 ?>
 	<option value="<?=$result['id_projeto']?>">
@@ -258,6 +283,10 @@ if (isset($id_projeto))   	// Se o usuario ja tiver escolhido um projeto,
 ?>
               <a href="#" onClick="novoCenario();">Adicionar Cen&aacute;rio</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar S&iacute;mbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informa��es sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
               <?php
+}
+else
+{
+	//Nothing to do.
 }
 ?>
               <?php
@@ -300,6 +329,14 @@ if (isset($id_projeto))
         Projeto</a>&nbsp;&nbsp;&nbsp;
         <?php
 	}
+	else
+	{
+		//Nothing to do.
+	}
+}
+else
+{
+	//Nothing to do.
 }       
 
 // Cen�rio - Logar no sistema

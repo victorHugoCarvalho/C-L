@@ -32,13 +32,27 @@ _ontologia - URL da Ontologia
         $caminho = $diretorio .  $arquivo;  
 
         // Cria um novo arquivo DAML 
-        if (!$fp = fopen( $caminho , "w" )) return FALSE;                
+        if (!$fp = fopen( $caminho , "w" ))
+        {
+        	return FALSE;                
+        }
+        else
+        {
+        	//Nothing to do.
+        }
 
         // Grava cabeçalho padrão no arquivo DAML 
         $cabecalho = '<?xml version="1.0" encoding="ISO-8859-1" ?>' ;       
         $cabecalho = $cabecalho . '<rdf:RDF xmlns:daml="http://www.daml.org/2001/03/daml+oil#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2000/10/XMLSchema#" xmlns:';
 			$cabecalho = $cabecalho . $array_info['title'] . '="' . $url . '#">';       
-        if (!fwrite( $fp , $cabecalho )) return FALSE;       
+        if (!fwrite( $fp , $cabecalho )) 
+        {
+        	return FALSE;       
+        }
+        else
+        {
+        	//Nothing to do.
+        }
 
 
         // Insere informações da ontologia 
@@ -50,17 +64,51 @@ _ontologia - URL da Ontologia
         if ( $array_info ["subject"] == "")         $info = $info . '<dc:subject />' ;            else $info = $info . '<dc:subject>'             . $array_info ["subject"]         . '</dc:subject>' ;                
         if ( $array_info ["versionInfo"] == "")   $info = $info . '<daml:versionInfo />' ;   else $info = $info . '<daml:versionInfo>'   . $array_info ["versionInfo"]   . '</daml:versionInfo>' ;           
         $info = $info . '</daml:Ontology>' ;       
-        if (!fwrite( $fp , $info )) return FALSE;       
+        if (!fwrite( $fp , $info )) 
+        {
+        	return FALSE;       
+        }
+        else
+        {
+        	//Nothing to do.
+        }
 
 
         // Insere os conceitos, relações e axiomas 
-        if ( !grava_conceitos( $fp, $url, $lista_de_conceitos , $array_info ["creator"] ) ) return FALSE;       
-        if ( !grava_relacoes( $fp, $url, $lista_de_relacoes , $array_info ["creator"] ) ) return FALSE;        
-        if ( !grava_axiomas( $fp, $url, $lista_de_axiomas , $array_info ["creator"] ) ) return FALSE;        
-          
+        if ( !grava_conceitos( $fp, $url, $lista_de_conceitos , $array_info ["creator"] ) ) 
+        {
+        	return FALSE;       
+        }
+        else
+        {
+        	//Nothing to do.
+        }
+        if ( !grava_relacoes( $fp, $url, $lista_de_relacoes , $array_info ["creator"] ) ) 
+        {
+        	return FALSE;        
+        }
+        else
+        {
+        	//Nothing to do.
+        }
+        if ( !grava_axiomas( $fp, $url, $lista_de_axiomas , $array_info ["creator"] ) ) 
+        {
+        	return FALSE;        
+        }
+        else
+        {
+        	//Nothing to do.
+        }
 
         // Insere o tag de fechamento do cabeçalho 
-        if (!fwrite( $fp , '</rdf:RDF>' )) return FALSE;       
+        if (!fwrite( $fp , '</rdf:RDF>' )) 
+        {
+        	return FALSE;       
+        }
+        else
+        {
+        	//Nothing to do.
+        }
 
         // Fecha o arquivo aberto 
         fclose($fp);       
@@ -90,7 +138,14 @@ _ontologia - URL da Ontologia
             $s_conc = $s_conc . '<rdfs:comment><![CDATA[' . strip_tags($oConceito->descricao) . ']]> ' . '</rdfs:comment>' ;        
             $s_conc = $s_conc . '<creationDate><![CDATA[' . $GLOBALS["data"] . ']]> ' . '</creationDate>' ;        
             $s_conc = $s_conc . '<creator><![CDATA[' . $criador . ']]> ' . '</creator>' ;        
-            if (!fwrite( $fp , $s_conc )) return FALSE;       
+            if (!fwrite( $fp , $s_conc )) 
+            {
+            	return FALSE;       
+            }
+            else
+            {
+            	//Nothing to do.
+            }
 
 
             // Procura pelo conceito-pai (SubConceptOf) 
@@ -100,8 +155,15 @@ _ontologia - URL da Ontologia
                 $s_subconc = '<rdfs:subClassOf>' ;     
                 $s_subconc = $s_subconc . '<daml:Class rdf:about="' . $url . '#' . strip_tags($subconceito) . '" />' ;     
                 $s_subconc = $s_subconc . '</rdfs:subClassOf>';     
-                if (!fwrite( $fp , $s_subconc )) return FALSE;     
-            }     
+                if (!fwrite( $fp , $s_subconc )) 
+                {
+                	return FALSE;     
+                }
+                else
+                {
+                	//Nothing to do.
+                }
+            }   
 
             // Lista as relações entre conceitos 
             $lista_relacoes = $oConceito->relacoes;     
@@ -119,12 +181,26 @@ _ontologia - URL da Ontologia
     }  
                 $s_relac = $s_relac . '</daml:Restriction>';     
                 $s_relac = $s_relac . '</rdfs:subClassOf>';     
-                if (!fwrite( $fp , $s_relac )) return FALSE;     
+                if (!fwrite( $fp , $s_relac )) 
+                {
+                	return FALSE;     
+                }
+                else
+                {
+                	//Nothing to do.
+                }
             }     
 
         // Terminação do cabeçalho 
             $s_conc = '</daml:Class>';       
-            if (!fwrite( $fp , $s_conc )) return FALSE;     
+            if (!fwrite( $fp , $s_conc )) 
+            {
+            	return FALSE;     
+            }
+            else
+            {
+            	//Nothing to do.
+            }
 
         }       
 
@@ -148,7 +224,14 @@ _ontologia - URL da Ontologia
              $s_rel = $s_rel . '<creationDate><![CDATA[' . $GLOBALS["data"] . ']]> ' . '</creationDate>' ;       
              $s_rel = $s_rel . '<creator><![CDATA[' .  $criador . ']]> ' . '</creator>' ;        
              $s_rel = $s_rel . '</daml:ObjectProperty>';       
-             if (!fwrite( $fp , $s_rel )) return FALSE;        
+             if (!fwrite( $fp , $s_rel )) 
+             {
+             	return FALSE;        
+             }
+             else
+             {
+             	//Nothing to do.
+             }
 
         }        
         return TRUE;        
@@ -171,7 +254,14 @@ _ontologia - URL da Ontologia
             $s_axi = $s_axi . '<daml:Class rdf:about="' . $url . '#' .  strip_tags($axi[1]) . '" />' ;        
             $s_axi = $s_axi . '</daml:disjointWith>' ;       
             $s_axi = $s_axi . '</daml:Class>' ;         
-            if (!fwrite( $fp , $s_axi )) return FALSE;       
+            if (!fwrite( $fp , $s_axi )) 
+            {
+            	return FALSE;       
+            }
+            else
+            {
+            	//Nothing to do.
+            }
         }       
 
         return TRUE;       

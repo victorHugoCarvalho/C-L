@@ -61,6 +61,10 @@ function troca_chaves_xml( $str )
         {
             $conta_abertos = $conta_abertos + 1;
         }
+        else
+        {
+        	//Nothing to do.
+        }
         $i++;
     } // FIM WHILE 1
     $i=0;
@@ -70,12 +74,20 @@ function troca_chaves_xml( $str )
         {
         $conta_fechados = $conta_fechados + 1;
         }
+        else
+        {
+        	//Nothing to do.
+        }
         $i++;
     } // FIM WHILE 2
     $i=0;
     if ($conta_abertos == 0) 
     {
         return $str;
+    }
+    else
+    {
+    	//Nothing to do.
     }    
     $i=0;
     while($i <= $tamanho_str) 
@@ -88,6 +100,14 @@ function troca_chaves_xml( $str )
                 $comeco[$x] = $i;
                 $x++;
             }
+            else
+            {
+            	//Nothing to do.
+            }
+        }
+        else
+        {
+        	//Nothing to do.
         }
         if($str[$i] == '}') 
         {
@@ -97,6 +117,14 @@ function troca_chaves_xml( $str )
                 $fim[$y] = $i+1;
                 $y++;
             }
+            else
+            {
+            	//Nothing to do.
+            }
+        }
+        else
+        {
+        	//Nothing to do.
         }
     $i++;
     };
@@ -127,6 +155,10 @@ function troca_chaves_xml( $str )
                 $n++;
                 continue;
             }
+            else
+            {
+            	//Nothing to do.
+            }
             
             if($link[$n] == '*' && $link[$n+1] == '*')
             {
@@ -135,10 +167,18 @@ function troca_chaves_xml( $str )
                 $n++;
                 continue;
             }
+            else
+            {
+            	//Nothing to do.
+            }
          
             if ($marcador == 1)
             {
                 $link[$n] = '{';
+            }
+            else
+            {
+            	//Nothing to do.
             }
         $n++;
         }
