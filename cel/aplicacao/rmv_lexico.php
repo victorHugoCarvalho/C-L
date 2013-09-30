@@ -1,30 +1,29 @@
 <?php
-// rmv_lexico.php: Este script faz um pedido de remover um lexico do projeto.
-//                 Remove o lexico corrente.
-// Arquivo chamador: main.php
+// rmv_lexico.php:remove_lexicon.php: This script makes a request to remove a lexis from project.
+// Caller file: main.php 
 
 session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php");        
 
-//Cen�rios -  Excluir L�xico 
+chkUser("index.php");        // checks whether the user has been authenticated
 
-//Objetivo:	Permitir ao Usu�rio Excluir uma palavra do l�xico que esteja ativa
-//Contexto:	Usu�rio deseja excluir uma palavra do l�xico
-//Pr�-Condi��o: Login, palavra do l�xico cadastrada no sistema 
-//Atores:	Usu�rio, Sistema
-//Recursos:	Dados informados
-//Epis�dios:	O sistema fornecer� uma tela para o usu�rio justificar a necessidade
-//              daquela exclus�o para que o administrador possa ler e aprovar ou n�o.
-//              Esta tela tamb�m conter� um bot�o para a confirma��o da exclus�o.
-//              Restri��o: Depois de clicado o bot�o o sistema verifica se todos os campos foram preenchidos 
-//Exce��o:	Se todos os campos n�o foram preenchidos, retorna para o usu�rio 
-//              uma mensagem avisando que todos os campos devem ser preenchidos 
-//              e um bot�o de voltar para a pagina anterior.
+//  Scenery - Delete Lexicon
+
+//  Purpose: Allow User to Delete a word from the lexicon that is active
+//  Context: User wants to delete a word from the lexicon
+//  Precondition: Login word lexicon registered in the system
+//  Actors: User, System
+//  Resources: Data informed
+//  Episodes: The system will provide a screen for the user to justify the need
+//  That exclusion so that the administrator can read and approve or not.
+//  This screen also contains a button to confirm the deletion.
+//  Restriction: Once clicked the button the system verifies that all fields have been filled
+//  Exception: If all fields are empty, returns to the user
+//  A message that all fields must be filled
+//  And a button to return to the previous page.
 
 inserirPedidoRemoverLexico($id_projeto, $id_lexico, $_SESSION['id_usuario_corrente']);
 

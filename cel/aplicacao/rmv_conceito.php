@@ -1,15 +1,15 @@
 <?php
 
-// rmv_conceito.php: Este script faz um pedido de remover um conceito do projeto.
-// Arquivo chamador: main.php
+// rmv_conceito.php: This script makes a request to remove a concept from project.
+// Caller file: main.php 
 
 session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-// checks whether the user has been authenticated
-chkUser("index.php");
+
+chkUser("index.php");		// checks whether the user has been authenticated
 
 inserirPedidoRemoverConceito($_SESSION['id_projeto_corrente'], $id_conceito, $_SESSION['id_usuario_corrente']);
 
@@ -21,19 +21,18 @@ opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION[
 
 <?php
 
-// Cen�rio -  Excluir Conceito 
-
-//Objetivo:	Permitir ao Usu�rio Excluir um conceito que esteja ativo
-//Contexto:	Usu�rio deseja excluir um conceito
-//Pr�-Condi��o: Login, cen�rio cadastrado no sistema
-//Atores:	Usu�rio, Sistema
-//Recursos:	Dados informados
-//Epis�dios:	O sistema fornecer� uma tela para o usu�rio justificar a necessidade daquela
-//              exclus�o para que o administrador possa ler e aprovar ou n�o a mesma.
-//              Esta tela tamb�m conter� um bot�o para a confirma��o da exclus�o.
-//              Restri��o: Depois de clicar no bot�o, o sistema verifica se todos os campos foram preenchidos 
-//Exce��o:	Se todos os campos n�o foram preenchidos, retorna para o usu�rio uma mensagem
-//              avisando que todos os campos devem ser preenchidos e um bot�o de voltar para a pagina anterior.
+// Scenery - Delete Concept
+// Purpose: Allow User to Delete a concept that is active
+// Context: User wants to delete a concept
+// Precondition: Login, backdrop registered in the system
+// Actors: User, System
+// Resources: Data informed
+// Episodes: The system will provide a screen for the user to justify the need for that
+// Exclusion so that the administrator can read and approve or disapprove the same.
+// This screen also contains a button to confirm the deletion.
+// Restriction: After clicking the button, the system checks whether all fields were filled
+// Exception: If all fields are empty, returns to the user a message
+// Warning that all fields must be completed and a button to return to the previous page.
 
 ?>
 

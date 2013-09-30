@@ -1,7 +1,7 @@
 <?php
 
-// rmv_cenario.php: Este script faz um pedido de remover um cenario do projeto.
-// Arquivo chamador: main.php
+// rmv_cenario.php: This script makes a request to remove a concept from project.
+// Caller file: main.php 
 
 session_start();
 

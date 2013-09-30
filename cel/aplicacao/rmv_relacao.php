@@ -1,6 +1,6 @@
 <?php
 
-// Remove_relationship.php: This script makes a request to remove a relation of the project.
+// rmv_relacao.php.php: This script makes a request to remove a relation of the project.
 // File that calls: main.php
 
 session_start();
