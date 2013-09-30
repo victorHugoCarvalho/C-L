@@ -45,7 +45,7 @@ if (isset($submit))
         $resources   = str_replace( ">" , " " , str_replace ( "<" , " " , $resources  ) ) ;
         $exception   = str_replace( ">" , " " , str_replace ( "<" , " " , $exception  ) ) ;
         $episodes     = str_replace( ">" , " " , str_replace ( "<" , " " , $episodes  ) ) ;
-        addInsertRequestScenario($_SESSION['id_projeto_corrente'],       
+        addScenarioInsertRequest($_SESSION['id_projeto_corrente'],       
                                       $title,
                                       $objective,
                                       $context,

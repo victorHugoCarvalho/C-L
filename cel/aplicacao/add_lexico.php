@@ -81,8 +81,8 @@ if (isset($submit))
 else
 {        
 	$query = "SELECT nome FROM projeto WHERE id_projeto = $id_projeto";
-	$ExecuteQuery = mysql_query($query) or die("Erro ao executar a query");
-	$result = mysql_fetch_array($ExecuteQuery);
+	$executeQuery = mysql_query($query) or die("Erro ao executar a query");
+	$result = mysql_fetch_array($executeQuery);
 	$nameProject = $result['nome'];
 ?>
 <html>
@@ -192,26 +192,26 @@ else
 				return true;
 			}
 			//-->
-	<?php
+			<?php
 
-//Cenarios -  Incluir Lexico 
-
-//Objetivo:    Permitir ao usu�rio a inclus�o de uma nova palavra do lexico
-//Contexto:    Usuario deseja incluir uma nova palavra no lexico.
-//Pre-Condi�oes: Login, palavra do lexico ainda nao cadastrada
-//Atores:         Usuario, Sistema
-//Recursos:    Dados a serem cadastrados
-//Episodios:    O sistema fornecer para o usuario uma tela com os seguintes campos de texto:
-//               - Entrada Lexico.
-//               - No�aoo.   Restri�ao: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-//               - Impacto. Restri�ao: Caixa de texto com pelo menos 5 linhas de escrita vis�veis
-//              Bot�o para confirmar a inclus�o da nova entrada do lexico
-//              Restri�ao: Depois de clicar no bot�o de confirma�ao, o sistema verifica se todos
-//              os campos foram preenchidos. 
-//Exce�ao:    Se todos os campos nao foram preenchidos, retorna para o usuario uma mensagem
-//              avisando que todos os campos devem ser preenchidos e um botoo de voltar para a pagina anterior.
-
-		?>
+			// Scenarios -  add lexicon 
+			
+			// Objective:  Allow the user to insert a new lexicons word.
+			// Context:  User wants to register a new lexicons word.
+			// Pre - Conditions:  Login, lexicons word not registered.
+			// Actors:  User, System.
+			// Resources:  Data to be registered.
+			// Episodes:  The system provides a screen with the following text fields to the user.
+			//    - Input Lexicon.
+			//    - Notion.   Restriction: Text box with at least 5 visible writing lines.
+			//    - Impact. Restriction: Text box with at least 5 visible writing lines.
+			//      Button to confirm the registration of the new lexicon entrance.
+			//      Restriction: After clicking on the confirmation button, the system verifies
+			//        if all the fields are filled.
+			// Exception:  If all the fields are not filled, a message is returned to the user warning that
+			//               all the fields should be filled and a button the return to the last page.
+	
+			?>
 
 		</SCRIPT>
 		<h4>Adicionar S&iacute;mbolo</h4>

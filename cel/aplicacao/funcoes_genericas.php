@@ -1383,7 +1383,7 @@ function checkScenarioExists($project, $title)
 ###################################################################
 if (!(function_exists("inserirPedidoAdicionarCenario"))) 
 {
-    function addInsertRequestScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
+    function addScenarioInsertRequest($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
     {
         $DB = new PGDB();
         $insert  = new QUERY($DB);
@@ -1548,8 +1548,8 @@ if (!(function_exists("inserirPedidoAdicionarLexico")))
     {
         $DB = new PGDB() ;
         $insert = new QUERY($DB) ;
-        $selectUsuario = new QUERY($DB) ;
-        $selectPaticipa = new QUERY($DB) ;
+        $selectFromUsuario = new QUERY($DB) ;
+        $selectFromPaticipa = new QUERY($DB) ;
         
         $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $idUser AND id_projeto = $idProject";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1560,8 +1560,8 @@ if (!(function_exists("inserirPedidoAdicionarLexico")))
         {
             $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($idProject,'$name','$notion','$impact','$classification',$idUser,'inserir',0)");
             $newId = $insert->getLastId();
-            $selectUsuario->execute("SELECT * FROM usuario WHERE id_usuario = '$idUser'");
-            $selectPaticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $idProject");
+            $selectFromUsuario->execute("SELECT * FROM usuario WHERE id_usuario = '$idUser'");
+            $selectFromPaticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $idProject");
             
             //insert synonyms
             
@@ -1572,24 +1572,24 @@ if (!(function_exists("inserirPedidoAdicionarLexico")))
             }
             // end of the insertions of synonyms
             
-            if ($selectUsuario->getntuples() == 0 &&$selectPaticipa->getntuples() == 0)
+            if ($selectFromUsuario->getntuples() == 0 && $selectFromPaticipa->getntuples() == 0)
             {
                 echo "<BR> [ERRO]Pedido n&atilde;o foi comunicado por e-mail." ;
             }
             else
             {
-                $record = $selectUsuario->gofirst ();
-                $nome2 = $record['nome'] ;
-                $email = $record['email'] ;
-                $record2 = $selectPaticipa->gofirst ();
-                while($record2 != 'LAST_RECORD_REACHED')
+                $resultFromUsuario = $selectFromUsuario->gofirst ();
+                $userName = $resultFromUsuario['nome'] ;
+                $email = $resultFromUsuario['email'] ;
+                $resultFromParticipa = $selectFromPaticipa->gofirst ();
+                while($resultFromParticipa != 'LAST_RECORD_REACHED')
                 {
-                    $idCurrentUser = $record2['id_usuario'] ;
-                    $selectUsuario->execute("SELECT * FROM usuario WHERE id_usuario = $idCurrentUser") ;
-                    $record = $selectUsuario->gofirst ();
-                    $mailGerente = $record['email'] ;
-                    mail("$mailGerente", "Pedido de Inclus&atilde;o de L&eacute;xico", "O usu&aacute;rio do sistema $nome2\nPede para inserir o l&eacute;xico $name \nObrigado!","From: $nome2\result\n"."Reply-To: $email\result\n");
-                    $record2 = $selectPaticipa->gonext();
+                    $idCurrentUser = $resultFromParticipa['id_usuario'] ;
+                    $selectFromUsuario->execute("SELECT * FROM usuario WHERE id_usuario = $idCurrentUser") ;
+                    $resultFromUsuario = $selectFromUsuario->gofirst ();
+                    $managerMail = $resultFromUsuario['email'] ;
+                    mail("$managerMail", "Pedido de Inclus&atilde;o de L&eacute;xico", "O usu&aacute;rio do sistema $userName\nPede para inserir o l&eacute;xico $name \nObrigado!","From: $userName\result\n"."Reply-To: $email\result\n");
+                    $resultFromParticipa = $selectFromPaticipa->gonext();
                 }
             }
             
