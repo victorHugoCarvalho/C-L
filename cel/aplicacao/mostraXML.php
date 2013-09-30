@@ -20,9 +20,9 @@ $bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
 //             o sistema fornece ao administrador a tela de visualização do relatório
 //             XML criado.
    
-$qq = "select * from publicacao where id_projeto = $id_projeto AND versao = $versao";
-$qrr = mysql_query($qq) or die("Erro ao enviar a query");
-$row = mysql_fetch_row($qrr);
+$query = "select * from publicacao where id_projeto = $id_projeto AND versao = $versao";
+$ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query");
+$row = mysql_fetch_row($ExecuteQuery);
 $xml_banco = $row[3];
 
 echo $xml_banco;

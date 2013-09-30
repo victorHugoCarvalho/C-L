@@ -22,10 +22,10 @@ function monta_relacoes($id_projeto)
 
 	//seleciona todos os cenarios
 	
-	$q = "SELECT * FROM cenario WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(titulo) DESC";
-	$qrr = mysql_query($q) or die("Erro ao enviar a query");   
+	$query = "SELECT * FROM cenario WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(titulo) DESC";
+	$ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query");   
 	
-	while ($result = mysql_fetch_array($qrr)) // Para todos os cenarios 
+	while ($result = mysql_fetch_array($ExecuteQuery)) // Para todos os cenarios 
 	{    
 		$id_cenario_atual = $result['id_cenario'];
 		
@@ -90,10 +90,10 @@ function monta_relacoes($id_projeto)
 	
 	// Seleciona todos os l�xicos
 	
-	$q = "SELECT * FROM lexico WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(nome) DESC";
-	$qrr = mysql_query($q) or die("Erro ao enviar a query");   
+	$query = "SELECT * FROM lexico WHERE id_projeto = $id_projeto ORDER BY CHAR_LENGTH(nome) DESC";
+	$ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query");   
 	
-	while ($result = mysql_fetch_array($qrr)) // Para todos os lexicos
+	while ($result = mysql_fetch_array($ExecuteQuery)) // Para todos os lexicos
 	{   
 		$id_lexico_atual = $result['id_lexico'];
 		
@@ -249,6 +249,14 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
                  	 	echo '<script language="javascript">confirm(" '.$id_from.' - '.$id_to.'cen&aacute;rio para l&eacute;xico")</script>';
                  	 	//adiciona rela��o de cen�rio para l�xico
                  	 }
+                 	 else
+                 	 {
+                 	 	//Nothing to do.
+                 	 }
+                 }
+                 else
+                 {
+                 	//Nothing to do.
                  }
                  
                  if ($tipo=="c")// Destino � um cen�rio (id_cenario_to)
@@ -264,13 +272,25 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
 				       	//mysql_query($q) or die("Erro ao enviar a query de INSERT na centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
                  	 }
                  }
+                 else
+                 {
+                 	//Nothing to do.
+                 }
                  $i++;
+            }
+            else
+            {
+            	//Nothing to do.
             }
         }
         elseif( $texto[$i] == "}" )
         {
             $parser--;
          
+        }
+        else
+        {
+        	//Nothing to do.
         }
         $i++;
     }
