@@ -5,20 +5,21 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-//chkUser("index.php");        // Cenario: controle de acesso
+//chkUser("index.php");       
 
 
-//Cen�rio  -  Remover Projeto 
+//  Scenery - Remove Project
 
-//Objetivo:	   Permitir ao Administrador do projeto remover um projeto
-//Contexto:	   Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//                 Pr�-Condi��o: Login, Ser administrador do projeto selecionado.  
-//Atores:	   Administrador
-//Recursos:	   Sistema, dados do projeto, base de dados
-//Epis�dios:   O Administrador clica na op��o �remover projeto� encontrada no menu superior.
-//             O sistema disponibiliza uma tela para o administrador ter certeza de que esta removendo o projeto correto.
-//             O Administrador clica no link de remo��o.
-//             O sistema chama a p�gina que remover� o projeto do banco de dados.
+//  Purpose: Allow Project Manager to remove a project
+//  Context: A Project Manager you want to remove a particular project database
+//  Precondition: Login Become administrator selected project.
+//  Actors: Administrator
+//  Resources: System, design data, database
+//  Episodes: The Administrator clicks the option? Remove project? found in the top menu.
+//  The system provides a screen for the administrator to make sure that removing the correct project.
+//  The Administrator clicks on the link removal.
+//  The system calls the page that will remove the project from the database.
+  
 ?>
 <html>
 	<head>

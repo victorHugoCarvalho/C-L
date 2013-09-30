@@ -152,6 +152,10 @@ else
     						}
     						$resultadosubquery = "$resultadosubquery )";
     }
+    else
+    {
+    	//Nothing to do.
+    }
     
     $query = "SELECT usuario.id_usuario, usuario.login FROM usuario where usuario.id_usuario not in ".$resultadosubq;
     //$query = "SELECT usuario.id_usuario, usuario.login FROM usuario, participa where usuario.id_usuario=participa.id_usuario and participa.id_projeto<>".$_SESSION['id_projeto_corrente']." and participa.id_usuario not in ".$resultadosubq;

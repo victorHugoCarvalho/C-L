@@ -37,14 +37,22 @@ if (isset($apaga))
 		$qApaga = "DELETE FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
 		$qrrApaga = mysql_query($qApaga);	
 	}
+	else
+	{
+		//Nothing to do.
+	}
 }
-$q = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto'";
-$qrr = mysql_query($q) or die("Erro ao enviar a query");
+else
+{
+	//Nothing to do.
+}
+$query = "SELECT * FROM publicacao WHERE id_projeto = '$id_projeto'";
+$ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query");
 ?>
 <h2>Recupera XML/XSL</h2>
 <br>
 <?php
-while ( $result = mysql_fetch_row($qrr) )
+while ( $result = mysql_fetch_row($ExecuteQuery) )
 {
    $data   = $result[1];
    $versao = $result[2];
@@ -52,7 +60,7 @@ while ( $result = mysql_fetch_row($qrr) )
 	?>
 	<table>
 	  <tr>
-	    <th>Vers�o:</th>
+	    <th>Vers&atilde;o:</th>
 	    <td><?=$versao?></td>
 	    <th>Data:</th>
 	    <td><?=$data?></td>

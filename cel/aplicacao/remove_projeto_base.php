@@ -7,14 +7,13 @@ include_once("CELConfig/CELConfig.inc");
 
 
 
-//Cen�rio  -  Remover Projeto da base
-
-//Objetivo:	   Efetuar a remo��o de um projeto da base de dados
-//Contexto:	   Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//                 Pr�-Condi��o: Login, Ser administrador do projeto selecionado, ter selecionado o projeto para remo��o em remove_projeto.php.  
-//Atores:	   Administrador
-//Recursos:	   Sistema, dados do projeto, base de dados
-//Epis�dios:       O sistema apaga todos os dados referentes ao determinado projeto da sua base de dados.
+//  Scenery - Remove Project base
+//  Purpose: Perform removal of a design database
+//  Context: A Project Manager you want to remove a particular project database
+//  Precondition: Login Become administrator selected project, the project has selected for removal in remove_project.php.
+//  Actors: Administrator
+//  Resources: System, design data, database
+//  Episodes: The system deletes all data on the particular design of your database.
 
 
 	$id_projeto = $_SESSION['id_projeto_corrente'];

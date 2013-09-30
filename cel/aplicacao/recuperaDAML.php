@@ -26,6 +26,10 @@
         {
             return "-";
         }
+        else
+        {
+        	//Nothing to do.
+        }
          
         $mes_por_extenso = "-"; 
         
@@ -33,7 +37,7 @@
         { 
             case 1: $mes_por_extenso = "janeiro"; break; 
             case 2: $mes_por_extenso = "fevereiro"; break; 
-            case 3: $mes_por_extenso = "mar�o"; break; 
+            case 3: $mes_por_extenso = "mar&ccedil;o"; break; 
             case 4: $mes_por_extenso = "abril"; break; 
             case 5: $mes_por_extenso = "maio"; break; 
             case 6: $mes_por_extenso = "junho"; break; 
@@ -62,6 +66,10 @@
     //    $diretorio = "teste"; 
           $diretorio = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
     }
+    else
+    {
+    	//Nothing to do.
+    }
 
     if ( $site == "" ) 
     {
@@ -75,6 +83,14 @@
              		corretamente.<BR>\n * N&atilde;o foram preenchidas as vari&aacute;veis 'HTTPD_ip','CEL_dir_relativo' 
              		e 'DAML_dir_relativo_ao_CEL'.<BR>\nPor favor, verifique o arquivo e tente novamente.<BR>\n" );
           }
+          else
+          {
+          	//Nothing to do.
+          }
+    }
+    else
+    {
+    	//Nothing to do.
     }
      
     /* Monta a tabela    de arquivos    DAML */ 
@@ -91,9 +107,17 @@
                 print( "\t<TD WIDTH=\"55%\" CLASS=\"Estilo\">" . extrair_data( $arquivo ) . "</TD>\n" ); 
                 print( "\t<TD WIDTH=\"10%\" >[<A HREF=\"" . $site . $arquivo . "\">Abrir</A>]</TD>\n" ); 
                 print( "</TR>\n" ); 
+            }
+            else
+            {
+            	//Nothing to do.
             } 
         } 
         closedir( $dir_handle ); 
+    }
+    else
+    {
+    	//Nothing to do.
     } 
     print("</TABLE></CENTER>\n") ; 
 ?>
