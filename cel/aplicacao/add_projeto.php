@@ -12,8 +12,9 @@ chkUser("index.php");        // checks whether the user has been authenticated
 //new project, or when a New User register on the system
 
 
-// Scenery - Register New Project
-// Purpose: Allow user to register a new project
+// Scenario - Register New Project
+
+// Objective: Allow user to register a new project
 // Context: User want to include a new project in the database
 // Precondition: Login
 // Actors: User
@@ -29,100 +30,100 @@ chkUser("index.php");        // checks whether the user has been authenticated
 // Called by the button submit
 if (isset($submit))
 {    
-	$id_projeto_incluido = inclui_projeto($nome, $descricao);
+	$idAddedProject = addProject($name, $description);
     
 	// inserts in the table participa
     
-	if ($id_projeto_incluido != -1 )
+	if ($idAddedProject != -1 )
     {
 	    $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
-	    $gerente = 1;
-	    $id_usuario_corrente = $_SESSION['id_usuario_corrente'];    
-	    $query = "INSERT INTO participa (id_usuario, id_projeto, gerente) VALUES ($id_usuario_corrente, $id_projeto_incluido, $gerente)";
+	    $manager = 1;
+	    $idCurrentUser = $_SESSION['id_usuario_corrente'];    
+	    $query = "INSERT INTO participa (id_usuario, id_projeto, gerente) VALUES ($idCurrentUser, $idAddedProject, $manager)";
 	    mysql_query($query) or die("Erro ao inserir na tabela participa");
     }
     else
     {
 		?>
-<html>
-<title>Erro</title>
-<body>
-<p style="color: red; font-weight: bold; text-align: center">Nome de projeto j� existente!</p>
-<center>
-  <a href="JavaScript:window.history.go(-1)">Voltar</a>
-</center>
-</body>
-</html>
-<?php  	
+		<html>
+		<title>Erro</title>
+		<body>
+		<p style="color: red; font-weight: bold; text-align: center">Nome de projeto j&aacute; existente!</p>
+		<center>
+		  <a href="JavaScript:window.history.go(-1)">Voltar</a>
+		</center>
+		</body>
+		</html>
+		<?php  	
 		return;
     }	    
 	?>
-<script language="javascript1.3">
+	<script language="javascript1.3">
 
 	self.close();
 
 	</script>
-<?php
-	// Chamado normalmente
+	<?php
+	// regular call
 }
 else
 {
 	?>
-<html>
+	<html>
         <head>
-        <title>Adicionar Projeto</title>
-        <script language="javascript1.3">
+        	<title>Adicionar Projeto</title>
+        	<script language="javascript1.3">
 
-	function chkFrmVals()
-	{
-		if (document.forms[0].nome.value == "")
-		{
-			alert('Preencha o campo "Nome"');
-			document.forms[0].nome.focus();
-			return false;
-		}
-		else
-		{
-			pattern = /[\\\/\?"<>:|]/;
-			outOfPattern = pattern.exec(document.forms[0].nome.value);
-			if (outOfPattern)
-			{
-				window.alert ("O nome do projeto n�o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
-				document.forms[0].nome.focus();
-				return false;
-			}
-			else
-			{
-			    //Nothing to do.
-			}	 
-		}
+				function checkFormValues()
+				{
+					if (document.forms[0].name.value == "")
+					{
+						alert('Preencha o campo "Nome"');
+						document.forms[0].name.focus();
+						return false;
+					}
+					else
+					{
+						pattern = /[\\\/\?"<>:|]/;
+						outOfPattern = pattern.exec(document.forms[0].name.value);
+						if (outOfPattern)
+						{
+							window.alert ("O nome do projeto n\u00e3o pode conter nenhum dos seguintes caracteres:   / \\ : ? \" < > |");
+							document.forms[0].name.focus();
+							return false;
+						}
+						else
+						{
+						    //Nothing to do.
+						}	 
+					}
+			
+			    return true;
+				}
 
-    return true;
-	}
-
-        </script>
-        </head>
-        <body>
-<h4>Adicionar Projeto:</h4>
-<br>
-<form action="" method="post" onSubmit="return chkFrmVals();">
-          <table>
-    <tr>
-              <td>Nome:</td>
-              <td><input maxlength="128" name="nome" size="48" type="text"></td>
-            </tr>
-    <tr>
-              <td>Descri&ccedil;&atilde;o:</td>
-              <td><textarea cols="48" name="descricao" rows="4"></textarea></td>
-            <tr>
-              <td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
-            </tr>
-  </table>
-        </form>
-<br>
-<i><a href="showSource.php?file=add_projeto.php">Veja o c&oacute;digo fonte!</a></i>
-</body>
-</html>
+        	</script>
+		</head>
+		<body>
+			<h4>Adicionar Projeto:</h4>
+			<br>
+			<form action="" method="post" onSubmit="return checkFormValues();">
+				<table>
+			    	<tr>
+			        	<td>Nome:</td>
+			           	<td><input maxlength="128" name="name" size="48" type="text"></td>
+			        </tr>
+			    	<tr>
+			        	<td>Descri&ccedil;&atilde;o:</td>
+			            <td><textarea cols="48" name="description" rows="4"></textarea></td>
+			        	<tr>
+			            	<td align="center" colspan="2" height="60"><input name="submit" type="submit" value="Adicionar Projeto"></td>
+			            </tr>
+				</table>
+			</form>
+			<br>
+			<i><a href="showSource.php?file=add_projeto.php">Veja o c&oacute;digo fonte!</a></i>
+		</body>
+	</html>
 <?php
 }
 ?>

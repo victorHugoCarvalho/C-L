@@ -194,7 +194,7 @@ else
 			//-->
 			<?php
 
-			// Scenarios -  add lexicon 
+			// Scenario -  add lexicon 
 			
 			// Objective:  Allow the user to insert a new lexicons word.
 			// Context:  User wants to register a new lexicons word.

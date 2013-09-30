@@ -130,13 +130,13 @@ else
 #
 ###################################################################
 
-if (!(function_exists("inclui_projeto"))) 
+if (!(function_exists("addProject"))) 
 {
-    function inclui_projeto($nome, $descricao)
+    function addProject($name, $description)
     {
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        //verifica se usuario ja existe
-        $queryVerification = "SELECT * FROM projeto WHERE nome = '$nome'";
+        // cheks if the project already exists
+        $queryVerification = "SELECT * FROM projeto WHERE nome = '$name'";
         $queryVerificationResult = mysql_query($queryVerification) or die("Erro ao enviar a query de select<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
         //$result = mysql_fetch_row($queryVerificationResult);
@@ -145,16 +145,16 @@ if (!(function_exists("inclui_projeto")))
         
         if ( $resultArray != false )
         {
-            //verifica se o nome existente corresponde a um projeto que este usuario participa
-            $id_projeto_repetido = $resultArray['id_projeto'];
+            // checks if the project name corresponds to a project that the user already paticipates
+            $idRepeatedProject = $resultArray['id_projeto'];
             
-            $id_usuario_corrente = $_SESSION['id_usuario_corrente'];
+            $idCurrentUser = $_SESSION['id_usuario_corrente'];
             
-            $qvu = "SELECT * FROM participa WHERE id_projeto = '$id_projeto_repetido' AND id_usuario = '$id_usuario_corrente' ";
+            $query = "SELECT * FROM participa WHERE id_projeto = '$idRepeatedProject' AND id_usuario = '$idCurrentUser' ";
             
-            $qvuv = mysql_query($qvu) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+            $queryResult = mysql_query($query) or die("Erro ao enviar a query de SELECT no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             
-            $resultArray = mysql_fetch_row($qvuv);
+            $resultArray = mysql_fetch_row($queryResult);
             
             if ($resultArray[0] != null )
             {
@@ -175,7 +175,7 @@ if (!(function_exists("inclui_projeto")))
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de MAX ID<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $result = mysql_fetch_row($queryResult);
         
-        if ( $result[0] == false )
+        if ($result[0] == false)
         {
             $result[0] = 1;
         }
@@ -183,10 +183,10 @@ if (!(function_exists("inclui_projeto")))
         {
             $result[0]++;
         }
-        $data = date("Y-m-d");
+        $date = date("Y-m-d");
         
         $queryResult = "INSERT INTO projeto (id_projeto, nome, data_criacao, descricao)
-                  VALUES ($result[0],'".prepara_dado($nome)."','$data' , '".prepara_dado($descricao)."')";
+                  VALUES ($result[0],'".prepara_dado($name)."','$date' , '".prepara_dado($description)."')";
         
         mysql_query($queryResult) or die("Erro ao enviar a query INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
@@ -1381,7 +1381,7 @@ function checkScenarioExists($project, $title)
 # Arquivos que utilizam essa funcao:
 # add_cenario.php
 ###################################################################
-if (!(function_exists("inserirPedidoAdicionarCenario"))) 
+if (!(function_exists("addScenarioInsertRequest"))) 
 {
     function addScenarioInsertRequest($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
     {
@@ -1542,7 +1542,7 @@ else
 # Arquivos que utilizam essa funcao:
 # add_lexico.php
 ###################################################################
-if (!(function_exists("inserirPedidoAdicionarLexico"))) 
+if (!(function_exists("addLexiconInsertRequest"))) 
 {
     function addLexiconInsertRequest($idProject, $name, $notion, $impact, $idUser,$synonyms, $classification)
     {
