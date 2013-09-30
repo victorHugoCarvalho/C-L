@@ -6,6 +6,10 @@ session_start();
 if (isset($_GET['id_projeto']))  
 {  
     $id_projeto = $_GET['id_projeto'];  
+}
+else
+{
+	//Nothing to do.
 }  
 
 
