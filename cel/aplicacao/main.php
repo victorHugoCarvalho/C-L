@@ -818,25 +818,30 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 <br>
 
 <!--                     TERCEIRA PARTE                                     -->
+define('CENARIO', 'c');
+define('LEXICO', 'l');
+define('RELACAO', 'oc');
+define('CONCEITOS', 'or');
+define('AXIOMA', 'oa');
 
 <?php    
-    if ($t == "c")
+    if ($t == CENARIO)
 	{ 
 		print "<h3>Cen&aacute;rios que referenciam este cen&aacute;rio</h3>";   
     }
-    else if ($t == "l")
+    else if ($t == LEXICO)
 	{
 		print "<h3>Cen&aacute;rios e termos do l&eacute;xico que referenciam este termo</h3>";   
     }
-    else if ($t == "oc")
+    else if ($t == RELACAO)
 	{ 
 		print "<h3>Rela&ccedil;&otilde;es do conceito</h3>";   
     }
-    else if ($t == "or")
+    else if ($t == CONCEITOS)
 	{
 		print "<h3>Conceitos referentes &agrave; rela&ccedil;&atilde;o</h3>";   
     }
-    else if ($t == "oa")
+    else if ($t == AXIOMA)
 	{
 		print "<h3>Axioma</h3>";
     }
