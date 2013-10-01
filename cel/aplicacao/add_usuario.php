@@ -37,29 +37,22 @@ if (isset($submit)) // Called by the submit button
         else
         {
 
-            // ** Cenario "Inclusao de Usuario Independente" **
-            // Todos os campos estao preenchidos. O sistema deve agora verificar
-            // se ja nao existe alguem cadastrado com o mesmo login informado pelo usuario.
-
-			// Cenï¿½rio - Incluir usuï¿½rio independente 
-			
-			// Objetivo:  Permitir um usuï¿½rio, que nï¿½o esteja cadastrado como administrador, se cadastrar 
-			//            com o perfil de administrador	
-			// Contexto:  Sistema aberto Usuï¿½rio deseja cadastrar-se ao sistema como administrador. 
-			//            Usuï¿½rio na tela de cadastro de usuï¿½rio 
-			// Prï¿½-Condiï¿½ï¿½es: Usuï¿½rio ter acessado ao sistema	
-			// Atores:    Usuï¿½rio, Sistema	
-			// Recursos:  Interface, Banco de Dados	
-			// Episï¿½dios: O sistema retorna para o usuï¿½rio uma interface com campos para entrada de
-			//            um Nome, email, login, uma senha e a confirmaï¿½ï¿½o da senha.
-			//            O usuï¿½rio preenche os campos e clica em cadastrar 
-			//            O sistema entï¿½o checa para ver se todos os campos estï¿½o preenchidos.
-			//              Caso algum campo deixar de ser preenchido, o sistema avisa que todos
-			//               os campos devem ser preenchidos.
-			//              Caso todos os campos estiverem preenchidos, o sistema checa no banco
-			//               de dados para ver se esse login jï¿½ existe..
-			//              Caso aquele login digitado jï¿½ exista, o sistema retorna a mesma pï¿½gina
-			//               para o usuï¿½rio avisando que o usuï¿½rio deve escolher outro login,.
+            // ** Scenery "Add user independent" **
+//             Objective: Allow a user who is not registered as an administrator, register
+//                 		  with the administrator profile.
+//      	   Contexto: User want to register as an administrator.
+//                       User onscreen registration user.
+//      	   Precondition: User has accessed the system.
+//      	   Actors: User, System
+//      	   Features: Interface, Database
+//      	   Episodes: The system returns to the user interface with fields for entering
+//                 		 a Name, email, login, password, and password confirmation.
+//                 		 The user fills in the fields and click on submit.
+//                 		 The system then checks to see if all fields are filled.
+//                 		 -If any field is no filled, the system warns you that all
+//                  	 fields must be filled.
+//                 		 -If all fields are completed, the system checks in the data bank to see if this login exists 
+//                 		 -If the typed login already exists, the system returns the same page warning to the user that he must choose another login.
 
             $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";
