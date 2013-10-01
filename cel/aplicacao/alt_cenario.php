@@ -1,11 +1,10 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-// alt_cenario.php: Este script faz um pedido de alteracao de um cenario do projeto.
-// O usuario recebe um form com o cenario corrente (ou seja com seus campos preenchidos)
-// e podera fazer	alteracoes em todos os campos menos no titulo.Ao final a tela principal
-// retorna para a tela de inicio e a arvore e fechada.O form de alteracao tb e fechado.
-// Arquivo chamador: main.php
+// alt_cenario.php: This script registers a new scenario of the project. 
+//                  A variable $id_project is sent through the URL that 
+//                  indicates where in project should be inserted the new scenery.
+// File that calls: main.php
 session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
@@ -17,7 +16,7 @@ chkUser("index.php");
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-// Script chamado atraves do submit do formulario
+// The variables will be initialized by form html.
 if (isset($submit)) 
 {
     inserirPedidoAlterarCenario($_SESSION['id_projeto_corrente'],
@@ -46,7 +45,7 @@ if (isset($submit))
 	</script>
 <?php
 }
-else  // Script chamado atraves do link no cenario corrente
+else  // Script called through the top menu
 {
 
     $project_name = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
@@ -55,20 +54,26 @@ else  // Script chamado atraves do link no cenario corrente
     $executeQuery = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($executeQuery);
 
-	// Cenï¿½rio -    Alterar Cenï¿½rio 
-	
-	//Objetivo:	    Permitir a alteraï¿½ï¿½o de um cenï¿½rio por um usuï¿½rio
-	//Contexto:	    Usuï¿½rio deseja alterar cenï¿½rio previamente cadastrado
-	//Prï¿½-Condiï¿½ï¿½o: Login, Cenï¿½rio cadastrado no sistema
-	//Atores:	    Usuï¿½rio
-	//Recursos:	    Sistema, dados cadastrados
-	//Excessï¿½es:    O nome do cenï¿½rio sendo alterado ï¿½ modificado para o nome de um cenï¿½rio jï¿½ existente.
-	//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR CENï¿½RIO,
-	//              porï¿½m com os seguintes dados do cenï¿½rio a ser alterado preenchidos
-	//              e editï¿½veis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episï¿½dios.
-	//              Os campos Projeto e Tï¿½tulo estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
-	//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
-	//              justificativa para a alteraï¿½ï¿½o feita.
+// 	     Scenario - Include Scenario
+	  
+//       Purpose: Allow user to include a new scenario
+//       Context: User want to include a new scenario.
+//       Precondition: Login, backdrop not registered
+//       Actors: User, System
+//       Resources: Data to be registered
+//       Episodes: The system provides the user a screen with the following text fields:
+//             - Nome Cenário
+//             - Objetivo.  Restriction: Text box with at least 5 lines of writing visible
+//             - Contexto.  Restriction: Text box with at least 5 lines of writing visible
+//             - Atores.    Restriction: Text box with at least 5 lines of writing visible
+//             - Recursos.  Restriction: Text box with at least 5 lines of writing visible
+//             - Exceção.   Restriction: Text box with at least 5 lines of writing visible
+//             - Episódios. Restriction: Text box with at least 16 lines of writing visible
+//             - Button to confirm the inclusion of the new scenario
+//           Restrictions: After clicking the confirmation button,
+//                           the system checks whether all fields have been filled.
+//       Exception: If all fields are empty, returns to the user a warning message
+//                  that all fields must be completed and a button to return to the previous page.
 	
 	?>
 <html>
