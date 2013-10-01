@@ -13,6 +13,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
+define('APROVADO', '1');
 
 chkUser("index.php"); 	// checks whether the user has been authenticated
 
@@ -171,15 +172,15 @@ else
 			    </font></h3>
 			  	<?php 
 			}
-			if ($aprovado == 1)
-                        {
+			if ($aprovado == APROVADO)
+            {
 				echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
 			} 
 			else
-                        {
+            {
 				echo "[<input type=\"checkbox\" name=\"pedidos[]\" value=\"$id_pedido\"> <STRONG>Aprovar</STRONG>]<BR>  ";
 				echo "Rejeitar<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\">" ;
-                        }
+            }
 	        
                         echo "[<input type=\"checkbox\" name=\"remover[]\" value=\"$id_pedido\"> <STRONG>Remover da lista</STRONG>]";
                         print( "<br>\n<hr color=\"#000000\"><br>\n");

@@ -15,6 +15,8 @@ include("httprequest.inc");
 
 chkUser("index.php");	// checks whether the user has been authenticated
 
+define('APROVADO', '1');
+
 if (isset($submit))
 {
     $DB = new PGDB();
@@ -147,7 +149,7 @@ else
 				  <?php 
 			}
 			
-			if ($aprovado == 1)
+			if ($aprovado == APROVADO)
 			{
 				echo "[<font color=\"#ff0000\"><STRONG>Aprovado</STRONG></font>]<BR>";
 			} 
