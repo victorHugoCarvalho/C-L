@@ -31,6 +31,10 @@
 
 		exit();
 	}
+	else
+	{
+		//Nothing to do.
+	}
 
 	$_SESSION["lista_de_sujeito"] = get_lista_de_sujeito();
 	$_SESSION["lista_de_objeto" ] = get_lista_de_objeto();

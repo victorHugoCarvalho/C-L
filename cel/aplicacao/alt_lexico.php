@@ -1,11 +1,12 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-// alt_lexico.php: Este script faz um pedido de alteracao de um lexico do projeto.
-//                 O usuario recebe um form com o lexico corrente (ou seja, com seus campos preenchidos)
-//                 e podera fazer alteracoes em todos os campos menos no nome. Ao final a tela principal
-//                 retorna para a tela de inicio e a arvore e fechada. O form de alteracao tb e fechado.
-// Arquivo chamador: main.php
+// alt_lexico.php: This script makes a request for alteration of a lexicon of the project.
+//                     The User receives a form with the current lexicon (ie with completed fields)
+//                     and may make changes in all fields except the name. At the end of the main screen
+//                     returns to the start screen and the tree is closed. 
+//					   The form of alteration is also closed.
+//   File that calls: main.php 
 
 session_start();
 
@@ -19,13 +20,17 @@ chkUser("index.php");
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-// Script chamado atraves do submit do formulario
+// Called through the button submit
 if (isset($submit))       
 {
 	
 	if (!isset($listSinonimo))
 	{
 		$listSinonimo = array();
+	}
+	else
+	{
+		//Nothing to do.
 	}
 	
     //tira os sinï¿½nimos caso haja um nulo.
@@ -35,6 +40,10 @@ if (isset($submit))
 		if ($listSinonimo[$i] == "")
 		{
 			$listSinonimo = null;	
+		}
+		else
+		{
+			//Nothing to do.
 		}
     }
     //$count = count($listSinonimo);
@@ -96,10 +105,14 @@ else        // Script chamado atraves do link do lexico corrente
 		
 		if(nocao == "")
 		{
-			alert (" Por favor, forneï¿½a a NOï¿½ï¿½O do lï¿½xico.\n O campo NOï¿½ï¿½O ï¿½ de preenchimento obrigatï¿½rio.");
+			alert (" Por favor, forne&ccedil;a a no&ccedil;&atilde;o do l&eacute;xico.\n O campo no&ccedil;&atilde;o &eacute; de preenchimento obrigat&oacute;rio.");
 	      	form.nocao.focus();
 	      	return false;
 	    }
+		else
+		{
+		    //Nothing to do.
+		}
 	}
 	
 	function addSinonimo()
@@ -109,6 +122,10 @@ else        // Script chamado atraves do link do lexico corrente
 		if (document.forms[0].sinonimo.value == "")
 		{
 			return;
+		}
+		else
+		{
+		    //Nothing to do.
 		}
 		
 		listSinonimo.options[listSinonimo.length] = new Option(document.forms[0].sinonimo.value, document.forms[0].sinonimo.value);
@@ -147,19 +164,18 @@ else        // Script chamado atraves do link do lexico corrente
 	//-->
 	
 	<?php
-		//Cenï¿½rios -  Alterar Lï¿½xico 
-		
-		//Objetivo:	Permitir a alteraï¿½ï¿½o de uma entrada do dicionï¿½rio lï¿½xico por um usuï¿½rio	
-		//Contexto:	Usuï¿½rio deseja alterar um lï¿½xico previamente cadastrado
-		//Prï¿½-Condiï¿½ï¿½o: Login, lï¿½xico cadastrado no sistema
-		//Atores:	Usuï¿½rio
-		//Recursos:	Sistema, dados cadastrados
-		//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR Lï¿½XICO,
-		//              porï¿½m com os seguintes dados do lï¿½xico a ser alterado preenchidos
-		//              e editï¿½veis nos seus respectivos campos: Noï¿½ï¿½o e Impacto.
-		//              Os campos Projeto e Nome estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
-		//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
-		//              justificativa para a alteraï¿½ï¿½o feita.	
+//			Scenerys - Change Lexicon 
+//    		Purpose: Allow changing a lexicon by the user
+//    		Context: User want to change a lexicon previously registered
+//    		Precondition: Login lexicon, registered in the system
+//    			Actors: User
+//     		Features: System, data registered
+//     		Episódios:	The system will provide to the user the same screen add_lexico,
+//                		but with the following data from the lexical to be changed filled
+//                 		and editable in their respective fields: Concept and Impact.
+//                 		Project and Name fields will be filled, but not editable.
+//                 		Displays a field Rationale for the user to place a
+//                 		justification for the change made.	
 	
 	?>
 	

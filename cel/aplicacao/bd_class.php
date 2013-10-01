@@ -127,6 +127,11 @@ class QUERY
     	{
          	$this->associate($pdbobject);
     	}
+    	else
+    	{
+    		//Nothing to do.
+    	}
+    	
 	}
 
     function associate($pdbobject)
@@ -211,6 +216,10 @@ class QUERY
     	{
     		return false;
     	}
+    	else
+    	{
+    		//Nothing to do.
+    	}
     	
     	return true;
 	}
@@ -221,6 +230,10 @@ class QUERY
     	{
     		return false;
     	}
+    	else
+    	{
+    		//Nothing to do.
+    	}
     	
         return true;
 	}
@@ -230,6 +243,10 @@ class QUERY
     	if (!$this->execute("ROLLBACK"))
     	{
     		return false;
+    	}
+    	else
+    	{
+    		//Nothing to do.
     	}
     	return true;
 	}

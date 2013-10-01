@@ -1,11 +1,12 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
-// alt_conceito.php: Este script faz um pedido de alteracao de um conceito do projeto.
-// O usuario recebe um form com o conceito corrente (ou seja com seus campos preenchidos)
-// e podera fazer	alteracoes em todos os campos menos no nome.Ao final a tela principal
-// retorna para a tela de inicio e a arvore e fechada.O form de alteracao tb e fechado.
-// Arquivo chamador: main.php
+// alt_conceito.php:  This script makes a request for alteration of a concept of the project.
+//                       The User receives a form with the current concept (ie with completed fields)
+//                       and may make changes in all fields,  except the name. At the end of the main screen  
+//                       returns to the start screen and the tree is closed. The form of alteration is also closed.
+// File that calls: main.php
+
 session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
@@ -17,7 +18,7 @@ chkUser("index.php");
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-// Script chamado atraves do submit do formulario
+// Called through the button submit
 if (isset($submit)){       
 
     inserirPedidoAlterarConceito($_SESSION['id_projeto_corrente'],
@@ -42,7 +43,7 @@ if (isset($submit)){
 	</script>
 <?php
 }
-else // Script chamado atraves do link no cenario corrente
+else 	//Script called via the link in the current concept
 {
 
     $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
@@ -51,19 +52,12 @@ else // Script chamado atraves do link no cenario corrente
     $executeQuery = mysql_query($query) or die("Erro ao executar a query");
     $result = mysql_fetch_array($executeQuery);
 
-	// Cenï¿½rio -    Alterar Conceito 
-	
-	//Objetivo:	Permitir a alteraï¿½ï¿½o de um conceito por um usuï¿½rio
-	//Contexto:	Usuï¿½rio deseja alterar conceito previamente cadastrado
-	//              Prï¿½-Condiï¿½ï¿½o: Login, Cenï¿½rio cadastrado no sistema
-	//Atores:	Usuï¿½rio
-	//Recursos:	Sistema, dados cadastrados
-	//Episï¿½dios:	O sistema fornecerï¿½ para o usuï¿½rio a mesma tela de INCLUIR CENï¿½RIO,
-	//              porï¿½m com os seguintes dados do cenï¿½rio a ser alterado preenchidos
-	//              e editï¿½veis nos seus respectivos campos: Objetivo, Contexto, Atores, Recursos e Episï¿½dios.
-	//              Os campos Projeto e Tï¿½tulo estarï¿½o preenchidos, mas nï¿½o editï¿½veis.
-	//              Serï¿½ exibido um campo Justificativa para o usuï¿½rio colocar uma
-	//              justificativa para a alteraï¿½ï¿½o feita.
+// 	   Scenery - Changing Concept
+//     Purpose: Allow changing a concept for a user
+//     Context: User want to change concept previously registered
+//     Precondition: Login, Scenario registered in the system
+//     Actors: User
+//     Features: System, data registered
 	
 	?>
 <html>

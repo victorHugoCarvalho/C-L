@@ -124,6 +124,11 @@ function atualiza_tipo($id_lexico, $type)
 	{
 		return (FALSE);
 	}
+	else
+	{
+		//Nothing to do.
+	}
+	
 	if($type == "null")
 	{
 		$query = "update lexico set tipo = $type where id_lexico = '$id_lexico';";
@@ -252,6 +257,10 @@ function get_lista_de_conceitos()
 			if($conc1->nome == $conceito_nome)
 			{
 				$auxiliar[$key]->subconceitos[] = $subconceito_nome;
+			}
+			else
+			{
+				//Nothing to do.
 			}
 		}
 	}
@@ -427,6 +436,10 @@ function salvar_algoritmo()
 					$query  = "insert into hierarquia (id_conceito,id_subconceito,id_projeto) values ('$id_conceito', '$id_subconceito','$id_projeto');";
 					$result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 				}
+				else
+				{
+					//Nothing to do.
+				}
 			}
 		}
 	}
@@ -469,6 +482,10 @@ function salvar_algoritmo()
 		$query = $query . "'" . $_SESSION['index5'] . "', '$id_projeto');";
 		$result = mysql_query($query) or die("A consulta � BD falhou : " . mysql_error() . __LINE__);
 	}
+	else
+	{
+		//Nothing to do.
+	}
 	mysql_close($link);
 	
 	if ($_SESSION["funcao"] != 'fim')
@@ -508,6 +525,10 @@ if (isset($_SESSION["tipos"]))
 		{
 			echo "ERRO <br>";
 		}
+		else
+		{
+			//Nothing to do.
+		}
 	}
 	
 	mysql_close($link);
@@ -517,10 +538,18 @@ if (isset($_SESSION["tipos"]))
 	</script>
         <?php
 }
+else
+{
+	//Nothing to do.
+}
 
 if (array_key_exists("save", $_POST ))
 {
 	salvar_algoritmo();
+}
+else
+{
+	//Nothing to do.
 }
 
 

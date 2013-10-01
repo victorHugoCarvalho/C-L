@@ -38,6 +38,10 @@ function exist($name, $list)
 			$indice = $key;
 			break;
 		}
+		else
+		{
+			//Nothing to do.
+		}
 	}
 	?>
         <form method="POST" action="algoritmo.php" id="exist_form">
@@ -50,6 +54,10 @@ function exist($name, $list)
 		{
 			echo "   - " . $verbo . "<br>";
 		}
+	}
+	else
+	{
+		//Nothing to do.
 	}
 	?>
         <b>Impacto:</b> <code>"
@@ -65,7 +73,7 @@ function exist($name, $list)
                 ?>
                 <OPTION value='<?=$key ?>' <?php if($indice==$key) echo "selected" ?> > <?php echo $termo ?></OPTION>
                 <?php
-        }
+    }
         ?>
         <OPTION value="-1"></OPTION>
         </SELECT>
@@ -376,20 +384,20 @@ function insere_relacao ($relacao, $conceito, $imp, $list)
 					$indice2 = $key;
 					break;
 				}
-                                else
-                                {
-                                    //Nothing to do
-                                }
-			}
-                        else
-                        {
-                            //Nothing to do
-                        }
-		}
                 else
                 {
-                    //Nothing to do
+                   //Nothing to do
                 }
+			}
+            else
+            {
+              //Nothing to do
+            }
+		}
+        else
+        {
+           //Nothing to do
+        }
 	}
 
 	$indice3 = -1;
@@ -400,10 +408,10 @@ function insere_relacao ($relacao, $conceito, $imp, $list)
 			$indice3 = $key;
 			break;
 		}
-                else
-                {
-                    //Nothing to do
-                }
+        else
+        {
+             //Nothing to do
+        }
 	}
 
         ?>
@@ -492,7 +500,7 @@ function insere_relacao ($relacao, $conceito, $imp, $list)
                             }
                             else
                             {
-                                    alert('� necess�rio ao menos um predicado para cada verbo');
+                                    alert('&eacute; necess&aacute;rio ao menos um predicado para cada verbo');
                             }
                     }
 
@@ -551,6 +559,10 @@ function disjuncao( $nome, $list )
 		}
 		echo "</p>";
 	}
+	else
+	{
+		//Nothing to do.
+	}
 
 	print "Existe algum termo disjunto do conceito <b>$nome</b> na lista abaixo ou no vocabul&aacute;rio m&iacute;nimo?";
 
@@ -568,10 +580,10 @@ function disjuncao( $nome, $list )
                                 <OPTION value='<?=$termo->nome ?>'><?php echo $termo->nome ?></OPTION>
                                 <?php
 			}
-                        else
-                        {
-                            //Nothing to do
-                        }
+            else
+            {
+               //Nothing to do
+            }
 		}
 		?>
               </SELECT>
@@ -690,10 +702,10 @@ if (isset($_SESSION["job"]))
                                 <?php
 			}
 		}
-                else
-                {
-                    //Nothing to do
-                }
+        else
+        {
+            //Nothing to do
+        }
 		
 		exist($_SESSION["nome1"], &$_SESSION["lista"]);
 	}
@@ -720,6 +732,10 @@ if (isset($_SESSION["job"]))
 	else if ($_SESSION["job"] == "disjoint")
 	{
 		disjuncao($_SESSION["nome1"], $_SESSION["lista"]);
+	}
+	else
+	{
+		//Nothing to do.
 	}
 
 	?>

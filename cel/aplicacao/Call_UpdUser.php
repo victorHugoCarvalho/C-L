@@ -3,29 +3,29 @@ session_start();
 
 include_once("bd.inc");
 
-$result = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-// Cen�rio - Alterar cadastro
-//
-//Objetivo:	 Permitir ao usu�rio realizar altera��o nos seus dados cadastrais	
-//Contexto:	 Sistema aberto, Usu�rio ter acessado ao sistema e logado 
-//           Usu�rio deseja alterar seus dados cadastrais 
-//           Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:	 Usu�rio, Sistema.	
-//Recursos:	 Interface	
-//Epis�dios: O sistema fornecer� para o usu�rio uma tela com os seguintes campos de texto,
-//           preenchidos com os dados do usu�rio,  para serem alterados:
-//           nome, email, login, senha e confirma��o da senha; e um bot�o de atualizar
-//           as informa��es fornecidas
+//  Scenery - Change register
+
+//  Purpose: Allow user to make changes in your registration data
+//  Context: Open System, User have accessed the system and logged
+//  User want to change your registration
+//  Precondition: User has accessed the system
+//  Actors: User, System.
+//  Features: Interface
+//  Episodes: The system provides the user a screen with the following text fields,
+//  pilled with user data to be changed:
+//  name, email, login, password and confirm password, and a button to update
+//  the information provided
 
 $id_usuario = $_SESSION['id_usuario_corrente'];
 
 
 $query = "SELECT * FROM usuario WHERE id_usuario='$id_usuario'";
 
-$queryResult = mysql_query($query) or die("Erro ao executar a query");
+$ExecuteQuery = mysql_query($query) or die("Erro ao executar a query");
 
-  $row = mysql_fetch_row($queryResult);
+  $row = mysql_fetch_row($ExecuteQuery);
   $nome  = $row[1];
   $email = $row[2];
   $login = $row[3];
@@ -54,13 +54,23 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
 				alert ("Por favor, digite o seu Login.")
 				form.login.focus()
                                 return false;
-                        }
+            }
+			else
+			{
+			    //Nothing to do.
+			}
+			
 			if (email == "")
 			{
 				alert ( "Por favor, digite o seu e-mail.")
                                 form.email.focus();
                                 return false;
 		   	}
+			else
+			{
+			    //Nothing to do.
+			}
+			
 		  	if (senha == "")
                         { 
 		  	    alert ("Por favor, digite a sua senha.")
@@ -73,11 +83,20 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
                             form.nome.focus()
                             return false;
                         }
+                        else
+                        {
+                            //Nothing to do.
+                        }
+                        
 		   	if (senha != senha_conf)
 		   	{
                             alert ( "A senha e a confirmacao nao sao as mesmas!")
                             form.senha.focus();
                             return false;
+		   	}
+		   	else
+		   	{
+		   	    //Nothing to do.
 		   	}
 		}
 		
@@ -90,11 +109,19 @@ $queryResult = mysql_query($query) or die("Erro ao executar a query");
                             {
                                     return (true)
                             }
+                            else
+                            {
+                                //Nothing to do.
+                            }
 		     	
                             alert("Aten��o: o E-mail digitado n�o � v�lido.")
                             email.focus();
                             email.select();
                             return (false)
+		  	}
+		  	else
+		  	{
+		  	    //Nothing to do.
 		  	}
 		}
 		
