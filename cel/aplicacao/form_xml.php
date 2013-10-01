@@ -18,18 +18,17 @@ chkUser("index.php");        // Checa se o usuario foi autenticado
   <h2>Propriedades do Relat&oacute;rio a ser Gerado:</h2>
   <?php
 
-//Cen�rio - Gerar Relat�rios XML 
+// Scenery - Generate XML Reports
 
-//Objetivo:    Permitir ao administrador gerar relat�rios em formato XML de um projeto,
-//          identificados por data.     
-//Contexto:    Gerente deseja gerar um relat�rio para um dos projetos da qual � administrador.
-//          Pr�-Condi��o: Login, projeto cadastrado.
-//Atores:    Administrador     
-//Recursos:    Sistema, dados do relat�rio, dados cadastrados do projeto, banco de dados.     
-//Epis�dios:O administrador clica na op��o de Gerar Relat�rio XML.
-//          Restri��o: Somente o Administrador do projeto pode ter essa fun��o vis�vel.
-//          O sistema fornece para o administrador uma tela onde dever� fornecer os dados
-//          do relat�rio para sua posterior identifica��o, como data e vers�o. 
+// Purpose: Allow the administrator to generate reports in XML format to a project identified by date.
+// Context: Manager to generate a report for a project which is administrator.
+// Precondition: Login, registered design.
+// Actors: Administrator
+// Resources: System, report data, data registered design, database.
+// Episodes: The administrator clicks the option Generate XML Report.
+// Restriction: Only the Project Manager may have this function visible.
+// The system provides for a screen where the administrator must provide the report 
+// data for subsequent identification, such as date and version.
 
    $today = getdate(); 
 ?>

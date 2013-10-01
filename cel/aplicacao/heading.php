@@ -5,20 +5,19 @@ session_start();
 include("funcoes_genericas.php");
 
 
-chkUser("index.php");        // Cenario: controle de acesso
+chkUser("index.php");      
 
-// Cen�rio - Usu�rio escolhe Projeto
+//    Scenery - User chooses Project
 
-// Objetivo:  Permitir ao Usu�rio escolher um projeto.
-// Contexto:  O Usu�rio deseja escoher um projeto.
-// Pr�-Condi��es: Login
-// Atores:    Usu�rio
-// Recursos:  Projetos
-// Epis�dios: O Usu�rio seleciona da lista de projetos um projeto da qual ele n�o seja 
-//            administrador. 
-//            O Usu�rio poder�:
-//              - Atualizar cen�rio:
-//              - Atualizar l�xico.
+//     Objective: Allow User to choose a design.
+//     Context: You want escoher a project.
+//     Preconditions: Login
+//     Actors: User
+//     Features: Projects
+//     Episodes: The User selects the list of projects a project of which he is not administrator.
+//     The user can:
+//     Refresh scenario:
+//     Update lexicon.
 
 if( isset( $_GET['id_projeto']))
 {

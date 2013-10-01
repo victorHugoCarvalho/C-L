@@ -25,24 +25,25 @@ else
 <?php
 
 // gerador_xml.php
-// Dada a base e o id do projeto, gera-se o xml dos cenários e léxicos.
+// Given the base and the id of the project, it generates the xml scenarios and lexicons.
 
-// Cenário - Gerar Relatórios XML 
-// Objetivo:    Permitir ao administrador gerar relatórios em formato XML de um projeto, identificados por data.     
-// Contexto:    Gerente deseja gerar um relatório para um dos projetos da qual é administrador.
-//          Pré-Condição: Login, projeto cadastrado.
-// Atores:    Administrador     
-// Recursos:    Sistema, dados do relatório, dados cadastrados do projeto, banco de dados.     
-// Episódios:O sistema fornece para o administrador uma tela onde deverá fornecer os dados
-//          do relatório para sua posterior identificação, como data e versão. 
-//          Para efetivar a geração do relatório, basta clicar em Gerar. 
-//          Restrição: O sistema executará duas validações: 
-//                      - Se a data é válida.
-//                      - Se existem cenários e léxicos em datas iguais ou anteriores.
-//          Gerando com sucesso o relatório a partir dos dados cadastrados do projeto,
-//          o sistema fornece ao administrador a tela de visualização do relatório XML criado, 
-//          incluindo os tags de links internos entre lexicos e cenarios.
-//          Restrição: Recuperar os dados em XML do Banco de dados e os transformar por uma XSL para a exibição.      
+
+// Scenario - Generate XML Reports
+// Purpose: Allow the administrator to generate reports in XML format to a project, identified by date.
+// Context: Manager to generate a report for a project which is administrator.
+// Precondition: Login, registered design.
+// Actors: Administrator
+// Resources: System, report data, data registered design, database.
+// Episodes: The system provides the administrator must provide a screen where data
+// Report for subsequent identification, such as date and version.
+// To execute the report generation, simply click Generate.
+// Restriction: The system performs two validations:
+// - If the date is valid.
+// - If there are scenarios and lexicons on dates equal to or earlier.
+// Generating the report successfully from the data registered design,
+// Provides the system administrator screen display XML report created,
+// Tags including internal links between lexicons and scenarios.
+// Constraint: Recovering data in the XML database and a XSL transform to display.       
 
 function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 {
@@ -57,7 +58,7 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
     
     $xml_resultante = $xml_resultante . "<projeto>\n" ;
 
-    // Seleciona o nome do projeto
+    // Select the project name    
 
     $qry_nome = "SELECT nome
 	                 FROM projeto
@@ -66,7 +67,7 @@ function gerar_xml( $bd, $id_projeto, $data_pesquisa, $flag_formatado)
 
     $xml_resultante = $xml_resultante . "<nome>" . mysql_result ( $tb_nome, 0 ) . "</nome>\n" ;
 
-    // Seleciona os cenários de um projeto.
+    // Select the scenarios of a project.
 
     $qry_cenario = "SELECT id_cenario ,
                                titulo ,

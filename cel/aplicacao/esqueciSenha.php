@@ -32,19 +32,17 @@ login = form.login.value
   <div align="center">
     <?php
 
-// Cen�rio - Lembrar senha 
+// Scenery - Remember password
 
-//Objetivo:   Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:   Sistema est� aberto, Usu�rio esqueceu sua senha Usu�rio na tela de lembran�a de 
-//             senha. 
-//            Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:     Usu�rio, Sistema	
-//Recursos:   Banco de Dados	
-//Epis�dios:  O usu�rio acessa a tela de login do sistema. 
-//            O usu�rio clica no link �Esqueci senha� 
-//            O sistema apresenta uma mensagem na tela, pedindo ao usu�rio que digite o seu 
-//            login na caixa de texto. 
-//            O usu�rio digita o seu login e clica no bot�o Enviar. 
+// Purpose: Allow registered user, you forgot your password, you receive the same emai
+// Context: System is open, User forgot password screen in the User password reminder.
+// Precondition: User has accessed the system
+// Actors: User, System
+// Resource: Database
+// Episodes: The user accesses the login screen of the system.
+// The user clicks the link? Forgot Password?
+// The system displays a message on the screen asking the user to enter the login text box.
+// The user enters his login and click on the Submit button.
              	
 ?>
     <p style="color: green; font-weight: bold; text-align: center">Entre com seu Login:</p>

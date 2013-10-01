@@ -27,6 +27,9 @@ function converte_impactos()
 		print "Nao foi poss&iacute;vel abrir o arquivo !!!($filename)";
 		exit;
 	}
+	{
+		//Nothing to do.
+	}
 	
 	// � importante escrever para o arquivo teste.txt para separar
 	// impactos que est�o num mesmo impacto

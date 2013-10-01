@@ -30,10 +30,10 @@ include("httprequest.inc");
         $id_projeto = $_SESSION['id_projeto_corrente'];
         $id_usuario = $_SESSION['id_usuario_corrente'];
       
-        $r = bd_connect() or die("Erro ao conectar ao SGBD");  
-        $qv = "SELECT * FROM projeto WHERE id_projeto = '$id_projeto' "; 
-        $qvr = mysql_query($qv) or die("Erro ao enviar a query de select no projeto");        
-        $resultArrayProjeto = mysql_fetch_array($qvr);
+        $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");  
+        $query = "SELECT * FROM projeto WHERE id_projeto = '$id_projeto' "; 
+        $ExecuteQuery = mysql_query($query) or die("Erro ao enviar a query de select no projeto");        
+        $resultArrayProjeto = mysql_fetch_array($ExecuteQuery);
         $nome_Projeto       = $resultArrayProjeto[1];
         $data_Projeto       = $resultArrayProjeto[2];
         $descricao_Projeto  = $resultArrayProjeto[3];  

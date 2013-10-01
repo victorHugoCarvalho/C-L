@@ -2,23 +2,22 @@
 include("bd.inc");
 include("httprequest.inc");
 
-// Cen�rio - Lembrar senha 
+// Scenery - Remember password
 
-//Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema est� aberto, Usu�rio esqueceu sua senha Usu�rio na tela de lembran�a de 
-//           senha. 
-//           Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:	 Usu�rio, Sistema	
-//Recursos:	 Banco de Dados	
-//Epis�dios: O sistema verifica se o login informado � cadastrado no banco de dados.     
-//           Se o login informado for cadastrado, sistema consulta no banco de dados qual 
-//           o email e senha do login informado.           
+// Purpose: Allow registered user, you forgot your password, you receive the same email
+// Context: System is open, User User Forgot password reminder on screen password.
+// Precondition: User has accessed the system
+// Actors: User, System
+// Resource: Database
+// Episodes: The system checks if the login entered is registered in the database.
+// If the login entered is registered, the system queries the database 
+// which the login email and password entered.         
  
-$r = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
-$q = "SELECT * FROM usuario WHERE login='$login'";
+$query = "SELECT * FROM usuario WHERE login='$login'";
 
-$qrr = mysql_query($q) or die("Erro ao executar a query");
+$ExecuteQuery = mysql_query($query) or die("Erro ao executar a query");
 
 
 ?>
@@ -30,7 +29,7 @@ $qrr = mysql_query($q) or die("Erro ao executar a query");
 
 <body bgcolor="#FFFFFF">
 <?php
-if ( !mysql_num_rows($qrr) )
+if ( !mysql_num_rows($ExecuteQuery) )
 {
 
 ?>
@@ -42,31 +41,25 @@ if ( !mysql_num_rows($qrr) )
 }
 else
 {
-   $row = mysql_fetch_row($qrr);
+   $row = mysql_fetch_row($ExecuteQuery);
    $nome  = $row[1];
    $mail  = $row[2];
    $login = $row[3];
    $senha = $row[4];
    
-// Cen�rio - Lembrar senha 
+    // Scenery - Remember password
 
-//Objetivo:	 Permitir o usu�rio cadastrado, que esqueceu sua senha,  receber  a mesma por email	
-//Contexto:	 Sistema est� aberto, Usu�rio esqueceu sua senha Usu�rio na tela de lembran�a de 
-//           senha. 
-//           Pr�-Condi��o: Usu�rio ter acessado ao sistema	
-//Atores:	 Usu�rio, Sistema	
-//Recursos:	 Banco de Dados	
-//Epis�dios: Sistema envia a senha para o email cadastrado correspondente ao login que 
-//           foi informado pelo usu�rio.     
-//           Caso n�o exista nenhum login cadastrado igual ao informado pelo usu�rio, 
-//           sistema exibe mensagem de erro na tela dizendo que login � inexistente, e 
-//           exibe um bot�o voltar, que redireciona o usu�rio para a tela de login novamente.
-
-   //$Vemail = ini_set("SMTP","mail.gmail.com");  
-
-   //require("class.phpmailer.php");
-   // Seta o SMTP sem alterar o config
-   //ini_set("SMTP","mail.hotpop.com");
+    // Purpose: Allow registered user, you forgot your password, you receive the same email
+    // Context: System is open, User User Forgot password reminder on screen
+    // Password.
+    // Precondition: User has accessed the system
+    // Actors: User, System
+    // Resource: Database
+    // Episodes: System sends the password to the email address corresponding to the login that
+    // Was entered by the user.
+    // If no registered login equal to the user entered,
+    // System displays error message on the screen saying that login does not exist, and
+    // Displays a back button, which redirects the user to the login screen again.
    
    //Funcao que gera uma senha randomica de 6 caracteres
 

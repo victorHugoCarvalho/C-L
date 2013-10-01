@@ -29,13 +29,13 @@ $XML = "";
 //Epis�dios:  Restri��o: Recuperar os dados em XML do Banco de dados e os transformar
 //                       por uma XSL para a exibi��o.
 
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 if (isset($apaga))
 {
 	if ( $apaga )
 	{
-		$qApaga = "DELETE FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
-		$qrrApaga = mysql_query($qApaga);	
+		$DeleteQuery = "DELETE FROM publicacao WHERE id_projeto = '$id_projeto' AND versao = '$versao' ";
+		$DeleteExecuteQuery = mysql_query($DeleteQuery);	
 	}
 	else
 	{

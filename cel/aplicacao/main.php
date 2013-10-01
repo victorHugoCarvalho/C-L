@@ -5,12 +5,12 @@ include_once("CELConfig/CELConfig.inc");
 
 //$_SESSION['site'] = 'http://pes.inf.puc-rio.br/pes03_1_1/Site/desenvolvimento/teste/';       
 //$_SESSION['site'] = 'http://139.82.24.189/cel_vf/aplicacao/teste/';
-/* URL do diretorio contendo os arquivos de DAML */
+/* URL of the directory containing the files DAML */
 $_SESSION['site'] = "http://" . CELConfig_ReadVar("HTTPD_ip") . "/" . CELConfig_ReadVar("CEL_dir_relativo") . CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
 
 //$_SESSION['diretorio'] = "/home/local/pes/pes03_1_1/Site/desenvolvimento/teste/";        
 //$_SESSION['diretorio'] = "teste/";        
-/* Caminho relativo ao CEL do diretorio contendo os arquivos de DAML */
+/* Relative path to the CEL of the directory containing the files DAML */
 $_SESSION['diretorio'] = CELConfig_ReadVar("DAML_dir_relativo_ao_CEL") ;
 
 include("funcoes_genericas.php");    
@@ -18,10 +18,10 @@ include("httprequest.inc");
 include_once("coloca_links.php");
 
 
-// Checa se o usu�rio foi autenticado
-chkUser("index.php");   
 
-//Recebe parametro da heading.php. Sem isso vai travar ja que a variavel nao foi inicializada 
+chkUser("index.php");   	// checks whether the user has been authenticated  
+
+//Gets the parameter heading.php. No it will hang because the variable was not initialized
 if( isset( $_GET['id_projeto']))    
 {    
     $id_projeto = $_GET['id_projeto'];    
@@ -48,7 +48,7 @@ else
         <LINK rel="stylesheet" type="text/css" href="style.css">
         <script language="javascript1.3"> 
 
-        // Funcoes que serao usadas quando o script for chamado atraves dele proprio ou da arvore 
+      	//Functions that will be used when the script is called through his own or tree 
         function reCarrega(URL)
         { 
             document.location.replace(URL); 
@@ -856,10 +856,10 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
 { 
 
-    // Foi passada uma variavel $id_projeto. Esta variavel deve conter o id de um 
-    // projeto que o usuario esteja cadastrado. Entretanto, como a passagem eh 
-    // feita usando JavaScript (no heading.php), devemos checar se este id realmente 
-    // corresponde a um projeto que o usuario tenha acesso (seguranca). 
+// 	     Was passed a variable $ id_project. This variable should contain the id of a
+//       Project that the User is registered. However, as the passage is
+//       Done using JavaScript (in heading.php), we check if this id really
+//       Corresponds to a project that the User has access (security). 
     check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");    
 
     // Seta uma variavel de sessao correspondente ao projeto atual 

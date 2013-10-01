@@ -13,7 +13,7 @@ include("funcoes_genericas.php");
 </head><body>
 <?php
 
-$bd_recupera = bd_connect() or die("Erro ao conectar ao SGBD");
+$connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
 
 //Cen�rio - Escolher Projeto
 

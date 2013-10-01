@@ -10,9 +10,11 @@ if (!(class_exists("PGDB"))) {
 }
 */
 
-/* chkUser(): checa se o usuï¿½rio acessando foi autenticado (presenï¿½a da variï¿½vel de sessï¿½o
-$id_usuario_corrente). Caso ele jï¿½ tenha sido autenticado, continua-se com a execuï¿½ï¿½o do
-script. Caso contrï¿½rio, abre-se uma janela de logon. */
+// chkUser(): checa se o usuário acessando foi autenticado checks whether the user has been authenticated  
+// presence of the session variable $ id_current_user). If it has
+// already been authenticated, continues with the execution of the script.
+// Otherwise, it opens a logon window. 
+
 if (!(function_exists("chkUser"))) 
 {
     function chkUser($url)
