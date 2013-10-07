@@ -10,7 +10,7 @@ if (!(class_exists("PGDB"))) {
 }
 */
 
-// chkUser(): checa se o usuário acessando foi autenticado checks whether the user has been authenticated  
+// chkUser(): checa se o usuï¿½rio acessando foi autenticado checks whether the user has been authenticated  
 // presence of the session variable $ id_current_user). If it has
 // already been authenticated, continues with the execution of the script.
 // Otherwise, it opens a logon window. 
@@ -201,17 +201,17 @@ else
 }
 
 
-if (!(function_exists("recarrega"))) 
+if (!(function_exists("reload"))) 
 {
-    function recarrega($url) 
+    function reload($url) 
     {
 		?>
-<script language="javascript1.3">
+		<script language="javascript1.3">
 		
 		location.replace('<?=$url?>');
 		
 		</script>
-<?php
+		<?php
     }
 }
 else

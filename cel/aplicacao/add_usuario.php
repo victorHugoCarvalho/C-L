@@ -9,7 +9,9 @@ session_start();
 include("funcoes_genericas.php");
 include_once("bd.inc");
 
-$firstTime = "true";
+define('TRUE', 'true');
+
+$firstTime = TRUE;
 
 include("httprequest.inc");
 
@@ -19,45 +21,45 @@ if (isset($submit)) // Called by the submit button
     // ** Scenario "Adding independet user" **
     // The system checks if all the fields are filled. If any field is not filled, 
     //   the system warns the user that all the field should be filled.  
-    if ($nome == "" || $email == "" || $login == "" || $senha == "" || $senha_conf == "")
+    if ($name == "" || $email == "" || $login == "" || $password == "" || $confimationPassword == "")
 	{
-        $p_style = "color: red; font-weight: bold";
-        $p_text = "Por favor, preencha todos os campos.";
-        recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&senha=$senha&senha_conf=$senha_conf&novo=$novo");
+        $pageStyle = "color: red; font-weight: bold";
+        $pageText = "Por favor, preencha todos os campos.";
+        reload("?pageStyle=$pageStyle&pageText=$pageText&name=$name&email=$email&login=$login&password=$password&confimationPassword=$confimationPassword&new=$new");
     }
     else
     {
     	// Check if the passwords typed by the user are equal
-        if ($senha != $senha_conf)
+        if ($password != $confimationPassword)
         {
-            $p_style = "color: red; font-weight: bold";
-            $p_text = "Senhas diferentes. Favor preencher novamente as senhas.";
-            recarrega("?p_style=$p_style&p_text=$p_text&nome=$nome&email=$email&login=$login&novo=$novo");
+            $pageStyle = "color: red; font-weight: bold";
+            $pageText = "Senhas diferentes. Favor preencher novamente as senhas.";
+            reload("?pageStyle=$pageStyle&pageText=$pageText&nome=$name&email=$email&login=$login&new=$new");
         }
         else
         {
 
-            // ** Scenery "Add user independent" **
-//             Objective: Allow a user who is not registered as an administrator, register
-//                 		  with the administrator profile.
-//      	   Contexto: User want to register as an administrator.
-//                       User onscreen registration user.
-//      	   Precondition: User has accessed the system.
-//      	   Actors: User, System
-//      	   Features: Interface, Database
-//      	   Episodes: The system returns to the user interface with fields for entering
-//                 		 a Name, email, login, password, and password confirmation.
-//                 		 The user fills in the fields and click on submit.
-//                 		 The system then checks to see if all fields are filled.
-//                 		 -If any field is no filled, the system warns you that all
-//                  	 fields must be filled.
-//                 		 -If all fields are completed, the system checks in the data bank to see if this login exists 
-//                 		 -If the typed login already exists, the system returns the same page warning to the user that he must choose another login.
+            // Scenario - Add user independent
+			// Objective: Allow a user who is not registered as an administrator, register
+			//   with the administrator profile.
+			// Context: User want to register as an administrator.
+			// User onscreen registration user.
+			// Pre-conditions: User has accessed the system.
+			// Actors: User, System
+			// Resources: Interface, Database
+			// Episodes: The system returns to the user interface with fields for entering
+			//   a Name, email, login, password, and password confirmation.
+			//   The user fills in the fields and click on submit.
+			//   The system then checks to see if all fields are filled.
+			//     -If any field is no filled, the system warns you that all
+			//        fields must be filled.
+			//     -If all fields are completed, the system checks in the data bank to see if this login exists 
+			//     -If the typed login already exists, the system returns the same page warning to the user that he must choose another login.
 
             $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
             $query = "SELECT id_usuario FROM usuario WHERE login = '$login'";
             $SendQuery = mysql_query($query) or die("Erro ao enviar a query");
-            if (mysql_num_rows($SendQuery)) // Se ja existe algum usuario com este login
+            if (mysql_num_rows($SendQuery)) // If there is any user with this login
             {        
 				// Scenaro - Add User
 				
@@ -74,32 +76,32 @@ if (isset($submit)) // Called by the submit button
 
                 ?>
 				<script language="JavaScript">
-                    alert ("Login j&aacute; existente no sistema. Favor escolher outro login.")
+                    alert ("Login j\u00e1 existente no sistema. Favor escolher outro login.")
                 </script>
 				<?php
-                recarrega("?novo=$novo");
+                reload("?new=$new");
             }
-            else // Passed through all the test. Can be added to the DB
+            else // Passed through all the tests. Can be added to the DB
 			{
 				/* Replace all occurences of ">" and "<" for " " */
-				$nome  = str_replace( ">" , " " , str_replace ( "<" , " " , $nome  ) ) ;
+				$name  = str_replace( ">" , " " , str_replace ( "<" , " " , $name  ) ) ;
 				$login = str_replace( ">" , " " , str_replace ( "<" , " " , $login ) ) ;
 				$email = str_replace( ">" , " " , str_replace ( "<" , " " , $email ) ) ;
 				
 				// Encrypting the password
-				$senha = md5($senha);
-                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$nome', '$login', '$email', '$senha')";
-                mysql_query($query) or die("Erro ao cadastrar o usuario");
-                recarrega("?cadastrado=&novo=$novo&login=$login");
+				$password = md5($password);
+                $query = "INSERT INTO usuario (nome, login, email, senha) VALUES ('$name', '$login', '$email', '$password')";
+                mysql_query($query) or die("Erro ao cadastrar o usu\u00e1rio");
+                reload("?&registered=$registered&new=$new&login=$login");
             }
         }   // else
     }   // else
-} else if (isset($cadastrado))
+} else if (isset($registered))
 {
-    // Registration completed. Dependendo de onde o usuario veio,
-    // devemos manda-lo para um lugar diferente.
+    // Registration completed. Depending where the user came from,
+    // whe should send him to a different place
 
-    if ($novo == "true") // If the user came from the login screen
+    if ($new == TRUE) // If the user came from the login screen
     {
 
         // ** Scenario "Adding a new independent user" **
@@ -121,12 +123,12 @@ if (isset($submit)) // Called by the submit button
 		//     in the database as a manager, enabling:
 		//       - Redirect him to the ADD NEW PROJECT screen
 
-        $id_usuario_corrente = simple_query("id_usuario", "usuario", "login = '$login'");
-        $_SESSION['id_usuario_corrente'] = $id_usuario_corrente;
+        $idCurrentUser = simple_query("id_usuario", "usuario", "login = '$login'");
+        $_SESSION['id_usuario_corrente'] = $idCurrentUser;
 		?>
 		<script language="javascript1.3">
 
-			// Redireciona o usuario para a parte de inclusao de projetos
+			// Redirect the user to the registration project page
 			opener.location.replace('index.php');
 			open('add_projeto.php', '', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');
 			self.close();
@@ -142,18 +144,18 @@ if (isset($submit)) // Called by the submit button
 	
 	    // Database connection
 	    $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");
-	    // $login eh o login do usuario incluido, passado na URL
-	    $id_usuario_incluido = simple_query("id_usuario", "usuario", "login = '$login'");
+	    // $login is the user login, passed trough the URL
+	    $idRegisteredUser = simple_query("id_usuario", "usuario", "login = '$login'");
 	    $query = "INSERT INTO participa (id_usuario, id_projeto)
-	          VALUES ($id_usuario_incluido, " . $_SESSION['id_projeto_corrente'] . ")";
+	          VALUES ($idRegisteredUser, " . $_SESSION['id_projeto_corrente'] . ")";
 	    mysql_query($query) or die("Erro ao inserir na tabela participa");
 	
-	    $nome_usuario = simple_query("nome", "usuario", "id_usuario = $id_usuario_incluido");
-	    $nome_projeto = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
+	    $userName = simple_query("nome", "usuario", "id_usuario = $idRegisteredUser");
+	    $projectName = simple_query("nome", "projeto", "id_projeto = " . $_SESSION['id_projeto_corrente']);
 		?>
 		<script language="javascript1.3">
 		
-			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu&aacute;rio <b><?=$nome_usuario?></b> cadastrado e inclu&iacute;do no projeto <b><?=$nome_projeto?></b></p>');
+			document.writeln('<p style="color: blue; font-weight: bold; text-align: center">Usu&aacute;rio <b><?=$userName?></b> cadastrado e inclu&iacute;do no projeto <b><?=$projectName?></b></p>');
 			document.writeln('<p align="center"><a href="javascript:self.close();">Fechar</a></p>');
 		
 		</script>
@@ -162,10 +164,10 @@ if (isset($submit)) // Called by the submit button
 }
 else // Script called normally
 {    
-    if (empty($p_style))
+    if (empty($pageStyle))
 	{
-        $p_style = "color: green; font-weight: bold";
-        $p_text = "Favor preencher os dados abaixo:";
+        $pageStyle = "color: green; font-weight: bold";
+        $pageText = "Favor preencher os dados abaixo:";
     }
     else
     {
@@ -176,9 +178,9 @@ else // Script called normally
     {
          $email ="";
 	     $login ="";
-	     $nome  ="";
-	     $senha = "";
-         $senha_conf = "";
+	     $name  ="";
+	     $password = "";
+         $confimationPassword = "";
 
     }
     else
@@ -236,14 +238,14 @@ else // Script called normally
 		    //-->
 	
 		</SCRIPT>
-		<p style="<?=$p_style?>">
-			<?=$p_text?>
+		<p style="<?=$pageStyle?>">
+			<?=$pageText?>
 		</p>
-		<form action="?novo=<?=$novo?>" method="post">
+		<form action="?new=<?=$new?>" method="post">
 			<table>
 	    		<tr>
 	      			<td>Nome:</td>
-	      			<td colspan="3"><input name="nome" maxlength="255" size="48" type="text" value="<?=$nome?>"></td>
+	      			<td colspan="3"><input name="name" maxlength="255" size="48" type="text" value="<?=$name?>"></td>
 	    		</tr>
 	    		<tr>
 	      			<td>E-mail:</td>
@@ -255,9 +257,9 @@ else // Script called normally
 	    		</tr>
 	    		<tr>
 	      			<td>Senha:</td>
-	      			<td><input name="senha" maxlength="32" size="16" type="password" value="<?=$senha?>"></td>
+	      			<td><input name="password" maxlength="32" size="16" type="password" value="<?=$password?>"></td>
 	      			<td>Senha (confirma&ccedil;&atilde;o):</td>
-	      			<td><input name="senha_conf" maxlength="32" size="16" type="password" value=""></td>
+	      			<td><input name="confimationPassword" maxlength="32" size="16" type="password" value=""></td>
 	    		</tr>
 	    		<tr>
 		      		<?php
