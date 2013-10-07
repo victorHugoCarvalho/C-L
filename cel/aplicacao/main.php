@@ -817,14 +817,17 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
         </table>
 <br>
 
-<!--                     TERCEIRA PARTE                                     -->
-define('CENARIO', 'c');
-define('LEXICO', 'l');
-define('RELACAO', 'oc');
-define('CONCEITOS', 'or');
-define('AXIOMA', 'oa');
 
-<?php    
+
+<!--                     TERCEIRA PARTE                                     -->
+
+<?php
+	define('CENARIO', 'c');
+	define('LEXICO', 'l');
+	define('RELACAO', 'oc');
+	define('CONCEITOS', 'or');
+	define('AXIOMA', 'oa');
+ 
     if ($t == CENARIO)
 	{ 
 		print "<h3>Cen&aacute;rios que referenciam este cen&aacute;rio</h3>";   
