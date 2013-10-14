@@ -2,6 +2,7 @@
 
 session_start();
 
+include_once ("dataBase/dataBaseProject.php");
 include("funcoes_genericas.php");
 include_once("CELConfig/CELConfig.inc");
 
@@ -18,7 +19,7 @@ include_once("CELConfig/CELConfig.inc");
 
 	$id_projeto = $_SESSION['id_projeto_corrente'];
         
-    removeProjeto($id_projeto);    
+    removeProject($id_projeto);    
 ?>
 <html>
 <script language="javascript1.3">
