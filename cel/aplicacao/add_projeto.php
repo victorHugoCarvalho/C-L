@@ -2,6 +2,7 @@
 
 session_start(); 
 
+include_once ("dataBase/dataBaseProject.php");
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
@@ -30,7 +31,7 @@ chkUser("index.php");        // checks whether the user has been authenticated
 // Called by the button submit
 if (isset($submit))
 {    
-	$idAddedProject = addProject($name, $description);
+	$idAddedProject = includeProject($name, $description);
     
 	// inserts in the table participa
     
