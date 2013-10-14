@@ -72,75 +72,75 @@ else
 	//Nothing to do.
 }
 
-function removeProject($id_projeto)
+function removeProject($idProject)
 {
 	$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//Remove os pedidos de cenario
-	$queryVerification = "Delete FROM pedidocen WHERE id_projeto = '$id_projeto' ";
-	$deletaPedidoCenario = mysql_query($queryVerification) or die("Erro ao apagar pedidos de cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	// Remove scenario requests
+	$queryVerification = "Delete FROM pedidocen WHERE id_projeto = '$idProject' ";
+	$removeScenarioRequest = mysql_query($queryVerification) or die("Erro ao apagar pedidos de cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//Remove os pedidos de lexico
-	$queryVerification = "Delete FROM pedidolex WHERE id_projeto = '$id_projeto' ";
-	$deletaPedidoLexico = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	// Remove lexicon requests
+	$queryVerification = "Delete FROM pedidolex WHERE id_projeto = '$idProject' ";
+	$removeLexiconRequest = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//Remove os lexicos //verificar lextolex!!!
-	$queryVerification = "SELECT * FROM lexico WHERE id_projeto = '$id_projeto' ";
+	// Remove lexicons
+	$queryVerification = "SELECT * FROM lexico WHERE id_projeto = '$idProject' ";
 	$queryVerificationResult = mysql_query($queryVerification) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
 	while ($result = mysql_fetch_array($queryVerificationResult))
 	{
-		$id_lexico = $result['id_lexico']; //seleciona um lexico
+		// select a lexicon
+		$idLexicon = $result['id_lexico'];
 
-		$queryVerification = "Delete FROM lextolex WHERE id_lexico_from = '$id_lexico' OR id_lexico_to = '$id_lexico' ";
-		$deletaLextoLe = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryVerification = "Delete FROM lextolex WHERE id_lexico_from = '$idLexicon' OR id_lexico_to = '$idLexicon' ";
+		$removeLextoLe = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-		$queryVerification = "Delete FROM centolex WHERE id_lexico = '$id_lexico'";
-		$deletacentolex = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryVerification = "Delete FROM centolex WHERE id_lexico = '$idLexicon'";
+		$removecentolex = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-		//$queryVerification = "Delete FROM sinonimo WHERE id_lexico = '$id_lexico'";
-		//$deletacentolex = mysql_query($queryVerification) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		//$queryVerification = "Delete FROM sinonimo WHERE id_lexico = '$idLexicon'";
+		//$removecentolex = mysql_query($queryVerification) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-		$queryVerification = "Delete FROM sinonimo WHERE id_projeto = '$id_projeto'";
-		$deletacentolex = mysql_query($queryVerification) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
+		$queryVerification = "Delete FROM sinonimo WHERE id_projeto = '$idProject'";
+		$removecentolex = mysql_query($queryVerification) or die("Erro ao apagar sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 	}
 
-	$queryVerification = "Delete FROM lexico WHERE id_projeto = '$id_projeto' ";
-	$deletaLexico = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	$queryVerification = "Delete FROM lexico WHERE id_projeto = '$idProject' ";
+	$removeLexicon = mysql_query($queryVerification) or die("Erro ao apagar pedidos do lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//remove os cenarios
-	$queryVerification = "SELECT * FROM cenario WHERE id_projeto = '$id_projeto' ";
+	// Remove scenarios
+	$queryVerification = "SELECT * FROM cenario WHERE id_projeto = '$idProject' ";
 	$queryVerificationResult = mysql_query($queryVerification) or die("Erro ao enviar a query de select no cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-	$resultArrayCenario = mysql_fetch_array($queryVerificationResult);
+	$resultArrayScenario = mysql_fetch_array($queryVerificationResult);
 
 	while ($result = mysql_fetch_array($queryVerificationResult))
 	{
-		$id_lexico = $result['id_cenario']; //seleciona um lexico
+		// Select a scenario
+		$idScenario = $result['id_cenario'];
 
-		$queryVerification = "Delete FROM centocen WHERE id_cenario_from = '$id_cenario' OR id_cenario_to = '$id_cenario' ";
-		$deletaCentoCen = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryVerification = "Delete FROM centocen WHERE id_cenario_from = '$idScenario' OR id_cenario_to = '$idScenario' ";
+		$removeCentoCen = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-		$queryVerification = "Delete FROM centolex WHERE id_cenario = '$id_cenario'";
-		$deletaLextoLe = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+		$queryVerification = "Delete FROM centolex WHERE id_cenario = '$idScenario'";
+		$removeLextoLe = mysql_query($queryVerification) or die("Erro ao apagar pedidos do centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
 
 	}
 
-	$queryVerification = "Delete FROM cenario WHERE id_projeto = '$id_projeto' ";
-	$deletaLexico = mysql_query($queryVerification) or die("Erro ao apagar pedidos do cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	$queryVerification = "Delete FROM cenario WHERE id_projeto = '$idProject' ";
+	$removeLexicon = mysql_query($queryVerification) or die("Erro ao apagar pedidos do cenario<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//remover participantes
-	$queryVerification = "Delete FROM participa WHERE id_projeto = '$id_projeto' ";
-	$deletaParticipantes = mysql_query($queryVerification) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	// Remove participants
+	$queryVerification = "Delete FROM participa WHERE id_projeto = '$idProject' ";
+	$removeParticipants = mysql_query($queryVerification) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//remover publicacao
-	$queryVerification = "Delete FROM publicacao WHERE id_projeto = '$id_projeto' ";
-	$deletaPublicacao = mysql_query($queryVerification) or die("Erro ao apagar no publicacao<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+	// Remove publication remover publicacao
+	$queryVerification = "Delete FROM publicacao WHERE id_projeto = '$idProject' ";
+	$removePublication = mysql_query($queryVerification) or die("Erro ao apagar no publicacao<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
-	//remover projeto
-	$queryVerification = "Delete FROM projeto WHERE id_projeto = '$id_projeto' ";
-	$deletaProjeto= mysql_query($queryVerification) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-
+	// Remove project
+	$queryVerification = "Delete FROM projeto WHERE id_projeto = '$idProject' ";
+	$removeProject = mysql_query($queryVerification) or die("Erro ao apagar no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 }
 ?>
