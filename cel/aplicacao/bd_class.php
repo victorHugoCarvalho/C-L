@@ -85,42 +85,41 @@ class PGDB extends Abstract_DB
 	}
 
     function _PGDB()
-	{
+    {
     	$this->close();
-	}
+    }
 
     function open($dbname, $user, $passwd, $host, $port)
-	{
+    {
     	$this->db_linkid = bd_connect() or die("Erro na conex&atilde;o ao BD : " . mysql_error()) ;
 
-		if ($this->db_linkid)
-		{
-        	return $this->db_linkid;
-		}
+        if ($this->db_linkid)
+        {
+                return $this->db_linkid;
+        }
         else
         {
         	return(FALSE);
-		}
-	}
+        }
+    }
 
-	function close()
+    function close()
     {
-    	return mysql_close($this->db_linkid);
-	}
+        return mysql_close($this->db_linkid);
+    }
 }
 
 class QUERY
 {
 
-##PRIVATE##
-	var $dbobject;
+    ##PRIVATE##
+    var $dbobject;
     var $ntuples;
     var $operationresult;
     var $resultset;
     var $currentrow = 0;
 
-##PUBLIC##
-
+    ##PUBLIC##
     function QUERY($pdbobject)
     {
     	if ($pdbobject)
@@ -132,82 +131,82 @@ class QUERY
     		//Nothing to do.
     	}
     	
-	}
+    }
 
     function associate($pdbobject)
     {
     	$this->dbobject = $pdbobject;
-	}
+    }
 
     function execute($querystring)
     {
-		$this->operationresult = mysql_query($querystring) or die(mysql_error() . "<br>" . $querystring);
+        $this->operationresult = mysql_query($querystring) or die(mysql_error() . "<br>" . $querystring);
         return $this->operationresult;
-	}
+    }
 
-	function getntuples()
+    function getntuples()
     {
     	$this->ntuples = mysql_numrows($this->operationresult);
         return $this->ntuples;
-	}
+    }
 
     function getfieldname($fieldnumber)
     {
     	return mysql_fieldname($this->operationresult, $fieldnumber);
-	}
+    }
 
-	function readrow()
+    function readrow()
     {
     	$this->resultset = mysql_fetch_array($this->operationresult);
         return ($this->currentresultset = $this->resultset);
-	}
+    }
 
     function gofirst()
     {
     	$this->currentrow = 0;
         return $this->readrow();
-	}
+    }
 
     function golast()
     {
     	$this->currentrow = ($this->getntuples()) - 1;
         return $this->readrow();
-	}
+    }
 
-   	function getLastId()
+    function getLastId()
     {
     	return mysql_insert_id($this->dbobject->db_linkid);
     }
 
 
-	function gonext()
+    function gonext()
     {
     	$this->currentrow++;
     	
         if ($this->currentrow < $this->getntuples())
         {
         	$this->resultset = $this->readrow();
-			return $this->resultset;
-		}
+                return $this->resultset;
+        }
         else
         {
         	return "LAST_RECORD_REACHED";
         }
-	}
+    }
 
     function goprevious()
     {
     	$this->currentrow--;
         if ($this->currentrow >= 0) 
         {
-        	$this->resultset = $this->readrow();
-            return $this->resultset;
-		}
+                $this->resultset = $this->readrow();
+                return $this->resultset;
+        }
         else
         {
         	return "FIRST_RECORD_REACHED";
         }
-	}
+    }
         
 
     function beginTransaction()
@@ -222,9 +221,9 @@ class QUERY
     	}
     	
     	return true;
-	}
+    }
 
-	function commitTransaction()
+    function commitTransaction()
     {
     	if (!$this->execute("COMMIT"))
     	{
@@ -238,7 +237,7 @@ class QUERY
         return true;
 	}
 
-	function rollbackTransaction()
+    function rollbackTransaction()
     {
     	if (!$this->execute("ROLLBACK"))
     	{
