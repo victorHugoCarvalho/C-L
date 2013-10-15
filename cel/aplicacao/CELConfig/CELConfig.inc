@@ -11,7 +11,7 @@
 /* Esta fun��o retorna o valor contido na variavel $var, registrada no arquivo $config_file */
 function CELConfig_ReadVar( $var )
 {
-	$config_file = "CELConfig/config2.conf" ;
+	$config_file = "config2.conf" ;
 
 	/* Parse do arquivo de configura��es, sem as se��es */
 	$array_configuracoes = parse_ini_file( $config_file ) ;
