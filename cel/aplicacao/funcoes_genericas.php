@@ -468,9 +468,9 @@ if (!(function_exists("adicionar_lexico")))
         {    // 2  - Para todos os cenarios
         
            $nomeEscapado = escapa_metacaracteres( $nome );
-		   $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
+           $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-            if( (preg_match($regex, $result['objetivo']) != 0) ||
+            if ((preg_match($regex, $result['objetivo']) != 0) ||
                 (preg_match($regex, $result['contexto']) != 0) ||
                 (preg_match($regex, $result['atores']) != 0)   ||
                 (preg_match($regex, $result['recursos']) != 0) ||

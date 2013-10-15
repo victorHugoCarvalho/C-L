@@ -30,9 +30,9 @@ session_start();
 			//Nothing to do.
 		}
 	
-		foreach ($array1 as $key=>$elem)
+		foreach ($array1 as $key=>$elemento)
 		{
-			if ($elem->verbo != $array2[$key]->verbo)
+			if ($elemento->verbo != $array2[$key]->verbo)
 			{
 				return FALSE;
 			}
@@ -57,43 +57,43 @@ session_start();
 	* Procurar sua chave na lista de conceitos.
 	* Adicionar a chave como um subconceito do conceito.
 	*/
-	function montar_hierarquia($conc, $nova_lista, $list)
+	function montar_hierarquia($conceito, $nova_lista, $lista)
 	{
-		foreach ($nova_lista as $subcon)
+		foreach ($nova_lista as $subconceito)
 		{
-			$key = existe_conceito($subcon, $list);
-			$conc->subconceitos[] = $subcon;
+			$key = existe_conceito($subconceito, $lista);
+			$conceito->subconceitos[] = $subconceito;
 		}
 	}
 	
 	/*
-	Cenario:	Traduzir os termos do lexico classificados como sujeito e objeto.
-	Objetivo:	Traduzir os termos do lexico classificados como sujeito e objeto.
-	Contexto:	Algoritmo de tradu��o iniciado.
-	Atores:		Usuario.
-	Recursos:	Sistema, lista de sujeito e objetos, lista de conceitos, lista de relacoes.
-	Episodios:
-	- Para cada elemento da lista de sujeito e objetos
-	* Criar novo conceito com o mesmo nome e a descricao igual a nocao do elemento.
-	* Para cada impacto do elemento
-	. Verificar com o usuario a existencia do impacto na lista de relacoes.
-	. Caso n�o exista, incluir este impacto na lista de relacoes.
-	. Incluir esta relacao na lista de relacoes do conceito.
-	. Descobrir
-	* Incluir o conceito na lista de conceitos.
-	* Verificar consistencia.
+	Scenario:	Translate the terms of lexical classified as subject and object.
+	Objective:	Translate the terms of lexical classified as subject and object.
+	Context:	Translation algorithm started.
+	Actors:		User.
+	Resources:	System, list of subject and object, the list of concepts, list of relations.
+	Episodes:
+	- For each element of the list of subjects and objects
+	* Create new concept with the same name and description like the notion of the element.
+	* For each impact of the element.
+	. Check with the User the existence of the impact on the list of relations.
+	. If not exists, this impact include the list of relations.
+	. Include this list in relation to the concept relations.
+	. Discover
+	* Include the concept in the list of concepts.
+	* Check consistency.
 	*/
 	function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes, $axiomas)
 	{
 	
 		for ( ; $_SESSION["index1"] < count($lista_de_sujeito_e_objeto); ++$_SESSION["index1"] )
 		{
-			$suj = $lista_de_sujeito_e_objeto[$_SESSION["index1"]];
+			$sujeito = $lista_de_sujeito_e_objeto[$_SESSION["index1"]];
 	
 			if (!isset( $_SESSION["conceito"]))
 			{
 				$_SESSION["salvar"] = "TRUE";
-				$_SESSION["conceito"] = new conceito($suj->nome, $suj->nocao);
+				$_SESSION["conceito"] = new conceito($sujeito->nome, $sujeito->nocao);
 				$_SESSION["conceito"]->namespace = "proprio";
 			}
 			else
@@ -102,11 +102,11 @@ session_start();
 			}
 	
 	
-			for ( ; $_SESSION["index2"] < count($suj->impacto); ++$_SESSION["index2"])
+			for ( ; $_SESSION["index2"] < count($sujeito->impacto); ++$_SESSION["index2"])
 			{
-				$imp = $suj->impacto[$_SESSION["index2"]];
+				$imperativo = $sujeito->impacto[$_SESSION["index2"]];
 	
-				if (trim($imp) == "")
+				if (trim($imperativo) == "")
 				{
 					continue;
 				}
@@ -140,15 +140,15 @@ session_start();
 					{
 						asort($relacoes);
 						$_SESSION["lista"] = $relacoes;
-						$_SESSION["nome1"] = $imp;
-						$_SESSION["nome2"] = $suj;
+						$_SESSION["nome1"] = $imperativo;
+						$_SESSION["nome2"] = $sujeito;
 						$_SESSION["job"] = "exist";
 	
 						?>
-	<SCRIPT language='javascript'>
+                                                <SCRIPT language='javascript'>
 							document.location = "auxiliar_interface.php";
 						</SCRIPT>
-	<?php
+                                                <?php
 	
 						exit();
 					}
@@ -239,15 +239,15 @@ session_start();
 							asort($conceitos);
 							$_SESSION["lista"] = $conceitos;
 							$_SESSION["nome1"] = $relacoes[$indice];
-							$_SESSION["nome2"] = $suj->nome;
-							$_SESSION["nome3"] = $imp;
+							$_SESSION["nome2"] = $sujeito->nome;
+							$_SESSION["nome3"] = $imperativo;
 							$_SESSION["job"] = "insert_relation";
 							
 							?>
-	<SCRIPT language='javascript'>
+                                                        <SCRIPT language='javascript'>
 								document.location = "auxiliar_interface.php";
 							</SCRIPT>
-	<?php
+                                                	<?php
 	
 							exit();
 						}
@@ -259,9 +259,10 @@ session_start();
 	
 							if ($_POST["existe"] == "FALSE" )
 							{
-								$conc = strtolower($_POST["nome"]);
+								$conceito = strtolower($_POST["nome"]);
 	
-								if ((count($_SESSION["predicados_selecionados"]) != 0) && (array_search( $conc, $_SESSION["predicados_selecionados"] ) !== null))
+								if ((count($_SESSION["predicados_selecionados"]) != 0) &&
+                                                                    (array_search( $conceito, $_SESSION["predicados_selecionados"] ) !== null))
 								{
 									continue;
 								}
@@ -270,15 +271,15 @@ session_start();
 									//Nothing to do.
 								}
 								
-								$_SESSION["predicados_selecionados"][] = $conc;
+								$_SESSION["predicados_selecionados"][] = $conceito;
 	
-								if (existe_conceito($conc, $_SESSION['lista_de_conceitos']) == -1)
+								if (existe_conceito($conceito, $_SESSION['lista_de_conceitos']) == -1)
 								{
-									if (existe_conceito($conc, $lista_de_sujeito_e_objeto) == -1)
+									if (existe_conceito($conceito, $lista_de_sujeito_e_objeto) == -1)
 									{
-										$nconc = new conceito($conc,"");
-										$nconc->namespace = $_POST['namespace'];
-										$_SESSION['lista_de_conceitos'][] = $nconc;
+										$novoconceito = new conceito($conceito,"");
+										$novoconceito->namespace = $_POST['namespace'];
+										$_SESSION['lista_de_conceitos'][] = $novoconceito;
 									}
 									else
 									{
@@ -290,13 +291,13 @@ session_start();
 									//Nothing to do.
 								}
 	
-								$ind_rel = existe_relacao( $_SESSION['nome1'], $_SESSION['conceito']->relacoes);
+								$indice_relacao = existe_relacao( $_SESSION['nome1'], $_SESSION['conceito']->relacoes);
 								
-								if ($ind_rel != -1 )
+								if ($indice_relacao != -1 )
 								{
-									if (array_search($conc,$_SESSION["conceito"]->relacoes[$ind_rel]->predicados) === false )
+									if (array_search($conceito,$_SESSION["conceito"]->relacoes[$indice_relacao]->predicados) === false )
 									{
-										$_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
+										$_SESSION["conceito"]->relacoes[$indice_relacao]->predicados[] = $conceito;
 									}
 									else
 									{
@@ -305,15 +306,15 @@ session_start();
 								}
 								else
 								{
-									$_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos( $conc , $_SESSION["nome1"]);
+									$_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos( $conceito , $_SESSION["nome1"]);
 								}
 							}
 							else if ($_POST["indice"] != "-1" )
 							{
-								$conc = $conceitos[$_POST["indice"]]->nome;
+								$conceito = $conceitos[$_POST["indice"]]->nome;
 								
-								if( (count($_SESSION["predicados_selecionados"]) != 0) &&
-									(array_search( $conc, $_SESSION["predicados_selecionados"]) !== null))
+								if ((count($_SESSION["predicados_selecionados"]) != 0) &&
+                                                                    (array_search( $conceito, $_SESSION["predicados_selecionados"]) !== null))
 								{
 									continue;
 								}
@@ -322,14 +323,14 @@ session_start();
 									//Nothing to do.
 								}
 	
-								$_SESSION["predicados_selecionados"][] = $conc;
-								$ind_rel = existe_relacao( $_SESSION['nome1'], $_SESSION['conceito']->relacoes);
+								$_SESSION["predicados_selecionados"][] = $conceito;
+								$indice_relacao = existe_relacao( $_SESSION['nome1'], $_SESSION['conceito']->relacoes);
 								
-								if ( $ind_rel != -1 )
+								if ( $indice_relacao != -1 )
 								{
-									if( array_search($conc,$_SESSION["conceito"]->relacoes[$ind_rel]->predicados) === false )
+									if( array_search($conceito,$_SESSION["conceito"]->relacoes[$indice_relacao]->predicados) === false )
 									{
-										$_SESSION["conceito"]->relacoes[$ind_rel]->predicados[] = $conc;
+										$_SESSION["conceito"]->relacoes[$indice_relacao]->predicados[] = $conceito;
 									}
 									else
 									{
@@ -338,7 +339,7 @@ session_start();
 								}
 								else
 								{
-									$_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos( $conc , $_SESSION["nome1"]);
+									$_SESSION["conceito"]->relacoes[] = new relacao_entre_conceitos( $conceito , $_SESSION["nome1"]);
 								}
 							}
 							else
@@ -367,9 +368,9 @@ session_start();
 	
 			$finish_disjoint = FALSE;
 			
-			while ( !$finish_disjoint)
+			while (!$finish_disjoint)
 			{
-				if ( !isset($_SESSION["axiomas_selecionados"]))
+				if (!isset($_SESSION["axiomas_selecionados"]))
 				{
 					$_SESSION["axiomas_selecionados"] = array();
 				}
@@ -385,10 +386,10 @@ session_start();
 					$_SESSION["job"] = "disjoint";
 					
 					?>
-	<SCRIPT language='javascript'>
+                                        <SCRIPT language='javascript'>
 						document.location = "auxiliar_interface.php";
 					</SCRIPT>
-	<?php
+                                        <?php
 		
 					exit();
 				}
@@ -442,16 +443,16 @@ session_start();
 	
 	
 	/*
-	Cenario:	Traduzir os termos do lexico classificados como verbo.
-	Objetivo:	Traduzir os termos do lexico classificados como verbo.
-	Contexto:	Algoritmo de tradu��o iniciado.
-	Atores:		Usuario.
-	Recursos:	Sistema, lista de verbo, lista de relacoes.
-	Episodios:
-	- Para cada elemento da lista de verbo
-	* Verificar com o usuario a existencia do verbo na lista de relacoes.
-	* Caso n�o exista, incluir este verbo na lista de relacoes.
-	* Verificar consistencia.
+	Scenario:	Translate the terms of the lexicon classified as a verb.
+	Objective:	Translate the terms of lexical classified as verb.
+	Context:	Translation algorithm starts.
+	Actors:		User.
+	Resources:	System, verb list, list of relations.
+	Episodes:
+	- For each element of the list of verb
+	* Check with the User the existence of the verb in the list of relations.
+	* If not exists, include this in the list of verb relations.
+	* Check consistency.
 	*/
 	function traduz_verbos($verbos, $relacoes)
 	{
@@ -469,10 +470,10 @@ session_start();
 				$_SESSION["job"] = "exist";
 				
 				?>
-	<SCRIPT language='javascript'>
-				document.location = "auxiliar_interface.php";
+                                <SCRIPT language='javascript'>
+                                    document.location = "auxiliar_interface.php";
 				</SCRIPT>
-	<?php
+                                <?php
 	
 				exit();
 			}
@@ -500,7 +501,7 @@ session_start();
 	
 			//	$lista_de_relacoes = $_SESSION["lista"];
 	
-			if(!verifica_consistencia())
+			if (!verifica_consistencia())
 			{
 				exit();
 			}
