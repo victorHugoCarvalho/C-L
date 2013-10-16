@@ -66,26 +66,26 @@ if (isset($id_projeto))
 
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
     check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");
-?>
+    ?>
 
-function setPrjSelected() 
-{
-    var select = document.forms[0].id_projeto;
-    for (var i = 0; i < select.length; i++) 
-        {
-        if (select.options[i].value == <?=$id_projeto?>) 
+    function setPrjSelected() 
+    {
+        var select = document.forms[0].id_projeto;
+        for (var i = 0; i < select.length; i++) 
             {
-            select.options[i].selected = true;
-            i = select.length;
-        	}
-        	else
-        	{
-            	//Nothing to do.
-        	}
-    	}
-}
+            if (select.options[i].value == <?=$id_projeto?>) 
+                {
+                select.options[i].selected = true;
+                i = select.length;
+                    }
+                    else
+                    {
+                    //Nothing to do.
+                    }
+            }
+    }
 
-<?php
+    <?php
 }
 else
 {
@@ -95,51 +95,51 @@ else
 
 function novoCenario() 
 {
- <?php
+        <?php
 
-// Cen�rio - Atualizar Cen�rio 
+        // Cen�rio - Atualizar Cen�rio 
 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
-//              um cen�rio previamente cadastrados. 
-//Pr�-Condi��es: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Alterar ent�o INCLUIR CEN�RIO 
+        //Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um Cen�rio por um usu�rio 
+        //Contexto:    Usu�rio deseja incluir um cen�rio ainda n�o cadastrado, alterar e/ou excluir 
+        //              um cen�rio previamente cadastrados. 
+        //Pr�-Condi��es: Login 
+        //Atores:    Usu�rio, Gerente do projeto 
+        //Recursos:    Sistema, menu superior, objeto a ser modificado 
+        //Epis�dios:    O usu�rio clica no menu superior na op��o: 
+        //                Se usu�rio clica em Alterar ent�o INCLUIR CEN�RIO 
 
 	if (isset($id_projeto))
-    {
-    	?>
-        var url = 'add_cenario.php?id_projeto=' + '<?=$id_projeto?>';
-        <?php
+        {
+                ?>
+                var url = 'add_cenario.php?id_projeto=' + '<?=$id_projeto?>';
+                <?php
 	}
-    else
-    {
-    	?>
-        var url = 'add_cenario.php?'
-        <?php
+        else
+        {
+                ?>
+                var url = 'add_cenario.php?'
+                <?php
 	}
 	?>
-    var where = '_blank';
-    var window_spec = 'dependent,height=600,width=550,resizable,scrollbars,titlebar';
-    open(url, where, window_spec);
+        var where = '_blank';
+        var window_spec = 'dependent,height=600,width=550,resizable,scrollbars,titlebar';
+        open(url, where, window_spec);
 }
 
 function novoLexico() 
 {
- <?php
+        <?php
 
-//Cen�rio -  Atualizar L�xico 
+        //Cen�rio -  Atualizar L�xico 
 
-//Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
-//Contexto:    Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
-//              excluir um cen�rio/l�xico previamente cadastrados. 
-//Pr�-Condi��es: Login 
-//Atores:    Usu�rio, Gerente do projeto 
-//Recursos:    Sistema, menu superior, objeto a ser modificado 
-//Epis�dios:    O usu�rio clica no menu superior na op��o: 
-//                Se usu�rio clica em Alterar ent�o INCLUIR L�XICO 
+        //Objetivo:    Permitir Inclus�o, Altera��o e Exclus�o de um L�xico por um usu�rio 
+        //Contexto:    Usu�rio deseja incluir um lexico ainda n�o cadastrado, alterar e/ou 
+        //              excluir um cen�rio/l�xico previamente cadastrados. 
+        //Pr�-Condi��es: Login 
+        //Atores:    Usu�rio, Gerente do projeto 
+        //Recursos:    Sistema, menu superior, objeto a ser modificado 
+        //Epis�dios:    O usu�rio clica no menu superior na op��o: 
+        //                Se usu�rio clica em Alterar ent�o INCLUIR L�XICO 
 
 	if (isset($id_projeto))
 	{
@@ -153,16 +153,16 @@ function novoLexico()
 		var url = 'add_lexico.php';
 		<?php
 	}
-    ?>
+        ?>
 
-    var where = '_blank';
-    var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
-    open(url, where, window_spec);
+        var where = '_blank';
+        var window_spec = 'dependent,height=573,width=570,resizable,scrollbars,titlebar';
+        open(url, where, window_spec);
 }
 
 function prjInfo(idprojeto) 
 {
-    top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
+        top.frames['text'].location.replace('main.php?id_projeto=' + idprojeto);
 }
 
 </script>
@@ -199,23 +199,22 @@ if (isset($id_projeto))
 	
 	$ret = verificaGerente($id_usuario, $id_projeto);
    	
-    if ( $ret != 0 )
+        if ($ret != 0)
 	{                                    
 		?>
-        <font color="#FF0033">Administrador</font>
-        <?php
+                <font color="#FF0033">Administrador</font>
+                <?php
 	}
-    else
+        else
 	{
 		?>
-    	<font color="#FF0033">Usu&aacute;rio normal</font>
-        <?php
+                <font color="#FF0033">Usu&aacute;rio normal</font>
+                <?php
 	}
 }   
 else
 {       
-	?>
-    <?php
+	//Nothing to do
 }     
 ?>
 
@@ -244,76 +243,76 @@ $ExecuteQuery = mysql_query($query) or die("Erro ao executar query");
 
 while ($result = mysql_fetch_array($ExecuteQuery))    // enquanto houver projetos
 {
-?>
+        ?>
 	<option value="<?=$result['id_projeto']?>">
-    <?=($result['gerente'] == 1) ? "*" : ""?>
-	<?=$result['nome']?>
-    </option>
-    <?php
+            <?=($result['gerente'] == 1) ? "*" : ""?>
+            <?=$result['nome']?>
+        </option>
+        <?php
 }
+
 ?>
-              </select>
-              &nbsp;&nbsp;
-              <input type="submit" value="Atualizar"></td>
-          </tr>
-          <tr bgcolor="#E0FFFF" height="15">
-          <tr bgcolor="#E0FFFF" height="30">
-            <td align="right" valign=MIDDLE><?php
+</select>
+&nbsp;&nbsp;
+<input type="submit" value="Atualizar"></td>
+</tr>
+<tr bgcolor="#E0FFFF" height="15">
+<tr bgcolor="#E0FFFF" height="30">
+<td align="right" valign=MIDDLE><?php
+
 if (isset($id_projeto))   	// Se o usuario ja tiver escolhido um projeto,
 {							// entao podemos mostrar os links de adicionar cen/lex
                             // e de informacoes (pagina principal) do projeto
 
 
-// Cen�rio - Administrador escolhe Projeto
+        // Cen�rio - Administrador escolhe Projeto
 
-// Objetivo:  Permitir ao Administrador escolher um projeto.
-// Contexto:  O Administrador deseja escolher um projeto.
-// Pr�-Condi��es: Login, Ser administrador do projeto selecionado.
-// Atores:    Administrador
-// Recursos:  Projetos doAdministrador
-// Epis�dios: Aparecendo no menu as op��es de: 
-//            -Adicionar Cen�rio (ver Adicionar Cen�rio); 
-//            -Adicionar L�xico (ver Adicionar L�xico); 
-//            -Info; 
-//            -Adicionar Projeto; 
-//            -Alterar Cadastro.
+        // Objetivo:  Permitir ao Administrador escolher um projeto.
+        // Contexto:  O Administrador deseja escolher um projeto.
+        // Pr�-Condi��es: Login, Ser administrador do projeto selecionado.
+        // Atores:    Administrador
+        // Recursos:  Projetos doAdministrador
+        // Epis�dios: Aparecendo no menu as op��es de: 
+        //            -Adicionar Cen�rio (ver Adicionar Cen�rio); 
+        //            -Adicionar L�xico (ver Adicionar L�xico); 
+        //            -Info; 
+        //            -Adicionar Projeto; 
+        //            -Alterar Cadastro.
 
 
-?>
-              <a href="#" onClick="novoCenario();">Adicionar Cen&aacute;rio</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar S&iacute;mbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informa��es sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
-              <?php
+        ?>
+        <a href="#" onClick="novoCenario();">Adicionar Cen&aacute;rio</a>&nbsp;&nbsp;&nbsp; <a href="#" onClick="novoLexico();">Adicionar S&iacute;mbolo</a>&nbsp;&nbsp;&nbsp; <a href="#" title="Informa��es sobre o Projeto" onClick="prjInfo(<?=$id_projeto?>);">Info</a>&nbsp;&nbsp;&nbsp;
+        <?php
 }
 else
 {
 	//Nothing to do.
 }
-?>
-              <?php
+        ?>
+        <?php
 
-//Cen�rio  -  Cadastrar Novo Projeto 
+        //Cen�rio  -  Cadastrar Novo Projeto 
+        //Objetivo:    Permitir ao Usu�rio cadastrar um novo projeto
+        //Contexto:    Usu�rio deseja incluir um novo projeto na base de dados
+        //Pr�-Condi��es: Login
+        //Atores:      Usu�rio
+        //Recursos:    Sistema, dados do projeto, base de dados
+        //Epis�dios:   O Usu�rio clica na op��o adicionar projeto encontrada no menu superior.
 
-//Objetivo:    Permitir ao Usu�rio cadastrar um novo projeto
-//Contexto:    Usu�rio deseja incluir um novo projeto na base de dados
-//Pr�-Condi��es: Login
-//Atores:      Usu�rio
-//Recursos:    Sistema, dados do projeto, base de dados
-//Epis�dios:   O Usu�rio clica na op��o adicionar projeto encontrada no menu superior.
-
-?>
-              <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
-              Projeto</a>&nbsp;&nbsp;&nbsp;
-              <?php
+        ?>
+        <a href="#" onClick="window.open('add_projeto.php', '_blank', 'dependent,height=313,width=550,resizable,scrollbars,titlebar');">Adicionar 
+        Projeto</a>&nbsp;&nbsp;&nbsp;
+        <?php
 
 
-//Cen�rio  -   Remover Novo Projeto 
+        //Cen�rio  -   Remover Novo Projeto 
 
-//Objetivo:    Permitir ao Administrador do projeto remover um projeto
-//Contexto:    Um Administrador de projeto deseja remover um determinado projeto da base de dados
-//Pr�-Condi��es: Login, Ser administrador do projeto selecionado.
-//Atores:      Administrador
-//Recursos:    Sistema, dados do projeto, base de dados
-//Epis�dios:   O Usu�rio clica na op��o remover projeto encontrada no menu superior.
-
+        //Objetivo:    Permitir ao Administrador do projeto remover um projeto
+        //Contexto:    Um Administrador de projeto deseja remover um determinado projeto da base de dados
+        //Pr�-Condi��es: Login, Ser administrador do projeto selecionado.
+        //Atores:      Administrador
+        //Recursos:    Sistema, dados do projeto, base de dados
+        //Epis�dios:   O Usu�rio clica na op��o remover projeto encontrada no menu superior.
 
 if (isset($id_projeto))
 {   	
@@ -324,9 +323,9 @@ if (isset($id_projeto))
 	if ( $ret != 0 )
 	{
 		?>
-        <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
-        Projeto</a>&nbsp;&nbsp;&nbsp;
-        <?php
+                <a href="#" onClick="window.open('remove_projeto.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Remover 
+                Projeto</a>&nbsp;&nbsp;&nbsp;
+                <?php
 	}
 	else
 	{
@@ -363,9 +362,9 @@ else
 //Epis�dios: O Usu�rio clica na op��o de alterar cadastro da interface
 
 ?>
-              <a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
-              Cadastro</a>&nbsp;&nbsp;&nbsp; <a href="mailto:per@les.inf.puc-rio.br">Fale Conosco&nbsp;&nbsp;&nbsp;</a>
-              <?php
+<a href="#" onClick="window.open('Call_UpdUser.php', '_blank', 'dependent,height=300,width=550,resizable,scrollbars,titlebar');">Alterar 
+Cadastro</a>&nbsp;&nbsp;&nbsp; <a href="mailto:per@les.inf.puc-rio.br">Fale Conosco&nbsp;&nbsp;&nbsp;</a>
+<?php
 
 
 // Cen�rio - Logar no sistema
