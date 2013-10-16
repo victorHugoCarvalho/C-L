@@ -47,15 +47,15 @@ session_start();
 	
 	
 	/*
-	Cenario:	Montar hierarquia.
-	Objetivo:	Montar hierarquia de conceitos.
-	Contexto:	Organizacao da ontologia em andamento.
-	Atores:
-	Recursos:	Sistema, conceito, lista de subconceitos, lista de conceitos.
-	Episodios:
-	- Para cada subconceito
-	* Procurar sua chave na lista de conceitos.
-	* Adicionar a chave como um subconceito do conceito.
+	Scenario:	Assemble hierarchy.
+	Objective:	Assemble concept hierarchy.
+	Context:	Organization of ontology in progress.
+	Actors:
+	Reources:	System, concept, subconcepts list, concepts list.
+	Episodes:
+	- For each subconcept
+	* Browse the list of your key concepts.
+	 Add the key as a subconceito concept.
 	*/
 	function montar_hierarquia($conceito, $nova_lista, $lista)
 	{
@@ -520,19 +520,19 @@ session_start();
 	
 	
 	/*
-	Cenario:	Traduzir os termos do lexico classificados como estado.
-	Objetivo:	Traduzir os termos do lexico classificados como estado.
-	Contexto:	Algoritmo de traducao iniciado.
-	Atores:		Usuario.
-	Recursos:	Sistema, lista de estado, lista de conceitos, lista de relacoes, lista de axiomas.
-	Episodios:
-	- Para cada elemento da lista de estado
-	* Para cada impacto do elemento
-	. Descobrir
-	* Verificar se o elemento possui importancia central na ontologia.
-	* Caso tenha, traduza como se fosse um sujeito/objeto.
-	* Caso contrario, traduza como se fosse um verbo.
-	* Verificar consistencia.
+	Scenario:	Translate the terms of lexical classified as a state.
+	Objective:      To translate the terms of lexical classified as a state.
+	Context:	Translation algorithm started.
+	Actors:		User.
+	Resources:	System status list, list of concepts, list of relations, list of axioms.
+	Episodes:
+	- For each element of the list of state
+	* For each element of the impact
+	. Discover
+	* Check if the element has central importance in the ontology.
+	* If you have, translate as if it were a subject / object.
+	* Otherwise, translate as if it were a verb.
+	* Check consistency.
 	*/
 	function traduz_estados($estados, $conceitos, $relacoes, $axiomas)
 	{
@@ -547,11 +547,11 @@ session_start();
 				$_SESSION["nome2"] = $estado;
 				$_SESSION["job"] = "main_subject";
 				?>
-	<p> 
-	  <SCRIPT language='javascript'>
-						document.location = "auxiliar_interface.php";
-					</SCRIPT>
-	  <?php
+                                <p> 
+                                <SCRIPT language='javascript'>
+                                        document.location = "auxiliar_interface.php";
+                                </SCRIPT>
+                                <?php
 	
 				exit();
 	
@@ -608,28 +608,29 @@ session_start();
 	
 	
 	/*
-	Cenario:	Organizar ontologia.
-	Objetivo:	Organizar ontologia.
-	Contexto:	Listas de conceitos, relacoes e axiomas prontas.
-	Atores:		Usuario.
-	Recursos:	Sistema, lista de conceitos, lista de relacoes, lista de axiomas.
-	Episodios:
-	- Faz-se uma copia da lista de conceitos.
-	- Para cada elemento x da lista de conceitos
-	* Cria-se uma nova lista contendo o elemento x.
-	* Para cada elemento subsequente y
-	. Compara as relacoes dos elementos x e y.
-	. Caso possuam as mesmas relacoes, adiciona-se o elemento y a nova lista que ja contem x.
-	. Retira-se y da lista de conceitos.
-	* Retira-se x da lista de conceitos.
-	* Caso a nova lista tenha mais de dois elementos, ou seja, caso x compartilhe as mesmas
-	relacoes com outro termo
-	. Procura por um elemento na lista de conceitos que faca referencia a todos os elementos
-	da nova lista.
-	. Caso exista tal elemento, montar hierarquia.
-	. Caso nao exista, descobrir.
-	* Verificar consistencia.
-	- Restaurar lista de conceitos.
+	Scenario:	Organize ontology.
+	Objective:	Organize ontology.
+	Context:	Lists of concepts, relations and axioms ready.
+	Actors:		User.
+	Resources:	System concepts list, list of relations, list of axioms.
+	Episodes:
+	- It is a copy of the list of concepts.
+	- For each element in the list of concepts x
+	* It creates a new list containing the element x.
+	* For each subsequent element y.
+	. Compares the relationships of the elements x and y.
+	. If they have the same relations, add the element ya new list that 
+          already contains x.
+	. Y is removed from the list of concepts.
+	* X is taken from the list of concepts.
+	* If the new list has more than two elements, ie, if x share the same 
+          relations with another term
+	. Searches for an element in the list of concepts that knife refers to 
+          all elements of the new list.
+	. If there is such an element, set hierarchy.
+	. If there is not, find out.
+	* Check consistency.
+	- Restore the list of concepts.
 	*/
 	function organizar_ontologia($conceitos, $relacoes, $axiomas)
 	{
@@ -647,11 +648,11 @@ session_start();
 				$_SESSION["job"] = "reference";
 				
 				?>
-	  <a href="auxiliar_interface.php">auxiliar_interface</a> 
-	  <SCRIPT language='javascript'>
+                                <a href="auxiliar_interface.php">auxiliar_interface</a>
+                                <SCRIPT language='javascript'>
 					document.location = "auxiliar_interface.php";
 				</SCRIPT>
-	  <?php
+                                <?php
 	
 				exit();
 			}
@@ -662,7 +663,7 @@ session_start();
 	
 			session_unregister("reference");
 	
-			$achou = FALSE;
+			$found = FALSE;
 	
 			if (isset($_POST['pai']))
 			{
@@ -684,7 +685,7 @@ session_start();
 				if (count($filhos) > 0)
 				{
 					montar_hierarquia(&$conceitos[$key2], $filhos, $conceitos );
-					$achou = true;
+					$found = true;
 				}
 				else
 				{
@@ -697,7 +698,7 @@ session_start();
 			}
 	
 	
-			if (!$achou)
+			if (!$found)
 			{
 				//tentar montar hierarquia pelo vocabulario minimo.
 			}
@@ -719,30 +720,30 @@ session_start();
 	
 	
 	/*
-	Cenario:  	Traduzir L�xico para Ontologia.
-	Objetivo: 	Traduzir L�xico para Ontologia.
-	Contexto: 	Existem listas de elementos do l�xico organizadas por tipo, e estes elementos
-	s�o consistentes.
-	Atores:   	Usu�rio.
-	Recursos: 	Sistema, listas de elementos do l�xico organizadas por tipo, listas de elementos
-	da ontologia.
-	Epis�dios:
-	- Criar lista de conceitos vazia.
-	- Criar lista de relacoes vazia.
-	- Criar lista de axiomas vazia.
-	- Traduzir os termos do lexico classificados como sujeito e objeto.
-	- Traduzir os termos do lexico classificados como verbo.
-	- Traduzir os termos do lexico classificados como estado.
-	- Organizar a ontologia.
+	Scenario:  	Translate to Lexico Ontology.
+	Objective: 	Translate to Lexico Ontology.
+	Context: 	There are lists of elements of the lexicon organized by 
+                        type, and these elements are consistent.
+	Actord:   	User.
+	Resources: 	System, elements of the lexicon lists organized by type,
+                        lists of ontology elements.
+	Episodes:
+	- Create empty list of concepts.
+	- Create empty list of relations.
+	- Create empty list of axioms.
+	- Translate the terms of lexical classified as subject and object.
+	- Translate the terms of lexical classified as a verb.
+	- Translate the terms of lexical classified as a state.
+	- Organize the ontology.
 	
 	*/
 	function traduz()
 	{
 		//Verifica se as listas foram iniciadas.
 		if (isset($_SESSION["lista_de_sujeito"]) && isset($_SESSION["lista_de_objeto"]) &&
-	        isset($_SESSION["lista_de_verbo"]) && isset($_SESSION["lista_de_estado"]) &&
-	    	isset($_SESSION["lista_de_conceitos"]) && isset($_SESSION["lista_de_relacoes"]) &&
-	    	isset($_SESSION["lista_de_axiomas"]))
+                    isset($_SESSION["lista_de_verbo"]) && isset($_SESSION["lista_de_estado"]) &&
+                    isset($_SESSION["lista_de_conceitos"]) && isset($_SESSION["lista_de_relacoes"]) &&
+                    isset($_SESSION["lista_de_axiomas"]))
 		{
 			$sujeitos = $_SESSION["lista_de_sujeito"];
 			$objetos  = $_SESSION["lista_de_objeto"];
@@ -760,25 +761,25 @@ session_start();
 		$_SESSION['lista_de_sujeito_e_objeto'] = $lista_de_sujeito_e_objeto;
 	
 	
-		if( $_SESSION["funcao"] == "sujeito_objeto" )
+		if ($_SESSION["funcao"] == "sujeito_objeto")
 		{
 			traduz_sujeito_objeto($lista_de_sujeito_e_objeto, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
 			$_SESSION["funcao"] = "verbo";
 		}
 	
-		else if( $_SESSION["funcao"] == "verbo" )
+		else if ($_SESSION["funcao"] == "verbo")
 		{
 			traduz_verbos($verbos, &$_SESSION["lista_de_relacoes"]);
 			$_SESSION["funcao"] = "estado";
 		}
 	
-		else if( $_SESSION["funcao"] == "estado" )
+		else if ($_SESSION["funcao"] == "estado")
 		{
 			traduz_estados($estados, &$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
 			$_SESSION["funcao"] = "organiza";
 		}
 	
-		else if( $_SESSION["funcao"] == "organiza" )
+		else if ($_SESSION["funcao"] == "organiza")
 		{
 			organizar_ontologia(&$_SESSION["lista_de_conceitos"], &$_SESSION["lista_de_relacoes"], &$_SESSION["lista_de_axiomas"]);
 			$_SESSION["funcao"] = "fim";
@@ -813,13 +814,13 @@ session_start();
 		echo 'O processo de gera��o de Ontologias foi conclu�do com sucesso!<br>
 		N�o esque�a de clicar em Salvar.';
 		?>
-	<p>
-	<form method="POST" action="auxiliar_bd.php">
-	  <input type="hidden" value="TRUE" name="save" size="20" >
-	  <input type="submit" value="SALVAR">
-	</form>
-	</p>
-	<?php
+                <p>
+                <form method="POST" action="auxiliar_bd.php">
+                  <input type="hidden" value="TRUE" name="save" size="20" >
+                  <input type="submit" value="SALVAR">
+                </form>
+                </p>
+                <?php
 	}
 	
 	traduz();
