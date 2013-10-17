@@ -4,6 +4,13 @@ include_once ("../aplicacao/bd.inc");
 include_once ("../aplicacao/bd_class.php");
 include_once ("../aplicacao/seguranca.php");
 
+
+//Insere um projeto no banco de dados.
+//Recebe o nome e descricao. (1.1)
+//Verifica se este usuario ja possui um projeto com esse nome. (1.2)
+//Caso nao possua, insere os valores na tabela PROJETO. (1.3)
+//Devolve o id_cprojeto. (1.4)
+
 if (!(function_exists("addProject")))
 {
 	function includeProject($name, $description)
@@ -71,6 +78,26 @@ else
 {
 	//Nothing to do.
 }
+
+
+// Remove um determinado projeto da base de dados
+// Recebe o id do projeto. (1.1)
+// Apaga os valores da tabela pedidocen que possuam o id do projeto enviado (1.2)
+// Apaga os valores da tabela pedidolex que possuam o id do projeto enviado (1.3)
+// Faz um SELECT para saber quais l�xico pertencem ao projeto de id_projeto (1.4)
+// Apaga os valores da tabela lextolex que possuam possuam lexico do projeto (1.5)
+// Apaga os valores da tabela centolex que possuam possuam lexico do projeto (1.6)
+// Apaga os valores da tabela sinonimo que possuam possuam o id do projeto (1.7)
+// Apaga os valores da tabela lexico que possuam o id do projeto enviado (1.8)
+// Faz um SELECT para saber quais cenario pertencem ao projeto de id_projeto (1.9)
+// Apaga os valores da tabela centocen que possuam possuam cenarios do projeto (2.0)
+// Apaga os valores da tabela centolex que possuam possuam cenarios do projeto (2.1)
+// Apaga os valores da tabela cenario que possuam o id do projeto enviado (2.2)
+// Apaga os valores da tabela participa que possuam o id do projeto enviado (2.3)
+// Apaga os valores da tabela publicacao que possuam o id do projeto enviado (2.4)
+// Apaga os valores da tabela projeto que possuam o id do projeto enviado (2.5)
+
+
 
 function removeProject($idProject)
 {

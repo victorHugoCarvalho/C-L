@@ -23,6 +23,20 @@ class teste extends PHPUnit_Framework_TestCase
         
         removeProject($id_newProject);
     }
+    
+    public function testRemoveProject() {
+    
+    	$this->testBase();
+    	$name = "Projeto Teste";
+    	$id_newProject = includeProject($name, "teste");
+    
+    	removeProject($id_newProject);
+    
+    	$queryVerification = "SELECT * FROM projeto WHERE nome = '$name'";
+    	$queryVerificationResult = mysql_query($queryVerification);
+    	$resultArray = mysql_fetch_array($queryVerificationResult);
+    	$this->assertEquals(false,$resultArray);
+    }
    
 
 }
