@@ -2,17 +2,19 @@
 
 include ("..cel/aplicacao/dataBaseProject/dataBase/dataBaseProject.php");
 
-class teste extends PHPUnit_Framework_TestCase{
+class teste extends PHPUnit_Framework_TestCase
+{
     
-    private function testBase() {
+    private function testBase()
+    {
         $_SESSION['id_usuario_corrente'] = "Teste";
         ob_start();
         require_once ("../aplicacao/dataBase/dataBaseProject.php");
         return ob_get_clean();
     }
     
-     public function testIncludeProject() {
-      
+    public function testIncludeProject() 
+    {  
         $this->testBase();
         
         $id_newProject = includeProject("Projeto Teste", "teste");

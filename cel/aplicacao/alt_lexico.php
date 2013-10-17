@@ -2,9 +2,9 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 
 // alt_lexico.php: This script makes a request for alteration of a lexicon of the project.
-//                     The User receives a form with the current lexicon (ie with completed fields)
-//                     and may make changes in all fields except the name. At the end of the main screen
-//                     returns to the start screen and the tree is closed. 
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½The User receives a form with the current lexicon (ie with completed fields)
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½and may make changes in all fields except the name. At the end of the main screen
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½returns to the start screen and the tree is closed. 
 //					   The form of alteration is also closed.
 //   File that calls: main.php 
 
@@ -54,26 +54,26 @@ if (isset($submit))
 	}
 	
 
-    inserirPedidoAlterarLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $listSinonimo, $classificacao);
+        inserirPedidoAlterarLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $justificativa, $_SESSION['id_usuario_corrente'], $listSinonimo, $classificacao);
 	?>
-<html>
-<head>
-<title>Alterar L&eacute;xico</title>
-</head>
-<body>
-<script language="javascript1.3">
-	
-	opener.parent.frames['code'].location.reload();
-	opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
-	
+        <html>
+        <head>
+        <title>Alterar L&eacute;xico</title>
+        </head>
+        <body>
+        <script language="javascript1.3">
+
+                opener.parent.frames['code'].location.reload();
+                opener.parent.frames['text'].location.replace('main.php?id_projeto=<?=$_SESSION['id_projeto_corrente']?>');
+
+        </script>
+        <h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
+        <script language="javascript1.3">
+
+                self.close();
+
 	</script>
-<h4>Opera&ccedil;&atilde;o efetuada com sucesso!</h4>
-<script language="javascript1.3">
-	 
-	self.close();
-	
-	</script>
-<?php
+        <?php
 
 }
 else        // Script chamado atraves do link do lexico corrente
@@ -103,12 +103,12 @@ else        // Script chamado atraves do link do lexico corrente
 	{
 		nocao = form.nocao.value;
 		
-		if(nocao == "")
+		if (nocao == "")
 		{
 			alert (" Por favor, forne&ccedil;a a no&ccedil;&atilde;o do l&eacute;xico.\n O campo no&ccedil;&atilde;o &eacute; de preenchimento obrigat&oacute;rio.");
-	      	form.nocao.focus();
-	      	return false;
-	    }
+                        form.nocao.focus();
+                        return false;
+                }
 		else
 		{
 		    //Nothing to do.
@@ -166,16 +166,16 @@ else        // Script chamado atraves do link do lexico corrente
 	<?php
 //			Scenerys - Change Lexicon 
 //    		Purpose: Allow changing a lexicon by the user
-//    		Context: User want to change a lexicon previously registered
-//    		Precondition: Login lexicon, registered in the system
-//    			Actors: User
-//     		Features: System, data registered
-//     		Episódios:	The system will provide to the user the same screen add_lexico,
+// ï¿½ï¿½ 		Context: User want to change a lexicon previously registered
+//ï¿½ï¿½ï¿½ 		Precondition: Login lexicon, registered in the system
+// ï¿½ï¿½ï¿½			Actors: User
+//  ï¿½ï¿½ 		Features: System, data registered
+//     		Episï¿½dios:	The system will provide to the user the same screen add_lexico,
 //                		but with the following data from the lexical to be changed filled
 //                 		and editable in their respective fields: Concept and Impact.
 //                 		Project and Name fields will be filled, but not editable.
-//                 		Displays a field Rationale for the user to place a
-//                 		justification for the change made.	
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 		Displays a field Rationale for the user to place a
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 		justification for the change made.	
 	
 	?>
 	

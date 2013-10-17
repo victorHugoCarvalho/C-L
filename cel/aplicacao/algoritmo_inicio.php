@@ -12,7 +12,7 @@ $link = bd_connect();
 
 $list = verifica_tipo();
 
-if(is_array($list))
+if (is_array($list))
 {
 	foreach($list as $id)
 	{
@@ -48,7 +48,7 @@ print_r($_SESSION["lista_de_estado"]);*/
 
 $_SESSION["salvar"] = "FALSE";
 
-if( $_POST["load"] == "FALSE" )
+if ($_POST["load"] == "FALSE")
 {
 	converte_impactos();
 	$_SESSION["lista_de_conceitos"] = array();
@@ -75,7 +75,7 @@ else
 
 	$indices = get_indices();
 		
-	if(count($indices) == 5)
+	if (count($indices) == 5)
 	{
 		$_SESSION["index1"] = $indices['index1']; // Subject
 		$_SESSION["index3"] = $indices['index3']; // Verb

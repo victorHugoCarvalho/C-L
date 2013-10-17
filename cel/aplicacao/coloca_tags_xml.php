@@ -17,15 +17,13 @@
 include ("coloca_links.php");
 
 function poe_tag_xml($str) 
-{ 
-
+{
     $r = "<link ref=\"$str\">$str </link>"; 
-   return $r;
+    return $r;
 } 
 
 function pega_id_xml($str)
-{  
-
+{
     $j=0;
     $i = 0;
     while($str[$i] != '*')
@@ -126,7 +124,7 @@ function troca_chaves_xml( $str )
         {
         	//Nothing to do.
         }
-    $i++;
+        $i++;
     };
     $i=0;
 
@@ -146,7 +144,7 @@ function troca_chaves_xml( $str )
         
         while ($n < $fim[$i] - $comeco[$i])
         {        
-            if($link[$n] == '*' && $link[$n+1] == '*' && $marcador == 1)
+            if ($link[$n] == '*' && $link[$n+1] == '*' && $marcador == 1)
             {
                 $marcador = 0;
                 $link[$n] = '{';
@@ -160,7 +158,7 @@ function troca_chaves_xml( $str )
             	//Nothing to do.
             }
             
-            if($link[$n] == '*' && $link[$n+1] == '*')
+            if ($link[$n] == '*' && $link[$n+1] == '*')
             {
                 $marcador = 1;
                 $link[$n] = '{';
@@ -180,7 +178,7 @@ function troca_chaves_xml( $str )
             {
             	//Nothing to do.
             }
-        $n++;
+            $n++;
         }
         $link = str_replace('{','',$link);
         $link = poe_tag_xml($link,$vetor_id[$i]);
@@ -195,14 +193,13 @@ function troca_chaves_xml( $str )
         $i++;
     }
     //echo("STRING FINAL -> $str<br/>");
-return $str;
+    return $str;
 } 
 
 function faz_links_XML($texto, $vetor_lex, $vetor_cen)  
-{  
-
-   marca_texto( $texto, $vetor_cen,"cenario" ); 
-   marca_texto_cenario( $texto, $vetor_lex, $vetor_cen ); 
+{
+   marca_texto($texto, $vetor_cen,"cenario"); 
+   marca_texto_cenario($texto, $vetor_lex, $vetor_cen); 
    
    $str = troca_chaves_xml($texto); 
    return $str; 

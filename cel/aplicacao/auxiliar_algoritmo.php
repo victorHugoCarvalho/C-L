@@ -1,10 +1,10 @@
 <?php
 
-function existe_relacao($rel, $list)
+function existe_relacao($relacao, $lista)
 {
-	foreach($list as $key=>$relacao)
+	foreach($lista as $key=>$relacao)
 	{
-		if( @$relacao->verbo == $rel )
+		if ($relacao->verbo == $relacao )
 		{
 			return $key;
 		}
@@ -17,11 +17,11 @@ function existe_relacao($rel, $list)
 }
 
 
-function existe_conceito($conc, $list)
+function existe_conceito($conceito, $lista)
 {
-	foreach($list as $key=>$conc1)
+	foreach ($lista as $key=>$conceito)
 	{
-		if( $conc1->nome == $conc )
+		if ($conceito->nome == $conceito)
 		{
 			return $key;
 		}

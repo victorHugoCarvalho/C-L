@@ -10,13 +10,13 @@ function monta_relacoes($id_projeto)
 	// Apaga todas as rela��es existentes das tabelas centocen, centolex e lextolex
 	
 	$DB = new PGDB () ;
-    $sql1 = new QUERY ($DB) ;
-    $sql2 = new QUERY ($DB) ;
-    $sql3 = new QUERY ($DB) ;
+        $sql1 = new QUERY ($DB) ;
+        $sql2 = new QUERY ($DB) ;
+        $sql3 = new QUERY ($DB) ;
     
-    //$sql1->execute ("DELETE FROM centocen");
-    //$sql2->execute ("DELETE FROM centolex") ;
-    //$sql3->execute ("DELETE FROM lextolex") ;
+        //$sql1->execute ("DELETE FROM centocen");
+        //$sql2->execute ("DELETE FROM centolex") ;
+        //$sql3->execute ("DELETE FROM lextolex") ;
 
 	// Refaz as rela��es das tabelas centocen, centolex e lextolex
 
@@ -122,7 +122,7 @@ function monta_relacoes($id_projeto)
 
 function lexico_para_lexico($id_lexico, $texto, $vetor_lexicos)
 {
-	$i=0;
+    $i=0;
     while( $i < count( $vetor_lexicos ) )
     {
         $regex = "/(\s|\b)(" . $vetor_lexicos[$i]->nome . ")(\s|\b)/i";
@@ -234,7 +234,7 @@ function adiciona_relacionamento( $id_from, $tipo_from, $texto )
                  $i++;
                  while ( $texto[$i] != "*" )
                  {
-                    $id_to .= $texto[$i];
+                        $id_to .= $texto[$i];
                  	$i++;	
                  }
                  if ($tipo=="l")// Destino � um l�xico (id_lexico_to)
