@@ -2266,7 +2266,6 @@ function verificaGerente($id_usuario, $id_projeto)
     
     if ($resultArray != false)
     {
-        
         $gerente = 1;
     }
     else
