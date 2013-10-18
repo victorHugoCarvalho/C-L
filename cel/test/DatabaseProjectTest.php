@@ -13,6 +13,9 @@ class DatabaseProjectTest extends PHPUnit_Framework_TestCase
         return ob_get_clean();
     }
     
+    /*
+     @test
+    */
     public function testIncludeProject() 
     {  
         $this->testBase();
@@ -24,6 +27,9 @@ class DatabaseProjectTest extends PHPUnit_Framework_TestCase
         removeProject($id_newProject);
     }
     
+    /*
+     @test
+    */
     public function testRemoveProject() {
     
     	$this->testBase();
