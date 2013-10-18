@@ -8,6 +8,7 @@ session_start();
 // Is sent through the URL, a variable $ idProject, which indicates that indicates 
 // where the new term should be inserted.
 
+include_once ("dataBase/DatabaseScenario.php");
 include("funcoes_genericas.php");
 include("httprequest.inc");
 include_once("bd.inc");
