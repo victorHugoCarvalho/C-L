@@ -1,15 +1,15 @@
 <?php
 
-include ("..cel/aplicacao/dataBaseProject/dataBase/dataBaseProject.php");
+include ("..cel/aplicacao/dataBaseProject/dataBase/DatabaseProject.php");
 
-class teste extends PHPUnit_Framework_TestCase
+class DatabaseProjectTest extends PHPUnit_Framework_TestCase
 {
     
     private function testBase()
     {
         $_SESSION['id_usuario_corrente'] = "Teste";
         ob_start();
-        require_once ("../aplicacao/dataBase/dataBaseProject.php");
+        require_once ("../aplicacao/dataBase/DatabaseProject.php");
         return ob_get_clean();
     }
     

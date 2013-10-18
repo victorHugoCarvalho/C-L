@@ -1,8 +1,8 @@
 <?php
 
-require_once ("../aplicacao/dataBase/databaseScenario.php");
+require_once ("../aplicacao/dataBase/DatabaseScenario.php");
 
-class databaseScenarioTest extends PHPUnit_Framework_TestCase{
+class DatabaseScenarioTest extends PHPUnit_Framework_TestCase{
     
     
     public function testCheckScenarioExists()

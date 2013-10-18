@@ -2,7 +2,7 @@
 
 session_start(); 
 
-include_once ("dataBase/dataBaseProject.php");
+include_once ("dataBase/DatabaseProject.php");
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
