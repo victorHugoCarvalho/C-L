@@ -11,7 +11,7 @@ include_once ("../aplicacao/seguranca.php");
 //Caso nao possua, insere os valores na tabela PROJETO. (1.3)
 //Devolve o id_cprojeto. (1.4)
 
-if (!(function_exists("addProject")))
+if (!(function_exists("includeProject")))
 {
 	function includeProject($name, $description)
 	{
