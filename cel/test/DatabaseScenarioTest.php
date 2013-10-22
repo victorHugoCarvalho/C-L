@@ -1,7 +1,6 @@
 <?php
 
 require_once ("../aplicacao/dataBase/DatabaseScenario.php");
-require_once ("../aplicacao/funcoes_genericas.php");
 require_once ("../aplicacao/dataBase/DatabaseProject.php");
 
 class DatabaseScenarioTest extends PHPUnit_Framework_TestCase
@@ -67,7 +66,7 @@ class DatabaseScenarioTest extends PHPUnit_Framework_TestCase
     	$exception = "Texto";
     	$episodes = "Texto";
     
-    	$id_incluido = inclui_cenario($id_newProject, $title, $objective, $context,
+    	$id_incluido = includeScenario($id_newProject, $title, $objective, $context,
     			$actors, $resources, $exception, $episodes);
     
     	$result = checkScenarioExists($id_newProject, $title);

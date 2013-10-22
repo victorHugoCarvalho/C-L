@@ -280,7 +280,7 @@ if (!(function_exists("adicionar_cenario")))
         // Conecta ao SGBD
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         // Inclui o cenario na base de dados (sem transformar os campos, sem criar os relacionamentos)
-        $id_incluido = inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes);
+        $id_incluido = includeScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         
         $query = "SELECT id_cenario, titulo, contexto, episodios
               FROM cenario

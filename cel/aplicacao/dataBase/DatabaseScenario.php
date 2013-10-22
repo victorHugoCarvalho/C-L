@@ -42,7 +42,7 @@ function checkScenarioExists($project, $title)
 ###################################################################
 if (!(function_exists("inclui_cenario")))
 {
-	function include_Scenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
+	function includeScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
 	{
 		//global $result;      // Conexao com a base de dados
 		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
