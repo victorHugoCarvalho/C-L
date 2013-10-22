@@ -18,32 +18,17 @@ class DatabaseScenarioTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse($result);
     }
-    /*
-    @test
-    */
-    public function testCheckScenarioExistsReturnTrue()
-    {
-        
-        $id_newProject = includeProject("Projeto Teste", "teste");
-        $title = "Texto";
-        inclui_cenario($id_newProject, $title, "Texto", "Texto", "Texto", "Texto", "Texto", "Texto");
-        
-        $result = checkScenarioExists($id_newProject, $title);
-
-        $this->assertTrue($result);
-        
-        removeProject($id_newProject);
-    }
-    
+  
     /*
      @test
     */
     public function testCheckScenarioExistsReturnTrue()
     {
     
+        $_SESSION['id_usuario_corrente'] = "Teste";
     	$id_newProject = includeProject("Projeto Teste", "teste");
     	$title = "Texto";
-    	inclui_cenario($id_newProject, $title, "Texto", "Texto", "Texto", "Texto", "Texto", "Texto");
+    	includeScenario($id_newProject, $title, "Texto", "Texto", "Texto", "Texto", "Texto", "Texto");
     
     	$result = checkScenarioExists($id_newProject, $title);
     
@@ -57,6 +42,7 @@ class DatabaseScenarioTest extends PHPUnit_Framework_TestCase
     */
     public function testInclui_cenario()
     {
+        $_SESSION['id_usuario_corrente'] = "Teste";
     	$id_newProject = includeProject("Projeto Teste", "teste");
     	$title = "Texto";
     	$objective = "Texto";
