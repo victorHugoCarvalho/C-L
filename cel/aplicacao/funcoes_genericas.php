@@ -38,39 +38,6 @@ else
 {
 	//Nothing to do.
 }
-
-
-###################################################################
-# Insere um cenario no banco de dados.
-# Recebe o id_projeto, titulo, objetivo, contexto, atores, recursos, excecao e episodios. (1.1)
-# Insere os valores do lexico na tabela CENARIO. (1.2)
-# Devolve o id_cenario. (1.4)
-#
-###################################################################
-if (!(function_exists("inclui_cenario"))) 
-{
-    function inclui_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
-    {
-        //global $result;      // Conexao com a base de dados
-        $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $data = date("Y-m-d");
-        
-        $query = "INSERT INTO cenario (id_projeto,data, titulo, objetivo, contexto, atores, recursos, excecao, episodios) 
-		VALUES ($id_projeto,'$data', '".prepara_dado(strtolower($title))."', '".prepara_dado($objective)."',
-		'".prepara_dado($context)."', '".prepara_dado($actors)."', '".prepara_dado($resources)."',
-		'".prepara_dado($exception)."', '".prepara_dado($episodes)."')";
-			  
-		mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $query = "SELECT max(id_cenario) FROM cenario";
-        $queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $result = mysql_fetch_row($queryResult);
-        return $result[0];
-    }
-}
-else
-{
-	//Nothing to do.
-}
 ###################################################################
 # Insere um lexico no banco de dados.
 # Recebe o id_projeto, nome, no��o, impacto e os sinonimos. (1.1)
