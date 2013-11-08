@@ -15,8 +15,8 @@ include_once ("../aplicacao/seguranca.php");
 
 function checkScenarioExists($project, $title)
 {
-	assert($project != null , "project nao deve ser nulo!!");
-	assert($title != null , " title project nao deve ser nulo!!");
+	assert($project != null , "project must not be null!!");
+	assert($title != null , " title project must not be null!!");
 	
 	$scenarioExists = true;
 
@@ -47,6 +47,12 @@ if (!(function_exists("inclui_cenario")))
 {
 	function includeScenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
 	{
+		assert($id_projeto != Null , "id_project must not be null!!");
+		assert($title != Null , "title must not be null!!");
+		assert($objective != Null , "objective must not be null!!");
+		assert($context != Null , "context must not be null!!");
+		
+		
 		//global $result;      // Conexao com a base de dados
 		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		$data = date("Y-m-d");
