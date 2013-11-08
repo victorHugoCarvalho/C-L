@@ -15,6 +15,9 @@ include_once ("../aplicacao/seguranca.php");
 
 function checkScenarioExists($project, $title)
 {
+	assert($project != null , "project nao deve ser nulo!!");
+	assert($title != null , " title project nao deve ser nulo!!");
+	
 	$scenarioExists = true;
 
 	$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
