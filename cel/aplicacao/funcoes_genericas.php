@@ -94,6 +94,8 @@ if (!(function_exists("reload")))
 {
     function reload($url) 
     {
+    	assert($url != null , "Url must not be null!!");
+    	
 		?>
 		<script language="javascript1.3">
 		
