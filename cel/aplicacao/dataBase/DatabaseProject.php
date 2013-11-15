@@ -15,6 +15,8 @@ if (!(function_exists("includeProject")))
 {
 	function includeProject($name, $description)
 	{
+		assert($name != null , "name Project must not be null!!");
+		
 		$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 		// cheks if the project already exists
 		$queryVerification = "SELECT * FROM projeto WHERE nome = '$name'";
