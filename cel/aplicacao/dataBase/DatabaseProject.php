@@ -101,6 +101,8 @@ else
 
 function removeProject($idProject)
 {
+	assert($idProject != null , "idProject must not be null!!");
+	
 	$result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
 
 	// Remove scenario requests

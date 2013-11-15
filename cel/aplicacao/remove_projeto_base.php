@@ -18,6 +18,8 @@ include_once("CELConfig/CELConfig.inc");
 
 
 	$id_projeto = $_SESSION['id_projeto_corrente'];
+	
+	assert($id_projeto != null , "idProject must not be null!!");
         
     removeProject($id_projeto);    
 ?>
