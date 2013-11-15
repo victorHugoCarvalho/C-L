@@ -3,7 +3,6 @@
 session_start();
 
 include_once ("dataBase/DatabaseProject.php");
-include("funcoes_genericas.php");
 include_once("CELConfig/CELConfig.inc");
 
 
@@ -17,11 +16,11 @@ include_once("CELConfig/CELConfig.inc");
 //  Episodes: The system deletes all data on the particular design of your database.
 
 
-	$id_projeto = $_SESSION['id_projeto_corrente'];
+	$idProject = $_SESSION['id_projeto_corrente'];
 	
-	assert($id_projeto != null , "idProject must not be null!!");
+	assert($idProject != null , "idProject must not be null!!");
         
-    removeProject($id_projeto);    
+    removeProject($idProject);    
 ?>
 <html>
 <script language="javascript1.3">
