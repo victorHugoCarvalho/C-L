@@ -1712,6 +1712,10 @@ if (!(function_exists("inserirPedidoRemoverConceito")))
 {
     function inserirPedidoRemoverConceito($id_projeto,$id_conceito,$id_usuario)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_conceito != null, "id_conceito must not be null");
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	
         $DB = new PGDB();
         $insert = new QUERY($DB);
         $selectUser = new QUERY($DB);
