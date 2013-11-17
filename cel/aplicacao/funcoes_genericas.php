@@ -2128,6 +2128,9 @@ if (!(function_exists("is_admin")))
 {
     function is_admin($id_usuario, $id_projeto)
     {
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $query = "SELECT *
               FROM participa
