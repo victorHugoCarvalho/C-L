@@ -1,50 +1,52 @@
 <?php 
+//session_start(); 
 
-    //session_start(); 
+//include("funcoes_genericas.php"); 
 
-    //include("funcoes_genericas.php"); 
-
-    chkUser("index.php");        // Cenario: controle de acesso 
+chkUser("index.php");        // Cenario: controle de acesso 
 
 // frame_inferior.php 
 // Dada a base, o tipo "c", "l", "oc", "or" e "oa" e o 
 // id do respectivo, mostra os dados necess�rios 
 // no frame. 
 
-    function frame_inferior( $bd, $tipo, $id  ) 
+function frame_inferior($bd, $tipo, $id) 
+{
+	assert($bd != null, "bd must not be null");
+	assert($tipo != null, "tipo must not be null");
+	assert($id != null, "id must not be null");
+	
+	$search = "'<[\/\!]*?[^<>]*?>'si"; 
+    $replace = ""; 
+
+    if ( $tipo == "c" )            // Se for cenario 
     { 
-        $search = "'<[\/\!]*?[^<>]*?>'si"; 
-        $replace = ""; 
+    	// Seleciona os cen�rios que referenciam o cen�rio 
+        // com o id passado. 
+        $qry_cenario = "SELECT id_cenario, titulo 
+        	FROM   cenario, centocen 
+            WHERE  id_cenario = id_cenario_from 
+            AND    id_cenario_to = " . $id ; 
 
+        $tb_cenario = mysql_query( $qry_cenario ) or 
+        	die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
+		?>
 
-        if ( $tipo == "c" )            // Se for cenario 
-        { 
-            // Seleciona os cen�rios que referenciam o cen�rio 
-            // com o id passado. 
-            $qry_cenario = "SELECT id_cenario, titulo 
-                            FROM   cenario, centocen 
-                            WHERE  id_cenario = id_cenario_from 
-                            AND    id_cenario_to = " . $id ; 
-
-            $tb_cenario = mysql_query( $qry_cenario ) or 
-                          die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
-?>
-
-<table>
-<tr>
-  <th>Cen&aacute;rios</th>
-</tr>
-<?php 
+		<table>
+			<tr>
+  				<th>Cen&aacute;rios</th>
+			</tr>
+			<?php 
             while ( $row = mysql_fetch_row( $tb_cenario ) ) 
             { 
                 // Retira as tags HTML de dentro do titulo do cenario 
                 $row[1] = preg_replace($search, $replace, $row[1]); 
                 $link = "<a href=javascript:reCarrega" . 
-                        "('main.php?id=$row[0]&t=c');><span style=\"font-variant: small-caps\">$row[1]</span></a>" ; 
-?>
+                	"('main.php?id=$row[0]&t=c');><span style=\"font-variant: small-caps\">$row[1]</span></a>" ; 
+				?>
 
-  <td><?=$link?></td>
-  <?php 
+  				<td><?=$link?></td>
+  				<?php 
             } // while 
         } 
 
@@ -69,45 +71,45 @@
 
             $tb_lexico = mysql_query( $qry_lexico ) or 
                          die( "Erro ao enviar a query de sele&oacute;&atilde;o." ) ; 
-?>
-  <table>
-    <tr>
-      <th>Cen&aacute;rios</th>
-      <th>L&eacute;xicos</th>
-    </tr>
-    <?php 
-            while ( 1 ) 
-            { 
-?>
-    <tr>
-      <?php 
-                if ( $rowc = mysql_fetch_row( $tb_cenario ) ) 
-                { 
-                    $rowc[1] = preg_replace($search, $replace, $rowc[1]); 
-                    $link = "<a href=javascript:reCarrega" . 
-                            "('main.php?id=$rowc[0]&t=c');><span style=\"font-variant: small-caps\">$rowc[1]</span></a>" ; 
-                } // if 
-                else 
-                { 
-                    $link = "" ; 
-                } // else 
-?>
-      <td><?=$link?></td>
-      <?php 
-                if ( $rowl = mysql_fetch_row( $tb_lexico ) ) 
-                { 
-                    $link = "<a href=javascript:reCarrega" . 
-                            "('main.php?id=$rowl[0]&t=l');>$rowl[1]</a>" ; 
-                } // if 
-                else 
-                { 
-                    $link = "" ; 
-                } // else 
-?>
-      <td><?=$link?></td>
-        </td>
-    </tr>
-    <?php 
+			?>
+  			<table>
+    			<tr>
+      				<th>Cen&aacute;rios</th>
+      				<th>L&eacute;xicos</th>
+    			</tr>
+    			<?php 
+            	while ( 1 ) 
+            	{ 
+					?>
+    				<tr>
+      					<?php 
+                		if ( $rowc = mysql_fetch_row( $tb_cenario ) ) 
+                		{ 
+                    		$rowc[1] = preg_replace($search, $replace, $rowc[1]); 
+                    		$link = "<a href=javascript:reCarrega" . 
+                            	"('main.php?id=$rowc[0]&t=c');><span style=\"font-variant: small-caps\">$rowc[1]</span></a>" ; 
+                		} // if 
+                		else 
+                		{ 
+                    		$link = "" ; 
+                		} // else 
+						?>
+      					<td><?=$link?></td>
+      					<?php 
+                		if ( $rowl = mysql_fetch_row( $tb_lexico ) ) 
+                		{ 
+                    		$link = "<a href=javascript:reCarrega" . 
+                            	"('main.php?id=$rowl[0]&t=l');>$rowl[1]</a>" ; 
+                		} // if 
+                		else 
+                		{ 
+                    		$link = "" ; 
+                		} // else 
+						?>
+      					<td><?=$link?></td>
+        			</td>
+    			</tr>
+    			<?php 
                 if ( !( $rowc ) && !( $rowl ) ) 
                 { 
                     break ; 
@@ -117,7 +119,6 @@
                 	//Nothing to do.
                 } 
             } // while 
-
         } //elseif 
 
         else if ( $tipo == "oc" ) /* CONCEITO */ 
@@ -136,9 +137,6 @@
            { 
               print "<tr><td CLASS=\"Estilo\"><a href=\"main.php?id=$line[0]&t=or\">$line[1]</a></td><td>$line[2]</TD></tr>"; 
            } 
-            
-
-
         } //elseif 
 
         else if ( $tipo == "or" ) /* RELA��O */ 
@@ -157,14 +155,10 @@
            { 
               print "<tr><td CLASS=\"Estilo\"><a href=\"main.php?id=$line[0]&t=oc\">$line[1]</a></td></tr>"; 
            } 
-            
-
-
         } //elseif 
 
         else if ( $tipo == "oa" ) /* AXIOMA */ 
         { 
-
            $q = "SELECT   * 
                  FROM     axioma
                  WHERE    id_axioma = \"$id\";";  
@@ -187,17 +181,14 @@
               $line2 = mysql_fetch_array($result2, MYSQL_BOTH) ; 
               print "<td CLASS=\"Estilo\"><a href=\"main.php?id=$line2[0]&t=oc\">$axi[1]</a></td></tr>"; 
            } 
-            
-
-
         }
         else
         {
         	//Nothing to do.
         }
         
-?>
-  </table>
-  <?php 
-    } // procura_ref 
+		?>
+  		</table>
+  	<?php 
+} // procura_ref 
 ?>
