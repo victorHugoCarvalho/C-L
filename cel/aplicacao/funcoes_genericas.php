@@ -2159,6 +2159,9 @@ if (!(function_exists("check_proj_perm")))
 {
     function check_proj_perm($id_usuario, $id_projeto)
     {
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $query = "SELECT *
               FROM participa
