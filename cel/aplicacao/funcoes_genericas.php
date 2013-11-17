@@ -1171,6 +1171,9 @@ if (!(function_exists("removeRelacao")))
 {
     function removeRelacao($id_projeto, $id_relacao)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_relacao != null, "id_relacao must not be null");
+    	
         $DB = new PGDB();
         $sql6 = new QUERY($DB);
         
