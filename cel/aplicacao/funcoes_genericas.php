@@ -1768,6 +1768,10 @@ if (!(function_exists("inserirPedidoRemoverRelacao")))
 {
     function inserirPedidoRemoverRelacao($id_projeto,$id_relacao,$id_usuario)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_relacao != null, "id_relacao must not be null");
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	
         $DB = new PGDB () ;
         $insert = new QUERY ($DB) ;
         $selectUser = new QUERY ($DB) ;
