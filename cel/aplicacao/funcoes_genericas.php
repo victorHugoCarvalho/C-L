@@ -1237,6 +1237,9 @@ function checkLexiconExists($project, $name)
 ###################################################################
 function checkSynonymExists($project, $listSynonym)
 {
+	assert($project != null, "project must not be null");
+	assert($listSynonym != null, "listSynonym must not be null");
+	
     $exists = false;
     
     $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
