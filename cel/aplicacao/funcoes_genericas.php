@@ -2080,6 +2080,8 @@ if (!(function_exists("verificaGerente")))
 {
     function verificaGerente($id_usuario)
     {
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	
         $DB = new PGDB () ;
         $select = new QUERY ($DB) ;
         $select->execute("SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario");
