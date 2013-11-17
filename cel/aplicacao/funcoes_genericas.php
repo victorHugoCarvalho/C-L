@@ -1995,6 +1995,7 @@ if (!(function_exists("tratarPedidoConceito")))
             }
             else
             {
+            	$id_conceito = $record_pedido['id_conceito'];
                 $id_projeto = $record_pedido['id_projeto'] ;
                 $nome = $record_pedido['nome'] ;
                 $descricao = $record_pedido['descricao'] ;
@@ -2028,6 +2029,8 @@ if (!(function_exists("tratarPedidoRelacao")))
 {
     function tratarPedidoRelacao($id_pedido)
     {
+    	assert($id_pedido != null, "id_pedido must not be null");
+    	
         $DB = new PGDB();
         $select = new QUERY($DB);
         $delete = new QUERY($DB);
