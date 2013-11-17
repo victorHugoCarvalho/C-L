@@ -1578,7 +1578,7 @@ else
 	//Nothing to do.
 }
 
-###################################################################
+##########################################################inserirPedidoRemoverCenario#########
 # Function is an insert in the table request.
 # To remove a lexicon it must receive the id and id lexicon
 # project. (1.1)
@@ -1591,6 +1591,10 @@ if (!(function_exists("inserirPedidoRemoverLexico")))
 {
     function inserirPedidoRemoverLexico($id_projeto,$id_lexico,$id_usuario)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_lexico != null, "id_lexico must not be null");
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	
         $DB = new PGDB () ;
         $insert = new QUERY ($DB) ;
         $select = new QUERY ($DB) ;
