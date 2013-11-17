@@ -2110,6 +2110,8 @@ if (!(function_exists("formataData")))
 {
     function formataData($data)
     {
+    	assert($data != null, "data must not be null");
+    	
         $novaData = substr( $data, 8, 9 ) .
         substr( $data, 4, 4 ) .
         substr( $data, 0, 4 );
