@@ -172,6 +172,15 @@ if (!(function_exists("adicionar_cenario")))
 {
     function adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes)
     {
+    	// $exception can be null
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($title != null, "title must not be null");
+    	assert($objective != null, "objective must not be null");
+    	assert($context != null, "context must not be null");
+    	assert($actors != null, "actors must not be null");
+    	assert($resources != null, "resources must not be null");
+    	assert($episodes != null, "episodes must not be null");
+    	
         // Conecta ao SGBD
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         // Inclui o cenario na base de dados (sem transformar os campos, sem criar os relacionamentos)
