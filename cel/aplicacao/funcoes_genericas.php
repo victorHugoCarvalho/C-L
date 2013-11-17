@@ -1392,6 +1392,10 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
 {
     function inserirPedidoRemoverCenario($id_projeto, $id_cenario, $id_usuario)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_cenario != null, "id_cenario must not be null");
+    	assert($id_usuario != null, "id_usuario must not be null");
+    	
         $DB = new PGDB();
         $insert = new QUERY($DB);
         $selectUser = new QUERY($DB);
