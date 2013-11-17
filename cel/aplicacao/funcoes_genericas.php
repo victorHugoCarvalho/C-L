@@ -1082,6 +1082,9 @@ if (!(function_exists("removeConceito")))
 {
     function removeConceito($id_projeto, $id_conceito)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_conceito != null, "id_conceito must not be null");
+    	
         $DB = new PGDB () ;
         $sql = new QUERY ($DB) ;
         $sql2 = new QUERY ($DB) ;
