@@ -546,6 +546,9 @@ if (!(function_exists("removeCenario")))
 {
     function removeCenario($id_projeto,$id_cenario)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_cenario != null, "id_ceario must not be null");
+    	
         $DB = new PGDB () ;
         $sql1 = new QUERY ($DB) ;
         $sql2 = new QUERY ($DB) ;
