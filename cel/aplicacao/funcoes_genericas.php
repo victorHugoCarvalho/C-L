@@ -763,6 +763,9 @@ if (!(function_exists("removeLexico")))
 {
     function removeLexico($id_projeto,$id_lexico)
     {
+    	assert($id_projeto != null, "id_projeto must not be null");
+    	assert($id_lexico != null, "id_lexico must not be null");
+    	
         $DB = new PGDB();
         $delete = new QUERY($DB);        
         
