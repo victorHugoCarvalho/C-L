@@ -132,6 +132,10 @@ if (!(function_exists("simple_query")))
 {
     funcTion simple_query($field, $table, $where)
     {
+    	assert($field != null, "field must not be null");
+    	assert($table != null, "table must not be null");
+    	assert($where != null, "where must not be null");
+    	
         $result = bd_connect() or die("Erro ao conectar ao SGBD");
         $query = "SELECT $field FROM $table WHERE $where";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query");
