@@ -589,16 +589,13 @@ if (!(function_exists("alteraCenario")))
         $sql3 = new QUERY ($DB) ;
         $sql4 = new QUERY ($DB) ;
                
-        # Remove o relacionamento entre o cenario a ser alterado
-        # e outros cenarios que o referenciam
+        # Remove o relacionamento entre o cenario a ser alterado e outros cenarios que o referenciam
         $sql1->execute ("DELETE FROM centocen WHERE id_cenario_from = $id_cenario") ;
         $sql2->execute ("DELETE FROM centocen WHERE id_cenario_to = $id_cenario") ;
-        # Remove o relacionamento entre o cenario a ser alterado
-        # e o seu lexico
+        # Remove o relacionamento entre o cenario a ser alterado e o seu lexico
         $sql3->execute ("DELETE FROM centolex WHERE id_cenario = $id_cenario") ;
         
         # atualiza o cenario
-        
         $sql4->execute ("update cenario set 
 		objetivo = '".prepara_dado($objective)."', 
 		contexto = '".prepara_dado($context)."', 
@@ -620,16 +617,16 @@ if (!(function_exists("alteraCenario")))
               ORDER BY CHAR_LENGTH(titulo) DESC";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de SELECT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        while ($result = mysql_fetch_array($queryResult)) 
-        {    // Para todos os cenarios
-			$tituloEscapado = escapa_metacaracteres( $title );
+        while ($result = mysql_fetch_array($queryResult)) // Para todos os cenarios
+        {
+		$tituloEscapado = escapa_metacaracteres( $title );
 	       	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 	                
 	       	if((preg_match($regex, $result['contexto']) != 0) || (preg_match($regex, $result['episodios']) != 0) ) 
-           	{   // (2.2)
+           	{
 	         
 	        	$query = "INSERT INTO centocen (id_cenario_from, id_cenario_to)
-	                      VALUES (" . $result['id_cenario'] . ", $id_cenario)"; // (2.2.1)
+                                 VALUES (" . $result['id_cenario'] . ", $id_cenario)"; // (2.2.1)
 	        	mysql_query($query) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  
 	        }
 	        else
@@ -640,7 +637,7 @@ if (!(function_exists("alteraCenario")))
         	$regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i";        
       
 	        if((preg_match($regex, $context) != 0) || (preg_match($regex, $episodes) != 0)) 
-         	{   // (2.3)        
+         	{
         		$query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_cenario, " . $result['id_cenario'] . ")"; //(2.4.1)
         		mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
         	}   
@@ -648,15 +645,15 @@ if (!(function_exists("alteraCenario")))
         	{
         		//Nothing to do.
         	}
-        }   // while
+        }
         
       
         $query = "SELECT id_lexico, nome FROM lexico WHERE id_projeto = $id_projeto";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de SELECT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         while ($result2 = mysql_fetch_array($queryResult)) 
-        {    // (3)
+        {
 
-			$nomeEscapado = escapa_metacaracteres( $result2['nome'] );
+		$nomeEscapado = escapa_metacaracteres( $result2['nome'] );
         	$regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
          	if ((preg_match($regex, $title) != 0) ||
@@ -666,13 +663,13 @@ if (!(function_exists("alteraCenario")))
                     (preg_match($regex, $resources) != 0) ||
                     (preg_match($regex, $episodes) != 0) ||
                     (preg_match($regex, $exception) != 0) ) 
-        	{   // (3.2)
+        	{
                 
                         $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_cenario AND id_lexico = " . $result2['id_lexico'];
                         $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-                        $resultArrayCen = mysql_fetch_array($queryResultCenario);
+                        $resultArrayCenario = mysql_fetch_array($queryResultCenario);
         
-	        	if ($resultArrayCen == false)
+	        	if ($resultArrayCenario == false)
 	        	{
                             $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_cenario, " . $result2['id_lexico'] . ")";
                             mysql_query($query) or die("Erro ao enviar a query de INSERT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
@@ -687,21 +684,15 @@ if (!(function_exists("alteraCenario")))
         
         
       	//Sinonimos
-                
         $querySinonimos = "SELECT nome, id_lexico FROM sinonimo WHERE id_projeto = $id_projeto AND id_pedidolex = 0";
-        
         $queryResultSinonimos = mysql_query($querySinonimos) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        
         $nomesSinonimos = array();
-        
         $id_lexicoSinonimo = array();
         
         while($rowSinonimo = mysql_fetch_array($queryResultSinonimos))
         {
-            
-            $nomesSinonimos[]     = $rowSinonimo["nome"];
-            $id_lexicoSinonimo[]  = $rowSinonimo["id_lexico"];
-            
+            $nomesSinonimos[] = $rowSinonimo["nome"];
+            $id_lexicoSinonimo[] = $rowSinonimo["id_lexico"];
         }
       
         $qlc = "SELECT id_cenario, titulo, contexto, episodios, objetivo, atores, recursos, excecao
@@ -712,12 +703,10 @@ if (!(function_exists("alteraCenario")))
         
         for ($i = 0; $i < $count; $i++)
         {
-            
             $queryResult = mysql_query($qlc) or die("Erro ao enviar a query de busca<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-            while ($result = mysql_fetch_array($queryResult)) 
-            {    // verifica sinonimos dos lexicos no cenario inclu�do
-            
-				$nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
+            while ($result = mysql_fetch_array($queryResult)) // verifica sinonimos dos lexicos no cenario incluído
+            {
+                    $nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
 	            $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 	            
 		        if ((preg_match($regex, $objective) != 0) ||
@@ -730,9 +719,9 @@ if (!(function_exists("alteraCenario")))
 		            
 		            $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_cenario AND id_lexico = $id_lexicoSinonimo[$i] ";
 		            $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-		            $resultArrayCen = mysql_fetch_array($queryResultCenario);
+		            $resultArrayCenario = mysql_fetch_array($queryResultCenario);
 		            
-		            if ($resultArrayCen == false)
+		            if ($resultArrayCenario == false)
 		            {
 		                $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_cenario, $id_lexicoSinonimo[$i])";
 		                mysql_query($query) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
@@ -771,8 +760,7 @@ if (!(function_exists("removeLexico")))
         $DB = new PGDB();
         $delete = new QUERY($DB);        
         
-        # Remove o relacionamento entre o lexico a ser removido
-        # e outros lexicos que o referenciam
+        # Remove o relacionamento entre o lexico a ser removido e outros lexicos que o referenciam
         $delete->execute ("DELETE FROM lextolex WHERE id_lexico_from = $id_lexico") ;
         $delete->execute ("DELETE FROM lextolex WHERE id_lexico_to = $id_lexico") ;
         $delete->execute ("DELETE FROM centolex WHERE id_lexico = $id_lexico") ;
@@ -798,21 +786,26 @@ if (!(function_exists("alteraLexico")))
 {
     function alteraLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao)
     {
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($id_lexico != null, "id_lexico must not be null");
+        assert($nome != null, "nocao must not be null");
+        assert($nocao != null, "nocao must not be null");
+        assert($impacto != null, "impact must not be null");
+        assert($sinonimos != null, "sinocnimos must not be null");
+        assert($classificacao != null, "classificacao must not be null");
+        
         $DB = new PGDB();
         $delete = new QUERY($DB);        
         
         # Remove os relacionamento existentes anteriormente
-        
         $delete->execute ("DELETE FROM lextolex WHERE id_lexico_from = $id_lexico") ;
         $delete->execute ("DELETE FROM lextolex WHERE id_lexico_to = $id_lexico") ;
         $delete->execute ("DELETE FROM centolex WHERE id_lexico = $id_lexico") ;
         
         # Remove todos os sinonimos cadastrados anteriormente
-        
         $delete->execute ("DELETE FROM sinonimo WHERE id_lexico = $id_lexico") ;
         
         # Altera o lexico escolhido
-               
         $delete->execute ("UPDATE lexico SET 
 		nocao = '".prepara_dado($nocao)."', 
 		impacto = '".prepara_dado($impacto)."', 
@@ -821,22 +814,19 @@ if (!(function_exists("alteraLexico")))
         
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
- 	    # Fim altera lexico escolhido
- 	    
- 	    ### VERIFICACAO DE OCORRENCIA EM CENARIOS ###
- 	    
- 	    ########
- 	    
- 	    # Verifica se h� alguma ocorrencia do titulo do lexico nos cenarios existentes no banco
+        # Fim altera lexico escolhido
+        ### VERIFICACAO DE OCORRENCIA EM CENARIOS ###
+        
+        # Verifica se há alguma ocorrencia do titulo do lexico nos cenarios existentes no banco
        
         $queryResult = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios
-              FROM cenario
-              WHERE id_projeto = $id_projeto";
+                        FROM cenario
+                        WHERE id_projeto = $id_projeto";
         
         $queryResult = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        while ($result = mysql_fetch_array($queryResult)) 
-        {    // 2  - Para todos os cenarios
+        while ($result = mysql_fetch_array($queryResult)) //Para todos os cenarios
+        {
             $nomeEscapado = escapa_metacaracteres( $nome );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
@@ -846,10 +836,10 @@ if (!(function_exists("alteraLexico")))
                 (preg_match($regex, $result['recursos']) != 0) ||
                 (preg_match($regex, $result['excecao']) != 0)  ||
                 (preg_match($regex, $result['episodios']) != 0))
-            { //2.2
+            {
         
                 $query = "INSERT INTO centolex (id_cenario, id_lexico)
-                     VALUES (" . $result['id_cenario'] . ", $id_lexico)"; //2.2.1
+                            VALUES (" . $result['id_cenario'] . ", $id_lexico)"; //2.2.1
         
                 mysql_query($query) or die("Erro ao enviar a query de INSERT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
           
@@ -864,16 +854,15 @@ if (!(function_exists("alteraLexico")))
         
         ########
  	    
- 	    # Verifica se h� alguma ocorrencia de algum dos sinonimos do lexico nos cenarios existentes no banco
+        # Verifica se há alguma ocorrencia de algum dos sinonimos do lexico nos cenarios existentes no banco
        
         //&sininonimos = sinonimos do novo lexico
         $count = count($sinonimos);
-        for ($i = 0; $i < $count; $i++)//Para cada sinonimo
+        for ($i = 0; $i < $count; $i++) //Para cada sinonimo
         {
             $queryResult = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($result2 = mysql_fetch_array($queryResult))// para cada cenario
             {
-                
                 $nomeSinonimoEscapado = escapa_metacaracteres ( $sinonimos[$i] );
                 $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
                 
@@ -917,17 +906,17 @@ if (!(function_exists("alteraLexico")))
         $queryResult = mysql_query($queryIdlexico) or die("Erro ao enviar a query de SELECT no LEXICO<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
         while ($result = mysql_fetch_array($queryResult)) // para cada lexico exceto o que esta sendo alterado
-        {    // (3)
-        	# Verifica a ocorrencia do titulo do lexico alterado no texto dos outros lexicos
+        {
+            # Verifica a ocorrencia do titulo do lexico alterado no texto dos outros lexicos
         	        
             $nomeEscapado = escapa_metacaracteres( $nome );
-			$regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
+            $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
             
             if ((preg_match($regex, $result['nocao']) != 0 ) ||
                 (preg_match($regex, $result['impacto'])!= 0))
             {
                     $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
-                      	VALUES (" . $result['id_lexico'] . ", $id_lexico)";
+                                VALUES (" . $result['id_lexico'] . ", $id_lexico)";
                 
                     mysql_query($query) or die("Erro ao enviar a query de INSERT no lextolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             }
@@ -938,16 +927,14 @@ if (!(function_exists("alteraLexico")))
          
             # Verifica a ocorrencia do titulo dos outros lexicos no texto do lexico alterado
             
-			$nomeEscapado = escapa_metacaracteres( $result['nome'] );
+            $nomeEscapado = escapa_metacaracteres( $result['nome'] );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-            if((preg_match($regex, $nocao) != 0) ||
+            if ((preg_match($regex, $nocao) != 0) ||
                (preg_match($regex, $impacto) != 0) )
-            {   // (3.3)        
-        
+            {
                     $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to) 
-                                    VALUES ($id_lexico, " . $result['id_lexico'] . ")"; 
-
+                                VALUES ($id_lexico, " . $result['id_lexico'] . ")"; 
                     mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
             }
             else
@@ -958,14 +945,12 @@ if (!(function_exists("alteraLexico")))
         }
         
         # Fim da verificao por titulo
-        
         $queryLexico = "SELECT id_lexico, nome, nocao, impacto
-              FROM lexico
-              WHERE id_projeto = $id_projeto
-              AND id_lexico <> $id_lexico";                                                                     
+                        FROM lexico
+                        WHERE id_projeto = $id_projeto
+                        AND id_lexico <> $id_lexico";                                                                     
         
         # Verifica a ocorrencia dos sinonimos do lexico alterado nos outros lexicos
-       
         $count = count($sinonimos);
         for ($i = 0; $i < $count; $i++)// para cada sinonimo do lexico alterado
         {
@@ -974,19 +959,19 @@ if (!(function_exists("alteraLexico")))
                 while ($resultl = mysql_fetch_array($queryResult)) // para cada lexico exceto o alterado
                 {
                     $nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );
-                                    $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
+                    $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 
                     // verifica sinonimo[i] do lexico alterado no texto de cada lexico
 
                     if ((preg_match($regex, $resultl['nocao']) != 0) ||
                         (preg_match($regex, $resultl['impacto']) != 0))
                     {
-					
                              // Verifica  se a relacao encontrada ja se encontra no banco de dados. Se tiver nao faz nada, senao cadastra uma nopva relacao
                             $queryVerification = "SELECT * FROM lextolex where id_lexico_from=" . $resultl['id_lexico'] . " and id_lexico_to=$id_lexico";
                             echo("Query: ".$queryVerification."<br>");
-                            $resultado = mysql_query($queryVerification) or die("Erro ao enviar query de select no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);	
-                            if(!resultado)
+                            $resultado = mysql_query($queryVerification) or die("Erro ao enviar query de select no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+                            
+                            if (!resultado)
                             {
                                     $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
                                             VALUES (" . $resultl['id_lexico'] . ", $id_lexico)";            
@@ -1006,7 +991,6 @@ if (!(function_exists("alteraLexico")))
         }
     	
     	# Verifica a ocorrencia dos sinonimos dos outros lexicos no lexico alterado
-        
         $querySinonimos = "SELECT nome, id_lexico 
         		FROM sinonimo 
         		WHERE id_projeto = $id_projeto 
@@ -1026,7 +1010,6 @@ if (!(function_exists("alteraLexico")))
         	if ((preg_match($regex, $nocao) != 0) ||
                     (preg_match($regex, $impacto) != 0))
         	{
-               
                             // Verifica  se a relacao encontrada ja se encontra no banco de dados. Se tiver nao faz nada, senao cadastra uma nopva relacao
                             $queryVerification = "SELECT * FROM lextolex where id_lexico_from=$id_lexico and id_lexico_to=".$rowSinonimo['id_lexico'];
                             $resultado = mysql_query($queryVerification) or die("Erro ao enviar query de select no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);	
@@ -1058,10 +1041,11 @@ if (!(function_exists("alteraLexico")))
         {
         	//Nothing to do.
         }
-        foreach ($sinonimos as $novoSin)
+        
+        foreach ($sinonimos as $novoSinonimo)
         {
          	$query = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
-                 VALUES ($id_lexico, '" . prepara_dado(strtolower($novoSin)) . "', $id_projeto)";
+                            VALUES ($id_lexico, '" . prepara_dado(strtolower($novoSinonimo)) . "', $id_projeto)";
             
                 mysql_query($query, $result) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         }
