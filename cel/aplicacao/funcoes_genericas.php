@@ -52,6 +52,13 @@ if (!(function_exists("inclui_lexico")))
 {
     function inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)
     {
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($nome != null, "nome must not be null");
+        assert($nocao != null, "nocao must not be null");
+        assert($impact != null, "impact must not be null");
+        assert($sinonimos != null, "sinocnimos must not be null");
+        assert($classificacao != null, "classificacao must not be null");
+        
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $data = date("Y-m-d");
      
@@ -63,7 +70,7 @@ if (!(function_exists("inclui_lexico")))
         mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
         //sinonimo
-        $newLexId = mysql_insert_id($result);
+        $newLexicoId = mysql_insert_id($result);
         
         if (!is_array($sinonimos))
         {
@@ -74,10 +81,10 @@ if (!(function_exists("inclui_lexico")))
             //Nothing to do.
         }
         
-        foreach($sinonimos as $novoSin)
+        foreach($sinonimos as $novoSinonimo)
         {
             $query = "INSERT INTO sinonimo (id_lexico, nome, id_projeto)
-                        VALUES ($newLexId, '" . prepara_dado(strtolower($novoSin)) . "', $id_projeto)";
+                        VALUES ($newLexicoId, '" . prepara_dado(strtolower($novoSinonimo)) . "', $id_projeto)";
             mysql_query($query, $result) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         }
         
