@@ -1191,25 +1191,25 @@ function checkLexiconExists($project, $name)
 	
 	$exists = true;
 
-    $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$name' ";
-    $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $resultArray = mysql_fetch_array($queryResult);
+        $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$name' ";
+        $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $resultArray = mysql_fetch_array($queryResult);
 
-    $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$name' ";
-    $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    $resultArray = mysql_fetch_array($queryResult);
+        $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$name' ";
+        $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+        $resultArray = mysql_fetch_array($queryResult);
 
-    if ($resultArray == false)
-    {
-    	$exists = false;
-    }
-    else
-    {
-        $exists = true;
-    }
+        if ($resultArray == false)
+        {
+            $exists = false;
+        }
+        else
+        {
+            $exists = true;
+        }
 
-    return $exists;
+        return $exists;
 }
 
 
@@ -1223,41 +1223,43 @@ function checkLexiconExists($project, $name)
 ###################################################################
 function checkSynonymExists($project, $listSynonym)
 {
-	assert($project != null, "project must not be null");
-	assert($listSynonym != null, "listSynonym must not be null");
-	
-    $exists = false;
-    
-    $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-    
-    foreach ($listSynonym as $synonym)
-    {    
-        $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$synonym' ";
-        $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $resultArray = mysql_fetch_array($queryResult);
-        if ($resultArray != false)
-        {
-            $naoexiste = false;
+        assert($project != null, "project must not be null");
+        assert($listSynonym != null, "listSynonym must not be null");
+
+        $exists = false;
+
+        $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+
+        foreach ($listSynonym as $synonym)
+        {    
+            $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$synonym' ";
+            $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+            $resultArray = mysql_fetch_array($queryResult);
+            
+            if ($resultArray != false)
+            {
+                $naoexiste = false;
+            }
+            else
+            {
+                // Nothing to do
+            }
+
+            $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$synonym' ";
+            $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
+            $resultArray = mysql_fetch_array($queryResult);
+            
+            if ($resultArray == true)
+            {
+                $exists = true;
+            }
+            else
+            {
+                // Nothing to do
+            }
         }
-        else
-        {
-            // Nothing to do
-        }
-        
-        $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$synonym' ";
-        $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $resultArray = mysql_fetch_array($queryResult);
-        if ($resultArray == true)
-        {
-            $exists = true;
-        }
-        else
-        {
-            // Nothing to do
-        }
-    }
-    
-    return $exists;
+
+        return $exists;
 }
 
 ###################################################################
@@ -1270,8 +1272,20 @@ function checkSynonymExists($project, $listSynonym)
 ###################################################################
 if (!(function_exists("addScenarioInsertRequest"))) 
 {
-    function addScenarioInsertRequest($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes, $id_usuario)
+    function addScenarioInsertRequest($id_projeto, $title, $objective, $context, $actors,
+                                      $resources, $exception, $episodes, $id_usuario)
     {
+            assert($id_projeto != null, "id_projeto must not be null");
+            assert($title != null, "title must not be null");
+            assert($objective != null, "objective must not be null");
+            assert($context != null, "context must not be null");
+            assert($actors != null, "actors must not be null");
+            assert($resources != null, "resources must not be null");
+            assert($exception != null, "exception must not be null");
+            assert($episodes != null, "episodes must not be null");
+            assert($id_usuario != null, "id_usuario must not be null");
+            
+            
             $DB = new PGDB();
             $insert  = new QUERY($DB);
             $selectUser  = new QUERY($DB);
@@ -1291,6 +1305,7 @@ if (!(function_exists("addScenarioInsertRequest")))
                     $nome = $recordUser['nome'];
                     $email = $recordUser['email'];
                     $recordParticipa = $selectParticipa->gofirst();
+                    
                     while($recordParticipa != 'LAST_RECORD_REACHED')
                     {
                         $id = $recordParticipa['id_usuario'];
