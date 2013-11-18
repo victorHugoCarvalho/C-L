@@ -5,7 +5,7 @@ session_start();
 include("funcoes_genericas.php");
 include("httprequest.inc");
 
-chkUser("index.php");        // checks whether the user has been authenticated  
+checkUser("index.php");        // checks whether the user has been authenticated  
 
 $XML = "";
 

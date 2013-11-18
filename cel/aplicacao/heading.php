@@ -5,7 +5,7 @@ session_start();
 include("funcoes_genericas.php");
 
 
-chkUser("index.php");      
+checkUser("index.php");      
 
 //    Scenery - User chooses Project
 

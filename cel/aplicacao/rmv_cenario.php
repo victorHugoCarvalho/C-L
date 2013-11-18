@@ -9,7 +9,7 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 
 
-chkUser("index.php");       // checks whether the user has been authenticated
+checkUser("index.php");       // checks whether the user has been authenticated
 
 inserirPedidoRemoverCenario($_SESSION['id_projeto_corrente'], $id_cenario, $_SESSION['id_usuario_corrente']);
 

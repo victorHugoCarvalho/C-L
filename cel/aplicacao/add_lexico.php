@@ -23,7 +23,7 @@ else
 }
 
 
-chkUser("index.php");   // checks whether the user has been authenticated
+checkUser("index.php");   // checks whether the user has been authenticated
 
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");

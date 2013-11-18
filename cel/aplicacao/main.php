@@ -19,7 +19,7 @@ include_once("coloca_links.php");
 
 
 
-chkUser("index.php");   	// checks whether the user has been authenticated  
+checkUser("index.php");   	// checks whether the user has been authenticated  
 
 //Gets the parameter heading.php. No it will hang because the variable was not initialized
 if( isset( $_GET['id_projeto']))    

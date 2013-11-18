@@ -3,7 +3,7 @@
 
 //include("funcoes_genericas.php"); 
 
-chkUser("index.php");        // Cenario: controle de acesso 
+checkUser("index.php");        // Cenario: controle de acesso 
 
 // frame_inferior.php 
 // Dada a base, o tipo "c", "l", "oc", "or" e "oa" e o 

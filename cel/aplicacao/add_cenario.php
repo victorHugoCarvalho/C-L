@@ -14,7 +14,7 @@ include("httprequest.inc");
 include_once("bd.inc");
 
 
-chkUser("index.php");  // checks whether the user has been authenticated   
+checkUser("index.php");  // checks whether the user has been authenticated   
 
 define('NO', 'n');
 define('YES', 's');

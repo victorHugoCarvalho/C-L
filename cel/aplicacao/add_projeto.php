@@ -7,7 +7,7 @@ include("funcoes_genericas.php");
 include("httprequest.inc");
 
 
-chkUser("index.php");        // checks whether the user has been authenticated
+checkUser("index.php");        // checks whether the user has been authenticated
 
 //This script is called when a solicitation of inclusion
 //new project, or when a New User register on the system

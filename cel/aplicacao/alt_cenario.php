@@ -11,7 +11,7 @@ include("httprequest.inc");
 include_once("bd.inc");
 
 // checks whether the user has been authenticated
-chkUser("index.php");
+checkUser("index.php");
 
 // Connect to the SGBD
 $connected_SGBD = bd_connect() or die("Erro ao conectar ao SGBD");

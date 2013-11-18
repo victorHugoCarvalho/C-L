@@ -15,7 +15,7 @@ include("httprequest.inc");
 
 define('APROVADO', '1');
 
-chkUser("index.php"); 	// checks whether the user has been authenticated
+checkUser("index.php"); 	// checks whether the user has been authenticated
 
 if (isset($submit))
 {

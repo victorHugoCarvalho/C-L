@@ -2,7 +2,7 @@
 
 session_start(); 
 include("funcoes_genericas.php"); 
-chkUser("index.php");        // Cenario: controle de acesso 
+checkUser("index.php");        // Cenario: controle de acesso 
 
 ?>
 <title>C&L - Cen&aacute;rios e L&eacute;xico</title>

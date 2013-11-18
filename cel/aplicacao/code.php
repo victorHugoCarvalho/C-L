@@ -16,7 +16,7 @@ else
 include("funcoes_genericas.php");  
 include_once("bd.inc");
 
-chkUser("index.php");        // Checa se o usuario foi autenticado 
+checkUser("index.php");        // Checa se o usuario foi autenticado 
 
 
 //$id_projeto = 2; 
