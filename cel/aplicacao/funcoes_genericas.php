@@ -1686,8 +1686,13 @@ else
 ###################################################################
 if (!(function_exists("inserirPedidoAlterarCenario"))) 
 {
-    function inserirPedidoAlterarConceito($id_projeto, $id_conceito, $nome, $descricao, $namespace, $justificativa, $id_usuario)
+    function inserirPedidoAlterarConceito($id_projeto, $id_conceito, $nome, $descricao, $namespace,$justificativa, $id_usuario)
     {
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($nome != null, "nome must not be null");
+        assert($descricao != null, "descricao must not be null");
+        assert($namespace != null, "namespace must not be null");
+
         $DB = new PGDB();
         $insert = new QUERY($DB);
         $select = new QUERY($DB);
@@ -1712,11 +1717,11 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
                 $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $record = $select->gofirst();
                 $mailGerente = $record['email'];
-                mail("$mailGerente", "Pedido de Altera��o Conceito", "O usuario do sistema $nomeUsuario\nPede para alterar o conceito $nome \nObrigado!","From: $nomeUsuario\result\n"."Reply-To: $email\result\n");
+                mail("$mailGerente", "Pedido de Alteração Conceito", "O usuario do sistema $nomeUsuario\nPede para alterar o conceito $nome \nObrigado!","From: $nomeUsuario\result\n"."Reply-To: $email\result\n");
                 $record2 = $select2->gonext();
             }
         }
-        else //Eh gerente
+        else //É gerente
         {
             removeConceito($id_projeto,$id_conceito) ;
             adicionar_conceito($id_projeto, $nome, $descricao, $namespace);
@@ -1813,7 +1818,7 @@ if (!(function_exists("inserirPedidoRemoverRelacao")))
         $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario") ;
         $selectParticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_projeto") ;
         
-        if ($selectUser->getntuples() == 0&&$selectParticipa->getntuples() == 0)
+        if ($selectUser->getntuples() == 0 && $selectParticipa->getntuples() == 0)
         {
             echo "<BR> [ERRO]Pedido nao foi comunicado por e-mail." ;
         }
@@ -1886,6 +1891,7 @@ if (!(function_exists("tratarPedidoCenario")))
                 $resources = $record_pedido['recursos'] ;
                 $exception = $record_pedido['excecao'] ;
                 $episodes = $record_pedido['episodios'] ;
+                
                 if (!strcasecmp($tipoPedido,'alterar'))
                 {
                     $id_cenario = $record_pedido['id_cenario'] ;
@@ -1989,6 +1995,7 @@ else
 {
 	//Nothing to do.
 }
+
 ###################################################################
 # Handles a request identified by its id.
 # Receives the request id. (1.1)
