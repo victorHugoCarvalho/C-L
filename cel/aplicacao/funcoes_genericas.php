@@ -1461,31 +1461,39 @@ else
 ###################################################################
 if (!(function_exists("addLexiconInsertRequest"))) 
 {
-    function addLexiconInsertRequest($idProject, $name, $notion, $impact, $idUser,$synonyms, $classification)
+    function addLexiconInsertRequest($id_project, $name, $notion, $impact, $id_user, $synonyms, $classification)
     {
+        assert($id_project != null, "id_project must not be null");
+        assert($name != null, "name must not be null");
+        assert($notion != null, "notion must not be null");
+        assert($impact != null, "impact must not be null");
+        assert($id_user != null, "id user must not be null");
+        assert($synonyms != null, "synonyms must not be null");
+        assert($classification != null, "classification must not be null");
+        
         $DB = new PGDB() ;
         $insert = new QUERY($DB) ;
         $selectUser = new QUERY($DB) ;
         $selectPaticipa = new QUERY($DB) ;
         
-        $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $idUser AND id_projeto = $idProject";
+        $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_user AND id_projeto = $id_project";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         
         
         if ( $resultArray == false ) // user is not a manager
         {
-            $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($idProject,'$name','$notion','$impact','$classification',$idUser,'inserir',0)");
+            $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_project,'$name','$notion','$impact','$classification',$id_user,'inserir',0)");
             $newId = $insert->getLastId();
-            $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = '$idUser'");
-            $selectPaticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $idProject");
+            $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = '$id_user'");
+            $selectPaticipa->execute("SELECT * FROM participa WHERE gerente = 1 and id_projeto = $id_project");
             
             //insert synonyms
             
             foreach($synonyms as $synonym)
             {
                 $insert->execute("INSERT INTO sinonimo (id_pedidolex, nome, id_projeto) 
-                VALUES ($newId, '".prepara_dado(strtolower($synonym))."', $idProject)");
+                VALUES ($newId, '".prepara_dado(strtolower($synonym))."', $id_project)");
             }
             // end of the insertions of synonyms
             
@@ -1512,7 +1520,7 @@ if (!(function_exists("addLexiconInsertRequest")))
         }
         else // user is a manager
         { 
-            adicionar_lexico($idProject, $name, $notion, $impact, $synonyms, $classification);
+            adicionar_lexico($id_project, $name, $notion, $impact, $synonyms, $classification);
         }
     }
 }
