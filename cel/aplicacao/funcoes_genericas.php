@@ -56,7 +56,7 @@ if (!(function_exists("inclui_lexico")))
         assert($nome != null, "nome must not be null");
         assert($nocao != null, "nocao must not be null");
         assert($impact != null, "impact must not be null");
-        assert($sinonimos != null, "sinocnimos must not be null");
+        assert($sinonimos != null, "sinonimos must not be null");
         assert($classificacao != null, "classificacao must not be null");
         
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -788,10 +788,10 @@ if (!(function_exists("alteraLexico")))
     {
         assert($id_projeto != null, "id_projeto must not be null");
         assert($id_lexico != null, "id_lexico must not be null");
-        assert($nome != null, "nocao must not be null");
+        assert($nome != null, "nome must not be null");
         assert($nocao != null, "nocao must not be null");
-        assert($impacto != null, "impact must not be null");
-        assert($sinonimos != null, "sinocnimos must not be null");
+        assert($impacto != null, "impacto must not be null");
+        assert($sinonimos != null, "sinonimos must not be null");
         assert($classificacao != null, "classificacao must not be null");
         
         $DB = new PGDB();
@@ -1338,8 +1338,20 @@ else
 ###################################################################
 if (!(function_exists("inserirPedidoAlterarCenario"))) 
 {
-    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources,$exception, $episodes, $justificativa, $id_usuario)
+    function inserirPedidoAlterarCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors,
+                                         $resources,$exception, $episodes, $justificativa, $id_usuario)
     {
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($id_cenario != null, "id_cenario must not be null");
+        assert($title != null, "title must not be null");
+        assert($objective != null, "objective must not be null");
+        assert($context != null, "context must not be null");
+        assert($actors != null, "actors must not be null");
+        assert($resources != null, "resources must not be null");
+        assert($exception != null, "exception must not be null");
+        assert($episodes != null, "episodes must not be null");
+        assert($id_usuario != null, "id_usuario must not be null");
+        
         $DB = new PGDB();
         $insert = new QUERY($DB);
         $selectUser = new QUERY($DB);
@@ -1365,7 +1377,7 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
                 $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                 $recordUser = $selectUser->gofirst();
                 $mailGerente = $recordUser['email'];
-                mail("$mailGerente", "Pedido de Altera��o Cen�rio", "O usuario do sistema $nome\nPede para alterar o cenario $title \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
+                mail("$mailGerente", "Pedido de Alteração Cenário", "O usuario do sistema $nome\nPede para alterar o cenario $title \nObrigado!","From: $nome\result\n"."Reply-To: $email\result\n");
                 $recordParticipa = $selectParticipa->gonext();
             }
         }
