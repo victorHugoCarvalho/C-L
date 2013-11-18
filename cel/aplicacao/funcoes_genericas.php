@@ -91,6 +91,7 @@ if (!(function_exists("inclui_lexico")))
         $query = "SELECT max(id_lexico) FROM lexico";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $result = mysql_fetch_row($queryResult);
+        
         return $result[0];
     }
 }
@@ -121,6 +122,8 @@ if (!(function_exists("breakpoint")))
 {
     function breakpoint($number) 
     {
+        assert($number != null, "number must not be null");
+        
         ?>
         <script language="javascript1.3">	
             alert('<?=$number?>');
