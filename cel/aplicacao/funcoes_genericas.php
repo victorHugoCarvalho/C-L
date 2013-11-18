@@ -185,9 +185,6 @@ if (!(function_exists("adicionar_cenario")))
             assert($title != null, "title must not be null");
             assert($objective != null, "objective must not be null");
             assert($context != null, "context must not be null");
-            assert($actors != null, "actors must not be null");
-            assert($resources != null, "resources must not be null");
-            assert($episodes != null, "episodes must not be null");
 
             // Conecta ao SGBD
             $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
