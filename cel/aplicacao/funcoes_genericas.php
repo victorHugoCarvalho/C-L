@@ -1539,8 +1539,17 @@ else
 ###################################################################
 if (!(function_exists("inserirPedidoAlterarLexico"))) 
 {
-    function inserirPedidoAlterarLexico($id_projeto,$id_lexico,$nome,$nocao,$impacto,$justificativa,$id_usuario, $sinonimos, $classificacao)
-    {                                    
+    function inserirPedidoAlterarLexico($id_projeto, $id_lexico, $nome, $nocao, $impacto, $justificativa,
+                                        $id_usuario, $sinonimos, $classificacao)
+    {
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($nome != null, "nome must not be null");
+        assert($nocao != null, "nocao must not be null");
+        assert($impacto != null, "impacto must not be null");
+        assert($id_usuario != null, "id usuario must not be null");
+        assert($sinonimos != null, "sinonimo must not be null");
+        assert($classificacao != null, "classificacao must not be null");
+
         $DB = new PGDB();
         $insert = new QUERY($DB);
         $selectUser = new QUERY($DB);
@@ -1550,7 +1559,7 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
                 
-        if ($resultArray == false) //nao e gerente
+        if ($resultArray == false) //nao é gerente
         {
             $insert->execute("INSERT INTO pedidolex (id_projeto,id_lexico,nome,nocao,impacto,id_usuario,tipo_pedido,aprovado,justificativa, tipo) VALUES ($id_projeto,$id_lexico,'$nome','$nocao','$impacto',$id_usuario,'alterar',0,'$justificativa', '$classificacao')");
             $newPedidoId = $insert->getLastId();
@@ -1582,21 +1591,20 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
                     $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = $id");
                     $recordUser = $selectUser->gofirst ();
                     $mailGerente = $recordUser['email'] ;
-                    mail("$mailGerente", "Pedido de Alterar L�xico", "O usuario do sistema $nameUser\nPede para alterar o lexico $nome \nObrigado!","From: $nameUser\result\n"."Reply-To: $emailUser\result\n");
+                    mail("$mailGerente", "Pedido de Alterar Léxico", "O usuario do sistema $nameUser\nPede para alterar o lexico $nome \nObrigado!","From: $nameUser\result\n"."Reply-To: $emailUser\result\n");
                     $recordParticipa = $selectParticipa->gonext();
                 }
             }
         }
-        else //Eh gerente
+        else //É gerente
         {
             alteraLexico($id_projeto,$id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao) ;
         }
-        
     }
 }
 else
 {
-	//Nothing to do.
+	// Nothing to do.
 }
 
 ##########################################################inserirPedidoRemoverCenario#########
