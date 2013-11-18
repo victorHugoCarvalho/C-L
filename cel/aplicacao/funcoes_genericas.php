@@ -207,18 +207,16 @@ if (!(function_exists("adicionar_cenario")))
             // e nos episodios de todos os outros cenarios e adiciona os relacionamentos,
             // caso possua, na tabela centocen
 
-            while ($result = mysql_fetch_array($queryResult)) 
-            {    // Para todos os cenarios
-
+            while ($result = mysql_fetch_array($queryResult)) // Para todos os cenarios
+            {
                     $tituloEscapado = escapa_metacaracteres( $title );
                             $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 
-                    if((preg_match($regex, $result['contexto']) != 0) ||
-                       (preg_match($regex, $result['episodios']) != 0) ) 
+                    if ((preg_match($regex, $result['contexto']) != 0) ||
+                        (preg_match($regex, $result['episodios']) != 0)) 
                     {
-
                             $query = "INSERT INTO centocen (id_cenario_from, id_cenario_to)
-                                          VALUES (" . $result['id_cenario'] . ", $id_incluido)"; // (2.2.1)
+                                        VALUES (" . $result['id_cenario'] . ", $id_incluido)";
                             mysql_query($query) or die("Erro ao enviar a query de INSERT<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  
                     }
 
@@ -228,9 +226,7 @@ if (!(function_exists("adicionar_cenario")))
                     if ((preg_match($regex, $context) != 0) ||
                         (preg_match($regex, $episodes) != 0))
                     {
-
                             $query = "INSERT INTO centocen (id_cenario_from, id_cenario_to) VALUES ($id_incluido, " . $result['id_cenario'] . ")"; //(2.4.1)
-
                             mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
                     }
 
@@ -244,7 +240,6 @@ if (!(function_exists("adicionar_cenario")))
 
             while ($result2 = mysql_fetch_array($queryResult)) 
             {
-
                     $nomeEscapado = escapa_metacaracteres( $result2['nome']);
                     $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
 
@@ -297,7 +292,6 @@ if (!(function_exists("adicionar_cenario")))
                     // verifica sinonimos dos outros lexicos no cenario incluído
                     while ($result = mysql_fetch_array($queryResult)) 
                     {    
-
                             $nomeSinonimoEscapado = escapa_metacaracteres( $nomesSinonimos[$i] );
                             $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
 
@@ -379,8 +373,8 @@ if (!(function_exists("adicionar_lexico")))
         
         $executeQuery = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        while ($result = mysql_fetch_array($executeQuery)) 
-        {    // 2  - Para todos os cenarios
+        while ($result = mysql_fetch_array($executeQuery)) // Para todos os cenarios
+        {
         
            $nomeEscapado = escapa_metacaracteres( $nome );
            $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
@@ -391,13 +385,12 @@ if (!(function_exists("adicionar_lexico")))
                 (preg_match($regex, $result['recursos']) != 0) ||
                 (preg_match($regex, $result['excecao']) != 0)  ||
                 (preg_match($regex, $result['episodios']) != 0) )
-            { //2.2
+            {
         
                 $query = "INSERT INTO centolex (id_cenario, id_lexico)
-                     VALUES (" . $result['id_cenario'] . ", $id_incluido)"; //2.2.1
+                            VALUES (" . $result['id_cenario'] . ", $id_incluido)"; //2.2.1
         
                 mysql_query($query) or die("Erro ao enviar a query de INSERT 1<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-          
             }
         }
 
@@ -406,13 +399,11 @@ if (!(function_exists("adicionar_lexico")))
         $count = count($sinonimos);
         for ($i = 0; $i < $count; $i++)
         {
-            
             $executeQuery = mysql_query($queryResult) or die("Erro ao enviar a query de SELECT 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             while ($result2 = mysql_fetch_array($executeQuery))
-            {
-                
+            {       
                 $nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );
-				$regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
+                $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
                 
                 if ((preg_match($regex, $result2['objetivo']) != 0) ||
                     (preg_match($regex, $result2['contexto']) != 0) ||
@@ -453,19 +444,18 @@ if (!(function_exists("adicionar_lexico")))
         								"<br>" . __FILE__ . __LINE__);
         
         while ($result = mysql_fetch_array($queryResult)) 
-        {    // (3)
-        
+        {
             $nomeEscapado = escapa_metacaracteres( $nome );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
             
-            if ( (preg_match($regex, $result['nocao']) != 0 ) || (preg_match($regex, $result['impacto'])!= 0) )
+            if ((preg_match($regex, $result['nocao']) != 0 ) || (preg_match($regex, $result['impacto'])!= 0))
             {
                 
                 $queryLexico = "SELECT * FROM lextolex WHERE id_lexico_from = " . $result['id_lexico'] . " AND id_lexico_to = $id_incluido";
                 $queryResultLexico = mysql_query($queryLexico) or die("Erro ao enviar a query de select no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
                 $resultArrayLexico = mysql_fetch_array($queryResultLexico);
       
-                if ( $resultArrayLexico == false )
+                if ($resultArrayLexico == false)
                 {
                     $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
                           VALUES (" . $result['id_lexico'] . ", $id_incluido)";
@@ -477,15 +467,13 @@ if (!(function_exists("adicionar_lexico")))
 			$nomeEscapado = escapa_metacaracteres( $result['nome'] );
             $regex = "/(\s|\b)(" . $nomeEscapado . ")(\s|\b)/i";
          
-            if((preg_match($regex, $nocao) != 0) || (preg_match($regex, $impacto) != 0) )
-            {   // (3.3)        
-        
+            if ((preg_match($regex, $nocao) != 0) || (preg_match($regex, $impacto) != 0))
+            {
                 $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to) VALUES ($id_incluido, " . $result['id_lexico'] . ")"; 
-        
                 mysql_query($query) or die("Erro ao enviar a query de insert no centocen<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__); 
             }
        
-        }   // while
+        }
         
         
         //lexico para lexico
@@ -502,10 +490,11 @@ if (!(function_exists("adicionar_lexico")))
         $count = count($sinonimos);
         for ($i = 0; $i < $count; $i++)
         {
-            while ($resultl = mysql_fetch_array($queryResult)) {
+            while ($resultl = mysql_fetch_array($queryResult))
+            {
                                
-				$nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );
-			   $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
+                $nomeSinonimoEscapado = escapa_metacaracteres( $sinonimos[$i] );
+                $regex = "/(\s|\b)(" . $nomeSinonimoEscapado . ")(\s|\b)/i";
                 
                 if ((preg_match($regex, $resultl['nocao']) != 0)  || (preg_match($regex, $resultl['impacto']) != 0))
                 {
@@ -519,28 +508,22 @@ if (!(function_exists("adicionar_lexico")))
                         $query = "INSERT INTO lextolex (id_lexico_from, id_lexico_to)
                         VALUES (" . $resultl['id_lexico'] . ", $id_incluido)";            
                         mysql_query($query) or die("Erro ao enviar a query de insert no lextolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-                    }//if
-                }    //if
-            }//while
-        }//for
+                    }
+                }
+            }
+        }
         
         //sinonimos ja existentes
-        
         $querySinonimos = "SELECT nome, id_lexico FROM sinonimo WHERE id_projeto = $id_projeto AND id_lexico != $id_incluido AND id_pedidolex = 0";
-        
         $queryResultSinonimos = mysql_query($querySinonimos) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        
         $nomesSinonimos = array();
-        
         $id_lexicoSinonimo = array();
         
         while($rowSinonimo = mysql_fetch_array($queryResultSinonimos))
         {
-            $nomesSinonimos[]     = $rowSinonimo["nome"];
-            $id_lexicoSinonimo[]  = $rowSinonimo["id_lexico"];
-            
+            $nomesSinonimos[] = $rowSinonimo["nome"];
+            $id_lexicoSinonimo[] = $rowSinonimo["id_lexico"];
         }
-      
     }
 }
 else
@@ -555,10 +538,10 @@ else
 ###################################################################
 if (!(function_exists("removeCenario")))
 {
-    function removeCenario($id_projeto,$id_cenario)
+    function removeCenario($id_projeto, $id_cenario)
     {
     	assert($id_projeto != null, "id_projeto must not be null");
-    	assert($id_cenario != null, "id_ceario must not be null");
+    	assert($id_cenario != null, "id_cenario must not be null");
     	
         $DB = new PGDB () ;
         $sql1 = new QUERY ($DB) ;
@@ -575,7 +558,6 @@ if (!(function_exists("removeCenario")))
         $sql3->execute ("DELETE FROM centolex WHERE id_cenario = $id_cenario") ;
         # Remove o cenario escolhido
         $sql4->execute ("DELETE FROM cenario WHERE id_cenario = $id_cenario") ;
-        
     }
 }
 else
@@ -592,6 +574,15 @@ if (!(function_exists("alteraCenario")))
 {
     function alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes)
     {
+        // $exception can be null
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($title != null, "title must not be null");
+        assert($objective != null, "objective must not be null");
+        assert($context != null, "context must not be null");
+        assert($actors != null, "actors must not be null");
+        assert($resources != null, "resources must not be null");
+        assert($episodes != null, "episodes must not be null");
+        
         $DB = new PGDB () ;
         $sql1 = new QUERY ($DB) ;
         $sql2 = new QUERY ($DB) ;
