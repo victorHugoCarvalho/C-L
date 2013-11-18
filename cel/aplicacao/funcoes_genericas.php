@@ -358,6 +358,14 @@ if (!(function_exists("adicionar_lexico")))
 {
     function adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)
     {
+        // $exception can be null
+        assert($id_projeto != null, "id_projeto must not be null");
+        assert($nome != null, "nome must not be null");
+        assert($nocao != null, "nocao must not be null");
+        assert($impacto != null, "impact must not be null");
+        assert($sinonimos != null, "sinonimos must not be null");
+        assert($classificacao != null, "classificacao must not be null");
+        
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
         $id_incluido = inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao); // (1)
