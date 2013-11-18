@@ -20,7 +20,9 @@ session_start();
 	
 	function compara_arrays($array1, $array2)
 	{
-	
+                assert($array1 != null, "array1 must not be null");
+                assert($array2 != null, "array2 must not be null");
+                
 		if (count($array1) != count($array2))
 		{
 			return FALSE;
@@ -59,6 +61,10 @@ session_start();
 	*/
 	function montar_hierarquia($conceito, $nova_lista, $lista)
 	{
+                assert($conceito != null, "conceito must not be null");
+                assert($nova_lista != null, "nova_lista must not be null");
+                assert($lista != null, "lista must not be null");
+                
 		foreach ($nova_lista as $subconceito)
 		{
 			$key = existe_conceito($subconceito, $lista);
@@ -85,6 +91,11 @@ session_start();
 	*/
 	function traduz_sujeito_objeto($lista_de_sujeito_e_objeto, $conceitos, $relacoes, $axiomas)
 	{
+                assert($lista_de_sujeito_e_objeto != null, "lista_de_sujeito_e_objeto must not be null");
+                assert($conceitos != null, "conceito must not be null");
+                assert($relacoes != null, "relacoes must not be null");
+                assert($axiomas != null, "axiomas must not be null");
+                
 	
 		for ( ; $_SESSION["index1"] < count($lista_de_sujeito_e_objeto); ++$_SESSION["index1"] )
 		{
@@ -414,6 +425,7 @@ session_start();
 					$finish_disjoint = TRUE;
 				}
 			}
+                        
 			$_SESSION["axiomas_selecionados"] = array();
 	
 			$conceitos[] = $_SESSION["conceito"];
@@ -456,6 +468,9 @@ session_start();
 	*/
 	function traduz_verbos($verbos, $relacoes)
 	{
+                assert($verbos != null, "verbos must not be null");
+                assert($relacoes != null, "relacoes must not be null");
+                
 		for ( ; $_SESSION["index3"] < count($verbos); ++$_SESSION["index3"] )
 		{
 			$verbo = $verbos[$_SESSION["index3"]];
@@ -536,6 +551,11 @@ session_start();
 	*/
 	function traduz_estados($estados, $conceitos, $relacoes, $axiomas)
 	{
+                assert($estados != null, "estados must not be null");
+                assert($conceitos != null, "conceitos must not be null");
+                assert($relacoes != null, "relacoes must not be null");
+                assert($axiomas != null, "axiomas must not be null");
+            
 		for ( ; $_SESSION["index4"] < count($estados ); ++$_SESSION["index4"] )
 		{
 			$estado = $estados[$_SESSION["index4"]];
@@ -634,6 +654,10 @@ session_start();
 	*/
 	function organizar_ontologia($conceitos, $relacoes, $axiomas)
 	{
+                assert($conceitos != null, "conceitos must not be null");
+                assert($relacoes != null, "relacoes must not be null");
+                assert($axiomas != null, "axiomas must not be null");
+
 		$_SESSION["salvar"] = "TRUE";
 	
 		$finish_relation = FALSE;
@@ -811,8 +835,8 @@ session_start();
 		print_r($_SESSION["lista_de_axiomas"]);
 		echo "<br>";
 		*/
-		echo 'O processo de gera��o de Ontologias foi conclu�do com sucesso!<br>
-		N�o esque�a de clicar em Salvar.';
+		echo 'O processo de geração de Ontologias foi concluído com sucesso!<br>
+		Não esqueça de clicar em Salvar.';
 		?>
                 <p>
                 <form method="POST" action="auxiliar_bd.php">
