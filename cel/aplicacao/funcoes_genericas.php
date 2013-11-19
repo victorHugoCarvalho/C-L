@@ -1329,10 +1329,6 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
         assert($title != null, "title must not be null");
         assert($objective != null, "objective must not be null");
         assert($context != null, "context must not be null");
-        assert($actors != null, "actors must not be null");
-        assert($resources != null, "resources must not be null");
-        assert($exception != null, "exception must not be null");
-        assert($episodes != null, "episodes must not be null");
         assert($id_usuario != null, "id_usuario must not be null");
         
         $DB = new PGDB();
