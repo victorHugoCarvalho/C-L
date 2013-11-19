@@ -1522,9 +1522,7 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
         assert($id_projeto != null, "id_projeto must not be null");
         assert($nome != null, "nome must not be null");
         assert($nocao != null, "nocao must not be null");
-        assert($impacto != null, "impacto must not be null");
         assert($id_usuario != null, "id usuario must not be null");
-        assert($sinonimos != null, "sinonimo must not be null");
         assert($classificacao != null, "classificacao must not be null");
 
         $DB = new PGDB();
