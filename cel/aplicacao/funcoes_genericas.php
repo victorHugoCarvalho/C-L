@@ -1952,6 +1952,8 @@ if (!(function_exists("tratarPedidoLexico")))
                 }
                 else if(($idLexicoConflitante = adicionar_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao)) <= 0)
                 {
+                	assert($idLexicoConflitante != null, "idLexicoConflitante must not be null");
+                	
                     $idLexicoConflitante = -1 * $idLexicoConflitante;
                     $selectLexConflitante->execute("SELECT nome FROM lexico WHERE id_lexico = " . $idLexicoConflitante);
                     $row = $selectLexConflitante->gofirst();
