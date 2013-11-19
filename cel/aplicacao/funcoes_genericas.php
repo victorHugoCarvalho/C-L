@@ -780,8 +780,6 @@ if (!(function_exists("alteraLexico")))
         assert($id_lexico != null, "id_lexico must not be null");
         assert($nome != null, "nome must not be null");
         assert($nocao != null, "nocao must not be null");
-        assert($impacto != null, "impacto must not be null");
-        assert($sinonimos != null, "sinonimos must not be null");
         assert($classificacao != null, "classificacao must not be null");
         
         $DB = new PGDB();
