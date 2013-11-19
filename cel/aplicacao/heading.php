@@ -198,6 +198,8 @@ if (isset($id_projeto))
 	$id_usuario = $_SESSION['id_usuario_corrente'];
 	
 	$ret = verificaGerente($id_usuario, $id_projeto);
+	
+	assert($ret != null, "ret must not be null");
    	
         if ($ret != 0)
 	{                                    
@@ -319,6 +321,8 @@ if (isset($id_projeto))
    	$id_usuario = $_SESSION['id_usuario_corrente'];
    	
    	$ret = verificaGerente($id_usuario, $id_projeto);
+   	
+   	assert($ret != null, "ret must not be null");
    	  
 	if ( $ret != 0 )
 	{
