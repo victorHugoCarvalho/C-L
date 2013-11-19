@@ -43,6 +43,8 @@ if (isset($submit))
 	
 	$synonymExists = checkSynonymExists($_SESSION['id_projeto_corrente'], $listSynonym);
 
+	assert($synonymExists != null, "synonymExists must not be null");
+	
 	if ( ($lexiconExists == false) AND ($synonymExists == false ) )
 	{
 		$id_usuario_corrente = $_SESSION['id_usuario_corrente'];        
