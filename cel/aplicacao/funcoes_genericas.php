@@ -1445,9 +1445,7 @@ if (!(function_exists("addLexiconInsertRequest")))
         assert($id_project != null, "id_project must not be null");
         assert($name != null, "name must not be null");
         assert($notion != null, "notion must not be null");
-        assert($impact != null, "impact must not be null");
         assert($id_user != null, "id user must not be null");
-        assert($synonyms != null, "synonyms must not be null");
         assert($classification != null, "classification must not be null");
         
         $DB = new PGDB() ;
