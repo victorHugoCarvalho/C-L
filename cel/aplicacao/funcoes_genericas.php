@@ -360,6 +360,8 @@ if (!(function_exists("adicionar_lexico")))
         
         $id_incluido = inclui_lexico($id_projeto, $nome, $nocao, $impacto, $sinonimos, $classificacao); // (1)
         
+        assert($id_incluido != null, "id_incluido must not be null");
+        
         $queryResult = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios
               FROM cenario
               WHERE id_projeto = $id_projeto";
