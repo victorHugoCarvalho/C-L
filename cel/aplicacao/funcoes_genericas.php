@@ -205,7 +205,7 @@ if (!(function_exists("adicionar_cenario")))
             while ($result = mysql_fetch_array($queryResult)) // Para todos os cenarios
             {
                     $tituloEscapado = escapa_metacaracteres( $title );
-                            $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
+                    $regex = "/(\s|\b)(" . $tituloEscapado . ")(\s|\b)/i"; 
 
                     if ((preg_match($regex, $result['contexto']) != 0) ||
                         (preg_match($regex, $result['episodios']) != 0)) 
@@ -249,9 +249,9 @@ if (!(function_exists("adicionar_cenario")))
 
                             $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = " . $result2['id_lexico'];
                             $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-                            $resultArrayCen = mysql_fetch_array($queryResultCenario);
+                            $resultArrayCenario = mysql_fetch_array($queryResultCenario);
 
-                            if ($resultArrayCen == false)
+                            if ($resultArrayCenario == false)
                             {
                                 $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, " . $result2['id_lexico'] . ")";
                                 mysql_query($query) or die("Erro ao enviar a query de INSERT 3<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
@@ -300,9 +300,9 @@ if (!(function_exists("adicionar_cenario")))
 
                                     $queryCenario = "SELECT * FROM centolex WHERE id_cenario = $id_incluido AND id_lexico = $id_lexicoSinonimo[$i] ";
                                     $queryResultCenario = mysql_query($queryCenario) or die("Erro ao enviar a query de select no centolex<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-                                    $resultArrayCen = mysql_fetch_array($queryResultCenario);
+                                    $resultArrayCenario = mysql_fetch_array($queryResultCenario);
 
-                                    if ($resultArrayCen == false)
+                                    if ($resultArrayCenario == false)
                                     {
                                         $query = "INSERT INTO centolex (id_cenario, id_lexico) VALUES ($id_incluido, $id_lexicoSinonimo[$i])";
                                         mysql_query($query) or die("Erro ao enviar a query de insert no centolex 2<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);  // (3.3.1)
