@@ -98,33 +98,26 @@ else
 	}
 	?>
 	<form action="?url=<?=$url?>" method="post">
-	  <div align="center">
-	    <table cellpadding="5">
-	      <tr>
-	        <td>Login:</td>
-	        <td><input maxlength="32" name="login" size="24" type="text"></td>
-	      </tr>
-	      <tr>
-	        <td>Senha:</td>
-	        <td><input maxlength="32" name="senha" size="24" type="password"></td>
-	      </tr>
-	      <tr>
-	        <td height="10"></td>
-	      </tr>
-	      <tr>
-	        <td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td>
-	      </tr>
-	    </table>
-	    <?php 		/** @Episodio 6: [CADASTRAR NOVO USU�RIO] **/ ?>
-	    <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
-	      <?php 	    /** @Episodio 7: [LEMBRAR SENHA] **/ ?>
-	      <a href="esqueciSenha.php">Esqueci senha</a></p>
-	  </div>
+            <div align="center">
+                <table cellpadding="5">
+                    <tr><td>Login:</td><td><input maxlength="32" name="login" size="24" type="text"></td></tr>
+                    <tr><td>Senha:</td><td><input maxlength="32" name="senha" size="24" type="password"></td></tr>
+                    <tr><td height="10"></td></tr>
+                    <tr><td align="center" colspan="2"><input name="submit" type="submit" value="Entrar"></td></tr>
+                </table>
+                
+                <?php /** @Episodio 6: [CADASTRAR NOVO USU�RIO] **/ ?>
+                <p><a href="add_usuario.php?novo=true">Cadastrar-se</a>&nbsp;&nbsp;
+                    
+                <?php /** @Episodio 7: [LEMBRAR SENHA] **/ ?>
+                <a href="esqueciSenha.php">Esqueci senha</a></p>
+                
+            </div>
 	</form>
-	</body>
-	<?php		/** @Episodio 8: [MOSTRAR O C�DIGO FONTE] **/ ?>
-	<i><a href="showSource.php?file=login.php">Veja o c&oacute;digo fonte!</a></i>
-	</html>
-	<?php
+        </body>
+        <?php		/** @Episodio 8: [MOSTRAR O C�DIGO FONTE] **/ ?>
+        <i><a href="showSource.php?file=login.php">Veja o c&oacute;digo fonte!</a></i>
+        </html>
+        <?php
 }
 ?>
