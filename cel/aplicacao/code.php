@@ -28,7 +28,7 @@ checkUser("index.php");        // Checa se o usuario foi autenticado
 <?php  
 
 // conecta ao SGBD 
-$r = bd_connect() or die("Erro ao conectar ao SGBD");  
+$sgbdConnect = bd_connect() or die("Erro ao conectar ao SGBD");  
 
 // A variavel $id_projeto, se estiver setada, corresponde ao id do projeto que 
 // devera ser mostrado. Se ela nao estiver setada entao, por default, 
