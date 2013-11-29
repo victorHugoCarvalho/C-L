@@ -451,10 +451,10 @@ else
            
 			$xml_resultante = "<?xml version='1.0' encoding='ISO-8859-1' ?>\n".$str_xml ;
 			
-            $q = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
+            $query = "INSERT INTO publicacao ( id_projeto, data_publicacao, versao, XML)
                  VALUES ( '$id_projeto', '$data_pesquisa', '$versao', '".mysql_real_escape_string($xml_resultante)."')";
               
-			mysql_query($q) or die("Erro ao enviar a query INSERT do XML no banco de dados! ");
+			mysql_query($query) or die("Erro ao enviar a query INSERT do XML no banco de dados! ");
 			recarrega("http://pes.inf.puc-rio.br/cel/aplicacao/mostraXML.php?id_projeto=".$id_projeto."&versao=".$versao);
 		}
     	else

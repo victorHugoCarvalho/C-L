@@ -620,12 +620,12 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
 	if ($t == "c")        // se for cenario
 	{ 
         
-		$q = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
+		$query = "SELECT id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_projeto    
               FROM cenario    
               WHERE id_cenario = $id";    
         
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de sele&ccedil;&atilde;o !!". mysql_error());    
-        $result = mysql_fetch_array($qrr);  
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de sele&ccedil;&atilde;o !!". mysql_error());    
+        $result = mysql_fetch_array($queryResult);  
         
 		$c_id_projeto = $result['id_projeto'];
 		
@@ -682,10 +682,10 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     }
     else if ($t == "l")
 	{          
-        $q = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto FROM lexico WHERE id_lexico = $id";    
+        $query = "SELECT id_lexico, nome, nocao, impacto, tipo, id_projeto FROM lexico WHERE id_lexico = $id";    
       
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
-        $result = mysql_fetch_array($qrr);
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de selecao !!". mysql_error());    
+        $result = mysql_fetch_array($queryResult);
         
         $l_id_projeto = $result['id_projeto'];
         
@@ -715,11 +715,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     <?php //sinonimos 
                  $id_projeto = $_SESSION['id_projeto_corrente'];    
                  $qSinonimo = "SELECT * FROM sinonimo WHERE id_lexico = $id";    
-                 $qrr = mysql_query($qSinonimo) or die("Erro ao enviar a query de Sinonimos". mysql_error());    
+                 $queryResult = mysql_query($qSinonimo) or die("Erro ao enviar a query de Sinonimos". mysql_error());    
 
                  $tempS = array();
                  
-                 while ($resultSinonimo = mysql_fetch_array($qrr))    
+                 while ($resultSinonimo = mysql_fetch_array($queryResult))    
                  {    
                       $tempS[] = $resultSinonimo['nome'];    
                  }    
@@ -759,12 +759,12 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     else if ($t == "oc") // se for cenario
 	{         
         
-		$q = "SELECT id_conceito, nome, descricao   
+		$query = "SELECT id_conceito, nome, descricao   
               FROM   conceito   
               WHERE  id_conceito = $id";    
         
-		$qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
-        $result = mysql_fetch_array($qrr);    
+		$queryResult = mysql_query($query) or die("Erro ao enviar a query de selecao !!". mysql_error());    
+        $result = mysql_fetch_array($queryResult);    
 ?>
           <tr>
     <th>Nome:</th>
@@ -789,11 +789,11 @@ if (isset($id) && isset($t))     // SCRIPT CHAMADO PELO PROPRIO MAIN.PHP (OU PEL
     }
     elseif ($t == "or") // se for cenario
     { 
-        $q = "SELECT id_relacao, nome   
+        $query = "SELECT id_relacao, nome   
               FROM relacao   
               WHERE id_relacao = $id";    
-        $qrr = mysql_query($q) or die("Erro ao enviar a query de selecao !!". mysql_error());    
-        $result = mysql_fetch_array($qrr);    
+        $queryResult = mysql_query($query) or die("Erro ao enviar a query de selecao !!". mysql_error());    
+        $result = mysql_fetch_array($queryResult);    
 ?>
           <tr>
     <th>Nome:</th>
