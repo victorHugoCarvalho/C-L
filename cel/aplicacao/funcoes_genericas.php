@@ -2156,12 +2156,14 @@ if (!(function_exists("is_admin")))
         
         if (1 == mysql_num_rows($queryResult))
         {
-                return true;
+                $is_admin = true;
         }
         else
         {
-                return false;    
+                $is_admin = false;    
         }
+        
+        return $is_admin;
     }
 }
 else
@@ -2169,10 +2171,10 @@ else
 	//Nothing to do.
 }
 
-// Retorna TRUE ssse $id_usuario tem permissao sobre $id_projeto
+// Retorna TRUE se $id_usuario tem permissao sobre $id_projeto
 if (!(function_exists("check_proj_perm")))
 {
-    function check_proj_perm($id_usuario, $id_projeto)
+    function check_project_permission($id_usuario, $id_projeto)
     {
     	assert($id_usuario != null, "id_usuario must not be null");
     	assert($id_projeto != null, "id_projeto must not be null");
@@ -2183,7 +2185,17 @@ if (!(function_exists("check_proj_perm")))
               WHERE id_usuario = $id_usuario
               AND id_projeto = $id_projeto";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        return (1 == mysql_num_rows($queryResult));
+        
+        if (1 == mysql_num_rows($queryResult))
+        {
+            $permission = true;
+        }
+        else 
+        {
+            $permission = false;
+        }
+        
+        return $permission;
     }
 }
 else

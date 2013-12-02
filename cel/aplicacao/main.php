@@ -868,7 +868,7 @@ else if (isset($id_projeto))         // SCRIPT CHAMADO PELO HEADING.PHP
 //       Project that the User is registered. However, as the passage is
 //       Done using JavaScript (in heading.php), we check if this id really
 //       Corresponds to a project that the User has access (security). 
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");    
+    check_project_permission($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");    
 
     // Seta uma variavel de sessao correspondente ao projeto atual 
     $_SESSION['id_projeto_corrente'] = $id_projeto;    

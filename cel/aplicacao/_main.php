@@ -221,7 +221,7 @@ elseif (isset($id_projeto))
 	//  project that the User is registered. However, as the passage is
 	//  done using JavaScript (in heading.php), we check if this id really
 	//  correspons to a project that the User has access (security).
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");
+    check_project_permission($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permissao negada");
 
     // Set a session variable corresponding to the current project
     $_SESSION['id_projeto_corrente'] = $id_projeto;

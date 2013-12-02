@@ -65,7 +65,7 @@ if (isset($id_projeto))
     // vez que o usuario esteja acessando o sistema
 
     // Checagem de seguranca, pois $id_projeto eh passado atraves de JavaScript (cliente)
-    check_proj_perm($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");
+    check_project_permission($_SESSION['id_usuario_corrente'], $id_projeto) or die("Permiss&atilde;o negada");
     ?>
 
     function setPrjSelected() 
