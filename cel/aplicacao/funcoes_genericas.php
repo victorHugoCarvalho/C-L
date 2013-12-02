@@ -1183,6 +1183,15 @@ function checkLexiconExists($project, $name)
         $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$name' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArrayLexico = mysql_fetch_array($queryResult);
+        
+        if ($resultArray == false)
+        {
+            $exists = false;
+        }
+        else
+        {
+            // Nothing to do
+        }
 
         $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$name' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
@@ -1190,13 +1199,13 @@ function checkLexiconExists($project, $name)
         
         $resultArray = $resultArrayLexico || $resultArraySinonimo;
 
-        if ($resultArray == false)
+        if ($resultArray == true)
         {
-            $exists = false;
+            $exists = true;
         }
         else
         {
-            $exists = true;
+            // Nothing to do
         }
 
         return $exists;
@@ -1226,9 +1235,9 @@ function checkSynonymExists($project, $listSynonym)
             $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no sinonimo<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
             $resultArray = mysql_fetch_array($queryResult);
             
-            if ($resultArray != false)
+            if ($resultArray == false)
             {
-                $naoexiste = false;
+                $exists = false;
             }
             else
             {
@@ -1342,8 +1351,7 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         
-        
-        if ( $resultArray == false ) //nao e gerente
+        if ($resultArray == false) // user is not a manager
         {
             $insert->execute("INSERT INTO pedidocen (id_projeto, id_cenario, titulo, objetivo, contexto, atores, recursos, excecao, episodios, id_usuario, tipo_pedido, aprovado, justificativa) VALUES ($id_projeto, $id_cenario, '$title', '$objective', '$context', '$actors', '$resources', '$exception', '$episodes', $id_usuario, 'alterar', 0, '$justificativa')");
             $selectUser->execute("SELECT * FROM usuario WHERE id_usuario = $id_usuario");
@@ -1362,9 +1370,9 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
                 $recordParticipa = $selectParticipa->gonext();
             }
         }
-        else //Eh gerente
+        else // user is a manager
         { 
-        	alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes);
+            alteraCenario($id_projeto, $id_cenario, $title, $objective, $context, $actors, $resources, $exception, $episodes);
         }
     }
 }
@@ -1411,6 +1419,7 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
             $nome = $recordUser['nome'];
             $email = $recordUser['email'];
             $recordParticipa = $selectParticipa->gofirst();
+            
             while($recordParticipa != 'LAST_RECORD_REACHED') 
             {
                 $id = $recordParticipa['id_usuario'];
@@ -1423,7 +1432,7 @@ if (!(function_exists("inserirPedidoRemoverCenario")))
         }
         else
         {
-                removeCenario($id_projeto,$id_cenario);
+            removeCenario($id_projeto,$id_cenario);
         }
     }
 }
@@ -1459,8 +1468,7 @@ if (!(function_exists("addLexiconInsertRequest")))
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
         
-        
-        if ( $resultArray == false ) // user is not a manager
+        if ($resultArray == false) // user is not a manager
         {
             $insert->execute("INSERT INTO pedidolex (id_projeto,nome,nocao,impacto,tipo,id_usuario,tipo_pedido,aprovado) VALUES ($id_project,'$name','$notion','$impact','$classification',$id_user,'inserir',0)");
             $newId = $insert->getLastId();
@@ -1536,7 +1544,7 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $resultArray = mysql_fetch_array($queryResult);
                 
-        if ($resultArray == false) //nao é gerente
+        if ($resultArray == false) //user is not a manager
         {
             $insert->execute("INSERT INTO pedidolex (id_projeto,id_lexico,nome,nocao,impacto,id_usuario,tipo_pedido,aprovado,justificativa, tipo) VALUES ($id_projeto,$id_lexico,'$nome','$nocao','$impacto',$id_usuario,'alterar',0,'$justificativa', '$classificacao')");
             $newPedidoId = $insert->getLastId();
@@ -1562,6 +1570,7 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
                 $nameUser = $recordUser['nome'] ;
                 $emailUser = $recordUser['email'] ;
                 $recordParticipa = $selectParticipa->gofirst ();
+                
                 while($recordParticipa != 'LAST_RECORD_REACHED')
                 {
                     $id = $recordParticipa['id_usuario'] ;
@@ -1573,7 +1582,7 @@ if (!(function_exists("inserirPedidoAlterarLexico")))
                 }
             }
         }
-        else //É gerente
+        else // user is a manager
         {
             alteraLexico($id_projeto,$id_lexico, $nome, $nocao, $impacto, $sinonimos, $classificacao) ;
         }
@@ -1630,7 +1639,8 @@ if (!(function_exists("inserirPedidoRemoverLexico")))
                 $nome = $record['nome'] ;
                 $email = $record['email'] ;
                 $record2 = $select2->gofirst ();
-                while($record2 != 'LAST_RECORD_REACHED')
+                
+                while ($record2 != 'LAST_RECORD_REACHED')
                 {
                     $id = $record2['id_usuario'] ;
                     $select->execute("SELECT * FROM usuario WHERE id_usuario = $id");
@@ -1641,7 +1651,7 @@ if (!(function_exists("inserirPedidoRemoverLexico")))
                 }
             }
         }
-        else // Is manager
+        else // user is a manager
         {
             removeLexico($id_projeto,$id_lexico);
         }
@@ -1688,6 +1698,7 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
             $nomeUsuario = $record['nome'];
             $email = $record['email'];
             $record2 = $select2->gofirst();
+            
             while($record2 != 'LAST_RECORD_REACHED')
             {
                 $id = $record2['id_usuario'];
@@ -1698,7 +1709,7 @@ if (!(function_exists("inserirPedidoAlterarCenario")))
                 $record2 = $select2->gonext();
             }
         }
-        else //É gerente
+        else //user is a manager
         {
             removeConceito($id_projeto,$id_conceito) ;
             adicionar_conceito($id_projeto, $nome, $descricao, $namespace);
@@ -1962,7 +1973,7 @@ if (!(function_exists("tratarPedidoLexico")))
                 }
                 else
                 {
-                	//Nothing to do.
+                    //Nothing to do.
                 }
             }
             
@@ -1972,7 +1983,7 @@ if (!(function_exists("tratarPedidoLexico")))
 }
 else
 {
-	//Nothing to do.
+    //Nothing to do.
 }
 
 ###################################################################
@@ -2154,7 +2165,7 @@ if (!(function_exists("is_admin")))
               AND gerente = 1";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        if (1 == mysql_num_rows($queryResult))
+        if (mysql_num_rows($queryResult) == 1)
         {
                 $is_admin = true;
         }
@@ -2186,7 +2197,7 @@ if (!(function_exists("check_proj_perm")))
               AND id_projeto = $id_projeto";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         
-        if (1 == mysql_num_rows($queryResult))
+        if (mysql_num_rows($queryResult) == 1)
         {
             $permission = true;
         }
