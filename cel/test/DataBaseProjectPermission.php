@@ -21,7 +21,6 @@ class DataBaseProjectPermission extends PHPUnit_Framework_TestCase
         $_SESSION['id_usuario_corrente'] = "Teste";
         $id_newProject = includeProject("Nome Teste", "Descrição teste");
         $id_user = 10;
-        $admin = 1;
         
         $query = "INSERT INTO participa (id_usuario, id_projeto) 
                   VALUES ($id_user, $id_newProject)";

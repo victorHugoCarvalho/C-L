@@ -24,15 +24,38 @@ class databaseLexyconTest extends PHPUnit_Framework_TestCase
 	/*
 	 * @test
 	 */
-	public function testCheckLexiconExistsWithExistingLexicon() 
+	public function testCheckLexiconExistsReturnFalse() 
 	{
-        $idProject = includeProject("Nome projeto", "Descrição");
-        removeProject($idProject);
-        
-        $lexiconExists = checkLexiconExists($idProject, "Léxico inexistente");
-        
-        $this->assertFalse($lexiconExists);
+            $idProject = includeProject("Nome projeto", "Descrição");
+            removeProject($idProject);
+
+            $lexiconExists = checkLexiconExists($idProject, "Léxico inexistente");
+
+            $this->assertFalse($lexiconExists);
 	}
+        
+        public function testCheckLexiconExistsReturnTrue()
+        {
+            $_SESSION['id_usuario_corrente'] = "Teste";
+            $id_newProject = includeProject("Nome Teste", "Descrição teste");
+            $name = "Test name";
+
+            $queryLexico = "INSERT INTO lexico (id_projeto, nome) VALUES ($id_user, $id_newProject)";
+            mysql_query($queryLexico);
+            $Sinonimo = "INSERT INTO sinonimo (nome, id_projeto) VALUES ($name, $id_newProject)";
+            mysql_query($Sinonimo);
+            
+            $checkLexico = checkLexiconExists($id_newProject, $name);
+
+            $queryResultDeleteLexico = "DELETE FROM lexico id_projeto = $id_newProject";
+            mysql_query($queryResultDeleteLexico);
+            $queryResultDeleteSinonimo = "DELETE FROM sinonimo id_projeto = $id_newProject";
+            mysql_query($queryResultDeleteSinonimo);
+            
+            removeProject($id_newProject);
+
+            $this->assertTrue($check);
+        }
 }
 
 ?>

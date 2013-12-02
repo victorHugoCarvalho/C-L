@@ -136,7 +136,7 @@ else
 
 if (!(function_exists("simple_query")))
 {
-    funcTion simple_query($field, $table, $where)
+    function simple_query($field, $table, $where)
     {
     	assert($field != null, "field must not be null");
     	assert($table != null, "table must not be null");
@@ -1179,16 +1179,16 @@ function checkLexiconExists($project, $name)
 	assert($project != null, "project must not be null");
 	assert($name != null, "name must not be null");
 	
-	$exists = true;
-
         $result = bd_connect() or die("Erro ao conectar ao SGBD<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
         $query = "SELECT * FROM lexico WHERE id_projeto = $project AND nome = '$name' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $resultArray = mysql_fetch_array($queryResult);
+        $resultArrayLexico = mysql_fetch_array($queryResult);
 
         $query = "SELECT * FROM sinonimo WHERE id_projeto = $project AND nome = '$name' ";
         $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no lexico<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
-        $resultArray = mysql_fetch_array($queryResult);
+        $resultArraySinonimo = mysql_fetch_array($queryResult);
+        
+        $resultArray = $resultArrayLexico || $resultArraySinonimo;
 
         if ($resultArray == false)
         {
