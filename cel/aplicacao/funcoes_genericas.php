@@ -2216,7 +2216,6 @@ function verificaGerente($id_usuario, $id_projeto)
 	assert($id_usuario != null, "id_usuario must not be null");
 	assert($id_projeto != null, "id_projeto must not be null");
 	
-    $gerente = 0;
     $query = "SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario AND id_projeto = $id_projeto";
     $queryResult = mysql_query($query) or die("Erro ao enviar a query de select no participa<br>" . mysql_error() . "<br>" . __FILE__ . __LINE__);
     $resultArray = mysql_fetch_array($queryResult);
@@ -2227,7 +2226,7 @@ function verificaGerente($id_usuario, $id_projeto)
     }
     else
     {
-    	//Nothing to do.
+    	$gerente = 0;
     }
     
     return $gerente;
