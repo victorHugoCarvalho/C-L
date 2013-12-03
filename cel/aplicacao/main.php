@@ -3,6 +3,7 @@
 session_start();
 include_once("CELConfig/CELConfig.inc");
 include_once("dataBase/DatabaseIsAdmin.php");
+include_once("dataBase/DatabaseProjectPermission.php");
 
 //$_SESSION['site'] = 'http://pes.inf.puc-rio.br/pes03_1_1/Site/desenvolvimento/teste/';       
 //$_SESSION['site'] = 'http://139.82.24.189/cel_vf/aplicacao/teste/';
