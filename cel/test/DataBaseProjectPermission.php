@@ -1,7 +1,7 @@
 <?php
 
-include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
+include ("../aplicacao/dataBase/DatabaseProjectPermission.php");
 
 class DataBaseProjectPermission extends PHPUnit_Framework_TestCase
 {
