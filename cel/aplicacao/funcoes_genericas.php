@@ -2095,39 +2095,9 @@ else
 {
 	//Nothing to do.
 }
-#############################################
-# Deprecated by the author:
-# This function should receive id_projeto in
-# order to verify that the manager belongs to
-# that project. It currently only checks if
-# the person is a manager.
-#############################################
-if (!(function_exists("verificaGerente")))
-{
-    function check_manager($id_usuario)
-    {
-    	assert($id_usuario != null, "id_usuario must not be null");
-    	
-        $DB = new PGDB () ;
-        $select = new QUERY ($DB) ;
-        $select->execute("SELECT * FROM participa WHERE gerente = 1 AND id_usuario = $id_usuario");
-        
-        if ($select->getntuples() == 0)
-        {
-            return 0 ;
-        }
-        else
-        {
-            return 1 ;
-        }
-    }
-}
-else
-{
-	//Nothing to do.
-}
 
-#############################################
+
+#############################
 # Formata Data
 # Recebe YYY-DD-MM
 # Retorna DD-MM-YYYY
@@ -2158,7 +2128,7 @@ else
 # Se o resultArray for nao nulo: devolvemos TRUE(1);(1.3)
 # Se o resultArray for nulo: devolvemos False(0);(1.4)
 ###################################################################
-function check_manager($id_usuario, $id_projeto)
+function check_project_manager($id_usuario, $id_projeto)
 {
 	assert($id_usuario != null, "id_usuario must not be null");
 	assert($id_projeto != null, "id_projeto must not be null");
