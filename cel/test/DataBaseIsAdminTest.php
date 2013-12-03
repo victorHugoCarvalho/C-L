@@ -2,6 +2,7 @@
 
 include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
+include ("../aplicacao/dataBase/DatabaseIsAdmin.php");
 
 class DataBaseIsAdminTest extends PHPUnit_Framework_TestCase
 {
