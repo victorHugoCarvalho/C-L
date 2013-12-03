@@ -3,7 +3,8 @@
 session_start();
 
 include("funcoes_genericas.php");
-include_once("dataBase/DatabaseProjectPermission.php");
+include("dataBase/DatabaseProjectPermission.php");
+include("dataBase/DatabaseCheckProjectManager.php");
 
 
 checkUser("index.php");      
@@ -197,9 +198,7 @@ a:hover
 if (isset($id_projeto))
 {
 	$id_usuario = $_SESSION['id_usuario_corrente'];
-	
 	$ret = check_project_manager($id_usuario, $id_projeto);
-	
 	assert($ret != null, "ret must not be null");
    	
         if ($ret != 0)
