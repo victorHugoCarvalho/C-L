@@ -2,7 +2,7 @@
 
 include ("..cel/aplicacao/dataBaseProject/dataBase/DatabaseProject.php");
 
-class DatabaseProjectTest extends PHPUnit_Framework_TestCase
+class DataBaseProjectTest extends PHPUnit_Framework_TestCase
 {
     
     private function testBase()

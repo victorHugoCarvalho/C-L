@@ -3,7 +3,7 @@
 require_once ("../aplicacao/dataBase/DatabaseScenario.php");
 require_once ("../aplicacao/dataBase/DatabaseProject.php");
 
-class DatabaseScenarioTest extends PHPUnit_Framework_TestCase
+class DataBaseScenarioTest extends PHPUnit_Framework_TestCase
 {
     
     /*

@@ -4,7 +4,7 @@ include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
 include ("../aplicacao/dataBase/DatabaseScenario.php");
 
-class databaseLexyconTest extends PHPUnit_Framework_TestCase
+class DataBaseLexyconTest extends PHPUnit_Framework_TestCase
 {
 
 //	public function testBase()
