@@ -4,6 +4,7 @@ session_start();
 
 include("funcoes_genericas.php");
 include_once("dataBase/DatabaseIsAdmin.php");
+include_once("dataBase/DatabaseProjectPermission.php");
 
 
 checkUser("index.php");  // checks whether the user has been authenticated      
