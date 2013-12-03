@@ -15,6 +15,7 @@ else
 
 include("funcoes_genericas.php");  
 include_once("bd.inc");
+include_once("dataBase/DatabaseProjectPermission.php");
 
 checkUser("index.php");        // Checa se o usuario foi autenticado 
 
