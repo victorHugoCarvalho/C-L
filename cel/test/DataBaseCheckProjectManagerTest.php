@@ -1,9 +1,9 @@
 <?php
 
-include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
+include ("../aplicacao/dataBase/DatabaseCheckProjectManager.php");
 
-class DataBaseCheckProejctManagerTest extends PHPUnit_Framework_TestCase
+class DataBaseCheckProjectManagerTest extends PHPUnit_Framework_TestCase
 {
     public function testCheckProjectManagerReturnTrue()
     {
