@@ -2104,7 +2104,7 @@ else
 #############################################
 if (!(function_exists("verificaGerente")))
 {
-    function verificaGerente($id_usuario)
+    function check_manager($id_usuario)
     {
     	assert($id_usuario != null, "id_usuario must not be null");
     	
@@ -2158,7 +2158,7 @@ else
 # Se o resultArray for nao nulo: devolvemos TRUE(1);(1.3)
 # Se o resultArray for nulo: devolvemos False(0);(1.4)
 ###################################################################
-function verificaGerente($id_usuario, $id_projeto)
+function check_manager($id_usuario, $id_projeto)
 {
 	assert($id_usuario != null, "id_usuario must not be null");
 	assert($id_projeto != null, "id_projeto must not be null");
@@ -2169,13 +2169,13 @@ function verificaGerente($id_usuario, $id_projeto)
     
     if ($resultArray != false)
     {
-        $gerente = 1;
+        $manager = 1;
     }
     else
     {
-    	$gerente = 0;
+    	$manager = 0;
     }
     
-    return $gerente;
+    return $manager;
 }
 ?>
