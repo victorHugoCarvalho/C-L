@@ -1,6 +1,5 @@
 <?php
 
-include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
 include ("../aplicacao/dataBase/DatabaseIsAdmin.php");
 
