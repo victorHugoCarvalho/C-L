@@ -9,10 +9,10 @@ class DataBaseIsAdminTest extends PHPUnit_Framework_TestCase
     {
         $_SESSION['id_usuario_corrente'] = "Teste";
         $id_newProject = includeProject("Nome Teste", "Descrição teste");
-        $id_usuario = 10;
+        $id_user = 10;
         
-        $retorno = is_admin($id_usuario, $id_newProject);
-        $this->assertEquals(false, $retorno);
+        $check = is_admin($id_user, $id_newProject);
+        $this->assertEquals(false, $check);
         removeProject($id_newProject);
     }
     
@@ -20,24 +20,22 @@ class DataBaseIsAdminTest extends PHPUnit_Framework_TestCase
     {
         $_SESSION['id_usuario_corrente'] = "Teste";
         $id_newProject = includeProject("Nome Teste", "Descrição teste");
-        $id_usuario = 10;
-        $gerente = 1;
+        $id_user = 10;
+        $admin = 1;
         
-        $queryResult = "INSERT INTO participa (id_usuario, id_projeto, gerente) 
-            VALUES ($id_usuario, $id_newProject, $gerente)";
+        $query = "INSERT INTO participa (id_usuario, id_projeto, gerente) 
+            VALUES ($id_user, $id_newProject, $admin)";
         
-        mysql_query($queryResult);
+        mysql_query($query);
         
-        $retorno = is_admin($id_usuario, $id_newProject);
+        $check = is_admin($id_user, $id_newProject);
         
-                $queryResultDelete = "DELETE FROM participa 
-        WHERE gerente = $gerente AND id_projeto = $id_newProject";
+        $queryResultDelete = "DELETE FROM participa 
+        WHERE gerente = $admin AND id_projeto = $id_newProject";
         mysql_query($queryResultDelete);
         removeProject($id_newProject);
         
-        $this->assertTrue($retorno);
-        
-
+        $this->assertTrue($check);
     }
 }
 
