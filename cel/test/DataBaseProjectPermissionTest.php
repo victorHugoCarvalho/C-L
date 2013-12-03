@@ -3,7 +3,7 @@
 include ("../aplicacao/dataBase/DatabaseProject.php");
 include ("../aplicacao/dataBase/DatabaseProjectPermission.php");
 
-class DataBaseProjectPermission extends PHPUnit_Framework_TestCase
+class DataBaseProjectPermissionTest extends PHPUnit_Framework_TestCase
 {
     public function testProjectPermissionReturnFalse()
     {

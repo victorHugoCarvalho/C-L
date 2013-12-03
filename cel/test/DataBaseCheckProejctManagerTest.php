@@ -3,7 +3,7 @@
 include ("../aplicacao/funcoes_genericas.php");
 include ("../aplicacao/dataBase/DatabaseProject.php");
 
-class DataBaseCheckProjectManager extends PHPUnit_Framework_TestCase
+class DataBaseCheckProejctManagerTest extends PHPUnit_Framework_TestCase
 {
     public function testCheckProjectManagerReturnTrue()
     {
