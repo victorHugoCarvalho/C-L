@@ -3,6 +3,7 @@
 session_start();
 
 include("funcoes_genericas.php");
+include_once("dataBase/DatabaseProjectPermission.php");
 
 
 checkUser("index.php");      
