@@ -1173,7 +1173,7 @@ function checkLexiconExists($project, $name)
         }
         else
         {
-            // Nothing to do
+            $exists = false;
         }
 
         return $exists;
@@ -1222,7 +1222,7 @@ function checkSynonymExists($project, $listSynonym)
             }
             else
             {
-                // Nothing to do
+                $exists = false;
             }
         }
 
