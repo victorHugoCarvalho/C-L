@@ -6,6 +6,70 @@ include_once("seguranca.php");
 include_once("bd.inc");
 include_once ("../aplicacao/funcoes_genericas.php");
 
+###################################################################
+# Handles a request identified by its id.
+# Receives the request id. (1.1)
+# Do a select to get the request using the id received. (1.2)
+# Get the field tipo_pedido. (1.3)
+# If it's to remove: We call the function remove (), (ââ1.4)
+# If it is to change: We (re)move the scenery and insert the new.
+# If it is to enter: call the function insert ();
+###################################################################
+if (!(function_exists("tratarPedidoCenario"))) 
+{
+    function tratarPedidoCenario($id_pedido)
+    {
+    	assert($id_pedido != null, "id_pedido must not be null");
+    	
+        $DB = new PGDB () ;
+        $select_pedido_cenario = new QUERY ($DB) ;
+        $delete = new QUERY ($DB) ;
+        //print("<BR>SELECT * FROM pedidocen WHERE id_pedido = $id_pedido");
+        $select_pedido_cenario->execute("SELECT * FROM pedidocen WHERE id_pedido = $id_pedido") ;
+        if ($select_pedido_cenario->getntuples() == 0)
+        {
+            echo "<BR> [ERRO]Pedido invalido." ;
+        }
+        else
+        {
+            $record_pedido = $select_pedido_cenario->gofirst () ;
+            $tipoPedido = $record_pedido['tipo_pedido'] ;
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
+                $id_cenario = $record_pedido['id_cenario'] ;
+                $id_projeto = $record_pedido['id_projeto'] ;
+                removeCenario($id_projeto,$id_cenario) ;
+                //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
+            }
+            else
+            {
+                
+                $id_projeto = $record_pedido['id_projeto'] ;
+                $title = $record_pedido['titulo'] ;
+                $objective = $record_pedido['objetivo'] ;
+                $context = $record_pedido['contexto'] ;
+                $actors = $record_pedido['atores'] ;
+                $resources = $record_pedido['recursos'] ;
+                $exception = $record_pedido['excecao'] ;
+                $episodes = $record_pedido['episodios'] ;
+                
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
+                    $id_cenario = $record_pedido['id_cenario'] ;
+                    removeCenario($id_projeto,$id_cenario) ;
+                    //$delete->execute ("DELETE FROM pedidocen WHERE id_cenario = $id_cenario") ;
+                }
+                adicionar_cenario($id_projeto, $title, $objective, $context, $actors, $resources, $exception, $episodes) ;
+            }
+            //$delete->execute ("DELETE FROM pedidocen WHERE id_pedido = $id_pedido") ;
+        }
+    }
+}
+else
+{
+	//Nothing to do.
+}
+
 
 ###################################################################
 # Handles a request identified by its id.
