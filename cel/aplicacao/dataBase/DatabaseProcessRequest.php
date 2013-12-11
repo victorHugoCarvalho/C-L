@@ -161,4 +161,60 @@ else
     //Nothing to do.
 }
 
+###################################################################
+# Handles a request identified by its id.
+# Receives the request id. (1.1)
+# Do a select to get the request using the id received. (1.2)
+# Get the field tipo_pedido. (1.3)
+# If it's to remove: We call the function remove (), (ââ1.4)
+# If it is to change: We (re) move the scenery and insert the new.
+# If it is to enter: call the function insert ();
+###################################################################
+if (!(function_exists("tratarPedidoConceito")))
+{
+    function tratarPedidoConceito($id_pedido)
+    {
+    	assert($id_pedido != null, "id_pedido must not be null");
+    	
+        $DB = new PGDB();
+        $select_pedido_conceito = new QUERY($DB);
+        $delete = new QUERY($DB);
+        $select_pedido_conceito->execute("SELECT * FROM pedidocon WHERE id_pedido = $id_pedido");
+        if ($select_pedido_conceito->getntuples() == 0)
+        {
+            echo "<BR> [ERRO]Pedido invalido.";
+        }
+        else
+        {
+            $record_pedido = $select_pedido_conceito->gofirst ();
+            $tipoPedido = $record_pedido['tipo_pedido'];
+            if (!strcasecmp($tipoPedido,'remover'))
+            {
+                $id_conceito = $record_pedido['id_conceito'];
+                $id_projeto = $record_pedido['id_projeto'];
+                removeConceito($id_projeto,$id_conceito);
+            }
+            else
+            {
+            	$id_conceito = $record_pedido['id_conceito'];
+                $id_projeto = $record_pedido['id_projeto'] ;
+                $nome = $record_pedido['nome'] ;
+                $descricao = $record_pedido['descricao'] ;
+                $namespace = $record_pedido['namespace'] ;
+                
+                if (!strcasecmp($tipoPedido,'alterar'))
+                {
+                    $id_cenario = $record_pedido['id_conceito'] ;
+                    removeConceito($id_projeto,$id_conceito) ;
+                }
+                adicionar_conceito($id_projeto, $nome, $descricao, $namespace) ;
+            }
+        }
+    }
+}
+else
+{
+	//Nothing to do.
+}
+
 ?>
