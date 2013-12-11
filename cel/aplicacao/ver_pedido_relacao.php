@@ -11,7 +11,7 @@ session_start();
 
 include("funcoes_genericas.php");
 include("httprequest.inc");
-
+include_once ("dataBase/DatabaseProcessRequest.php");
 
 checkUser("index.php");	// checks whether the user has been authenticated
 

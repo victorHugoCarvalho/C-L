@@ -217,4 +217,58 @@ else
 	//Nothing to do.
 }
 
+###################################################################
+# Handles a request identified by its id.
+# Receives the request id. (1.1)
+# Do a select to get the request using the id received. (1.2)
+# Get the field tipo_pedido. (1.3)
+# If it's to remove: We call the function remove (), (â€‹â€‹1.4)
+# If it is to change: We (re) move the scenery and insert the new.
+# If it is to enter: call the function insert ();
+###################################################################
+if (!(function_exists("tratarPedidoRelacao")))
+{
+	function tratarPedidoRelacao($id_pedido)
+	{
+		assert($id_pedido != null, "id_pedido must not be null");
+		 
+		$DB = new PGDB();
+		$select = new QUERY($DB);
+		$delete = new QUERY($DB);
+		$select->execute("SELECT * FROM pedidorel WHERE id_pedido = $id_pedido");
+
+		if ($select->getntuples() == 0)
+		{
+			echo "<BR> [ERRO]Pedido invalido." ;
+		}
+		else
+		{
+			$record = $select->gofirst () ;
+			$tipoPedido = $record['tipo_pedido'] ;
+			if (!strcasecmp($tipoPedido,'remover'))
+			{
+				$id_relacao = $record['id_relacao'] ;
+				$id_projeto = $record['id_projeto'] ;
+				removeRelacao($id_projeto,$id_relacao) ;
+			}
+			else
+			{
+				$id_projeto = $record['id_projeto'] ;
+				$nome = $record['nome'] ;
+
+				if (!strcasecmp($tipoPedido,'alterar'))
+				{
+					$id_relacao = $record['id_relacao'] ;
+					removeRelacao($id_projeto,$id_relacao) ;
+				}
+				adicionar_relacao($id_projeto, $nome) ;
+			}
+		}
+	}
+}
+else
+{
+	//Nothing to do.
+}
+
 ?>
